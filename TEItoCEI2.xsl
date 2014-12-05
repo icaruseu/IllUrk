@@ -61,7 +61,7 @@
                 -->
                 <xsl:variable name="id">
                     <xsl:text>Illurk_</xsl:text><xsl:value-of select="position()"/>
-                    <atom:id xmlns:atom="http.//www.w3.org/2005/Atom"
+                    <atom:id xmlns:atom="http://www.w3.org/2005/Atom"
                             >tag:www.monasterium.net,2011:/charter/illurk/Illurk_<xsl:value-of
                             select="position()"/></atom:id>
                     <cei:idno>
