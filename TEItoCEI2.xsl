@@ -2,8 +2,8 @@
 <!-- 2014-12-04 Author: GVogeler, maburg -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
-    <xsl:output method="xml" indent="yes" encoding="UTF-8" />
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0" >
+    <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:template match="/">
 
         <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
@@ -57,15 +57,12 @@
                 </xsl:variable>
 
                 <!--
-                    Es braucht ein paar Identifikatoren f¸r die Urkunde, die ich hier zusammenbaue und speichere
+                    Es braucht ein paar Identifikatoren f√ºr die Urkunde, die ich hier zusammenbaue und speichere
                 -->
                 <xsl:variable name="id">
-                    <xml_id>
-                        <xsl:value-of select="concat('Illurk_',position())"/>
-                    </xml_id>
-                    <xsl:value-of select="position()"/>
+                    <xsl:text>Illurk_</xsl:text><xsl:value-of select="position()"/>
                     <atom:id xmlns:atom="http.//www.w3.org/2005/Atom"
-                            >tag:www.monasterium.net,2011:/charter/illurk/<xsl:value-of
+                            >tag:www.monasterium.net,2011:/charter/illurk/Illurk_<xsl:value-of
                             select="position()"/></atom:id>
                     <cei:idno>
                         <xsl:value-of select="position()"/>
@@ -93,9 +90,10 @@
     Und hier geht die eigentliche Konversion los: 
      *********************
 -->
-                <xsl:result-document href="illurk/{$id/text()}.xml">
+                <xsl:result-document href="illurk/{$id/text()}.charter.xml">
                     <atom:entry xmlns:atom="http.//www.w3.org/2005/Atom">
                         <xsl:copy-of select="$id/atom:id"/>
+                        <atom:title/>
                         <atom:published>
                             <xsl:value-of select="current-dateTime()"/>
                         </atom:published>
@@ -117,19 +115,19 @@
                             Ab hier dann das CEI:
                             -->
                             <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
-                                <xsl:attribute name="xml:id"><xsl:value-of select="$id/xml_id"/></xsl:attribute>
+                                <xsl:attribute name="xml:id"><xsl:value-of select="$id/text()"/></xsl:attribute>
                                 <cei:front>
                                     <cei:sourceDesc>
                                         <cei:sourceDescVolltext>
                                             <cei:bibl/>
                                         </cei:sourceDescVolltext>
-                                        <cei:sourceDescRegest>Gabriele Bartz (Kunsthistorische Beschreibung), Markus Gneiﬂ (diplomatische Beschreibung) im Rahmen des FWF Projekts "Illuminierte Urkunden"</cei:sourceDescRegest>
+                                        <cei:sourceDescRegest>Gabriele Bartz (Kunsthistorische Beschreibung), Markus Gnei√ü (diplomatische Beschreibung) im Rahmen des FWF Projekts "Illuminierte Urkunden"</cei:sourceDescRegest>
                                     </cei:sourceDesc>
                                 </cei:front>
                                 <cei:body>
                                     <xsl:copy-of select="$id/cei:idno"/>
                                     <cei:chDesc>
-                                        <cei:class/><!-- Hier k‰me auf eigentlich die Urkundenart hinein -->
+                                        <cei:class/><!-- Hier k√§me auf eigentlich die Urkundenart hinein -->
                                         <cei:abstract>
                                             <xsl:apply-templates select="t:cell[4]"/>
                                         </cei:abstract>
@@ -158,7 +156,7 @@
                                             </cei:dateRange>
                                         </cei:issued>
                                         <cei:witnessOrig>
-                                            <cei:traditioForm>orig.</cei:traditioForm><!-- FixMe: es gibt auch kopiale ‹berlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
+                                            <cei:traditioForm>orig.</cei:traditioForm><!-- FixMe: es gibt auch kopiale √úberlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                             <xsl:choose>
                                                 <xsl:when test="$id/mom">
                                                   <xsl:for-each select="$id/mom"><xsl:copy-of
@@ -176,7 +174,8 @@
                                                           </cei:graphic>
                                                       </cei:figure>
                                                   </xsl:for-each>
-                                                    <!-- Hier kˆnnte man noch zus‰tzlich die Martinsche Bildersammlung auf 
+                                                    <xsl:if test="not(t:cell/t:p[@rend='LINK-ZU-BILD'])"><cei:figure/></xsl:if>
+                                                    <!-- Hier k√∂nnte man noch zus√§tzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum auswerten, also
                                                     <xsl:for-each select="document('http://images.monasterium.net/illum ...')//a[starts-with(.,substring-before(t:cell[1],'_'))]">
                                                         <cei:figure>
@@ -228,10 +227,7 @@
                                             </cei:witness>
                                         </cei:witListPar>
                                         <cei:diplomaticAnalysis>
-                                            <xsl:apply-templates select="t:cell/t:*[@rend='Beschreibung']"></xsl:apply-templates>
-                                            <cei:listBibl>
-                                                <xsl:apply-templates select="t:cell[7]"/>
-                                            </cei:listBibl>
+                                            <xsl:apply-templates select="t:cell/t:*[@rend='Beschreibung']"/>
                                             <cei:listBiblEdition>
                                                 <cei:bibl/>
                                             </cei:listBiblEdition>
@@ -262,6 +258,7 @@
                                             <xsl:value-of select="."/>
                                         </cei:index>
                                     </xsl:for-each>
+                                    <xsl:if test="not(.//t:*[@rend='UrkArt'])"><cei:index/></xsl:if>
                                     <cei:divNotes>
                                         <cei:note/>
                                     </cei:divNotes>
@@ -287,14 +284,14 @@
         <xsl:apply-templates/>
     </xsl:template>
     <!-- 
-        Die f¸nfte Spalte enth‰lt die kunsthistorische Beschreibung
+        Die f√ºnfte Spalte enth√§lt die kunsthistorische Beschreibung
     -->
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.)!=''">
             <cei:p><xsl:value-of select="text()"/></cei:p></xsl:if>
         <xsl:for-each select="t:p[not(@rend='NIVEAU') and not(@rend='Autorensigle')]">
             <cei:p><xsl:apply-templates /></cei:p>
-            <!-- Soll man hier schon probieren die Niveau-Schlagwˆrter im Text zu matchen?
+            <!-- Soll man hier schon probieren die Niveau-Schlagw√∂rter im Text zu matchen?
                 <xsl:variable name='niveau'>
                     <xsl:for-each select="*[@rend='NIVEAU']">
                         <niveau><xsl:value-of></xsl:value-of></niveau></xsl:for-each>
@@ -327,16 +324,15 @@
         
     </xsl:template>
     <!-- 
-        In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich ¸bergehe
+        In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich √ºbergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
         <xsl:choose>
             <xsl:when test="not(t:cell[7]/t:p)">
-                <cei:bibl>
-                    <xsl:apply-templates/>
-                </cei:bibl>
+                <cei:bibl><xsl:apply-templates/></cei:bibl>
             </xsl:when>
             <xsl:otherwise>
+                <!-- FixMe: Hier werden in Urkunde 2 (769-03-22) ganz viele bibl erzeugt. Warum?  -->
                 <xsl:apply-templates />
             </xsl:otherwise>
         </xsl:choose>
@@ -366,7 +362,7 @@
 <!--            <xsl:choose>
                 <xsl:when test="following-sibling::t:p[@rend='Autorensigle']">
                     <xsl:attribute name="resp">
-                        <xsl:value-of select="replace(.,'ß','')"/>
+                        <xsl:value-of select="replace(.,'¬ß','')"/>
                     </xsl:attribute>
                     <xsl:apply-templates/>
                 </xsl:when>
@@ -382,10 +378,10 @@
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
     <xsl:template match="t:*[@rend='Autorensigle']|t:*[@rend='LINK-ZU-BILD']">
-        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann kˆnnte man das handeln, als eigener Absatz kˆnnte man sie immer nur auf den vorherigen Absatz beziehen. -->
+        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann k√∂nnte man das handeln, als eigener Absatz k√∂nnte man sie immer nur auf den vorherigen Absatz beziehen. -->
         <!--        <cei:p>
             <xsl:attribute name="resp">
-                <xsl:value-of select="replace(.,'ß','')"/>
+                <xsl:value-of select="replace(.,'¬ß','')"/>
             </xsl:attribute>
             <xsl:value-of select="."/>
         </cei:p>
