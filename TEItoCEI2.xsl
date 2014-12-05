@@ -91,7 +91,7 @@
      *********************
 -->
                 <xsl:result-document href="illurk/{$id/text()}.charter.xml">
-                    <atom:entry xmlns:atom="http.//www.w3.org/2005/Atom">
+                    <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                         <xsl:copy-of select="$id/atom:id"/>
                         <atom:title/>
                         <atom:published>
