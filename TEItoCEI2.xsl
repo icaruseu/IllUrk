@@ -14,6 +14,9 @@
             </cei:teiHeader>
 -->
             <xsl:for-each select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position()>1]">
+                <!-- FixMe: In die Attribute dürfen nur die Zahlen, nicht noch angehängte Texte.
+                            Einleitende 0 sind auch noch zu entfernen.
+                -->
                 <xsl:variable name="from">
                     <xsl:if test="contains(t:cell[1], '-')">
                         <xsl:choose>
