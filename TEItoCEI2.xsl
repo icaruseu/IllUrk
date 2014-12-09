@@ -14,7 +14,11 @@
             </cei:teiHeader>
 -->
             <xsl:for-each select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position()>1]">
+<<<<<<< HEAD
                 <!-- FixMe: In die Attribute dürfen nur die Zahlen, nicht noch angehängte Texte.
+=======
+                <!-- FixMe: In die Attribute dÃ¼rfen nur die Zahlen, nicht noch angehÃ¤ngte Texte.
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                             Einleitende 0 sind auch noch zu entfernen.
                 -->
                 <xsl:variable name="from">
@@ -60,7 +64,7 @@
                 </xsl:variable>
 
                 <!--
-                    Es braucht ein paar Identifikatoren für die Urkunde, die ich hier zusammenbaue und speichere
+                    Es braucht ein paar Identifikatoren fÃ¼r die Urkunde, die ich hier zusammenbaue und speichere
                 -->
                 <xsl:variable name="id">
                     <xsl:text>Illurk_</xsl:text>
@@ -128,7 +132,11 @@
                                             <cei:bibl/>
                                         </cei:sourceDescVolltext>
                                         <cei:sourceDescRegest>Gabriele Bartz (Kunsthistorische
+<<<<<<< HEAD
                                             Beschreibung), Markus Gneiß (diplomatische Beschreibung)
+=======
+                                            Beschreibung), Markus GneiÃŸ (diplomatische Beschreibung)
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                                             im Rahmen des FWF Projekts "Illuminierte
                                             Urkunden"</cei:sourceDescRegest>
                                     </cei:sourceDesc>
@@ -137,7 +145,11 @@
                                     <xsl:copy-of select="$id/cei:idno"/>
                                     <cei:chDesc>
                                         <cei:class/>
+<<<<<<< HEAD
                                         <!-- Hier käme auf eigentlich die Urkundenart hinein -->
+=======
+                                        <!-- Hier kÃ¤me auf eigentlich die Urkundenart hinein -->
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                                         <cei:abstract>
                                             <xsl:apply-templates select="t:cell[4]"/>
                                         </cei:abstract>
@@ -166,7 +178,11 @@
                                         </cei:issued>
                                         <cei:witnessOrig>
                                             <cei:traditioForm>orig.</cei:traditioForm>
+<<<<<<< HEAD
                                             <!-- FixMe: es gibt auch kopiale Überlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
+=======
+                                            <!-- FixMe: es gibt auch kopiale Ãœberlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                                             <xsl:choose>
                                                 <xsl:when test="$id/mom">
                                                   <xsl:for-each select="$id/mom">
@@ -190,7 +206,11 @@
                                                   test="not(t:cell/t:p[@rend='LINK-ZU-BILD'])">
                                                   <cei:figure/>
                                                   </xsl:if>
+<<<<<<< HEAD
                                                   <!-- Hier könnte man noch zusätzlich die Martinsche Bildersammlung auf 
+=======
+                                                  <!-- Hier kÃ¶nnte man noch zusÃ¤tzlich die Martinsche Bildersammlung auf 
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                                                     images.monasterium.net/illum auswerten, also
                                                     <xsl:for-each select="document('http://images.monasterium.net/illum ...')//a[starts-with(.,substring-before(t:cell[1],'_'))]">
                                                         <cei:figure>
@@ -205,10 +225,17 @@
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                             <cei:archIdentifier>
+<<<<<<< HEAD
                                                 <cei:settlement>
                                                   <xsl:value-of
                                                   select="t:cell[6]/t:*[@rend='Archivort']"/>
                                                 </cei:settlement>
+=======
+                                                <cei:placeName>
+                                                  <xsl:value-of
+                                                  select="t:cell[6]/t:*[@rend='Archivort']"/>
+                                                </cei:placeName>
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                                                 <cei:arch>
                                                   <xsl:value-of
                                                   select="t:cell[6]/t:*[@rend='Archivname']"/>
@@ -317,7 +344,7 @@
         <xsl:apply-templates/>
     </xsl:template>
     <!-- 
-        Die fünfte Spalte enthält die kunsthistorische Beschreibung
+        Die fÃ¼nfte Spalte enthÃ¤lt die kunsthistorische Beschreibung
     -->
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.)!=''">
@@ -329,7 +356,11 @@
             <cei:p>
                 <xsl:apply-templates/>
             </cei:p>
+<<<<<<< HEAD
             <!-- Soll man hier schon probieren die Niveau-Schlagwörter im Text zu matchen?
+=======
+            <!-- Soll man hier schon probieren die Niveau-SchlagwÃ¶rter im Text zu matchen?
+>>>>>>> d9db8803f29f83ff085354dbc6e3211a858b7d69
                 <xsl:variable name='niveau'>
                     <xsl:for-each select="*[@rend='NIVEAU']">
                         <niveau><xsl:value-of></xsl:value-of></niveau></xsl:for-each>
@@ -368,7 +399,7 @@
 
     </xsl:template>
     <!-- 
-        In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich übergehe
+        In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich Ã¼bergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
         <xsl:choose>
@@ -411,7 +442,7 @@
         <!--            <xsl:choose>
                 <xsl:when test="following-sibling::t:p[@rend='Autorensigle']">
                     <xsl:attribute name="resp">
-                        <xsl:value-of select="replace(.,'§','')"/>
+                        <xsl:value-of select="replace(.,'Â§','')"/>
                     </xsl:attribute>
                     <xsl:apply-templates/>
                 </xsl:when>
@@ -428,10 +459,10 @@
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
     <xsl:template match="t:*[@rend='Autorensigle']|t:*[@rend='LINK-ZU-BILD']">
-        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
+        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann kÃ¶nnte man das handeln, als eigener Absatz kÃ¶nnte man sie immer nur auf den vorherigen Absatz beziehen. -->
         <!--        <cei:p>
             <xsl:attribute name="resp">
-                <xsl:value-of select="replace(.,'§','')"/>
+                <xsl:value-of select="replace(.,'Â§','')"/>
             </xsl:attribute>
             <xsl:value-of select="."/>
         </cei:p>
