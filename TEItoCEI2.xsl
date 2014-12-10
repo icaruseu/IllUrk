@@ -14,49 +14,80 @@
             </cei:teiHeader>
 -->
             <xsl:for-each select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position()>1]">
-                <!-- FixMe: In die Attribute d¸rfen nur die Zahlen, nicht noch angeh‰ngte Texte.
-                            Einleitende 0 sind auch noch zu entfernen.
-                -->
-                <xsl:variable name="from">
-                    <xsl:if test="contains(t:cell[1], '-')">
-                        <xsl:choose>
-                            <xsl:when test="string-length(substring-before(t:cell[1], '-'))= 3">
-                                <xsl:text>0</xsl:text>
-                                <xsl:value-of select="substring-before(t:cell[1], '-')"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="substring-before(t:cell[1], '-')"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:if>
-                    <xsl:if test="not(contains(t:cell[1], '-'))">
-                        <xsl:value-of select="t:cell[1]"/>
-                    </xsl:if>
+                <xsl:variable name="was">
+                    <!--<xsl:value-of select="replace(t:cell[1]//text(),'([1-9_-]*?)', '$1')"/>-->
+                  <xsl:choose>
+                      <xsl:when test="starts-with(t:cell[1], '&#xA;')">
+                          <xsl:value-of select="replace(substring-after(t:cell[1], '&#xA;'),' ', '')"></xsl:value-of>
+                      </xsl:when>
+                      <xsl:when test="starts-with(t:cell[1], '0')">
+                          <xsl:value-of select="replace(substring-after(t:cell[1], '0'),' ', '')"></xsl:value-of>
+                      </xsl:when>
+                      <xsl:when test="contains(t:cell[1], 'ß')">
+                          <xsl:value-of select="replace(substring-before(., 'ß'), ' ', '')"/>
+                      </xsl:when>
+                      <xsl:when test="contains(t:cell[1], '(')">
+                          <xsl:value-of select="replace(substring-before(., '('), ' ', '')"/>
+                      </xsl:when>
+                      <xsl:when test="contains(t:cell[1],'&#xA;')">
+                          <xsl:value-of select="replace(replace(t:cell[1], '&#xA;', ''), ' ', '')"></xsl:value-of>
+                      </xsl:when>
+                      <xsl:otherwise>
+                          <xsl:value-of select="replace(t:cell[1], ' ','')"></xsl:value-of>
+                      </xsl:otherwise>
+                  </xsl:choose>                  
                 </xsl:variable>
-                <xsl:variable name="monthandday">
-                    <xsl:choose>
-                        <xsl:when test="string-length(substring-after(t:cell[1], '-')) >= 5">
-                            <xsl:choose>
-                                <xsl:when test="contains(substring-after(t:cell[1], '-'), '_')">
-                                    <xsl:value-of
-                                        select="replace(replace(substring-after(t:cell[1], '-'), '-', ''), '_', '9')"
-                                    />
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of
-                                        select="replace(substring-after(t:cell[1], '-'), '-', '')"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>9999</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <xsl:variable name="waswirbrauchen">
+                    <xsl:value-of select="replace($was, '&#xA; ', '')" />
                 </xsl:variable>
-
                 <xsl:variable name="date">
-                    <xsl:value-of select="$from"/>
-                    <xsl:value-of select="$monthandday"/>
+                    <xsl:choose>
+                        <!-- F‰lle mit 3-stelliger Jahreszahl -->
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[0-9][0-9][0-9]')">
+                            <from><xsl:value-of select="substring-before($waswirbrauchen,'-')"/></from>
+                            <to><xsl:value-of select="substring-after($waswirbrauchen,'-')"/></to>
+                        </xsl:when>
+                       
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')">
+                            <from><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></from>
+                            <to><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></to>                           
+                        </xsl:when>
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[_][_]-[_][_]')">
+                            <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></from>
+                            <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></to>                             
+                        </xsl:when> 
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[_][_]')">
+                            <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></from>
+                            <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></to>                             
+                        </xsl:when>                     
+                        
+                        <!-- F‰lle mit 4-stelliger Jahreszahl -->
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]')">
+                            <from><xsl:value-of select="substring-before($waswirbrauchen,'-')"/></from>
+                            <to><xsl:value-of select="substring-after($waswirbrauchen,'-')"/></to>
+                        </xsl:when>
+                        <xsl:when test="not(contains(t:cell[1], '-'))">
+                            <from>
+                                <xsl:value-of select="substring(., 1,4)" />
+                                <xsl:text>9999</xsl:text>
+                            </from>
+                            <to> <xsl:value-of select="substring(., 1,4)" />
+                            <xsl:text>9999</xsl:text></to>
+                        </xsl:when>
+                        <!-- Das ist der Normalfall  -->
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')">
+                            <from><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></from>
+                            <to><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></to>                           
+                        </xsl:when>
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[_][_]-[_][_]')">
+                            <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></from>
+                            <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></to>                             
+                        </xsl:when> 
+                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[_][_]')">
+                            <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></from>
+                            <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></to>                             
+                        </xsl:when> 
+                    </xsl:choose>
                 </xsl:variable>
 
                 <!--
@@ -94,90 +125,79 @@
     Und hier geht die eigentliche Konversion los: 
      *********************
 -->
-                <xsl:result-document href="illurk/{$id/text()}.charter.xml">
-                    <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
-                        <xsl:copy-of select="$id/atom:id"/>
-                        <atom:title/>
-                        <atom:published>
-                            <xsl:value-of select="current-dateTime()"/>
-                        </atom:published>
-                        <atom:updated>
-                            <xsl:value-of select="current-dateTime()"/>
-                        </atom:updated>
-                        <atom:author>
-                            <atom:email>illuminierteurkunden@gmail.com</atom:email>
-                        </atom:author>
-                        <app:control xmlns:app="http://www.w3.org72007/app">
-                            <app:draft>no</app:draft>
-                        </app:control>
+                <!--   <xsl:result-document href="illurk/{$id/text()}.charter.xml">-->
+                <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                    <xsl:copy-of select="$id/atom:id"/>
+                    <atom:title/>
+                    <atom:published>
+                        <xsl:value-of select="current-dateTime()"/>
+                    </atom:published>
+                    <atom:updated>
+                        <xsl:value-of select="current-dateTime()"/>
+                    </atom:updated>
+                    <atom:author>
+                        <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                    </atom:author>
+                    <app:control xmlns:app="http://www.w3.org/2007/app">
+                        <app:draft>no</app:draft>
+                    </app:control>
 
-                        <xsl:if test="$id/mom">
-                            <atom:link rel="versionOf" ref="{$id/mom/text()}"/>
-                        </xsl:if>
-                        <atom:content type="application/xml">
-                            <!-- 
+                    <xsl:if test="$id/mom">
+                        <atom:link rel="versionOf" ref="{$id/mom/text()}"/>
+                    </xsl:if>
+                    <atom:content type="application/xml">
+                        <!-- 
                             Ab hier dann das CEI:
                             -->
-                            <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
-                                <xsl:attribute name="xml:id">
-                                    <xsl:value-of select="$id/text()"/>
-                                </xsl:attribute>
-                                <cei:front>
-                                    <cei:sourceDesc>
-                                        <cei:sourceDescVolltext>
-                                            <cei:bibl/>
-                                        </cei:sourceDescVolltext>
-                                        <cei:sourceDescRegest>Gabriele Bartz (Kunsthistorische
-                                            Beschreibung), Markus Gneiﬂ (diplomatische Beschreibung)
-                                            im Rahmen des FWF Projekts "Illuminierte
-                                            Urkunden"</cei:sourceDescRegest>
-                                    </cei:sourceDesc>
-                                </cei:front>
-                                <cei:body>
-                                    <xsl:copy-of select="$id/cei:idno"/>
-                                    <cei:chDesc>
-                                        <cei:class/>
-                                        <!-- Hier k‰me auf eigentlich die Urkundenart hinein -->
-                                        <cei:abstract>
-                                            <xsl:apply-templates select="t:cell[4]"/>
-                                        </cei:abstract>
-                                        <cei:issued>
-                                            <cei:placeName>
-                                                <xsl:value-of select="t:cell[3]"/>
-                                            </cei:placeName>
+                        <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
+                            <xsl:attribute name="id">
+                                <xsl:value-of select="$id/text()"/>
+                            </xsl:attribute>
+                            <cei:front>
+                                <cei:sourceDesc>
+                                    <cei:sourceDescVolltext>
+                                        <cei:bibl/>
+                                    </cei:sourceDescVolltext>
+                                    <cei:sourceDescRegest>
+                                        <cei:bibl>Gabriele Bartz (Kunsthistorische Beschreibung),
+                                            Markus Gneiﬂ (diplomatische Beschreibung) im Rahmen des
+                                            FWF Projekts "Illuminierte Urkunden"</cei:bibl>
+                                    </cei:sourceDescRegest>
+                                </cei:sourceDesc>
+                            </cei:front>
+                            <cei:body>
+                                <xsl:copy-of select="$id/cei:idno"/>
+                                <cei:chDesc>
+                                    <cei:class/>
+                                    <!-- Hier k‰me auf eigentlich die Urkundenart hinein -->
+                                    <cei:abstract>
+                                        <xsl:apply-templates select="t:cell[4]"/>
+                                    </cei:abstract>
+                                    <cei:issued>
+                                        <cei:placeName>
+                                            <xsl:value-of select="t:cell[3]"/>
+                                        </cei:placeName>
 
-                                            <cei:dateRange from="{$date}">
+                                        <cei:dateRange>
+                                            <xsl:attribute name="from" select="$date/from" />          
 
-                                                <xsl:attribute name="to">
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="string-length(substring-after(t:cell[1], '-')) = 4">
-                                                  <xsl:value-of
-                                                  select="substring-after(t:cell[1], '-')"/>
-                                                  <xsl:text>9999</xsl:text>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="$date"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                </xsl:attribute>
-                                                <xsl:value-of select="t:cell[1]"/>
-                                            </cei:dateRange>
-                                        </cei:issued>
-                                        <cei:witnessOrig>
-                                            <cei:traditioForm>orig.</cei:traditioForm>
-                                            <!-- FixMe: es gibt auch kopiale ‹berlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
+                                            <xsl:attribute name="to" select="$date/to" />                                                
+                         
+
+                                            <xsl:value-of select="t:cell[1]"/>
+                                        </cei:dateRange>
+                                    </cei:issued>
+                                    <cei:witnessOrig>
+                                        <cei:traditioForm>orig.</cei:traditioForm>
+                                        <!-- FixMe: es gibt auch kopiale ‹berlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
+                                        <xsl:for-each select="t:cell[7]/t:p[@rend='LINK-ZU-BILD']">
                                             <xsl:choose>
-                                                <xsl:when test="$id/mom">
-                                                  <xsl:for-each select="$id/mom">
-                                                  <xsl:copy-of
-                                                  select="document(concat('http://monasterium.net/mom/atom/GET/metadata.charter.public/',substring-after(.,'tag:www.monasterium.net,2011:/charter/'),'.cei.xml'))//cei:witnessOrig/cei:figure"
-                                                  />
-                                                  </xsl:for-each>
+                                                <xsl:when
+                                                  test="($id/mom and .//text()[contains(.,'monasterium.net')])">
+                                                    <cei:figure/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                  <xsl:for-each
-                                                  select="t:cell/t:p[@rend='LINK-ZU-BILD']">
+<!--                                                  <xsl:text>K‰tzchen</xsl:text>-->
                                                   <cei:figure>
                                                   <cei:graphic>
                                                   <xsl:attribute name="url">
@@ -185,12 +205,11 @@
                                                   </xsl:attribute>
                                                   </cei:graphic>
                                                   </cei:figure>
-                                                  </xsl:for-each>
-                                                  <xsl:if
-                                                  test="not(t:cell/t:p[@rend='LINK-ZU-BILD'])">
-                                                  <cei:figure/>
-                                                  </xsl:if>
-                                                  <!-- Hier kˆnnte man noch zus‰tzlich die Martinsche Bildersammlung auf 
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:for-each>
+
+                                        <!-- Hier kˆnnte man noch zus‰tzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum auswerten, also
                                                     <xsl:for-each select="document('http://images.monasterium.net/illum ...')//a[starts-with(.,substring-before(t:cell[1],'_'))]">
                                                         <cei:figure>
@@ -202,93 +221,91 @@
                                                         </cei:figure>
                                                     </xsl:for-each>
                                                     -->
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                            <cei:archIdentifier>
-                                                <cei:settlement>
-                                                  <xsl:value-of
+
+                                        <cei:archIdentifier>
+                                            <cei:settlement>
+                                                <xsl:value-of
                                                   select="t:cell[6]/t:*[@rend='Archivort']"/>
-                                                </cei:settlement>
-                                                <cei:arch>
-                                                  <xsl:value-of
+                                            </cei:settlement>
+                                            <cei:arch>
+                                                <xsl:value-of
                                                   select="t:cell[6]/t:*[@rend='Archivname']"/>
-                                                </cei:arch>
-                                            </cei:archIdentifier>
+                                            </cei:arch>
+                                        </cei:archIdentifier>
+                                        <cei:physicalDesc>
+                                            <cei:decoDesc>
+                                                <xsl:apply-templates select="t:cell[5]"/>
+                                            </cei:decoDesc>
+                                            <cei:material/>
+                                            <cei:dimensions/>
+                                            <cei:condition/>
+                                        </cei:physicalDesc>
+                                        <cei:auth>
+                                            <cei:notariusDesc/>
+                                            <cei:sealDesc/>
+                                        </cei:auth>
+                                        <cei:nota/>
+                                    </cei:witnessOrig>
+                                    <cei:witListPar>
+                                        <cei:witness>
+                                            <cei:traditioForm/>
+                                            <cei:figure/>
+                                            <cei:archIdentifier/>
                                             <cei:physicalDesc>
-                                                <cei:decoDesc>
-                                                  <xsl:apply-templates select="t:cell[5]"/>
-                                                </cei:decoDesc>
                                                 <cei:material/>
                                                 <cei:dimensions/>
                                                 <cei:condition/>
                                             </cei:physicalDesc>
                                             <cei:auth>
-                                                <cei:notariusDesc/>
                                                 <cei:sealDesc/>
+                                                <cei:notariusDesc/>
                                             </cei:auth>
                                             <cei:nota/>
-                                        </cei:witnessOrig>
-                                        <cei:witListPar>
-                                            <cei:witness>
-                                                <cei:traditioForm/>
-                                                <cei:figure/>
-                                                <cei:archIdentifier/>
-                                                <cei:physicalDesc>
-                                                  <cei:material/>
-                                                  <cei:dimensions/>
-                                                  <cei:condition/>
-                                                </cei:physicalDesc>
-                                                <cei:auth>
-                                                  <cei:sealDesc/>
-                                                  <cei:notariusDesc/>
-                                                </cei:auth>
-                                                <cei:nota/>
-                                            </cei:witness>
-                                        </cei:witListPar>
-                                        <cei:diplomaticAnalysis>
-                                            <xsl:apply-templates
-                                                select="t:cell/t:*[@rend='Beschreibung']"/>
-                                            <cei:listBiblEdition>
-                                                <cei:bibl/>
-                                            </cei:listBiblEdition>
-                                            <cei:listBiblRegest>
-                                                <cei:bibl/>
-                                            </cei:listBiblRegest>
-                                            <cei:listBiblFaksimile>
-                                                <cei:bibl/>
-                                            </cei:listBiblFaksimile>
-                                            <cei:listBiblErw>
-                                                <cei:bibl/>
-                                            </cei:listBiblErw>
-                                            <cei:p/>
-                                            <cei:quoteOriginaldatierung/>
-                                            <cei:nota/>
-                                        </cei:diplomaticAnalysis>
-                                        <cei:lang_MOM/>
-                                    </cei:chDesc>
-                                    <cei:tenor/>
-                                </cei:body>
-                                <cei:back>
-                                    <cei:persName/>
-                                    <cei:placeName type="Region">
-                                        <xsl:value-of select="t:cell[2]"/>
-                                    </cei:placeName>
-                                    <xsl:for-each select=".//t:*[@rend='UrkArt']">
-                                        <cei:index type="Urkundenart">
-                                            <xsl:value-of select="."/>
-                                        </cei:index>
-                                    </xsl:for-each>
-                                    <xsl:if test="not(.//t:*[@rend='UrkArt'])">
-                                        <cei:index/>
-                                    </xsl:if>
-                                    <cei:divNotes>
-                                        <cei:note/>
-                                    </cei:divNotes>
-                                </cei:back>
-                            </cei:text>
-                        </atom:content>
-                    </atom:entry>
-                </xsl:result-document>
+                                        </cei:witness>
+                                    </cei:witListPar>
+                                    <cei:diplomaticAnalysis>
+
+                                        <cei:listBiblEdition>
+                                            <xsl:apply-templates select="t:cell[7]"/>
+                                        </cei:listBiblEdition>
+                                        <cei:listBiblRegest>
+                                            <cei:bibl/>
+                                        </cei:listBiblRegest>
+                                        <cei:listBiblFaksimile>
+                                            <cei:bibl/>
+                                        </cei:listBiblFaksimile>
+                                        <cei:listBiblErw>
+                                            <cei:bibl/>
+                                        </cei:listBiblErw>
+                                        <cei:p/>
+                                        <cei:quoteOriginaldatierung/>
+                                        <cei:nota/>
+                                    </cei:diplomaticAnalysis>
+                                    <cei:lang_MOM/>
+                                </cei:chDesc>
+                                <cei:tenor/>
+                            </cei:body>
+                            <cei:back>
+                                <cei:persName/>
+                                <cei:placeName type="Region">
+                                    <xsl:value-of select="t:cell[2]"/>
+                                </cei:placeName>
+                                <xsl:for-each select=".//t:*[@rend='UrkArt']">
+                                    <cei:index type="Urkundenart">
+                                        <xsl:value-of select="."/>
+                                    </cei:index>
+                                </xsl:for-each>
+                                <xsl:if test="not(.//t:*[@rend='UrkArt'])">
+                                    <cei:index/>
+                                </xsl:if>
+                                <cei:divNotes>
+                                    <cei:note/>
+                                </cei:divNotes>
+                            </cei:back>
+                        </cei:text>
+                    </atom:content>
+                </atom:entry>
+                <!--  </xsl:result-document> -->
             </xsl:for-each>
         </cei:cei>
     </xsl:template>
@@ -378,16 +395,13 @@
                 </cei:bibl>
             </xsl:when>
             <xsl:otherwise>
-                <!-- FixMe: Hier werden in Urkunde 2 (769-03-22) ganz viele bibl erzeugt. Warum?  -->
-                <xsl:apply-templates/>
+                <cei:bibl>
+                    <xsl:apply-templates/>
+                </cei:bibl>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="t:p[parent::t:cell = ancestor::t:row/t:cell[7]]" priority="-1">
-        <cei:bibl>
-            <xsl:apply-templates/>
-        </cei:bibl>
-    </xsl:template>
+
     <xsl:template match="t:ref">
         <cei:ref>
             <xsl:attribute name="target">
@@ -407,22 +421,9 @@
             <xsl:value-of select="."/>
         </cei:quote>
     </xsl:template>
-    <xsl:template match="t:p" priority="-2">
-        <!--            <xsl:choose>
-                <xsl:when test="following-sibling::t:p[@rend='Autorensigle']">
-                    <xsl:attribute name="resp">
-                        <xsl:value-of select="replace(.,'ß','')"/>
-                    </xsl:attribute>
-                    <xsl:apply-templates/>
-                </xsl:when>
-                <xsl:otherwise>
--->
-        <xsl:element name="cei:p">
-            <xsl:apply-templates/>
-        </xsl:element>
-        <!--</xsl:otherwise>
-            </xsl:choose>-->
-    </xsl:template>
+
+
+
 
     <!-- 
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
