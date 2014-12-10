@@ -1,97 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2014-12-04 Author: GVogeler, maburg -->
+<!-- 2014-12-10 Author: GVogeler, maburg -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:template match="/">
 
-        <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
-            <!--            <cei:teiHeader>
+<!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
+            xmlns:cei="http://www.monasterium.net/NS/cei">-->
+        <cei:cei>
+            <cei:teiHeader>
                 <cei:fileDesc>
                     <cei:titleStmt/>
                 </cei:fileDesc>
             </cei:teiHeader>
--->
+            <cei:text><cei:group>
             <xsl:for-each select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position()>1]">
+                <xsl:variable name="wasp">
+                    <xsl:choose>
+                        <xsl:when test="t:cell[1]/t:p">
+                            <xsl:value-of select="t:cell[1]/t:p[1]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="t:cell[1]"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <xsl:variable name="was">
+                    <xsl:choose>
+                        <xsl:when test="contains($wasp, ',')">
+                            <xsl:value-of select="substring-before($wasp, ',')"></xsl:value-of>
+                        </xsl:when>
+                        <xsl:when test="contains($wasp, ' ')">
+                            <xsl:value-of select="substring-before($wasp, ' ')"></xsl:value-of>
+                        </xsl:when>
+                        <xsl:when test="starts-with($wasp, '0')">
+                            <xsl:value-of select="substring-after($wasp, '0')"></xsl:value-of>
+                        </xsl:when>
+                        <xsl:when test="contains($wasp, '¬ß')">
+                            <xsl:value-of select="substring-before($wasp, '¬ß')"/>
+                        </xsl:when>
+                        <xsl:when test="contains($wasp, '(')">
+                            <xsl:value-of select="substring-before($wasp, '(')"/>
+                        </xsl:when>
+                        <xsl:when test="contains($wasp,'&#xA;')">
+                            <xsl:value-of select="substring-before($wasp, '&#xA;')"></xsl:value-of>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$wasp"></xsl:value-of>
+                        </xsl:otherwise>
+                    </xsl:choose>                  
                     <!--<xsl:value-of select="replace(t:cell[1]//text(),'([1-9_-]*?)', '$1')"/>-->
-                  <xsl:choose>
-                      <xsl:when test="starts-with(t:cell[1], '&#xA;')">
-                          <xsl:value-of select="replace(substring-after(t:cell[1], '&#xA;'),' ', '')"></xsl:value-of>
-                      </xsl:when>
-                      <xsl:when test="starts-with(t:cell[1], '0')">
-                          <xsl:value-of select="replace(substring-after(t:cell[1], '0'),' ', '')"></xsl:value-of>
-                      </xsl:when>
-                      <xsl:when test="contains(t:cell[1], 'ß')">
-                          <xsl:value-of select="replace(substring-before(., 'ß'), ' ', '')"/>
-                      </xsl:when>
-                      <xsl:when test="contains(t:cell[1], '(')">
-                          <xsl:value-of select="replace(substring-before(., '('), ' ', '')"/>
-                      </xsl:when>
-                      <xsl:when test="contains(t:cell[1],'&#xA;')">
-                          <xsl:value-of select="replace(replace(t:cell[1], '&#xA;', ''), ' ', '')"></xsl:value-of>
-                      </xsl:when>
-                      <xsl:otherwise>
-                          <xsl:value-of select="replace(t:cell[1], ' ','')"></xsl:value-of>
-                      </xsl:otherwise>
-                  </xsl:choose>                  
                 </xsl:variable>
                 <xsl:variable name="waswirbrauchen">
-                    <xsl:value-of select="replace($was, '&#xA; ', '')" />
+                    <xsl:value-of select="replace(replace(replace(replace(normalize-space($was), ' ', ''),'_','9'),'‚Äì','-'),'([0-9_]{3,4})-([0-9_][0-9_])-([0-9_][0-9_])','$1$2$3')" />
+                    <!-- Jetzt gibt es keine _ mehr und alle sieben/achtstelligen Angaben haben keine Bindestriche mehr  -->
                 </xsl:variable>
                 <xsl:variable name="date">
                     <xsl:choose>
-                        <!-- F‰lle mit 3-stelliger Jahreszahl -->
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[0-9][0-9][0-9]')">
-                            <from><xsl:value-of select="substring-before($waswirbrauchen,'-')"/></from>
-                            <to><xsl:value-of select="substring-after($waswirbrauchen,'-')"/></to>
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9]{7,8}$')">
+                            <!-- Das erledigt schon mal alles, was einfach nur eine korrekte Datumsangabe enth√§lt -->
+                            <from><xsl:value-of select="$waswirbrauchen"/></from>
+                            <to><xsl:value-of select="$waswirbrauchen"/></to>
                         </xsl:when>
-                       
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')">
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-[0-9]{3,4}$')">
+                            <from><xsl:value-of select="substring-before($waswirbrauchen,'-')"/><xsl:text>9999</xsl:text></from>
+                            <to><xsl:value-of select="substring-after($waswirbrauchen,'-')"/><xsl:text>9999</xsl:text></to>
+                        </xsl:when>
+                        <!-- F√§lle mit 3-stelliger Jahreszahl -->
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$')">
                             <from><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></from>
                             <to><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></to>                           
                         </xsl:when>
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[_][_]-[_][_]')">
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-__-__$')">
                             <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></from>
                             <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></to>                             
                         </xsl:when> 
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9]-[_][_]')">
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-__$')">
                             <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></from>
                             <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></to>                             
                         </xsl:when>                     
                         
-                        <!-- F‰lle mit 4-stelliger Jahreszahl -->
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]')">
+                        <!-- F√§lle mit 4-stelliger Jahreszahl -->
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
                             <from><xsl:value-of select="substring-before($waswirbrauchen,'-')"/></from>
                             <to><xsl:value-of select="substring-after($waswirbrauchen,'-')"/></to>
                         </xsl:when>
-                        <xsl:when test="not(contains(t:cell[1], '-'))">
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')">
+                            <from><xsl:value-of select="substring-before($waswirbrauchen,'-')"/></from>
+                            <to><xsl:value-of select="substring-after($waswirbrauchen,'-')"/></to>
+                        </xsl:when>
+                        <xsl:when test="not(contains($waswirbrauchen, '-'))">
                             <from>
-                                <xsl:value-of select="substring(., 1,4)" />
+                                <xsl:value-of select="substring($waswirbrauchen, 1,4)" />
                                 <xsl:text>9999</xsl:text>
                             </from>
-                            <to> <xsl:value-of select="substring(., 1,4)" />
+                            <to> <xsl:value-of select="substring($waswirbrauchen, 1,4)" />
                             <xsl:text>9999</xsl:text></to>
                         </xsl:when>
-                        <!-- Das ist der Normalfall  -->
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]')">
+                        <!-- Das ist der Normalfall, falls noch was √ºbrig ist von oben ... -->
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-[0-9][0-9]-[0-9][0-9]$')">
                             <from><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></from>
                             <to><xsl:value-of select="replace($waswirbrauchen, '-', '')"></xsl:value-of></to>                           
                         </xsl:when>
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[_][_]-[_][_]')">
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-__-__$')">
                             <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></from>
                             <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of></to>                             
                         </xsl:when> 
-                        <xsl:when test="matches($waswirbrauchen,'[0-9][0-9][0-9][0-9]-[_][_]')">
+                        <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-__$')">
                             <from><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></from>
                             <to><xsl:value-of select="replace(replace($waswirbrauchen, '_','9'), '-', '')"></xsl:value-of><xsl:text>99</xsl:text></to>                             
                         </xsl:when> 
+                        <xsl:otherwise>
+                            <from>99999999</from>
+                            <to>99999999</to>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
 
                 <!--
-                    Es braucht ein paar Identifikatoren f¸r die Urkunde, die ich hier zusammenbaue und speichere
+                    Es braucht ein paar Identifikatoren f√ºr die Urkunde, die ich hier zusammenbaue und speichere
                 -->
                 <xsl:variable name="id">
                     <xsl:text>Illurk_</xsl:text>
@@ -125,7 +154,7 @@
     Und hier geht die eigentliche Konversion los: 
      *********************
 -->
-                <!--   <xsl:result-document href="illurk/{$id/text()}.charter.xml">-->
+                <!--   <xsl:result-document href="illurk/{$id/text()}.charter.xml">
                 <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                     <xsl:copy-of select="$id/atom:id"/>
                     <atom:title/>
@@ -146,7 +175,7 @@
                         <atom:link rel="versionOf" ref="{$id/mom/text()}"/>
                     </xsl:if>
                     <atom:content type="application/xml">
-                        <!-- 
+-->                        <!-- 
                             Ab hier dann das CEI:
                             -->
                         <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
@@ -160,7 +189,7 @@
                                     </cei:sourceDescVolltext>
                                     <cei:sourceDescRegest>
                                         <cei:bibl>Gabriele Bartz (Kunsthistorische Beschreibung),
-                                            Markus Gneiﬂ (diplomatische Beschreibung) im Rahmen des
+                                            Markus Gnei√ü (diplomatische Beschreibung) im Rahmen des
                                             FWF Projekts "Illuminierte Urkunden"</cei:bibl>
                                     </cei:sourceDescRegest>
                                 </cei:sourceDesc>
@@ -169,7 +198,7 @@
                                 <xsl:copy-of select="$id/cei:idno"/>
                                 <cei:chDesc>
                                     <cei:class/>
-                                    <!-- Hier k‰me auf eigentlich die Urkundenart hinein -->
+                                    <!-- Hier k√§me auf eigentlich die Urkundenart hinein -->
                                     <cei:abstract>
                                         <xsl:apply-templates select="t:cell[4]"/>
                                     </cei:abstract>
@@ -178,6 +207,7 @@
                                             <xsl:value-of select="t:cell[3]"/>
                                         </cei:placeName>
 
+                                        <xsl:comment>waswirbrauchen: <xsl:value-of select="$waswirbrauchen"/></xsl:comment>
                                         <cei:dateRange>
                                             <xsl:attribute name="from" select="$date/from" />          
 
@@ -189,7 +219,7 @@
                                     </cei:issued>
                                     <cei:witnessOrig>
                                         <cei:traditioForm>orig.</cei:traditioForm>
-                                        <!-- FixMe: es gibt auch kopiale ‹berlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
+                                        <!-- FixMe: es gibt auch kopiale √úberlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                         <xsl:for-each select="t:cell[7]/t:p[@rend='LINK-ZU-BILD']">
                                             <xsl:choose>
                                                 <xsl:when
@@ -197,7 +227,6 @@
                                                     <cei:figure/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-<!--                                                  <xsl:text>K‰tzchen</xsl:text>-->
                                                   <cei:figure>
                                                   <cei:graphic>
                                                   <xsl:attribute name="url">
@@ -209,7 +238,7 @@
                                             </xsl:choose>
                                         </xsl:for-each>
 
-                                        <!-- Hier kˆnnte man noch zus‰tzlich die Martinsche Bildersammlung auf 
+                                        <!-- Hier k√∂nnte man noch zus√§tzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum auswerten, also
                                                     <xsl:for-each select="document('http://images.monasterium.net/illum ...')//a[starts-with(.,substring-before(t:cell[1],'_'))]">
                                                         <cei:figure>
@@ -303,10 +332,12 @@
                                 </cei:divNotes>
                             </cei:back>
                         </cei:text>
-                    </atom:content>
+            <!--                      </atom:content>
                 </atom:entry>
-                <!--  </xsl:result-document> -->
+                </xsl:result-document> -->
             </xsl:for-each>
+            </cei:group>
+            </cei:text>
         </cei:cei>
     </xsl:template>
     <xsl:template match="t:*[@rend='Beschreibung']">
@@ -329,12 +360,12 @@
     </xsl:template>
     <xsl:template match="t:*[@rend='Regest']">
         <xsl:if test="preceding-sibling::t:*[@rend='Regest']">
-            <lb/>
+            <cei:lb/>
         </xsl:if>
         <xsl:apply-templates/>
     </xsl:template>
     <!-- 
-        Die f¸nfte Spalte enth‰lt die kunsthistorische Beschreibung
+        Die f√ºnfte Spalte enth√§lt die kunsthistorische Beschreibung
     -->
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.)!=''">
@@ -346,7 +377,7 @@
             <cei:p>
                 <xsl:apply-templates/>
             </cei:p>
-            <!-- Soll man hier schon probieren die Niveau-Schlagwˆrter im Text zu matchen?
+            <!-- Soll man hier schon probieren die Niveau-Schlagw√∂rter im Text zu matchen?
                 <xsl:variable name='niveau'>
                     <xsl:for-each select="*[@rend='NIVEAU']">
                         <niveau><xsl:value-of></xsl:value-of></niveau></xsl:for-each>
@@ -385,7 +416,7 @@
 
     </xsl:template>
     <!-- 
-        In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich ¸bergehe
+        In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich √ºbergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
         <xsl:choose>
@@ -429,10 +460,10 @@
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
     <xsl:template match="t:*[@rend='Autorensigle']|t:*[@rend='LINK-ZU-BILD']">
-        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann kˆnnte man das handeln, als eigener Absatz kˆnnte man sie immer nur auf den vorherigen Absatz beziehen. -->
+        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann k√∂nnte man das handeln, als eigener Absatz k√∂nnte man sie immer nur auf den vorherigen Absatz beziehen. -->
         <!--        <cei:p>
             <xsl:attribute name="resp">
-                <xsl:value-of select="replace(.,'ß','')"/>
+                <xsl:value-of select="replace(.,'¬ß','')"/>
             </xsl:attribute>
             <xsl:value-of select="."/>
         </cei:p>
