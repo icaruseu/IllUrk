@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2014-12-10 Author: GVogeler, maburg -->
+<!-- 2014-12-15 Author: GVogeler, maburg -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
@@ -21,10 +21,10 @@
                         <xsl:variable name="wasp">
                             <xsl:choose>
                                 <xsl:when test="t:cell[1]/t:p">
-                                    <xsl:value-of select="t:cell[1]/t:p[1]"/>
+                                    <xsl:value-of select="t:cell[1]/t:p[1]/normalize-space(.)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="t:cell[1]"/>
+                                    <xsl:value-of select="t:cell[1]/normalize-space(.)"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
@@ -199,6 +199,7 @@
                                     >tag:www.monasterium.net,2011:/charter/illurk/Illurk_<xsl:value-of
                                     select="position()"/></atom:id>
                             <cei:idno>
+                                <xsl:attribute name="id"><xsl:text>Illurk_</xsl:text><xsl:value-of select="position()"/></xsl:attribute>
                                 <xsl:value-of select="position()"/>
                             </cei:idno>
                             <xsl:for-each select="t:cell[7]/t:p[@rend='Monasterium-link']">
@@ -270,10 +271,7 @@
                                                   <cei:bibl/>
                                                 </cei:sourceDescVolltext>
                                                 <cei:sourceDescRegest>
-                                                  <cei:bibl>Gabriele Bartz (Kunsthistorische
-                                                  Beschreibung), Markus Gneiß (diplomatische
-                                                  Beschreibung) im Rahmen des FWF Projekts
-                                                  "Illuminierte Urkunden"</cei:bibl>
+                                                  <cei:bibl>Gabriele Bartz (Kunsthistorische Beschreibung), Markus Gneiß (diplomatische Beschreibung) im Rahmen des FWF Projekts "Illuminierte Urkunden"</cei:bibl>
                                                 </cei:sourceDescRegest>
                                             </cei:sourceDesc>
                                         </cei:front>
@@ -320,6 +318,9 @@
                                                   </xsl:otherwise>
                                                   </xsl:choose>
                                                   </xsl:for-each>
+                                                    <xsl:if test="not(t:cell[7]/t:p[@rend='LINK-ZU-BILD'] or $id/mom)">
+                                                        <cei:figure/>
+                                                    </xsl:if>
 
                                                   <!-- Hier könnte man noch zusätzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum auswerten, also
@@ -441,6 +442,9 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <xsl:template match="text()" priority="-2">
+        <xsl:value-of select="normalize-space(.)"/>
+    </xsl:template>
     <xsl:template match="t:*[@rend='Regest']">
         <xsl:if test="preceding-sibling::t:*[@rend='Regest']">
             <cei:lb/>
@@ -453,7 +457,7 @@
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.)!=''">
             <cei:p>
-                <xsl:value-of select="text()"/>
+                <xsl:value-of select="text()/normalize-space(.)"/>
             </cei:p>
         </xsl:if>
         <xsl:for-each select="t:p[not(@rend='NIVEAU') and not(@rend='Autorensigle')]">
