@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <!-- 2014-12-15 Author: GVogeler, maburg -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -236,7 +236,7 @@
     Und hier geht die eigentliche Konversion los: 
      *********************-->
 
-                        <xsl:result-document href="illurk/{$id/text()}.charter.xml">
+                      <xsl:result-document href="illurk/{$id/text()}.charter.xml">
                             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                                 <xsl:copy-of select="$id/atom:id"/>
                                 <atom:title/>
@@ -309,11 +309,15 @@
                                                   </xsl:when>
                                                   <xsl:otherwise>
                                                   <cei:figure>
-                                                  <cei:graphic>
-                                                  <xsl:attribute name="url">
-                                                  <xsl:value-of select="t:ref"/>
-                                                  </xsl:attribute>
-                                                  </cei:graphic>
+                                           
+                                                      <cei:graphic>
+                                                          <xsl:attribute name="url">
+                                                              <!-- Hier wird zuerst das &amp; in der URL durch einen Beistrich übersetzt und dann wird ',' durch das richtige Zeichen ersetzt.
+                                                                  Nachdenken über dauerhafte Lösung...
+                                                             -->
+                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   
+                                                          </xsl:attribute>
+                                                      </cei:graphic>
                                                   </cei:figure>
                                                   </xsl:otherwise>
                                                   </xsl:choose>
@@ -418,7 +422,7 @@
                                     </cei:text>
                                 </atom:content>
                             </atom:entry>
-                       </xsl:result-document>
+                      </xsl:result-document>
                     </xsl:for-each>
                 </cei:group>
             </cei:text>
@@ -523,7 +527,8 @@
     <xsl:template match="t:ref">
         <cei:ref>
             <xsl:attribute name="target">
-                <xsl:value-of select="normalize-space(.)"/>
+                <!--  Nachdenken über dauerhafte Lösung, vgl. cei:graphic... -->
+                <xsl:value-of select="normalize-space(replace(translate(., '[&amp;]', '[,]'), '[,]', '%26'))"/>   
             </xsl:attribute>
             <xsl:apply-templates/>
         </cei:ref>
@@ -558,4 +563,5 @@
     </xsl:template>
 
 </xsl:stylesheet>
+
 
