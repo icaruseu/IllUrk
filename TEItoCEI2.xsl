@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- 2014-12-15 Author: GVogeler, maburg -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -252,11 +252,13 @@
                                 <app:control xmlns:app="http://www.w3.org/2007/app">
                                     <app:draft>no</app:draft>
                                 </app:control>
-
-                                <xsl:if test="$id/mom">
-                                    <atom:link rel="versionOf" ref="{$id/mom/text()}"/>
+                                
+                           <!-- prüfen, ob atom:link monasterium-link ist -->
+                               <xsl:if test="contains($id/mom, 'monasterium.net') or contains($id/mom, 'mom-ca')">
+                                   <atom:link rel="versionOf" ref="{$id/mom/text()}"/>
                                 </xsl:if>
-                                <atom:content type="application/xml">
+                                
+                                <atom:content type="application/xml">                        
                                     <!-- 
                             Ab hier dann das CEI:
                             -->
@@ -381,10 +383,9 @@
                                                   </cei:witness>
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
-
-                                                  <cei:listBiblEdition>
-                                                  <xsl:apply-templates select="t:cell[7]"/>
-                                                  </cei:listBiblEdition>
+                                                    <cei:listBiblEdition>
+                                                        <xsl:apply-templates select="t:cell[7]"/>
+                                                    </cei:listBiblEdition>                                                
                                                   <cei:listBiblRegest>
                                                   <cei:bibl/>
                                                   </cei:listBiblRegest>
@@ -422,7 +423,7 @@
                                     </cei:text>
                                 </atom:content>
                             </atom:entry>
-                      </xsl:result-document>
+                         </xsl:result-document>
                     </xsl:for-each>
                 </cei:group>
             </cei:text>
@@ -510,18 +511,15 @@
         In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich übergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
-        <xsl:choose>
-            <xsl:when test="not(t:cell[7]/t:p)">
-                <cei:bibl>
-                    <xsl:apply-templates/>
-                </cei:bibl>
-            </xsl:when>
-            <xsl:otherwise>
-                <cei:bibl>
-                    <xsl:apply-templates/>
-                </cei:bibl>
-            </xsl:otherwise>
-        </xsl:choose>
+         <cei:listBiblEdition>
+             <xsl:apply-templates />   
+        </cei:listBiblEdition>
+    </xsl:template>
+    
+    <xsl:template match="child::t:cell[7]/t:p">
+        <cei:bibl>
+            <xsl:apply-templates/>        
+        </cei:bibl>
     </xsl:template>
 
     <xsl:template match="t:ref">
@@ -563,5 +561,6 @@
     </xsl:template>
 
 </xsl:stylesheet>
+
 
 
