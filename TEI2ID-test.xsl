@@ -6,7 +6,7 @@
     <xsl:variable name="ids">
         <xsl:for-each select="//t:row[position() gt 1]">
             <xsl:variable name="archivort" select=".//t:hi[@rend='Archivort'][1]/replace(replace(replace(replace(replace(text(),'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')/text()"/>
-            <!-- FixMe: erzeugt leere Knoten statt Strings -->
+            <!-- FixMe: erzeugt leere Knoten statt Strings, deshalb wird die Variable vorläufig nicht verwendet -->
             <row n="{position()}">
                 <id>
                     <xsl:value-of
@@ -16,8 +16,8 @@
                         select=".//t:hi[@rend='Archivort']/translate(normalize-space(.),'äöüßÄÖÜňřáàéèóòúù ,.;:()[]+*#{}/–','aousAOUnraaeeoouu-')"
                     />
                     <!-- FixMe: Apostroph, §$%&"!?
-                    Alternativer Weg Unicode-Codepoints als Kriterium verwenden? Braucht auch eine Normalisierungstabelle ...
-                    Wunsch: äöü durch ae, oe, ue ersetzen-->
+                    Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
+                    Wunsch: äöü durch ae, oe, ue ersetzen (sie die Variable oben, die nicht funktioniert -->
                 </id>
                 <date>
                     <xsl:value-of select="t:cell[1]"/>
