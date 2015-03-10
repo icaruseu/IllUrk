@@ -2,6 +2,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:t="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs" version="2.0">
+    <!-- Beispiel für Generierung von eindeutigen IDs aus der Wordliste:
+    * $ids: Variable über alle Zeilen mit ID-Wert aus Datumsangabe und Archivort incl. Sonderzeichennormalisierung 
+      für's Debugging werden auch die Datumss- und Archivspalte mit in die Variable aufgenommen
+    * Dublettenkontrolle: Vor der Ausgabe eine Kontrolle, ob die ID mehrfach vorkommt, ggf. Erweiterung um "-Zahl"
+    -->
     <xsl:output method="html" indent="yes"/>
     <xsl:variable name="ids">
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -51,6 +56,10 @@
         <tr>
             <td>
                 <xsl:value-of select="id"/>
+                <!-- Dublettenkontrolle -->
+                <xsl:if test="count($ids/row/id[.=current()/id]) gt 1">
+                    <xsl:text>_</xsl:text><xsl:value-of select="(count(preceding::id[.=current()/id]) + 1)"></xsl:value-of>
+                </xsl:if>
             </td>
             <td>
                 <xsl:value-of select="count($ids/row/id[.=current()/id])"/>
