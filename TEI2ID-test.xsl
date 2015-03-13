@@ -18,9 +18,10 @@
                         select="replace(t:cell[1],'^([0123456789-]*?)[^0123456789-].*?$','$1')"/>
                     <xsl:text>_</xsl:text>
                     <xsl:value-of
-                        select=".//t:hi[@rend='Archivort']/translate(normalize-space(.),'äöüßÄÖÜňřáàéèóòúù ,.;:()[]+*#{}/–','aousAOUnraaeeoouu-')"
+                        select=".//t:hi[@rend='Archivort']/translate(normalize-space(.),'äöüßÄÖÜňřáàéèóòúùâší ,.;:()[]+*#{}/–','aousAOUnraaeeoouuasi-')"
                     />
                     <!-- FixMe: Apostroph, §$%&"!?
+                        1363-03-27 	Brüssel (Bruxelles),  => 1363-03-27_Brussel Bruxelles : Warum?
                     Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
                     Wunsch: äöü durch ae, oe, ue ersetzen (sie die Variable oben, die nicht funktioniert -->
                 </id>
