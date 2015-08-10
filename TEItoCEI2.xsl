@@ -331,7 +331,7 @@
                                                   <!-- Hier könnte man noch zusätzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum auswerten, also z.B.:
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element -->
-                                                    <xsl:for-each select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')//a[starts-with(@href,concat('http://images.monasterium.net/illum/IllUrk/',substring-before(t:cell[1],'_')))]">
+                                                    <xsl:for-each select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')//a[starts-with(@href,concat('http://images.monasterium.net/illum/IllUrk/',substring-before(t:cell[1],'_'))) and (ends-with(@href,'.jpg') or ends-with(@href,'.png'))]">
                                                         <cei:figure>
                                                             <cei:graphic>
                                                                 <xsl:attribute name="url">
