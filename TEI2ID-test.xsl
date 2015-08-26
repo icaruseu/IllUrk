@@ -15,15 +15,18 @@
             <row n="{position()}">
                 <id>
                     <xsl:value-of
-                        select="replace(t:cell[1],'^([0123456789-]*?)[^0123456789-].*?$','$1')"/>
+                        select="t:cell[1]/(text()[1]|t:p[1])/replace(.,'^([0123456789\-––]*)[^0123456789\-––][\s\S]*?$','$1')"/>
                     <xsl:text>_</xsl:text>
+                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâší ,.;:()[]+*#{}/–§$%&amp;"!?' ’</xsl:text></xsl:variable>
                     <xsl:value-of
-                        select=".//t:hi[@rend='Archivort']/translate(normalize-space(.),'äöüßÄÖÜňřáàéèóòúùâší ,.;:()[]+*#{}/–','aousAOUnraaeeoouuasi-')"
+                        select=".//t:hi[@rend='Archivort'][1]/translate(normalize-space(.),$totransform,'aousAOUnraaeeooouuasi-')"
                     />
-                    <!-- FixMe: Apostroph, §$%&"!?
+                    <!-- 
+                        1162_Klosterneuburg Klosterneuburg
+                        1359-01-01_ aber Archivangabe Warwickshire Record Office (erworben 1984) vorhanden
                         1363-03-27 	Brüssel (Bruxelles),  => 1363-03-27_Brussel Bruxelles : Warum?
                     Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
-                    Wunsch: äöü durch ae, oe, ue ersetzen (sie die Variable oben, die nicht funktioniert -->
+                    Wunsch: äöü durch ae, oe, ue ersetzen (siehe die Variable archivort oben, die nicht funktioniert -->
                 </id>
                 <date>
                     <xsl:value-of select="t:cell[1]"/>

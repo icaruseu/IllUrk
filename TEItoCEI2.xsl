@@ -4,8 +4,34 @@
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:variable name="ids">
+        <xsl:for-each select="//t:row[position() gt 1]">
+            <xsl:variable name="archivort" select=".//t:hi[@rend='Archivort'][1]/replace(replace(replace(replace(replace(text(),'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')/text()"/>
+            <!-- FixMe: erzeugt leere Knoten statt Strings, deshalb wird die Variable vorläufig nicht verwendet -->
+            <row n="{position()}">
+                <id>
+                    <xsl:value-of
+                        select="t:cell[1]/(text()[1]|t:p[1])/replace(.,'^([0123456789\-––]*)[^0123456789\-––][\s\S]*?$','$1')"/>
+                    <xsl:text>_</xsl:text>
+                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâší ,.;:()[]+*#{}/–§$%&amp;"!?' ’</xsl:text></xsl:variable>
+                    <xsl:value-of
+                        select=".//t:hi[@rend='Archivort'][1]/translate(normalize-space(.),$totransform,'aousAOUnraaeeooouuasi-')"
+                    />
+                    <!-- Apostroph, §$%&"!?
+                        1363-03-27 	Brüssel (Bruxelles),  => 1363-03-27_Brussel Bruxelles : Warum?
+                    Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
+                    Wunsch: äöü durch ae, oe, ue ersetzen (siehe die Variable archivort oben, die nicht funktioniert -->
+                </id>
+                <date>
+                    <xsl:value-of select="t:cell[1]"/>
+                </date>
+                <archiv>
+                    <xsl:value-of select="t:cell[6]"/>
+                </archiv>
+            </row>
+        </xsl:for-each>
+    </xsl:variable>
     <xsl:template match="/">
-
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
             xmlns:cei="http://www.monasterium.net/NS/cei">-->
@@ -18,7 +44,11 @@
             <cei:text>
                 <cei:group>
                     <xsl:for-each select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position()>1]">
-                        <xsl:variable name="wasp">
+                        <!-- FixMe: 1036–1073 (undatiert; Nachweis des Notars) wird nicht richtig in eine Datumsangabe umgewandelt -->
+                        <xsl:variable name="cell1Content">
+                            <!-- Erster Schritt:
+                                Das Datum kann in cell[1] direkt oder t:cell[1]/t:p[1] stehen 
+                            Vereinfachen: t:cell[1]//text()/normalize-space() -->
                             <xsl:choose>
                                 <xsl:when test="t:cell[1]/t:p">
                                     <xsl:value-of select="t:cell[1]/t:p[1]/normalize-space(.)"/>
@@ -28,157 +58,166 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
-                        <xsl:variable name="was">
-                            <xsl:choose>
-                                <xsl:when test="contains($wasp, ',')">
-                                    <xsl:value-of select="substring-before($wasp, ',')"/>
+                        <!-- Zweiter Schritt: Datum kann stehen vor:
+                            einem Komma
+                            einem Leerzeichen
+                            einem geschützten Leerzeichen
+                            einem §-Zeichen
+                            einer Klammer
+                            oder nach einer 0
+                        -->
+                        <xsl:variable name="cell1InterestingPart">
+                                                               <xsl:choose>
+                                <xsl:when test="contains($cell1Content/text(),'asgdg')"></xsl:when>
+                         <xsl:when test="contains($cell1Content, ',')">
+                                    <xsl:value-of select="substring-before($cell1Content, ',')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp, ' ')">
-                                    <xsl:value-of select="substring-before($wasp, ' ')"/>
+                                <xsl:when test="contains($cell1Content, ' ')">
+                                    <xsl:value-of select="substring-before($cell1Content, ' ')"/>
                                 </xsl:when>
-                                <xsl:when test="starts-with($wasp, '0')">
-                                    <xsl:value-of select="substring-after($wasp, '0')"/>
+                                <xsl:when test="contains($cell1Content,'&#xA;')">
+                                    <xsl:value-of select="substring-before($cell1Content, '&#xA;')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp, '§')">
-                                    <xsl:value-of select="substring-before($wasp, '§')"/>
+                                <xsl:when test="contains($cell1Content, '§')">
+                                    <xsl:value-of select="substring-before($cell1Content, '§')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp, '(')">
-                                    <xsl:value-of select="substring-before($wasp, '(')"/>
+                                <xsl:when test="contains($cell1Content, '(')">
+                                    <xsl:value-of select="substring-before($cell1Content, '(')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp,'&#xA;')">
-                                    <xsl:value-of select="substring-before($wasp, '&#xA;')"/>
+                                <xsl:when test="starts-with($cell1Content, '0')">
+                                    <xsl:value-of select="substring-after($cell1Content, '0')"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="$wasp"/>
+                                    <xsl:value-of select="$cell1Content"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-
                         </xsl:variable>
-                        <xsl:variable name="waswirbrauchen">
+                        <!-- Dritter Schritt: Das Datum folgt einem Pattern -->
+                        <xsl:variable name="cell1-als-zahl">
                             <xsl:value-of
-                                select="replace(replace(replace(replace(normalize-space($was), ' ', ''),'_','9'),'–','-'),'([0-9_]{3,4})-([0-9_][0-9_])-([0-9_][0-9_])','$1$2$3')"/>
+                                select="replace(replace(replace(replace(normalize-space($cell1InterestingPart), ' ', ''),'_','9'),'–','-'),'([0-9_]{3,4})-([0-9_][0-9_])-([0-9_][0-9_])','$1$2$3')"/>
                             <!-- Jetzt gibt es keine _ mehr und alle sieben/achtstelligen Angaben haben keine Bindestriche mehr  -->
                         </xsl:variable>
                         <xsl:variable name="date">
                             <xsl:choose>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{7,8}$')">
+                                <xsl:when test="matches($cell1-als-zahl,'^[0-9]{7,8}$')">
                                     <!-- Das erledigt schon mal alles, was einfach nur eine korrekte Datumsangabe enthält -->
                                     <from>
-                                        <xsl:value-of select="$waswirbrauchen"/>
+                                        <xsl:value-of select="$cell1-als-zahl"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="$waswirbrauchen"/>
+                                        <xsl:value-of select="$cell1-als-zahl"/>
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-[0-9]{3,4}$')">
+                                <xsl:when test="matches($cell1-als-zahl,'^[0-9]{3,4}-[0-9]{3,4}$')">
                                     <from>
-                                        <xsl:value-of select="substring-before($waswirbrauchen,'-')"/>
+                                        <xsl:value-of select="substring-before($cell1-als-zahl,'-')"/>
                                         <xsl:text>9999</xsl:text>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring-after($waswirbrauchen,'-')"/>
+                                        <xsl:value-of select="substring-after($cell1-als-zahl,'-')"/>
                                         <xsl:text>9999</xsl:text>
                                     </to>
                                 </xsl:when>
                                 <!-- Fälle mit 3-stelliger Jahreszahl -->
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl,'^[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-__-__$')">
+                                <xsl:when test="matches($cell1-als-zahl,'^[0-9][0-9][0-9]-__-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"
                                         />
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"
                                         />
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-__$')">
+                                <xsl:when test="matches($cell1-als-zahl,'^[0-9][0-9][0-9]-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </to>
                                 </xsl:when>
 
                                 <!-- Fälle mit 4-stelliger Jahreszahl -->
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl,'^[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="substring-before($waswirbrauchen,'-')"
+                                        <xsl:value-of select="substring-before($cell1-als-zahl,'-')"
                                         />
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring-after($waswirbrauchen,'-')"
+                                        <xsl:value-of select="substring-after($cell1-als-zahl,'-')"
                                         />
                                     </to>
                                 </xsl:when>
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl,'^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="substring-before($waswirbrauchen,'-')"
+                                        <xsl:value-of select="substring-before($cell1-als-zahl,'-')"
                                         />
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring-after($waswirbrauchen,'-')"
+                                        <xsl:value-of select="substring-after($cell1-als-zahl,'-')"
                                         />
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="not(contains($waswirbrauchen, '-'))">
+                                <xsl:when test="not(contains($cell1-als-zahl, '-'))">
                                     <from>
-                                        <xsl:value-of select="substring($waswirbrauchen, 1,4)"/>
+                                        <xsl:value-of select="substring($cell1-als-zahl, 1,4)"/>
                                         <xsl:text>9999</xsl:text>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring($waswirbrauchen, 1,4)"/>
+                                        <xsl:value-of select="substring($cell1-als-zahl, 1,4)"/>
                                         <xsl:text>9999</xsl:text>
                                     </to>
                                 </xsl:when>
                                 <!-- Das ist der Normalfall, falls noch was übrig ist von oben ... -->
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9]{3,4}-[0-9][0-9]-[0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl,'^[0-9]{3,4}-[0-9][0-9]-[0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-__-__$')">
+                                <xsl:when test="matches($cell1-als-zahl,'^[0-9]{3,4}-__-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"
                                         />
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"
                                         />
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-__$')">
+                                <xsl:when test="matches($cell1-als-zahl,'^[0-9]{3,4}-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_','9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </to>
                                 </xsl:when>
@@ -191,13 +230,22 @@
 
                         <!--
                     Es braucht ein paar Identifikatoren für die Urkunde, die ich hier zusammenbaue und speichere
-                -->
+                --> 
+                        <xsl:variable name="pos" select="position()"/>
+                        <xsl:variable name="id-core">
+                            <xsl:value-of select="$ids/row[$pos]/id"/>
+                            <!--<xsl:text>Illurk_</xsl:text>
+                            <xsl:value-of select="position()"/>-->
+                            <!-- Dublettenkontrolle -->
+                            <xsl:if test="count($ids/row/id[.=$ids/row[$pos]/id]) gt 1">
+                                <xsl:text>_</xsl:text><xsl:value-of select="(count($ids/row[$pos]/id/preceding::id[.=$ids/row[$pos]/id]) + 1)"></xsl:value-of>
+                            </xsl:if>
+                        </xsl:variable>
                         <xsl:variable name="id">
-                            <xsl:text>Illurk_</xsl:text>
-                            <xsl:value-of select="position()"/>
+                            <xsl:value-of select="$id-core"/>
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom"
                                     >tag:www.monasterium.net,2011:/charter/illurk/Illurk_<xsl:value-of
-                                    select="position()"/></atom:id>
+                                    select="$id-core"/></atom:id>
                             <cei:idno>
                                 <xsl:attribute name="id"><xsl:text>Illurk_</xsl:text><xsl:value-of select="position()"/></xsl:attribute>
                                 <xsl:value-of select="position()"/>
@@ -316,21 +364,21 @@
                                                           <xsl:attribute name="url">
                                                               <!-- Hier wird zuerst das &amp; in der URL durch einen Beistrich übersetzt und dann wird ',' durch das richtige Zeichen ersetzt.
                                                                   Nachdenken über dauerhafte Lösung...
+                                                                  Warum ist das überhaupt nötig?
                                                              -->
-                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   
+<!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   -->
+                                                              <xsl:value-of select="."/>
                                                           </xsl:attribute>
                                                       </cei:graphic>
                                                   </cei:figure>
                                                   </xsl:otherwise>
                                                   </xsl:choose>
                                                   </xsl:for-each>
-                                                    <xsl:if test="not(t:cell[7]/t:p[@rend='LINK-ZU-BILD'] or $id/mom)">
-                                                        <cei:figure/>
-                                                    </xsl:if>
-
                                                   <!-- Hier könnte man noch zusätzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum auswerten, also z.B.:
-                                                  Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element -->
+                                                  Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
+                                                  
+                                                  -->
                                                     <xsl:for-each select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')//a[starts-with(@href,concat('http://images.monasterium.net/illum/IllUrk/',substring-before(t:cell[1],'_'))) and (ends-with(@href,'.jpg') or ends-with(@href,'.png'))]">
                                                         <cei:figure>
                                                             <cei:graphic>
@@ -340,7 +388,11 @@
                                                             </cei:graphic>
                                                         </cei:figure>
                                                     </xsl:for-each>
-
+                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt. -->
+                                                    <xsl:if test="not(t:cell[7]/t:p[@rend='LINK-ZU-BILD'] or $id/mom)">
+                                                        <cei:figure/>
+                                                    </xsl:if>
+                                                    
                                                   <cei:archIdentifier>
                                                   <cei:settlement>
                                                   <xsl:value-of
