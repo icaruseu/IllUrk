@@ -7,7 +7,7 @@
     <xsl:variable name="ids">
         <xsl:for-each select="//t:row[position() gt 1]">
             <xsl:variable name="archivort"
-                select=".//t:hi[@rend = 'Archivort'][1]/replace(replace(replace(replace(replace(text(), 'ä', 'ae', 'i'), 'Ö', 'Oe'), 'ö', 'oe'), 'ü', 'ue', 'i'), 'ß', 'ss')/text()"/>
+                select=".//t:hi[@rend = 'Archivort'][1]/replace(replace(replace(replace(replace(text(), 'ä', 'ae', 'i'), 'Ö', 'Oe'), 'ö', 'oe'), 'ü', 'ue', 'i'), 'ß', 'ss')"/>
             <!-- FixMe: erzeugt leere Knoten statt Strings, deshalb wird die Variable vorläufig nicht verwendet -->
             <row n="{position()}">
                 <id>
@@ -30,9 +30,14 @@
                 <archiv>
                     <xsl:value-of select="t:cell[6]"/>
                 </archiv>
+                <archivort>
+                    <!-- Derzeit nur für Testzwecke: -->
+                    <xsl:value-of select="$archivort"/>
+                </archivort>
             </row>
         </xsl:for-each>
     </xsl:variable>
+    <xsl:variable name="bilder" select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')"/>
     <xsl:template match="/">
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
@@ -293,6 +298,7 @@
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </mom>
+                                <archivort><xsl:value-of select="$ids/id[$pos]/archivort"/></archivort>
                             </xsl:for-each>
                         </xsl:variable>
 
@@ -406,75 +412,76 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   
                                                   -->
-                                                  <xsl:for-each
-                                                  select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')//a[starts-with(@href, concat('http://images.monasterium.net/illum/IllUrk/', substring-before(t:cell[1], '_'))) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))]">
-                                                      <cei:figure>
-                                                          <cei:graphic>
-                                                            <xsl:attribute name="url">
-                                                              <xsl:value-of select="@href"/>
-                                                            </xsl:attribute>
-                                                          </cei:graphic>
-                                                      </cei:figure>
-                                                  </xsl:for-each>
-                                                  <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt. -->
-                                                  <xsl:if
-                                                  test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom)">
-                                                  <cei:figure/>
+                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()|*[1]/text())[1])"/>
+                                                    <xsl:comment><xsl:value-of select="t:cell[1]"/> (=> <xsl:value-of select="$urk"/>)</xsl:comment>
+                                                    <xsl:for-each
+                                                        select="$bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))]">
+                                                        <cei:figure>
+                                                            <cei:graphic>
+                                                                <xsl:attribute name="url">
+                                                                    <xsl:value-of select="@href"/>
+                                                                </xsl:attribute>
+                                                            </cei:graphic>
+                                                            <xsl:value-of select="@href"/><!-- FixMe: Läßt sich das Importieren und Weiterverarbeiten? -->
+                                                        </cei:figure>
+                                                    </xsl:for-each>
+                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt. -->
+                                                  <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom)">
+                                                    <cei:figure/>
                                                   </xsl:if>
 
                                                   <cei:archIdentifier>
-                                                  <cei:settlement>
-                                                  <xsl:value-of
-                                                  select="t:cell[6]/t:*[@rend = 'Archivort']"/>
-                                                  </cei:settlement>
-                                                  <cei:arch>
-                                                  <xsl:value-of
-                                                  select="t:cell[6]/t:*[@rend = 'Archivname']"/>
-                                                  </cei:arch>
+                                                    <cei:settlement>
+                                                        <xsl:value-of select="t:cell[6]/t:*[@rend = 'Archivort']"/>
+                                                        <xsl:comment><xsl:value-of select="$id/archivort"/></xsl:comment>
+                                                    </cei:settlement>
+                                                    <cei:arch>
+                                                      <xsl:value-of select="t:cell[6]/t:*[@rend = 'Archivname']"/>
+                                                    </cei:arch>
                                                   </cei:archIdentifier>
                                                   <cei:physicalDesc>
-                                                  <cei:decoDesc>
-                                                  <xsl:apply-templates select="t:cell[5]"/>
-                                                  </cei:decoDesc>
-                                                  <cei:material/>
-                                                  <cei:dimensions/>
-                                                  <cei:condition/>
-                                                  </cei:physicalDesc>
-                                                  <cei:auth>
-                                                  <cei:notariusDesc/>
-                                                  <cei:sealDesc/>
-                                                  </cei:auth>
-                                                  <cei:nota/>
+                                                    <cei:decoDesc>
+                                                        <xsl:apply-templates select="t:cell[5]"/>
+                                                    </cei:decoDesc>
+                                                    <cei:material/>
+                                                    <cei:dimensions/>
+                                                    <cei:condition/>
+                                                    </cei:physicalDesc>
+                                                    <cei:auth>
+                                                        <cei:notariusDesc/>
+                                                        <cei:sealDesc/>
+                                                    </cei:auth>
+                                                    <cei:nota/>
                                                 </cei:witnessOrig>
                                                 <cei:witListPar>
                                                   <cei:witness>
-                                                  <cei:traditioForm/>
-                                                  <cei:figure/>
-                                                  <cei:archIdentifier/>
-                                                  <cei:physicalDesc>
-                                                  <cei:material/>
-                                                  <cei:dimensions/>
-                                                  <cei:condition/>
-                                                  </cei:physicalDesc>
-                                                  <cei:auth>
-                                                  <cei:sealDesc/>
-                                                  <cei:notariusDesc/>
-                                                  </cei:auth>
-                                                  <cei:nota/>
+                                                    <cei:traditioForm/>
+                                                    <cei:figure/>
+                                                    <cei:archIdentifier/>
+                                                    <cei:physicalDesc>
+                                                        <cei:material/>
+                                                        <cei:dimensions/>
+                                                        <cei:condition/>
+                                                    </cei:physicalDesc>
+                                                    <cei:auth>
+                                                      <cei:sealDesc/>
+                                                      <cei:notariusDesc/>
+                                                    </cei:auth>
+                                                    <cei:nota/>
                                                   </cei:witness>
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
                                                   <cei:listBiblEdition>
-                                                  <xsl:apply-templates select="t:cell[7]"/>
+                                                    <xsl:apply-templates select="t:cell[7]"/>
                                                   </cei:listBiblEdition>
                                                   <cei:listBiblRegest>
-                                                  <cei:bibl/>
+                                                    <cei:bibl/>
                                                   </cei:listBiblRegest>
                                                   <cei:listBiblFaksimile>
-                                                  <cei:bibl/>
+                                                    <cei:bibl/>
                                                   </cei:listBiblFaksimile>
                                                   <cei:listBiblErw>
-                                                  <cei:bibl/>
+                                                    <cei:bibl/>
                                                   </cei:listBiblErw>
                                                   <cei:p/>
                                                   <cei:quoteOriginaldatierung/>
