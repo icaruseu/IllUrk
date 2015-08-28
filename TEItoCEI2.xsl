@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2014-12-15 Author: GVogeler, maburg -->
+<!-- Authors: GVogeler, maburg -->
+<!-- Vorbereitugnen: 
+        1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
+        2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten; Achtung auf Namespaces!) 
+            und ablegen unter http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml
+        3. Dieses Skript ausführen
+    -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
@@ -413,20 +419,21 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
                                                   
                                                   -->
                                                     <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()|*[1]/text())[1])"/>
-                                                    <xsl:comment><xsl:value-of select="t:cell[1]"/> (=> <xsl:value-of select="$urk"/>)</xsl:comment>
-                                                    <xsl:for-each
-                                                        select="$bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))]">
-                                                        <cei:figure>
-                                                            <cei:graphic>
-                                                                <xsl:attribute name="url">
-                                                                    <xsl:value-of select="@href"/>
-                                                                </xsl:attribute>
-                                                            </cei:graphic>
-                                                            <xsl:value-of select="@href"/><!-- FixMe: Läßt sich das Importieren und Weiterverarbeiten? -->
-                                                        </cei:figure>
-                                                    </xsl:for-each>
-                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt. -->
-                                                  <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom)">
+                                                    <xsl:if test="t:cell[1]/(text()|*[1]/text())[1]/normalize-space() != ''">
+                                                        <xsl:comment><xsl:value-of select="t:cell[1]"/> (=> <xsl:value-of select="$urk"/>)</xsl:comment>
+                                                        <xsl:for-each select="$bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))]">
+                                                            <cei:figure>
+                                                                <cei:graphic>
+                                                                    <xsl:attribute name="url">
+                                                                        <xsl:value-of select="@href"/>
+                                                                    </xsl:attribute>
+                                                                </cei:graphic>
+                                                                <xsl:value-of select="@href"/><!-- FixMe: Läßt sich das Importieren und Weiterverarbeiten? -->
+                                                            </cei:figure>
+                                                        </xsl:for-each>
+                                                    </xsl:if>
+                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen?. -->
+                                                    <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))])">
                                                     <cei:figure/>
                                                   </xsl:if>
 
