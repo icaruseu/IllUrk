@@ -15,15 +15,20 @@
                 <title>Bildverknüpfung IllUrk</title>
             </head>
             <body>
+                <p><span style="color:red; font-weight:bold; cursor:help" title="Achtung, Dublettengefahr">!! </span> = Achtung, Dublettengefahr</p>
+                <p>Maus über dem Datum zeigt das Regest an.</p>
                 <ul>
         <xsl:for-each select="//t:row[position() gt 1]">
                <li>
                  <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()|*[1]/text())[1])"/>
                    <xsl:choose>
                      <xsl:when test="t:cell[1]/(text()|*[1]/text())[1]/normalize-space() != ''">
-                       <xsl:value-of select="t:cell[1]"/> (=> <xsl:value-of select="$urk"/>):
+                        <xsl:if test="count(//t:cell[1][.//text()=current()//text()]) gt 1">
+                           <span style="color:red; font-weight:bold; cursor:help" title="Achtung, Dublettengefahr">!! </span>
+                        </xsl:if>
+                        <span title="{t:cell[4]}" style="cursor:help; font-weight:bold;"><xsl:value-of select="t:cell[1]"/></span> (=> <xsl:value-of select="$urk"/>):
                         <xsl:for-each
-                            select="$bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))]">
+                            select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
                             <br/><a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="@href"/>
