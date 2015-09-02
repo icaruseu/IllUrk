@@ -19,16 +19,17 @@
                 <p>Maus über dem Datum zeigt das Regest an.</p>
                 <ul>
         <xsl:for-each select="//t:row[position() gt 1]">
-               <li>
-                 <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()|*[1]/text())[1])"/>
-                   <xsl:choose>
-                     <xsl:when test="t:cell[1]/(text()|*[1]/text())[1]/normalize-space() != ''">
-                        <xsl:if test="count(//t:cell[1][.//text()=current()//text()]) gt 1">
+           <li>
+               <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]/text())[1])"/>
+               <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
+               <xsl:choose>
+                     <xsl:when test="t:cell[1]/(text()[1]|*[1]/text())[1]/normalize-space() != ''">
+                         <xsl:if test="count(//t:cell[1][(text()[1]|*[1]/text())[1]=current()/(text()[1]|*[1]/text())[1]]) gt 1 and $bild//text()">
                            <span style="color:red; font-weight:bold; cursor:help" title="Achtung, Dublettengefahr">!! </span>
                         </xsl:if>
-                        <span title="{t:cell[4]}" style="cursor:help; font-weight:bold;"><xsl:value-of select="t:cell[1]"/></span> (=> <xsl:value-of select="$urk"/>):
+                         <span title="{t:cell[4]}" style="cursor:help; font-weight:bold;"><xsl:value-of select="t:cell[1]"/></span> (=> <xsl:value-of select="$urk"/>):<xsl:if test="$bild//text()"><br/><span style="font-size:10pt" class="regest"><xsl:value-of select="t:cell[4]//text()"/></span></xsl:if>
                         <xsl:for-each
-                            select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
+                            select="$bild">
                             <br/><a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="@href"/>
@@ -37,7 +38,7 @@
                             </a>
                         </xsl:for-each>
                    </xsl:when>
-                   <xsl:otherwise>KEIN DATUM</xsl:otherwise>
+                   <xsl:otherwise><span style="color:red; font-weight:bold; cursor:help" title="Achtung, Gefahr">!! </span> KEIN DATUM</xsl:otherwise>
                </xsl:choose>
             </li>
         </xsl:for-each></ul></body></html>

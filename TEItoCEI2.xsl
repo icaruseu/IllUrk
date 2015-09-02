@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
-<!-- Vorbereitugnen: 
+<!-- ToDo: 
+        Wie kann die Datumsangabe besser ausgelesen werden?
+            Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
+        Warum sind einzelne Urkunden nicht anzeigbar?
+            Bindestrich-Handling?: 
+                http://dev.monasterium.net/mom/IlluminatedCharters/890%E2%80%93900_Marburg/my-charter
+                http://dev.monasterium.net/mom/IlluminatedCharters/1036%E2%80%931073_Bari/my-charter
+                http://dev.monasterium.net/mom/IlluminatedCharters/1093%E2%80%931099_Bari_1/my-charter
+                http://dev.monasterium.net/mom/IlluminatedCharters/1435%E2%80%931444_Altenburg/my-charter
+                http://dev.monasterium.net/mom/IlluminatedCharters/1471%E2%80%931484_Kremsmuenster/my-charter
+                http://dev.monasterium.net/mom/IlluminatedCharters/1473%E2%80%931486_Ulm/my-charter
+                
+            http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1249-12-04_Mainz/my-charter
+            ...
+            http://dev.monasterium.net/mom/IlluminatedCharters/1284-09-01_Mainz/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1289-99-99_Mainz/my-charter
+            ...
+            http://dev.monasterium.net/mom/IlluminatedCharters/1318-07-99_Linz/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1340-10-31_St-Florian/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1344-05-99%E2%80%931345-05-99_ehem-D-J-A-Ross-1963/my-charter
+            ...
+            http://dev.monasterium.net/mom/IlluminatedCharters/1347-02-06_St-Gallen/my-charter
+            
+        Warum funktionieren einzelne Blöcke nicht?
+            http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 17, 19, 20, 
+
+        Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
+        
+        Vor dem Import: atom:id auf den gewünschen Bestandsnamen anpassen
+ -->
+<!-- Vorbereitungen für die automatische Bildzuordnung
+        (Zuletzt 2.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
         1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
         2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten; Achtung auf Namespaces!) 
-            und ablegen unter http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml
-        3. Dieses Skript ausführen
+        3. ablegen unter http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -12,20 +43,33 @@
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="ids">
         <xsl:for-each select="//t:row[position() gt 1]">
-            <xsl:variable name="archivort"
-                select=".//t:hi[@rend = 'Archivort'][1]/replace(replace(replace(replace(replace(text(), 'ä', 'ae', 'i'), 'Ö', 'Oe'), 'ö', 'oe'), 'ü', 'ue', 'i'), 'ß', 'ss')"/>
-            <!-- FixMe: erzeugt leere Knoten statt Strings, deshalb wird die Variable vorläufig nicht verwendet -->
+            <xsl:variable name="archivort">
+                <xsl:choose>
+                    <xsl:when test="not(.//t:hi[@rend='Archivort'] and t:cell[6]/normalize-space()='')">
+                        <xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select=".//t:hi[@rend='Archivort'][1]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
             <row n="{position()}">
                 <id>
                     <xsl:value-of
-                        select="t:cell[1]//text()[1]/replace(., '^([0123456789\-––]*)[^0123456789\-––][\s\S]*?$', '$1')"/>
-                    <xsl:text>_</xsl:text>
-                    <xsl:variable name="totransform">
-                        <xsl:text>äöüßÄÖÜňřáàéèóòôúùâší ,.;:()[]+*#{}/–§$%&amp;"!?' ’</xsl:text>
-                    </xsl:variable>
-                    <xsl:value-of
-                        select=".//t:hi[@rend = 'Archivort'][1]/translate(normalize-space(.), $totransform, 'aousAOUnraaeeooouuasi-')"/>
-                    <!-- Apostroph, §$%&"!?
+                        select="t:cell[1]/(text()[1]|t:p[1])/replace(.,'^([0123456789\-––]*)[^0123456789\-––][\s\S]*?$','$1')"/>
+                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?' ’</xsl:text></xsl:variable>
+                    <xsl:choose>
+                        <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
+                            <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
+                        </xsl:when>-->
+                        <xsl:when test="t:cell[6]/normalize-space()=''"/>
+                        <xsl:otherwise>
+                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform,'aousAOUnraaeeooouuasil-')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <!-- 
+                        1162_Klosterneuburg Klosterneuburg
+                        1359-01-01_ aber Archivangabe Warwickshire Record Office (erworben 1984) vorhanden
                         1363-03-27 	Brüssel (Bruxelles),  => 1363-03-27_Brussel Bruxelles : Warum?
                     Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
                     Wunsch: äöü durch ae, oe, ue ersetzen (siehe die Variable archivort oben, die nicht funktioniert -->
@@ -36,10 +80,6 @@
                 <archiv>
                     <xsl:value-of select="t:cell[6]"/>
                 </archiv>
-                <archivort>
-                    <!-- Derzeit nur für Testzwecke: -->
-                    <xsl:value-of select="$archivort"/>
-                </archivort>
             </row>
         </xsl:for-each>
     </xsl:variable>
@@ -263,7 +303,7 @@
                         <xsl:variable name="id">
                             <xsl:value-of select="$id-core"/>
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom"
-                                    >tag:www.monasterium.net,2011:/charter/illurk/<xsl:value-of
+                                    >tag:www.monasterium.net,2011:/charter/IlluminatedCharters/<xsl:value-of
                                     select="$id-core"/></atom:id>
                             <cei:idno>
                                 <xsl:attribute name="id">
@@ -362,10 +402,7 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
                                                   <cei:bibl/>
                                                 </cei:sourceDescVolltext>
                                                 <cei:sourceDescRegest>
-                                                  <cei:bibl>Gabriele Bartz (Kunsthistorische
-                                                  Beschreibung), Markus Gneiß (diplomatische
-                                                  Beschreibung) im Rahmen des FWF Projekts
-                                                  "Illuminierte Urkunden"</cei:bibl>
+                                                  <cei:bibl>Gabriele Bartz (Kunsthistorische Beschreibung), Markus Gneiß (diplomatische Beschreibung) im Rahmen des FWF Projekts "Illuminierte Urkunden"</cei:bibl>
                                                 </cei:sourceDescRegest>
                                             </cei:sourceDesc>
                                         </cei:front>
@@ -406,45 +443,40 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
                                                                                     Warum ist das überhaupt nötig?
                                                                                -->
                                                                     <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   -->
-                                                                    <xsl:value-of select="."/>
+                                                                    <xsl:choose><xsl:when test="t:ref"><xsl:value-of select="t:ref/@target"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose>
                                                                 </xsl:attribute>
                                                                 </cei:graphic>
                                                             </cei:figure>
                                                        </xsl:otherwise>
                                                     </xsl:choose>
                                                   </xsl:for-each>
-                                                  <!-- Hier könnte man noch zusätzlich die Martinsche Bildersammlung auf 
-                                                    images.monasterium.net/illum auswerten, also z.B.:
+                                                  <!-- Hier wuird noch zusätzlich die Martinsche Bildersammlung auf 
+                                                    images.monasterium.net/illum ausgewertet, also z.B.:
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   
                                                   -->
-                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()|*[1]/text())[1])"/>
-                                                    <xsl:if test="t:cell[1]/(text()|*[1]/text())[1]/normalize-space() != ''">
-                                                        <xsl:comment><xsl:value-of select="t:cell[1]"/> (=> <xsl:value-of select="$urk"/>)</xsl:comment>
-                                                        <xsl:for-each select="$bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))]">
-                                                            <cei:figure>
-                                                                <cei:graphic>
+                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]/text())[1])"/>
+                                                    <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
+                                                        <xsl:if test="t:cell[1]/(text()[1]|*[1]/text())[1]/normalize-space() != ''">
+                                                            <xsl:for-each
+                                                                select="$bild">
+                                                                <cei:figure>
+                                                                    <cei:graphic>
                                                                     <xsl:attribute name="url">
                                                                         <xsl:value-of select="@href"/>
                                                                     </xsl:attribute>
-                                                                </cei:graphic>
-                                                                <xsl:value-of select="@href"/><!-- FixMe: Läßt sich das Importieren und Weiterverarbeiten? -->
-                                                            </cei:figure>
-                                                        </xsl:for-each>
-                                                    </xsl:if>
+<!--                                                                    <xsl:value-of select="@href"/>-->
+                                                                    </cei:graphic>
+                                                                </cei:figure>
+                                                            </xsl:for-each>
+                                                        </xsl:if>
                                                     <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen?. -->
                                                     <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))])">
                                                     <cei:figure/>
                                                   </xsl:if>
 
                                                   <cei:archIdentifier>
-                                                    <cei:settlement>
-                                                        <xsl:value-of select="t:cell[6]/t:*[@rend = 'Archivort']"/>
-                                                        <xsl:comment><xsl:value-of select="$id/archivort"/></xsl:comment>
-                                                    </cei:settlement>
-                                                    <cei:arch>
-                                                      <xsl:value-of select="t:cell[6]/t:*[@rend = 'Archivname']"/>
-                                                    </cei:arch>
+                                                      <xsl:apply-templates select="t:cell[6]"/>
                                                   </cei:archIdentifier>
                                                   <cei:physicalDesc>
                                                     <cei:decoDesc>
@@ -503,12 +535,12 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
                                             <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
                                             </cei:placeName>
-                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt']">
+                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt-W']">
                                                 <cei:index type="Urkundenart">
                                                   <xsl:value-of select="."/>
                                                 </cei:index>
                                             </xsl:for-each>
-                                            <xsl:if test="not(.//t:*[@rend = 'UrkArt'])">
+                                            <xsl:if test="not(.//t:*[@rend = 'UrkArt-W'])">
                                                 <cei:index/>
                                             </xsl:if>
                                             <cei:divNotes>
@@ -524,6 +556,19 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
             </cei:text>
         </cei:cei>
     </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivort']">
+        <cei:settlement><xsl:value-of select="."/></cei:settlement>
+    </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivname']">
+        <cei:arch><xsl:value-of select="."/></cei:arch>
+    </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivfonds']">
+        <cei:archFonds><xsl:value-of select="."/></cei:archFonds>
+    </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivsignatur']">
+        <cei:idno><xsl:value-of select="."/></cei:idno>
+    </xsl:template>
+    
     <xsl:template match="t:*[@rend = 'Beschreibung']">
         <cei:p>
             <xsl:apply-templates/>

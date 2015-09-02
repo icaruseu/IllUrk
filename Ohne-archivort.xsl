@@ -31,7 +31,7 @@
                     <xsl:for-each select="//row[not(cell[6]//@rend = 'Archivort') and cell[6]/normalize-space()!='']">
                         <tr>
                             <xsl:apply-templates/>
-                            <td title="theoretischer Archivort"><xsl:value-of select="cell[6]/replace(., '^([\S][\S]*?)(,| ).*?$', '$1')"/></td>
+                            <td title="theoretischer Archivort"><xsl:value-of select="cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/></td>
                         </tr>
                     </xsl:for-each>
                 </table>
