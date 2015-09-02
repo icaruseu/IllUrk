@@ -4,28 +4,41 @@
         Wie kann die Datumsangabe besser ausgelesen werden?
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
         Warum sind einzelne Urkunden nicht anzeigbar?
-            Bindestrich-Handling?: 
-                http://dev.monasterium.net/mom/IlluminatedCharters/890%E2%80%93900_Marburg/my-charter
-                http://dev.monasterium.net/mom/IlluminatedCharters/1036%E2%80%931073_Bari/my-charter
-                http://dev.monasterium.net/mom/IlluminatedCharters/1093%E2%80%931099_Bari_1/my-charter
-                http://dev.monasterium.net/mom/IlluminatedCharters/1435%E2%80%931444_Altenburg/my-charter
-                http://dev.monasterium.net/mom/IlluminatedCharters/1471%E2%80%931484_Kremsmuenster/my-charter
-                http://dev.monasterium.net/mom/IlluminatedCharters/1473%E2%80%931486_Ulm/my-charter
-                
-            http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter : 
+                Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+                In function:
+                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+                	charter:public-entry(xs:string)
             http://dev.monasterium.net/mom/IlluminatedCharters/1249-12-04_Mainz/my-charter
+                charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+                In function:
+                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+                	charter:public-entry(xs:string)
             ...
             http://dev.monasterium.net/mom/IlluminatedCharters/1284-09-01_Mainz/my-charter
-            http://dev.monasterium.net/mom/IlluminatedCharters/1289-99-99_Mainz/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1289-99-99_Mainz/my-charter : 
+                The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+                In function:
+                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+                	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]
+
             ...
             http://dev.monasterium.net/mom/IlluminatedCharters/1318-07-99_Linz/my-charter
             http://dev.monasterium.net/mom/IlluminatedCharters/1340-10-31_St-Florian/my-charter
-            http://dev.monasterium.net/mom/IlluminatedCharters/1344-05-99%E2%80%931345-05-99_ehem-D-J-A-Ross-1963/my-charter
             ...
             http://dev.monasterium.net/mom/IlluminatedCharters/1347-02-06_St-Gallen/my-charter
-            
+            The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+            In function:
+            	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+            	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+            	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]            
+        
         Warum funktionieren einzelne Blöcke nicht?
-            http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 17, 19, 20, 
+            http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 20
+            ... könnte sich mit den Fehlern oben beheben ...
 
         Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
         
@@ -42,7 +55,9 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="ids">
+        <!-- Um auf dublette IDs zu testen, brauche ich eine Skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
+            <!-- Der Archivort kann automatische generiert werden oder explizit benannt sein -->
             <xsl:variable name="archivort">
                 <xsl:choose>
                     <xsl:when test="not(.//t:hi[@rend='Archivort'] and t:cell[6]/normalize-space()='')">
@@ -55,9 +70,10 @@
             </xsl:variable>
             <row n="{position()}">
                 <id>
+                    <!-- Die ID sollte keine Sonderzeichen enthalten -->
                     <xsl:value-of
-                        select="t:cell[1]/(text()[1]|t:p[1])/replace(.,'^([0123456789\-––]*)[^0123456789\-––][\s\S]*?$','$1')"/>
-                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?' ’</xsl:text></xsl:variable>
+                        select="t:cell[1]/(text()[1]|t:p[1])/replace(replace(.,'^([0123456789\-––_]*)[^0123456789\-––_][\s\S]*?$','$1'),'[-––]', '-')"/>
+                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></xsl:variable>
                     <xsl:choose>
                         <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
                             <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
@@ -67,13 +83,8 @@
                             <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform,'aousAOUnraaeeooouuasil-')"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <!-- 
-                        1162_Klosterneuburg Klosterneuburg
-                        1359-01-01_ aber Archivangabe Warwickshire Record Office (erworben 1984) vorhanden
-                        1363-03-27 	Brüssel (Bruxelles),  => 1363-03-27_Brussel Bruxelles : Warum?
-                    Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
-                    Wunsch: äöü durch ae, oe, ue ersetzen (siehe die Variable archivort oben, die nicht funktioniert -->
                 </id>
+                <!-- Schon mal ein paar Zellen strukturieren. Brauchen wir das noch? -->
                 <date>
                     <xsl:value-of select="t:cell[1]"/>
                 </date>
@@ -98,11 +109,10 @@
                 <cei:group>
                     <xsl:for-each
                         select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position() > 1]">
-                        <!-- FixMe: 1036–1073 (undatiert; Nachweis des Notars) wird nicht richtig in eine Datumsangabe umgewandelt -->
                         <xsl:variable name="cell1Content">
                             <!-- Erster Schritt:
                                 Das Datum kann in cell[1] direkt oder t:cell[1]/t:p[1] stehen 
-                            Vereinfachen: t:cell[1]//text()/normalize-space() -->
+                            Vereinfachen: t:cell[1]//text()/normalize-space()? -->
                             <xsl:choose>
                                 <xsl:when test="t:cell[1]/t:p">
                                     <xsl:value-of select="t:cell[1]/t:p[1]/normalize-space(.)"/>
@@ -290,7 +300,6 @@
                         <xsl:variable name="pos" select="position()"/>
                         <xsl:variable name="id-core">
                             <xsl:value-of select="$ids/row[$pos]/id"/>
-                            <!--<xsl:text>Illurk_</xsl:text>
                             <xsl:value-of select="position()"/>-->
                             <!-- Dublettenkontrolle -->
                             <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1">
@@ -303,7 +312,7 @@
                         <xsl:variable name="id">
                             <xsl:value-of select="$id-core"/>
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom"
-                                    >tag:www.monasterium.net,2011:/charter/IlluminatedCharters/<xsl:value-of
+                                    >tag:www.monasterium.net,2011:/charter/IlluminatedCharters<xsl:value-of
                                     select="$id-core"/></atom:id>
                             <cei:idno>
                                 <xsl:attribute name="id">
@@ -370,18 +379,6 @@
                                 </app:control>
 
                                 <!-- prüfen, ob atom:link monasterium-link ist -->
-                                <!-- FixMe:
-                                System-ID: Z:\Eigene Dateien\Uni\HistInf\Urkunden\Monasterium\IlluminierteUrkunden\Import\xsl\TEItoCEI2.xsl
-Umwandlung: TEI2CEI
-XML-Datei: Z:\Eigene Dateien\Uni\HistInf\Urkunden\Monasterium\IlluminierteUrkunden\Import\Illuminierte-Urkunden-Liste-44_2015-01-27_ Letztfassung-vor-Teilung.xml
-XSL-Datei: Z:\Eigene Dateien\Uni\HistInf\Urkunden\Monasterium\IlluminierteUrkunden\Import\xsl\TEItoCEI2.xsl
-Programmname: Saxon-EE 9.6.0.5
-Fehlerlevel: fatal
-Beschreibung: XPTY0004: A sequence of more than one item is not allowed as the first argument of contains() ("http://pares.mcu.es/ParesBusqu...", "tag:www.monasterium.net,2011:/...")
-Anfang: 305:0
-URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
-
-                                -->
                                 <xsl:if
                                     test="$id/mom[1]/contains(., 'monasterium.net') or $id/mom[1]/contains(., 'mom-ca')">
                                     <atom:link rel="versionOf" ref="{$id/mom[1]/text()}"/>
@@ -598,6 +595,8 @@ URL: http://www.w3.org/TR/xpath20/#ERRXPTY0004
     </xsl:template>
     <!-- 
         Die fünfte Spalte enthält die kunsthistorische Beschreibung
+        
+        FixMe: @rend="Ekphrasis" und @rend="Stil und Einordnung" verarbeiten
     -->
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.) != ''">
