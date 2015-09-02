@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
 <!-- ToDo: 
-        Wie kann die Datumsangabe besser ausgelesen werden?
-            Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
+        Validierung:
+        invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
+invalid tag: `listBiblEdition`. possible tags are: `reference (ref)`, `Bibliography (bibl)
+    
         Warum sind einzelne Urkunden nicht anzeigbar?
             http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter : 
                 Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
@@ -39,6 +41,9 @@
         Warum funktionieren einzelne Blöcke nicht?
             http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 20
             ... könnte sich mit den Fehlern oben beheben ...
+
+        Wie kann die Datumsangabe besser ausgelesen werden?
+            Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
 
         Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
         
