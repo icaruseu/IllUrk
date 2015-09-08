@@ -43,7 +43,7 @@
             ... wird sich wahrscheinlicih mit den Fehlern oben beheben ...
 
         Warum werden die Urkunden in EditMOM nicht angezeigt?
-            http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie dem Schema?
+            http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie der Template?
         
         Wie kann die Datumsangabe besser ausgelesen werden?
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
@@ -61,7 +61,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
-    <xsl:output method="xml" indent="yes" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="ids">
         <!-- Um auf dublette IDs zu testen, brauche ich eine Skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -321,8 +321,7 @@
                         </xsl:variable>
                         <xsl:variable name="id">
                             <xsl:value-of select="$id-core"/>
-                            <atom:id xmlns:atom="http://www.w3.org/2005/Atom"
-                                    >tag:www.monasterium.net,2011:/charter/IlluminatedCharters/<xsl:value-of
+                            <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminatedCharters/<xsl:value-of
                                     select="$id-core"/></atom:id>
                             <cei:idno>
                                 <xsl:attribute name="id">
@@ -464,7 +463,6 @@
                                                   <!-- Hier wuird noch zusätzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum ausgewertet, also z.B.:
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
-                                                  
                                                   -->
                                                     <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]//text())[1]/translate(replace(.,'^0(.*?)$', '$1'),'–,;.()/ ','-'))"/>
                                                     <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
