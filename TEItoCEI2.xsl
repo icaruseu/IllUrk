@@ -55,13 +55,14 @@
 <!-- Vorbereitungen für die automatische Bildzuordnung
         (Zuletzt 2.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
         1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
-        2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten; Achtung auf Namespaces!) 
-        3. ablegen unter http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml
+        2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ...; Achtung auf Namespaces!? ) 
+        3. Ablageort in variable $bildurl eintragn
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:variable name="bildurl"><xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text></xsl:variable>
     <xsl:variable name="ids">
         <!-- Um auf dublette IDs zu testen, brauche ich eine Skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -105,7 +106,7 @@
             </row>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:variable name="bilder" select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')"/>
+    <xsl:variable name="bilder" select="document($bildurl)"/>
     <xsl:template match="/">
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
@@ -453,7 +454,6 @@
                                                                                     Warum ist das überhaupt nötig?
                                                                                -->
                                                                     <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   -->
-                                                                    <xsl:choose><xsl:when test="t:ref"><xsl:value-of select="t:ref/@target"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose>
                                                                 </xsl:attribute>
                                                                 </cei:graphic>
                                                             </cei:figure>
@@ -464,7 +464,7 @@
                                                     images.monasterium.net/illum ausgewertet, also z.B.:
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   -->
-                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]//text())[1]/translate(replace(.,'^0(.*?)$', '$1'),'–,;.()/ ','-'))"/>
+                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]/text())[1]/translate(.,'–,;.?! ()','-'))"/>
                                                     <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
                                                         <xsl:if test="t:cell[1]/(text()[1]|*[1]//text())[1]/normalize-space() != ''">
                                                             <xsl:for-each
