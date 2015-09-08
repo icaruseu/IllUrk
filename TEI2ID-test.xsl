@@ -10,20 +10,36 @@
     <xsl:output method="html" indent="yes"/>
     <xsl:variable name="ids">
         <xsl:for-each select="//t:row[position() gt 1]">
-            <xsl:variable name="archivort" select=".//t:hi[@rend='Archivort'][1]/replace(replace(replace(replace(replace(text(),'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')/text()"/>
-            <!-- FixMe: erzeugt leere Knoten statt Strings, deshalb wird die Variable vorläufig nicht verwendet -->
+            <xsl:variable name="archivort">
+                <xsl:choose>
+                    <xsl:when test="not(.//t:hi[@rend='Archivort'] and t:cell[6]/normalize-space()='')">
+                        <xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select=".//t:hi[@rend='Archivort'][1]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
             <row n="{position()}">
                 <id>
                     <xsl:value-of
-                        select="replace(t:cell[1],'^([0123456789-]*?)[^0123456789-].*?$','$1')"/>
-                    <xsl:text>_</xsl:text>
-                    <xsl:value-of
-                        select=".//t:hi[@rend='Archivort']/translate(normalize-space(.),'äöüßÄÖÜňřáàéèóòúùâší ,.;:()[]+*#{}/–','aousAOUnraaeeoouuasi-')"
-                    />
-                    <!-- FixMe: Apostroph, §$%&"!?
+                        select="t:cell[1]/(text()[1]|t:p[1])/replace(.,'^([0123456789\-––]*)[^0123456789\-––][\s\S]*?$','$1')"/>
+                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?' ’</xsl:text></xsl:variable>
+                    <xsl:choose>
+<!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
+                            <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
+                        </xsl:when>-->
+                        <xsl:when test="t:cell[6]/normalize-space()=''"/>
+                        <xsl:otherwise>
+                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform,'aousAOUnraaeeooouuasil-')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <!-- 
+                        1162_Klosterneuburg Klosterneuburg
+                        1359-01-01_ aber Archivangabe Warwickshire Record Office (erworben 1984) vorhanden
                         1363-03-27 	Brüssel (Bruxelles),  => 1363-03-27_Brussel Bruxelles : Warum?
                     Alternativer Weg, Unicode-Codepoints als Kriterium zu verwenden, braucht auch eine Normalisierungstabelle und fällt deshalb wohl aus
-                    Wunsch: äöü durch ae, oe, ue ersetzen (sie die Variable oben, die nicht funktioniert -->
+                    Wunsch: äöü durch ae, oe, ue ersetzen (siehe die Variable archivort oben, die nicht funktioniert -->
                 </id>
                 <date>
                     <xsl:value-of select="t:cell[1]"/>
@@ -43,8 +59,9 @@
             <body>
                 <table>
                     <thead>
-                        <tr><th>ID</th>
-                        <th>Anzahl Vorkommen der ID</th>
+                        <tr><th>Zeilenr.</th>
+                            <th>ID</th>
+                        <th>Anzahl Vorkommen der Kombination Datum-Ort</th>
                         <th>Datumsspalte</th>
                         <th>Archivspalte</th></tr>
                     </thead>
@@ -55,6 +72,7 @@
     </xsl:template>
     <xsl:template match="row">
         <tr>
+            <td><xsl:value-of select="position()"/></td>
             <td>
                 <xsl:value-of select="id"/>
                 <!-- Dublettenkontrolle -->

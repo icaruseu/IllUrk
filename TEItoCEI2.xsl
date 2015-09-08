@@ -1,11 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2014-12-15 Author: GVogeler, maburg -->
+<!-- Authors: GVogeler, maburg -->
+<!-- ToDo:
+        1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
+        Validierung:
+        invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
+    
+        Warum sind einzelne Urkunden nicht anzeigbar?
+            http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter : 
+                Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+                In function:
+                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+                	charter:public-entry(xs:string)
+            http://dev.monasterium.net/mom/IlluminatedCharters/1249-12-04_Mainz/my-charter
+                charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+                In function:
+                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+                	charter:public-entry(xs:string)
+            ...
+            http://dev.monasterium.net/mom/IlluminatedCharters/1284-09-01_Mainz/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1289-99-99_Mainz/my-charter : 
+                The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+                In function:
+                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+                	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]
+
+            ...
+            http://dev.monasterium.net/mom/IlluminatedCharters/1318-07-99_Linz/my-charter
+            http://dev.monasterium.net/mom/IlluminatedCharters/1340-10-31_St-Florian/my-charter
+            ...
+            http://dev.monasterium.net/mom/IlluminatedCharters/1347-02-06_St-Gallen/my-charter
+            The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
+            In function:
+            	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
+            	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
+            	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]            
+        
+        Warum funktionieren einzelne Blöcke nicht?
+            http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 17, 20
+            ... wird sich wahrscheinlicih mit den Fehlern oben beheben ...
+
+        Warum werden die Urkunden in EditMOM nicht angezeigt?
+            http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie dem Schema?
+        
+        Wie kann die Datumsangabe besser ausgelesen werden?
+            Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
+
+        Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
+        
+        Vor dem Import: atom:id auf den gewünschen Bestandsnamen anpassen
+ -->
+<!-- Vorbereitungen für die automatische Bildzuordnung
+        (Zuletzt 2.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
+        1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
+        2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten; Achtung auf Namespaces!) 
+        3. ablegen unter http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml
+    -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
-    <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:output method="xml" indent="yes" encoding="UTF-8" omit-xml-declaration="yes"/>
+    <xsl:variable name="ids">
+        <!-- Um auf dublette IDs zu testen, brauche ich eine Skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
+        <xsl:for-each select="//t:row[position() gt 1]">
+            <!-- Der Archivort kann automatische generiert werden oder explizit benannt sein -->
+            <xsl:variable name="archivort">
+                <xsl:choose>
+                    <xsl:when test="not(.//t:hi[@rend='Archivort'] and t:cell[6]/normalize-space()='')">
+                        <xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select=".//t:hi[@rend='Archivort'][1]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <row n="{position()}">
+                <id>
+                    <!-- Die ID sollte keine Sonderzeichen enthalten -->
+                    <xsl:value-of
+                        select="t:cell[1]/(text()|t:*[1]//text())/replace(
+                            replace(.,'^([0123456789\-––_]+)([^0123456789\-––_][\s\S]*?$|$)','$1')
+                        ,'[-––]', '-')"/>
+                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></xsl:variable>
+                    <xsl:choose>
+                        <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
+                            <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
+                        </xsl:when>-->
+                        <xsl:when test="t:cell[6]/normalize-space()=''"/>
+                        <xsl:otherwise>
+                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform,'aousAOUnraaeeooouuasil-')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </id>
+                <!-- Schon mal ein paar Zellen strukturieren. Brauchen wir das noch? -->
+                <!-- ToDo: Erwischt das wirklich den Inhalt der ersten Spalte? -->
+                <date>
+                    <xsl:value-of select="t:cell[1]"/>
+                </date>
+                <archiv>
+                    <xsl:value-of select="t:cell[6]"/>
+                </archiv>
+            </row>
+        </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="bilder" select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')"/>
     <xsl:template match="/">
-
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
             xmlns:cei="http://www.monasterium.net/NS/cei">-->
@@ -17,168 +118,183 @@
             </cei:teiHeader>
             <cei:text>
                 <cei:group>
-                    <xsl:for-each select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position()>1]">
-                        <xsl:variable name="wasp">
+                    <xsl:for-each
+                        select="/t:TEI/t:text[1]/t:body[1]/t:table[1]/t:row[position() > 1]">
+                        <xsl:variable name="cell1Content">
+                            <!-- Erster Schritt:
+                                Das Datum kann in cell[1] direkt oder t:cell[1]/t:p[1] stehen 
+                            Vereinfachen: t:cell[1]/(text()[1]|t:*[1]//text())/normalize-space()? -->
                             <xsl:choose>
                                 <xsl:when test="t:cell[1]/t:p">
-                                    <xsl:value-of select="t:cell[1]/t:p[1]/normalize-space(.)"/>
+                                    <xsl:value-of select="t:cell[1]/t:*[1]/normalize-space(.)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="t:cell[1]/normalize-space(.)"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
-                        <xsl:variable name="was">
+                        <!-- Zweiter Schritt: Datum kann stehen vor:
+                            einem Komma
+                            einem Leerzeichen
+                            einem geschützten Leerzeichen
+                            einem §-Zeichen
+                            einer Klammer
+                            oder nach einer 0
+                        -->
+                        <xsl:variable name="cell1InterestingPart">
                             <xsl:choose>
-                                <xsl:when test="contains($wasp, ',')">
-                                    <xsl:value-of select="substring-before($wasp, ',')"/>
+                                <xsl:when test="contains($cell1Content/text(), 'asgdg')"/>
+                                <xsl:when test="contains($cell1Content, ',')">
+                                    <xsl:value-of select="substring-before($cell1Content, ',')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp, ' ')">
-                                    <xsl:value-of select="substring-before($wasp, ' ')"/>
+                                <xsl:when test="contains($cell1Content, ' ')">
+                                    <xsl:value-of select="substring-before($cell1Content, ' ')"/>
                                 </xsl:when>
-                                <xsl:when test="starts-with($wasp, '0')">
-                                    <xsl:value-of select="substring-after($wasp, '0')"/>
+                                <xsl:when test="contains($cell1Content, '&#xA;')">
+                                    <xsl:value-of select="substring-before($cell1Content, '&#xA;')"
+                                    />
                                 </xsl:when>
-                                <xsl:when test="contains($wasp, '§')">
-                                    <xsl:value-of select="substring-before($wasp, '§')"/>
+                                <xsl:when test="contains($cell1Content, '§')">
+                                    <xsl:value-of select="substring-before($cell1Content, '§')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp, '(')">
-                                    <xsl:value-of select="substring-before($wasp, '(')"/>
+                                <xsl:when test="contains($cell1Content, '(')">
+                                    <xsl:value-of select="substring-before($cell1Content, '(')"/>
                                 </xsl:when>
-                                <xsl:when test="contains($wasp,'&#xA;')">
-                                    <xsl:value-of select="substring-before($wasp, '&#xA;')"/>
+                                <xsl:when test="starts-with($cell1Content, '0')">
+                                    <xsl:value-of select="substring-after($cell1Content, '0')"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="$wasp"/>
+                                    <xsl:value-of select="$cell1Content"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-
                         </xsl:variable>
-                        <xsl:variable name="waswirbrauchen">
+                        <!-- Dritter Schritt: Das Datum folgt einem Pattern -->
+                        <xsl:variable name="cell1-als-zahl">
                             <xsl:value-of
-                                select="replace(replace(replace(replace(normalize-space($was), ' ', ''),'_','9'),'–','-'),'([0-9_]{3,4})-([0-9_][0-9_])-([0-9_][0-9_])','$1$2$3')"/>
+                                select="replace(replace(replace(replace(normalize-space($cell1InterestingPart), ' ', ''), '_', '9'), '–', '-'), '([0-9_]{3,4})-([0-9_][0-9_])-([0-9_][0-9_])', '$1$2$3')"/>
                             <!-- Jetzt gibt es keine _ mehr und alle sieben/achtstelligen Angaben haben keine Bindestriche mehr  -->
                         </xsl:variable>
                         <xsl:variable name="date">
                             <xsl:choose>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{7,8}$')">
+                                <xsl:when test="matches($cell1-als-zahl, '^[0-9]{7,8}$')">
                                     <!-- Das erledigt schon mal alles, was einfach nur eine korrekte Datumsangabe enthält -->
                                     <from>
-                                        <xsl:value-of select="$waswirbrauchen"/>
+                                        <xsl:value-of select="$cell1-als-zahl"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="$waswirbrauchen"/>
+                                        <xsl:value-of select="$cell1-als-zahl"/>
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-[0-9]{3,4}$')">
+                                <xsl:when test="matches($cell1-als-zahl, '^[0-9]{3,4}-[0-9]{3,4}$')">
                                     <from>
-                                        <xsl:value-of select="substring-before($waswirbrauchen,'-')"/>
+                                        <xsl:value-of
+                                            select="substring-before($cell1-als-zahl, '-')"/>
                                         <xsl:text>9999</xsl:text>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring-after($waswirbrauchen,'-')"/>
+                                        <xsl:value-of select="substring-after($cell1-als-zahl, '-')"/>
                                         <xsl:text>9999</xsl:text>
                                     </to>
                                 </xsl:when>
                                 <!-- Fälle mit 3-stelliger Jahreszahl -->
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl, '^[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-__-__$')">
+                                <xsl:when test="matches($cell1-als-zahl, '^[0-9][0-9][0-9]-__-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"
                                         />
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"
                                         />
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9][0-9][0-9]-__$')">
+                                <xsl:when test="matches($cell1-als-zahl, '^[0-9][0-9][0-9]-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </to>
                                 </xsl:when>
 
                                 <!-- Fälle mit 4-stelliger Jahreszahl -->
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl, '^[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="substring-before($waswirbrauchen,'-')"
-                                        />
+                                        <xsl:value-of
+                                            select="substring-before($cell1-als-zahl, '-')"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring-after($waswirbrauchen,'-')"
+                                        <xsl:value-of select="substring-after($cell1-als-zahl, '-')"
                                         />
                                     </to>
                                 </xsl:when>
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl, '^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="substring-before($waswirbrauchen,'-')"
-                                        />
+                                        <xsl:value-of
+                                            select="substring-before($cell1-als-zahl, '-')"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring-after($waswirbrauchen,'-')"
+                                        <xsl:value-of select="substring-after($cell1-als-zahl, '-')"
                                         />
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="not(contains($waswirbrauchen, '-'))">
+                                <xsl:when test="not(contains($cell1-als-zahl, '-'))">
                                     <from>
-                                        <xsl:value-of select="substring($waswirbrauchen, 1,4)"/>
+                                        <xsl:value-of select="substring($cell1-als-zahl, 1, 4)"/>
                                         <xsl:text>9999</xsl:text>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="substring($waswirbrauchen, 1,4)"/>
+                                        <xsl:value-of select="substring($cell1-als-zahl, 1, 4)"/>
                                         <xsl:text>9999</xsl:text>
                                     </to>
                                 </xsl:when>
                                 <!-- Das ist der Normalfall, falls noch was übrig ist von oben ... -->
                                 <xsl:when
-                                    test="matches($waswirbrauchen,'^[0-9]{3,4}-[0-9][0-9]-[0-9][0-9]$')">
+                                    test="matches($cell1-als-zahl, '^[0-9]{3,4}-[0-9][0-9]-[0-9][0-9]$')">
                                     <from>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </from>
                                     <to>
-                                        <xsl:value-of select="replace($waswirbrauchen, '-', '')"/>
+                                        <xsl:value-of select="replace($cell1-als-zahl, '-', '')"/>
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-__-__$')">
+                                <xsl:when test="matches($cell1-als-zahl, '^[0-9]{3,4}-__-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"
                                         />
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"
                                         />
                                     </to>
                                 </xsl:when>
-                                <xsl:when test="matches($waswirbrauchen,'^[0-9]{3,4}-__$')">
+                                <xsl:when test="matches($cell1-als-zahl, '^[0-9]{3,4}-__$')">
                                     <from>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </from>
                                     <to>
                                         <xsl:value-of
-                                            select="replace(replace($waswirbrauchen, '_','9'), '-', '')"/>
+                                            select="replace(replace($cell1-als-zahl, '_', '9'), '-', '')"/>
                                         <xsl:text>99</xsl:text>
                                     </to>
                                 </xsl:when>
@@ -192,28 +308,43 @@
                         <!--
                     Es braucht ein paar Identifikatoren für die Urkunde, die ich hier zusammenbaue und speichere
                 -->
+                        <xsl:variable name="pos" select="position()"/>
+                        <xsl:variable name="id-core">
+                            <xsl:value-of select="$ids/row[$pos]/id"/>
+                            <!-- Dublettenkontrolle -->
+                            <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1">
+                                <xsl:text>_</xsl:text>
+                                <xsl:value-of
+                                    select="(count($ids/row[$pos]/id/preceding::id[. = $ids/row[$pos]/id]) + 1)"
+                                />
+                            </xsl:if>
+                        </xsl:variable>
                         <xsl:variable name="id">
-                            <xsl:text>Illurk_</xsl:text>
-                            <xsl:value-of select="position()"/>
+                            <xsl:value-of select="$id-core"/>
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom"
-                                    >tag:www.monasterium.net,2011:/charter/illurk/Illurk_<xsl:value-of
-                                    select="position()"/></atom:id>
+                                    >tag:www.monasterium.net,2011:/charter/IlluminatedCharters/<xsl:value-of
+                                    select="$id-core"/></atom:id>
                             <cei:idno>
-                                <xsl:attribute name="id"><xsl:text>Illurk_</xsl:text><xsl:value-of select="position()"/></xsl:attribute>
-                                <xsl:value-of select="position()"/>
+                                <xsl:attribute name="id">
+                                    <xsl:value-of select="$id-core"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="$id-core"/>
                             </cei:idno>
-                            <xsl:for-each select="t:cell[7]/t:p[@rend='Monasterium-link']">
+                            <xsl:for-each select="t:cell[7]/t:p[@rend = 'Monasterium-link']">
+                                <!-- FixMe: kann es wirklich mehrere monasterium-links geben? 
+                                
+                                Sonderfälle: MOM-Link ohne http:// behandeln? -->
                                 <xsl:variable name="mona">
                                     <xsl:choose>
                                         <xsl:when
-                                            test="starts-with(normalize-space(.),'http://monasterium.net/')">
+                                            test="starts-with(normalize-space(.), 'http://monasterium.net/')">
                                             <xsl:value-of
-                                                select="replace(normalize-space(.),'http://www.monasterium.net/mom/(.*?)/charter','tag:www.monasterium.net,2011:/charter/$1')"
+                                                select="replace(normalize-space(.), 'http://www.monasterium.net/mom/(.*?)/charter', 'tag:www.monasterium.net,2011:/charter/$1')"
                                             />
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:value-of
-                                                select="replace(normalize-space(.),'http://www.mom-ca.uni-koeln.de/mom/(.*?)/charter','tag:www.monasterium.net,2011:/charter/$1')"
+                                                select="replace(normalize-space(.), 'http://www.mom-ca.uni-koeln.de/mom/(.*?)/charter', 'tag:www.monasterium.net,2011:/charter/$1')"
                                             />
                                         </xsl:otherwise>
                                     </xsl:choose>
@@ -221,22 +352,28 @@
                                 <mom>
                                     <!-- maskieren von |, ( , ) für Atomlink-->
                                     <xsl:choose>
-                                        <xsl:when test="contains($mona, '(') or contains($mona, ')') or contains($mona, '|')">
-                                            <xsl:value-of select="replace(replace(replace($mona, '\(', '%28'), '\)', '%29'), '\|', '%7C')"/>
-                                        </xsl:when>                                            
+                                        <xsl:when
+                                            test="contains($mona, '(') or contains($mona, ')') or contains($mona, '|')">
+                                            <xsl:value-of
+                                                select="replace(replace(replace($mona, '\(', '%28'), '\)', '%29'), '\|', '%7C')"
+                                            />
+                                        </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:value-of select="$mona"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </mom>
+                                <archivort><xsl:value-of select="$ids/id[$pos]/archivort"/></archivort>
                             </xsl:for-each>
                         </xsl:variable>
 
-                        <!-- *********************
+                        <!-- 
+     *********************
     Und hier geht die eigentliche Konversion los: 
-     *********************-->
+     *********************
+                        -->
 
-                      <xsl:result-document href="illurk/{$id/text()}.charter.xml">
+                        <xsl:result-document href="illurk/{$id/text()}.charter.xml">
                             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                                 <xsl:copy-of select="$id/atom:id"/>
                                 <atom:title/>
@@ -252,13 +389,14 @@
                                 <app:control xmlns:app="http://www.w3.org/2007/app">
                                     <app:draft>no</app:draft>
                                 </app:control>
-                                
-                           <!-- prüfen, ob atom:link monasterium-link ist -->
-                               <xsl:if test="contains($id/mom, 'monasterium.net') or contains($id/mom, 'mom-ca')">
-                                   <atom:link rel="versionOf" ref="{$id/mom/text()}"/>
+
+                                <!-- prüfen, ob atom:link monasterium-link ist -->
+                                <xsl:if
+                                    test="$id/mom[1]/contains(., 'monasterium.net') or $id/mom[1]/contains(., 'mom-ca')">
+                                    <atom:link rel="versionOf" ref="{$id/mom[1]/text()}"/>
                                 </xsl:if>
-                                
-                                <atom:content type="application/xml">                        
+
+                                <atom:content type="application/xml">
                                     <!-- 
                             Ab hier dann das CEI:
                             -->
@@ -280,120 +418,118 @@
                                         <cei:body>
                                             <xsl:copy-of select="$id/cei:idno"/>
                                             <cei:chDesc>
-                                                <cei:class/>
-                                                <!-- Hier käme auf eigentlich die Urkundenart hinein -->
+                                                <!-- <cei:class/>
+                                                Hier käme auf eigentlich die Urkundenart hinein:
+                                                FixMe: Schame anpassen -->
                                                 <cei:abstract>
                                                   <xsl:apply-templates select="t:cell[4]"/>
                                                 </cei:abstract>
                                                 <cei:issued>
                                                   <cei:placeName>
-                                                  <xsl:value-of select="t:cell[3]"/>
+                                                      <xsl:value-of select="t:cell[3]"/>
                                                   </cei:placeName>
-
                                                   <cei:dateRange>
-                                                  <xsl:attribute name="from" select="$date/from"/>
-
-                                                  <xsl:attribute name="to" select="$date/to"/>
-
-
-                                                  <xsl:value-of select="t:cell[1]"/>
+                                                      <xsl:attribute name="from" select="$date/from"/>
+                                                      <xsl:attribute name="to" select="$date/to"/>
+                                                      <xsl:value-of select="t:cell[1]"/>
+                                                      <!-- FixMe: Achtung, das muß angepaßt werden für die erweiterten Dateumsangaben ("ca.", "§BG§", "kopial" ...): Versucht wäre, daß im ersten Absatz nur Datumsangaben stehen? Aber "ca" ist ein Problem ... -->
                                                   </cei:dateRange>
                                                 </cei:issued>
                                                 <cei:witnessOrig>
                                                   <cei:traditioForm>orig.</cei:traditioForm>
                                                   <!-- FixMe: es gibt auch kopiale Überlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                                   <xsl:for-each
-                                                  select="t:cell[7]/t:p[@rend='LINK-ZU-BILD']">
-                                                  <xsl:choose>
-                                                  <xsl:when
-                                                  test="($id/mom and .//text()[contains(.,'monasterium.net')])">
-                                                  <cei:figure/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <cei:figure>
-                                           
-                                                      <cei:graphic>
-                                                          <xsl:attribute name="url">
-                                                              <!-- Hier wird zuerst das &amp; in der URL durch einen Beistrich übersetzt und dann wird ',' durch das richtige Zeichen ersetzt.
-                                                                  Nachdenken über dauerhafte Lösung...
-                                                             -->
-                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   
-                                                          </xsl:attribute>
-                                                      </cei:graphic>
-                                                  </cei:figure>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  </xsl:for-each>
-                                                    <xsl:if test="not(t:cell[7]/t:p[@rend='LINK-ZU-BILD'] or $id/mom)">
-                                                        <cei:figure/>
-                                                    </xsl:if>
-
-                                                  <!-- Hier könnte man noch zusätzlich die Martinsche Bildersammlung auf 
-                                                    images.monasterium.net/illum auswerten, also z.B.:
-                                                  Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element -->
-                                                    <xsl:for-each select="document('http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml')//a[starts-with(@href,concat('http://images.monasterium.net/illum/IllUrk/',substring-before(t:cell[1],'_'))) and (ends-with(@href,'.jpg') or ends-with(@href,'.png'))]">
-                                                        <cei:figure>
-                                                            <cei:graphic>
-                                                                <xsl:attribute name="url">
-                                                                    <xsl:value-of select="@href"/>
+                                                  select="t:cell[7]/t:p[@rend = 'LINK-ZU-BILD']">
+                                                    <xsl:choose>
+                                                       <xsl:when
+                                                       test="($id/mom and .//text()[contains(., 'monasterium.net')])">
+                                                            <cei:figure/>
+                                                       </xsl:when>
+                                                       <xsl:otherwise>
+                                                            <cei:figure>
+                                                                <cei:graphic>
+                                                                    <xsl:attribute name="url">
+                                                                    <!-- Hier wird zuerst das &amp; in der URL durch einen Beistrich übersetzt und dann wird ',' durch das richtige Zeichen ersetzt.
+                                                                                    Nachdenken über dauerhafte Lösung...
+                                                                                    Warum ist das überhaupt nötig?
+                                                                               -->
+                                                                    <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   -->
+                                                                    <xsl:choose><xsl:when test="t:ref"><xsl:value-of select="t:ref/@target"/></xsl:when><xsl:otherwise><xsl:value-of select="."/></xsl:otherwise></xsl:choose>
                                                                 </xsl:attribute>
-                                                            </cei:graphic>
-                                                        </cei:figure>
-                                                    </xsl:for-each>
+                                                                </cei:graphic>
+                                                            </cei:figure>
+                                                       </xsl:otherwise>
+                                                    </xsl:choose>
+                                                  </xsl:for-each>
+                                                  <!-- Hier wuird noch zusätzlich die Martinsche Bildersammlung auf 
+                                                    images.monasterium.net/illum ausgewertet, also z.B.:
+                                                  Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
+                                                  
+                                                  -->
+                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]//text())[1]/translate(replace(.,'^0(.*?)$', '$1'),'–,;.()/ ','-'))"/>
+                                                    <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
+                                                        <xsl:if test="t:cell[1]/(text()[1]|*[1]//text())[1]/normalize-space() != ''">
+                                                            <xsl:for-each
+                                                                select="$bild">
+                                                                <cei:figure>
+                                                                    <cei:graphic>
+                                                                    <xsl:attribute name="url">
+                                                                        <xsl:value-of select="@href"/>
+                                                                    </xsl:attribute>
+<!--                                                                    <xsl:value-of select="@href"/>-->
+                                                                    </cei:graphic>
+                                                                </cei:figure>
+                                                            </xsl:for-each>
+                                                        </xsl:if>
+                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen?. -->
+                                                    <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))])">
+                                                    <cei:figure/>
+                                                  </xsl:if>
 
                                                   <cei:archIdentifier>
-                                                  <cei:settlement>
-                                                  <xsl:value-of
-                                                  select="t:cell[6]/t:*[@rend='Archivort']"/>
-                                                  </cei:settlement>
-                                                  <cei:arch>
-                                                  <xsl:value-of
-                                                  select="t:cell[6]/t:*[@rend='Archivname']"/>
-                                                  </cei:arch>
+                                                      <xsl:apply-templates select="t:cell[6]"/>
                                                   </cei:archIdentifier>
                                                   <cei:physicalDesc>
-                                                  <cei:decoDesc>
-                                                  <xsl:apply-templates select="t:cell[5]"/>
-                                                  </cei:decoDesc>
-                                                  <cei:material/>
-                                                  <cei:dimensions/>
-                                                  <cei:condition/>
-                                                  </cei:physicalDesc>
-                                                  <cei:auth>
-                                                  <cei:notariusDesc/>
-                                                  <cei:sealDesc/>
-                                                  </cei:auth>
-                                                  <cei:nota/>
+                                                    <cei:decoDesc>
+                                                        <xsl:apply-templates select="t:cell[5]"/>
+                                                    </cei:decoDesc>
+                                                    <cei:material/>
+                                                    <cei:dimensions/>
+                                                    <cei:condition/>
+                                                    </cei:physicalDesc>
+                                                    <cei:auth>
+                                                        <cei:notariusDesc/>
+                                                        <cei:sealDesc/>
+                                                    </cei:auth>
+                                                    <cei:nota/>
                                                 </cei:witnessOrig>
                                                 <cei:witListPar>
                                                   <cei:witness>
-                                                  <cei:traditioForm/>
-                                                  <cei:figure/>
-                                                  <cei:archIdentifier/>
-                                                  <cei:physicalDesc>
-                                                  <cei:material/>
-                                                  <cei:dimensions/>
-                                                  <cei:condition/>
-                                                  </cei:physicalDesc>
-                                                  <cei:auth>
-                                                  <cei:sealDesc/>
-                                                  <cei:notariusDesc/>
-                                                  </cei:auth>
-                                                  <cei:nota/>
+                                                    <cei:traditioForm/>
+                                                    <cei:figure/>
+                                                    <cei:archIdentifier/>
+                                                    <cei:physicalDesc>
+                                                        <cei:material/>
+                                                        <cei:dimensions/>
+                                                        <cei:condition/>
+                                                    </cei:physicalDesc>
+                                                    <cei:auth>
+                                                      <cei:sealDesc/>
+                                                      <cei:notariusDesc/>
+                                                    </cei:auth>
+                                                    <cei:nota/>
                                                   </cei:witness>
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
-                                                    <cei:listBiblEdition>
-                                                        <xsl:apply-templates select="t:cell[7]"/>
-                                                    </cei:listBiblEdition>                                                
+                                                  <xsl:apply-templates select="t:cell[7]"/>
                                                   <cei:listBiblRegest>
-                                                  <cei:bibl/>
+                                                    <cei:bibl/>
                                                   </cei:listBiblRegest>
                                                   <cei:listBiblFaksimile>
-                                                  <cei:bibl/>
+                                                    <cei:bibl/>
                                                   </cei:listBiblFaksimile>
                                                   <cei:listBiblErw>
-                                                  <cei:bibl/>
+                                                    <cei:bibl/>
                                                   </cei:listBiblErw>
                                                   <cei:p/>
                                                   <cei:quoteOriginaldatierung/>
@@ -408,12 +544,12 @@
                                             <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
                                             </cei:placeName>
-                                            <xsl:for-each select=".//t:*[@rend='UrkArt']">
+                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt-W']">
                                                 <cei:index type="Urkundenart">
                                                   <xsl:value-of select="."/>
                                                 </cei:index>
                                             </xsl:for-each>
-                                            <xsl:if test="not(.//t:*[@rend='UrkArt'])">
+                                            <xsl:if test="not(.//t:*[@rend = 'UrkArt-W'])">
                                                 <cei:index/>
                                             </xsl:if>
                                             <cei:divNotes>
@@ -423,13 +559,26 @@
                                     </cei:text>
                                 </atom:content>
                             </atom:entry>
-                         </xsl:result-document>
+                        </xsl:result-document>
                     </xsl:for-each>
                 </cei:group>
             </cei:text>
         </cei:cei>
     </xsl:template>
-    <xsl:template match="t:*[@rend='Beschreibung']">
+    <xsl:template match="t:*[@rend = 'Archivort']">
+        <cei:settlement><xsl:value-of select="."/></cei:settlement>
+    </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivname']">
+        <cei:arch><xsl:value-of select="."/></cei:arch>
+    </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivfonds']">
+        <cei:archFonds><xsl:value-of select="."/></cei:archFonds>
+    </xsl:template>
+    <xsl:template match="t:*[@rend = 'Archivsignatur']">
+        <cei:idno><xsl:value-of select="."/></cei:idno>
+    </xsl:template>
+    
+    <xsl:template match="t:*[@rend = 'Beschreibung']">
         <cei:p>
             <xsl:apply-templates/>
         </cei:p>
@@ -440,7 +589,7 @@
     <xsl:template match="t:cell[4]" priority="1">
         <xsl:choose>
             <xsl:when test="t:p">
-                <xsl:apply-templates select="t:*[@rend='Regest']"/>
+                <xsl:apply-templates select="t:*[@rend = 'Regest']"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
@@ -450,22 +599,24 @@
     <xsl:template match="text()" priority="-2">
         <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
-    <xsl:template match="t:*[@rend='Regest']">
-        <xsl:if test="preceding-sibling::t:*[@rend='Regest']">
+    <xsl:template match="t:*[@rend = 'Regest']">
+        <xsl:if test="preceding-sibling::t:*[@rend = 'Regest']">
             <cei:lb/>
         </xsl:if>
         <xsl:apply-templates/>
     </xsl:template>
     <!-- 
         Die fünfte Spalte enthält die kunsthistorische Beschreibung
+        
+        FixMe: @rend="Ekphrasis" und @rend="Stil und Einordnung" verarbeiten
     -->
     <xsl:template match="t:cell[5]" priority="2">
-        <xsl:if test="text() and text()/normalize-space(.)!=''">
+        <xsl:if test="text() and text()/normalize-space(.) != ''">
             <cei:p>
                 <xsl:value-of select="text()/normalize-space(.)"/>
             </cei:p>
         </xsl:if>
-        <xsl:for-each select="t:p[not(@rend='NIVEAU') and not(@rend='Autorensigle')]">
+        <xsl:for-each select="t:p[not(@rend = 'NIVEAU') and not(@rend = 'Autorensigle')]">
             <cei:p>
                 <xsl:apply-templates/>
             </cei:p>
@@ -482,17 +633,17 @@
             </for-each>
             -->
         </xsl:for-each>
-        <xsl:if test="t:p[@rend='NIVEAU']">
+        <xsl:if test="t:p[@rend = 'NIVEAU']">
             <cei:p>
-                <xsl:apply-templates select="t:p[@rend='NIVEAU']"/>
+                <xsl:apply-templates select="t:p[@rend = 'NIVEAU']"/>
             </cei:p>
         </xsl:if>
     </xsl:template>
-    <xsl:template match="t:*[@rend='NIVEAU']" priority="1">
-        <xsl:variable name="stringlist" select="tokenize(.,':')"/>
+    <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
+        <xsl:variable name="stringlist" select="tokenize(., ':')"/>
 
 
-        <xsl:if test="preceding-sibling::t:*[@rend='NIVEAU']">
+        <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
             <xsl:text> - </xsl:text>
         </xsl:if>
         <cei:index>
@@ -511,14 +662,14 @@
         In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich übergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
-         <cei:listBiblEdition>
-             <xsl:apply-templates />   
+        <cei:listBiblEdition>
+            <xsl:apply-templates/>
         </cei:listBiblEdition>
     </xsl:template>
-    
-    <xsl:template match="child::t:cell[7]/t:p">
+
+    <xsl:template match="child::t:cell[7]/t:p" priority="-1">
         <cei:bibl>
-            <xsl:apply-templates/>        
+            <xsl:apply-templates/>
         </cei:bibl>
     </xsl:template>
 
@@ -526,18 +677,20 @@
         <cei:ref>
             <xsl:attribute name="target">
                 <!--  Nachdenken über dauerhafte Lösung, vgl. cei:graphic... -->
-                <xsl:value-of select="normalize-space(replace(translate(., '[&amp;]', '[,]'), '[,]', '%26'))"/>   
+                <xsl:value-of
+                    select="normalize-space(replace(translate(., '[&amp;]', '[,]'), '[,]', '%26'))"
+                />
             </xsl:attribute>
             <xsl:apply-templates/>
         </cei:ref>
     </xsl:template>
 
-    <xsl:template match="t:hi[@rend='bold']">
+    <xsl:template match="t:hi[@rend = 'bold']">
         <cei:index type="bold">
             <xsl:value-of select="."/>
         </cei:index>
     </xsl:template>
-    <xsl:template match="t:hi[@rend='italic']">
+    <xsl:template match="t:hi[@rend = 'italic']">
         <cei:quote type="italic">
             <xsl:value-of select="."/>
         </cei:quote>
@@ -549,7 +702,7 @@
     <!-- 
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
-    <xsl:template match="t:*[@rend='Autorensigle']|t:*[@rend='LINK-ZU-BILD']">
+    <xsl:template match="t:*[@rend = 'Autorensigle'] | t:*[@rend = 'LINK-ZU-BILD']">
         <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
         <!--        <cei:p>
             <xsl:attribute name="resp">
@@ -561,6 +714,3 @@
     </xsl:template>
 
 </xsl:stylesheet>
-
-
-
