@@ -1,50 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
 <!-- ToDo:
+        MOM-Links konsquent mit http:// davor vereinheitlichen?
+
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
         Validierung:
         invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
         
-        Umwandlung von MOM-Links in tags für atom:link-VersionOf funktioniert richtig?
-        MOM-Links konsquent mit http:// davor vereinheitlichen?
-    
-        Warum sind einzelne Urkunden nicht anzeigbar?
-            http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter : 
-                Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-                In function:
-                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-                	charter:public-entry(xs:string)
-            http://dev.monasterium.net/mom/IlluminatedCharters/1249-12-04_Mainz/my-charter
-                charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-                In function:
-                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-                	charter:public-entry(xs:string)
-            ...
-            http://dev.monasterium.net/mom/IlluminatedCharters/1284-09-01_Mainz/my-charter
-            http://dev.monasterium.net/mom/IlluminatedCharters/1289-99-99_Mainz/my-charter : 
-                The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-                In function:
-                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-                	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]
-
-            ...
-            http://dev.monasterium.net/mom/IlluminatedCharters/1318-07-99_Linz/my-charter
-            http://dev.monasterium.net/mom/IlluminatedCharters/1340-10-31_St-Florian/my-charter
-            ...
-            http://dev.monasterium.net/mom/IlluminatedCharters/1347-02-06_St-Gallen/my-charter
-            The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-            In function:
-            	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-            	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-            	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]            
-        
-        Warum funktionieren einzelne Blöcke nicht?
-            http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 17, 20
-            ... wird sich wahrscheinlicih mit den Fehlern oben beheben ...
-
         Warum werden die Urkunden in EditMOM nicht angezeigt?
             http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie der Template?
         
@@ -53,13 +15,14 @@
 
         Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
         
-        Vor dem Import: atom:id auf den gewünschen Bestandsnamen anpassen
- -->
-<!-- Vorbereitungen für die automatische Bildzuordnung
-        (Zuletzt 2.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
-        1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
-        2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ...; Achtung auf Namespaces!? ) 
-        3. Ablageort in variable $bildurl eintragn
+        Vor dem Import: 
+        
+        atom:id auf den gewünschen Bestandsnamen anpassen
+        Vorbereitung der Bildverknüpfung:
+            (Zuletzt 7.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
+            1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
+            2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ... 
+            3. Ablageort in variable $bildurl eintragn
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -340,15 +303,18 @@
                                 <xsl:variable name="mona">
                                     <xsl:choose>
                                         <xsl:when
-                                            test="starts-with(normalize-space(.), 'http://monasterium.net/')">
+                                            test="matches(normalize-space(.), '^[\S]*?monasterium.net/mom/(.*?)/charter.*?$')">
                                             <xsl:value-of
-                                                select="replace(normalize-space(.), 'http://www.monasterium.net/mom/(.*?)/charter', 'tag:www.monasterium.net,2011:/charter/$1')"
+                                                select="replace(normalize-space(.), '^.*monasterium.net/mom/(.*?)/charter.*?$', 'tag:www.monasterium.net,2011:/charter/$1')"
+                                            />
+                                        </xsl:when>
+                                        <xsl:when test="matches(normalize-space(.),'^[\S]*?mom-ca.uni-koeln.de/mom/(.*?)/charter.*?$')">
+                                            <xsl:value-of
+                                                select="replace(normalize-space(.), '^.*.mom-ca.uni-koeln.de/mom/(.*?)/charter.*?$', 'tag:www.monasterium.net,2011:/charter/$1')"
                                             />
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:value-of
-                                                select="replace(normalize-space(.), 'http://www.mom-ca.uni-koeln.de/mom/(.*?)/charter', 'tag:www.monasterium.net,2011:/charter/$1')"
-                                            />
+                                            <xsl:comment>"<xsl:value-of select="normalize-space(.)"/>" ist kein richtiger Monasterium-Link.</xsl:comment>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
