@@ -4,6 +4,9 @@
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
         Validierung:
         invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
+        
+        Umwandlung von MOM-Links in tags für atom:link-VersionOf funktioniert richtig?
+        MOM-Links konsquent mit http:// davor vereinheitlichen?
     
         Warum sind einzelne Urkunden nicht anzeigbar?
             http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter : 
