@@ -30,7 +30,7 @@
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="bildurl"><xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text></xsl:variable>
     <xsl:variable name="ids">
-        <!-- Um auf dublette IDs zu testen, brauche ich eine Skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
+        <!-- Um auf dublette IDs zu testen, brauche ich eine skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
             <!-- Der Archivort kann automatische generiert werden oder explizit benannt sein -->
             <xsl:variable name="archivort">
@@ -46,18 +46,21 @@
             <row n="{position()}">
                 <id>
                     <!-- Die ID sollte keine Sonderzeichen enthalten -->
+                    <xsl:variable name="totransform">
+                        <from><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></from>
+                        <to>aousAOUnraaeeooouuasil-</to>
+                    </xsl:variable>
                     <xsl:value-of
-                        select="t:cell[1]/(text()|t:*[1]//text())/replace(
+                        select="t:cell[1]/(text()|t:*[1]//text())/translate(replace(
                             replace(.,'^([0123456789\-––_]+)([^0123456789\-––_][\s\S]*?$|$)','$1')
-                        ,'[-––]', '-')"/>
-                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></xsl:variable>
+                        ,'[-––]', '-'),$totransform/from,$totransform/to)"/>
                     <xsl:choose>
                         <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
                             <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
                         </xsl:when>-->
                         <xsl:when test="t:cell[6]/normalize-space()=''"/>
                         <xsl:otherwise>
-                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform,'aousAOUnraaeeooouuasil-')"/>
+                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform/from,$totransform/to)"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </id>
@@ -66,13 +69,30 @@
                 <date>
                     <xsl:value-of select="t:cell[1]"/>
                 </date>
+                <datum>
+                    <xsl:value-of select="t:cell[1]/(text()[1]|*[1]/text())[1]/translate(.,'–,;.?! ()','-')"/>
+                </datum>
                 <archiv>
                     <xsl:value-of select="t:cell[6]"/>
                 </archiv>
             </row>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:variable name="bilder" select="document($bildurl)"/>
+    <xsl:variable name="bilder">
+        <xsl:for-each
+            select="document($bildurl)//a[(ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
+            <bild>
+                <url>
+                    <xsl:value-of select="@href"/>
+                </url>
+                <datum>
+                    <xsl:value-of
+                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/Illurk/')"
+                    />
+                </datum>
+            </bild>
+        </xsl:for-each>
+    </xsl:variable>
     <xsl:template match="/">
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
@@ -419,37 +439,41 @@
                                                                 <cei:graphic>
                                                                     <xsl:attribute name="url">
                                                                     <!-- Hier wird zuerst das &amp; in der URL durch einen Beistrich übersetzt und dann wird ',' durch das richtige Zeichen ersetzt.
+                                                                        Achtung, die Formatvorlage ist zum Kotzen, denn darin steht auch "(Bild)"
                                                                                     Nachdenken über dauerhafte Lösung...
                                                                                     Warum ist das überhaupt nötig?
                                                                                -->
-                                                                    <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   -->
+                                                                    <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                             -->
+                                                                        <xsl:choose>
+                                                                            <xsl:when test=".//t:ref[starts-with(.,'http')]"><xsl:value-of select=".//t:ref[starts-with(.,'http')]/normalize-space()"/></xsl:when>
+                                                                            <xsl:when test=".//t:ref[starts-with(@target,'http')]"><xsl:value-of select=".//t:ref[starts-with(@target,'http')]/@target/normalize-space()"/></xsl:when>
+                                                                            <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                                                                        </xsl:choose>
                                                                 </xsl:attribute>
                                                                 </cei:graphic>
                                                             </cei:figure>
                                                        </xsl:otherwise>
                                                     </xsl:choose>
                                                   </xsl:for-each>
-                                                  <!-- Hier wuird noch zusätzlich die Martinsche Bildersammlung auf 
+                                                  <!-- Hier wird noch zusätzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum ausgewertet, also z.B.:
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   -->
-                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]/text())[1]/translate(.,'–,;.?! ()','-'))"/>
-                                                    <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
-                                                        <xsl:if test="t:cell[1]/(text()[1]|*[1]//text())[1]/normalize-space() != ''">
-                                                            <xsl:for-each
-                                                                select="$bild">
-                                                                <cei:figure>
-                                                                    <cei:graphic>
-                                                                    <xsl:attribute name="url">
-                                                                        <xsl:value-of select="@href"/>
-                                                                    </xsl:attribute>
+                                                    <xsl:variable name="datum" select="t:cell[1]/(text()[1]|*[1]/text())[1]/translate(normalize-space(.),'–,;.?! ()','-')"/>
+                                                    <xsl:variable name="bild" select="$bilder/bild[datum=$datum]/url"/>
+                                                    <xsl:for-each
+                                                        select="$bild">
+                                                        <cei:figure>
+                                                            <cei:graphic>
+                                                            <xsl:attribute name="url">
+                                                                <xsl:value-of select="."/>
+                                                            </xsl:attribute>
 <!--                                                                    <xsl:value-of select="@href"/>-->
-                                                                    </cei:graphic>
-                                                                </cei:figure>
-                                                            </xsl:for-each>
-                                                        </xsl:if>
-                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen?. -->
-                                                    <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))])">
+                                                            </cei:graphic>
+                                                        </cei:figure>
+                                                    </xsl:for-each>
+                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen? -->
+                                                    <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bild)">
                                                     <cei:figure/>
                                                   </xsl:if>
 
