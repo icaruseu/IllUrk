@@ -29,6 +29,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="bildurl"><xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text></xsl:variable>
+    <xsl:variable name="collectionkürzel">IlluminierteUrkunde</xsl:variable>
     <xsl:variable name="ids">
         <!-- Um auf dublette IDs zu testen, brauche ich eine skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -94,6 +95,46 @@
         </xsl:for-each>
     </xsl:variable>
     <xsl:template match="/">
+        <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
+            <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/></atom:id>
+                <atom:title>Illuminierte Urkunden</atom:title>
+                <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
+                <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
+                <atom:author>
+                    <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                </atom:author>
+                <app:control xmlns:app="http://www.w3.org/2007/app">
+                    <app:draft>no</app:draft>
+                </app:control>
+                <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
+                    <xrx:visibility>private</xrx:visibility>
+                    <xrx:user/>
+                </xrx:sharing>
+                <atom:content type="application/xml">
+                    <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
+                        <cei:teiHeader>
+                            <cei:fileDesc>
+                                <cei:titleStmt>
+                                    <cei:title>Illuminierte Urkunden</cei:title>
+                                </cei:titleStmt>
+                                <cei:publicationStmt/>
+                            </cei:fileDesc>
+                        </cei:teiHeader>
+                        <cei:text type="collection">
+                            <cei:front>
+                                <cei:div type="preface"/>
+                            </cei:front>
+                            <cei:group>
+                                <cei:text type="collection" sameAs=""/>
+                                <cei:text type="charter" sameAs=""/>
+                            </cei:group>
+                            <cei:back/>
+                        </cei:text>
+                    </cei:cei>
+                </atom:content>
+            </atom:entry>
+        </xsl:result-document>
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
             xmlns:cei="http://www.monasterium.net/NS/cei">-->
@@ -355,7 +396,13 @@
                                 <archivort><xsl:value-of select="$ids/id[$pos]/archivort"/></archivort>
                             </xsl:for-each>
                         </xsl:variable>
-
+                        <!-- 
+                        ****************
+                        Vorab die Sammlungsbeschreibung erzeugen
+                        
+                        Ggf. anpassen: Titel, Beschreibung (Beschreibung in escpatem HTML: &lt;p&gt; ...) etc.
+                        ****************
+                        -->
                         <!-- 
      *********************
     Und hier geht die eigentliche Konversion los: 
@@ -400,7 +447,7 @@
                                                   <cei:bibl/>
                                                 </cei:sourceDescVolltext>
                                                 <cei:sourceDescRegest>
-                                                  <cei:bibl>Gabriele Bartz (Kunsthistorische Beschreibung), Markus Gneiß (diplomatische Beschreibung) im Rahmen des FWF Projekts "Illuminierte Urkunden"</cei:bibl>
+                                                    <cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl>
                                                 </cei:sourceDescRegest>
                                             </cei:sourceDesc>
                                         </cei:front>
@@ -412,6 +459,7 @@
                                                 FixMe: Schame anpassen -->
                                                 <cei:abstract>
                                                   <xsl:apply-templates select="t:cell[4]"/>
+                                                    <!-- Hier einen Defaultwert für die Verantwortlichkeit einfügen? -->
                                                 </cei:abstract>
                                                 <cei:issued>
                                                   <cei:placeName>
