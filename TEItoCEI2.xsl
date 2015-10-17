@@ -1,47 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
 <!-- ToDo:
+        MOM-Links konsquent mit http:// davor vereinheitlichen?
+
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
         Validierung:
         invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
-    
-        Warum sind einzelne Urkunden nicht anzeigbar?
-            http://dev.monasterium.net/mom/IlluminatedCharters/1146-05-04_Reichersberg/my-charter : 
-                Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-                In function:
-                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-                	charter:public-entry(xs:string)
-            http://dev.monasterium.net/mom/IlluminatedCharters/1249-12-04_Mainz/my-charter
-                charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-                In function:
-                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-                	charter:public-entry(xs:string)
-            ...
-            http://dev.monasterium.net/mom/IlluminatedCharters/1284-09-01_Mainz/my-charter
-            http://dev.monasterium.net/mom/IlluminatedCharters/1289-99-99_Mainz/my-charter : 
-                The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-                In function:
-                	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-                	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-                	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]
-
-            ...
-            http://dev.monasterium.net/mom/IlluminatedCharters/1318-07-99_Linz/my-charter
-            http://dev.monasterium.net/mom/IlluminatedCharters/1340-10-31_St-Florian/my-charter
-            ...
-            http://dev.monasterium.net/mom/IlluminatedCharters/1347-02-06_St-Gallen/my-charter
-            The actual return type does not match the sequence type declared in the function's signature: charter:collectionid(xs:string, xs:string) xs:string. Expected cardinality: exactly one, got 0. [at line 161, column 26, source: /db/XRX.live/mom/app/charter/charter.xqm]
-            In function:
-            	charter:collectionid(xs:string, xs:string) [225:49:/db/XRX.live/mom/app/charter/charter.xqm]
-            	metadata:base-collection(xs:string, xs:string*, xs:string) [224:45:/db/XRX.live/mom/app/metadata/metadata.xqm]
-            	charter:public-entry(xs:string) [8:559:/db/XRX.live/mom/app/charter/charter.xqm]            
         
-        Warum funktionieren einzelne Blöcke nicht?
-            http://dev.monasterium.net/mom/IlluminatedCharters/my-collection?block=2, 4, 5, 7, 10, 17, 20
-            ... wird sich wahrscheinlicih mit den Fehlern oben beheben ...
-
         Warum werden die Urkunden in EditMOM nicht angezeigt?
             http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie der Template?
         
@@ -50,21 +15,23 @@
 
         Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
         
-        Vor dem Import: atom:id auf den gewünschen Bestandsnamen anpassen
- -->
-<!-- Vorbereitungen für die automatische Bildzuordnung
-        (Zuletzt 2.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
-        1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
-        2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ...; Achtung auf Namespaces!? ) 
-        3. Ablageort in variable $bildurl eintragn
+        Vor dem Import: 
+        
+        atom:id auf den gewünschen Bestandsnamen anpassen
+        Vorbereitung der Bildverknüpfung:
+            (Zuletzt 7.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
+            1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
+            2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ... 
+            3. Ablageort in variable $bildurl eintragn
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="bildurl"><xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text></xsl:variable>
+    <xsl:variable name="collectionkürzel">IlluminierteUrkunde</xsl:variable>
     <xsl:variable name="ids">
-        <!-- Um auf dublette IDs zu testen, brauche ich eine Skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
+        <!-- Um auf dublette IDs zu testen, brauche ich eine skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
             <!-- Der Archivort kann automatische generiert werden oder explizit benannt sein -->
             <xsl:variable name="archivort">
@@ -80,18 +47,21 @@
             <row n="{position()}">
                 <id>
                     <!-- Die ID sollte keine Sonderzeichen enthalten -->
+                    <xsl:variable name="totransform">
+                        <from><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></from>
+                        <to>aousAOUnraaeeooouuasil-</to>
+                    </xsl:variable>
                     <xsl:value-of
-                        select="t:cell[1]/(text()|t:*[1]//text())/replace(
+                        select="t:cell[1]/(text()|t:*[1]//text())/translate(replace(
                             replace(.,'^([0123456789\-––_]+)([^0123456789\-––_][\s\S]*?$|$)','$1')
-                        ,'[-––]', '-')"/>
-                    <xsl:variable name="totransform"><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></xsl:variable>
+                        ,'[-––]', '-'),$totransform/from,$totransform/to)"/>
                     <xsl:choose>
                         <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
                             <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
                         </xsl:when>-->
                         <xsl:when test="t:cell[6]/normalize-space()=''"/>
                         <xsl:otherwise>
-                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform,'aousAOUnraaeeooouuasil-')"/>
+                            <xsl:text>_</xsl:text><xsl:value-of select="$archivort/translate(normalize-space(replace(replace(replace(replace(replace(.,'ä','ae','i'),'Ö','Oe'),'ö','oe'),'ü','ue','i'),'ß','ss')),$totransform/from,$totransform/to)"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </id>
@@ -100,14 +70,71 @@
                 <date>
                     <xsl:value-of select="t:cell[1]"/>
                 </date>
+                <datum>
+                    <xsl:value-of select="t:cell[1]/(text()[1]|*[1]/text())[1]/translate(.,'–,;.?! ()','-')"/>
+                </datum>
                 <archiv>
                     <xsl:value-of select="t:cell[6]"/>
                 </archiv>
             </row>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:variable name="bilder" select="document($bildurl)"/>
+    <xsl:variable name="bilder">
+        <xsl:for-each
+            select="document($bildurl)//a[(ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
+            <bild>
+                <url>
+                    <xsl:value-of select="@href"/>
+                </url>
+                <datum>
+                    <xsl:value-of
+                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/Illurk/')"
+                    />
+                </datum>
+            </bild>
+        </xsl:for-each>
+    </xsl:variable>
     <xsl:template match="/">
+        <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
+            <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
+                <atom:title>Illuminierte Urkunden</atom:title>
+                <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
+                <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
+                <atom:author>
+                    <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                </atom:author>
+                <app:control xmlns:app="http://www.w3.org/2007/app">
+                    <app:draft>no</app:draft>
+                </app:control>
+                <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
+                    <xrx:visibility>private</xrx:visibility>
+                    <xrx:user/>
+                </xrx:sharing>
+                <atom:content type="application/xml">
+                    <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
+                        <cei:teiHeader>
+                            <cei:fileDesc>
+                                <cei:titleStmt>
+                                    <cei:title>Illuminierte Urkunden</cei:title>
+                                </cei:titleStmt>
+                                <cei:publicationStmt/>
+                            </cei:fileDesc>
+                        </cei:teiHeader>
+                        <cei:text type="collection">
+                            <cei:front>
+                                <cei:div type="preface"/>
+                            </cei:front>
+                            <cei:group>
+                                <cei:text type="collection" sameAs=""/>
+                                <cei:text type="charter" sameAs=""/>
+                            </cei:group>
+                            <cei:back/>
+                        </cei:text>
+                    </cei:cei>
+                </atom:content>
+            </atom:entry>
+        </xsl:result-document>
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
             xmlns:cei="http://www.monasterium.net/NS/cei">-->
@@ -337,15 +364,18 @@
                                 <xsl:variable name="mona">
                                     <xsl:choose>
                                         <xsl:when
-                                            test="starts-with(normalize-space(.), 'http://monasterium.net/')">
+                                            test="matches(normalize-space(.), '^[\S]*?monasterium.net/mom/(.*?)/charter.*?$')">
                                             <xsl:value-of
-                                                select="replace(normalize-space(.), 'http://www.monasterium.net/mom/(.*?)/charter', 'tag:www.monasterium.net,2011:/charter/$1')"
+                                                select="replace(normalize-space(.), '^.*monasterium.net/mom/(.*?)/charter.*?$', 'tag:www.monasterium.net,2011:/charter/$1')"
+                                            />
+                                        </xsl:when>
+                                        <xsl:when test="matches(normalize-space(.),'^[\S]*?mom-ca.uni-koeln.de/mom/(.*?)/charter.*?$')">
+                                            <xsl:value-of
+                                                select="replace(normalize-space(.), '^.*.mom-ca.uni-koeln.de/mom/(.*?)/charter.*?$', 'tag:www.monasterium.net,2011:/charter/$1')"
                                             />
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:value-of
-                                                select="replace(normalize-space(.), 'http://www.mom-ca.uni-koeln.de/mom/(.*?)/charter', 'tag:www.monasterium.net,2011:/charter/$1')"
-                                            />
+                                            <xsl:comment>"<xsl:value-of select="normalize-space(.)"/>" ist kein richtiger Monasterium-Link.</xsl:comment>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
@@ -366,7 +396,13 @@
                                 <archivort><xsl:value-of select="$ids/id[$pos]/archivort"/></archivort>
                             </xsl:for-each>
                         </xsl:variable>
-
+                        <!-- 
+                        ****************
+                        Vorab die Sammlungsbeschreibung erzeugen
+                        
+                        Ggf. anpassen: Titel, Beschreibung (Beschreibung in escpatem HTML: &lt;p&gt; ...) etc.
+                        ****************
+                        -->
                         <!-- 
      *********************
     Und hier geht die eigentliche Konversion los: 
@@ -411,7 +447,7 @@
                                                   <cei:bibl/>
                                                 </cei:sourceDescVolltext>
                                                 <cei:sourceDescRegest>
-                                                  <cei:bibl>Gabriele Bartz (Kunsthistorische Beschreibung), Markus Gneiß (diplomatische Beschreibung) im Rahmen des FWF Projekts "Illuminierte Urkunden"</cei:bibl>
+                                                    <cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl>
                                                 </cei:sourceDescRegest>
                                             </cei:sourceDesc>
                                         </cei:front>
@@ -423,6 +459,7 @@
                                                 FixMe: Schame anpassen -->
                                                 <cei:abstract>
                                                   <xsl:apply-templates select="t:cell[4]"/>
+                                                    <!-- Hier einen Defaultwert für die Verantwortlichkeit einfügen? -->
                                                 </cei:abstract>
                                                 <cei:issued>
                                                   <cei:placeName>
@@ -450,37 +487,41 @@
                                                                 <cei:graphic>
                                                                     <xsl:attribute name="url">
                                                                     <!-- Hier wird zuerst das &amp; in der URL durch einen Beistrich übersetzt und dann wird ',' durch das richtige Zeichen ersetzt.
+                                                                        Achtung, die Formatvorlage ist zum Kotzen, denn darin steht auch "(Bild)"
                                                                                     Nachdenken über dauerhafte Lösung...
                                                                                     Warum ist das überhaupt nötig?
                                                                                -->
-                                                                    <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                                                                                                   -->
+                                                                    <!--                                                                      <xsl:value-of select="replace(translate(., '[&amp;]', '[,]'), '[,]', '%26')"/>                             -->
+                                                                        <xsl:choose>
+                                                                            <xsl:when test=".//t:ref[starts-with(.,'http')]"><xsl:value-of select=".//t:ref[starts-with(.,'http')]/normalize-space()"/></xsl:when>
+                                                                            <xsl:when test=".//t:ref[starts-with(@target,'http')]"><xsl:value-of select=".//t:ref[starts-with(@target,'http')]/@target/normalize-space()"/></xsl:when>
+                                                                            <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                                                                        </xsl:choose>
                                                                 </xsl:attribute>
                                                                 </cei:graphic>
                                                             </cei:figure>
                                                        </xsl:otherwise>
                                                     </xsl:choose>
                                                   </xsl:for-each>
-                                                  <!-- Hier wuird noch zusätzlich die Martinsche Bildersammlung auf 
+                                                  <!-- Hier wird noch zusätzlich die Martinsche Bildersammlung auf 
                                                     images.monasterium.net/illum ausgewertet, also z.B.:
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   -->
-                                                    <xsl:variable name="urk" select="concat('http://images.monasterium.net/illum/IllUrk/',t:cell[1]/(text()[1]|*[1]/text())[1]/translate(.,'–,;.?! ()','-'))"/>
-                                                    <xsl:variable name="bild" select="$bilder//a[substring-before(@href, '_') = $urk and (ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]"/>
-                                                        <xsl:if test="t:cell[1]/(text()[1]|*[1]//text())[1]/normalize-space() != ''">
-                                                            <xsl:for-each
-                                                                select="$bild">
-                                                                <cei:figure>
-                                                                    <cei:graphic>
-                                                                    <xsl:attribute name="url">
-                                                                        <xsl:value-of select="@href"/>
-                                                                    </xsl:attribute>
+                                                    <xsl:variable name="datum" select="t:cell[1]/(text()[1]|*[1]/text())[1]/translate(normalize-space(.),'–,;.?! ()','-')"/>
+                                                    <xsl:variable name="bild" select="$bilder/bild[datum=$datum]/url"/>
+                                                    <xsl:for-each
+                                                        select="$bild">
+                                                        <cei:figure>
+                                                            <cei:graphic>
+                                                            <xsl:attribute name="url">
+                                                                <xsl:value-of select="."/>
+                                                            </xsl:attribute>
 <!--                                                                    <xsl:value-of select="@href"/>-->
-                                                                    </cei:graphic>
-                                                                </cei:figure>
-                                                            </xsl:for-each>
-                                                        </xsl:if>
-                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen?. -->
-                                                    <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bilder//a[starts-with(@href, $urk) and (ends-with(@href, '.jpg') or ends-with(@href, '.png'))])">
+                                                            </cei:graphic>
+                                                        </cei:figure>
+                                                    </xsl:for-each>
+                                                    <!-- FixMe: Die leere figure braucht es nur, wenn es auch kein element in der Martinschen Sammlung gibt: ist das so abgefangen? -->
+                                                    <xsl:if test="not(t:cell[7]/t:p[@rend = 'LINK-ZU-BILD'] or $id/mom or $bild)">
                                                     <cei:figure/>
                                                   </xsl:if>
 
@@ -660,15 +701,11 @@
         In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich übergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
-        <cei:listBiblEdition>
-            <xsl:apply-templates/>
-        </cei:listBiblEdition>
-    </xsl:template>
-
-    <xsl:template match="child::t:cell[7]/t:p" priority="-1">
-        <cei:bibl>
-            <xsl:apply-templates/>
-        </cei:bibl>
+        <cei:listBibl>
+            <xsl:for-each select="node()[not(@rend='LINK-ZU-BILD')]|text()">
+                <cei:bibl><xsl:apply-templates select="."/></cei:bibl>
+            </xsl:for-each>
+        </cei:listBibl>
     </xsl:template>
 
     <xsl:template match="t:ref">
@@ -692,6 +729,10 @@
         <cei:quote type="italic">
             <xsl:value-of select="."/>
         </cei:quote>
+    </xsl:template>
+    
+    <xsl:template match="t:p" priority="-2">
+        <xsl:apply-templates/>
     </xsl:template>
 
 
