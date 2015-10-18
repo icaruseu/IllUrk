@@ -611,7 +611,7 @@
         <cei:arch><xsl:value-of select="."/></cei:arch>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivfonds']">
-        <cei:archFonds><xsl:value-of select="."/></cei:archFonds>
+        <cei:archFond><xsl:value-of select="."/></cei:archFond>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivsignatur']">
         <cei:idno><xsl:value-of select="."/></cei:idno>
