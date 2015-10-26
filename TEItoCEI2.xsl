@@ -458,7 +458,7 @@
                                                 Hier käme auf eigentlich die Urkundenart hinein:
                                                 FixMe: Schame anpassen -->
                                                 <cei:abstract>
-                                                  <xsl:apply-templates select="t:cell[4]"/>
+                                                  <xsl:apply-templates select="t:cell[4]"/><xsl:text xml:space="preserve"> </xsl:text>
                                                     <!-- Hier einen Defaultwert für die Verantwortlichkeit einfügen? -->
                                                 </cei:abstract>
                                                 <cei:issued>
@@ -560,6 +560,10 @@
                                                   </cei:witness>
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
+                                                  <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
+                                                  <xsl:for-each select="t:cell[6]//t:p[not(@rend or t:hi[matches(.,'Archiv')])]">
+                                                      <cei:p><xsl:apply-templates/></cei:p>
+                                                  </xsl:for-each>          
                                                   <xsl:apply-templates select="t:cell[7]"/>
                                                   <cei:listBiblRegest>
                                                     <cei:bibl/>
@@ -680,8 +684,6 @@
     </xsl:template>
     <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
         <xsl:variable name="stringlist" select="tokenize(., ':')"/>
-
-
         <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
             <xsl:text> - </xsl:text>
         </xsl:if>
@@ -696,6 +698,12 @@
             <xsl:value-of select="normalize-space($stringlist[2])"/>
         </cei:index>
 
+    </xsl:template>
+    <!-- FixMe: Die sechste Spalte enthält die Archivanagaben und irgendwelchen Klump, den ich hier ausschließen muß
+        Wie geht MOM prinzipiell mit nicht markiertem Text um?
+    -->
+    <xsl:template match="t:cell[6]//t:p">
+        <xsl:if test="(@rend or t:hi[matches(.,'Archiv')])"><xsl:apply-templates/></xsl:if>
     </xsl:template>
     <!-- 
         In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich übergehe
@@ -729,6 +737,9 @@
         <cei:quote type="italic">
             <xsl:value-of select="."/>
         </cei:quote>
+    </xsl:template>
+    <xsl:template match="t:hi" priority="-2">
+        <xsl:apply-templates/><xsl:text xml:space="preserve"> </xsl:text>
     </xsl:template>
     
     <xsl:template match="t:p" priority="-2">
