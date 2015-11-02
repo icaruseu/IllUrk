@@ -7,14 +7,9 @@
         Validierung:
         invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
         
-        Warum werden die Urkunden in EditMOM nicht angezeigt?
-            http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie der Template?
-        
         Wie kann die Datumsangabe besser ausgelesen werden?
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
 
-        Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
-        
         Vor dem Import: 
         
         atom:id auf den gewünschen Bestandsnamen anpassen
@@ -587,7 +582,7 @@
                                             <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
                                             </cei:placeName>
-                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt-W']">
+                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt-W' or @rend='Suchbegriff']">
                                                 <cei:index type="Urkundenart">
                                                   <xsl:value-of select="."/>
                                                 </cei:index>
@@ -650,8 +645,6 @@
     </xsl:template>
     <!-- 
         Die fünfte Spalte enthält die kunsthistorische Beschreibung
-        
-        FixMe: @rend="Ekphrasis" und @rend="Stil und Einordnung" verarbeiten
     -->
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.) != ''">
@@ -661,7 +654,7 @@
         </xsl:if>
         <xsl:for-each select="t:p[not(@rend = 'NIVEAU') and not(@rend = 'Autorensigle')]">
             <cei:p>
-                <xsl:apply-templates/>
+                <xsl:apply-templates select="*|@*"/>
             </cei:p>
             <!-- Soll man hier schon probieren die Niveau-Schlagwörter im Text zu matchen?
                 <xsl:variable name='niveau'>
@@ -681,6 +674,9 @@
                 <xsl:apply-templates select="t:p[@rend = 'NIVEAU']"/>
             </cei:p>
         </xsl:if>
+    </xsl:template>
+    <xsl:template match="@rend[.='Ekphrasis' or .='Stil und Einordnung']">
+        <xsl:attribute name="n"><xsl:value-of select="."/></xsl:attribute>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
         <xsl:variable name="stringlist" select="tokenize(., ':')"/>
@@ -716,6 +712,9 @@
         </cei:listBibl>
     </xsl:template>
 
+    <!-- 
+        Es folgen generische templates
+    -->
     <xsl:template match="t:ref">
         <cei:ref>
             <xsl:attribute name="target">
@@ -727,7 +726,11 @@
             <xsl:apply-templates/>
         </cei:ref>
     </xsl:template>
-
+    <xsl:template match="t:p[@rend = 'Autorensigle']">
+        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
+        <cei:p><xsl:text xml:space="preserve"> (</xsl:text><xsl:value-of select="replace(.,'§','')"/><xsl:text>)</xsl:text></cei:p>
+    </xsl:template>
+    
     <xsl:template match="t:hi[@rend = 'bold']">
         <cei:index type="bold">
             <xsl:value-of select="."/>
@@ -747,20 +750,10 @@
     </xsl:template>
 
 
-
-
     <!-- 
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
-    <xsl:template match="t:*[@rend = 'Autorensigle'] | t:*[@rend = 'LINK-ZU-BILD']">
-        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
-        <!--        <cei:p>
-            <xsl:attribute name="resp">
-                <xsl:value-of select="replace(.,'§','')"/>
-            </xsl:attribute>
-            <xsl:value-of select="."/>
-        </cei:p>
--->
-    </xsl:template>
+    <xsl:template match="t:*[@rend = 'LINK-ZU-BILD']"/>
+    
 
 </xsl:stylesheet>
