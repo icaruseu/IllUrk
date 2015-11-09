@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
 <!-- ToDo:
+        *...* => cei:index@indexName="IllUrkGlossar"
+        Niveaus als @indexName="arthistorian" und Begriff gar nicht in Attribute? Oder ins Sublemma? oder gleich über das SKOS in Identifikatoren auflösen?
+
+    FixMe:
+        Was mache ich aus: *Bischofsammelindulgenz*: Die erste Zeile in Auszeichnungsschrift	Ekphrasis
+        
         MOM-Links konsquent mit http:// davor vereinheitlichen?
 
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
+        
         Validierung:
         invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
-        
-        Warum werden die Urkunden in EditMOM nicht angezeigt?
-            http://dev.monasterium.net/mom/charter/1159-1160_Edinburgh/edit z.B. => Entsprechen sie der Template?
         
         Wie kann die Datumsangabe besser ausgelesen werden?
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
 
-        Einbauen: @rend="Ekphrasis" und @rend="Stil und Einordnung" in die Kunsthistorische Beschreibung
-        
-        Vor dem Import: 
+    Vor dem Import: 
         
         atom:id auf den gewünschen Bestandsnamen anpassen
         Vorbereitung der Bildverknüpfung:
@@ -97,7 +99,7 @@
     <xsl:template match="/">
         <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
-                <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/></atom:id>
+                <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
                 <atom:title>Illuminierte Urkunden</atom:title>
                 <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
                 <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
@@ -458,7 +460,7 @@
                                                 Hier käme auf eigentlich die Urkundenart hinein:
                                                 FixMe: Schame anpassen -->
                                                 <cei:abstract>
-                                                  <xsl:apply-templates select="t:cell[4]"/>
+                                                  <xsl:apply-templates select="t:cell[4]"/><xsl:text xml:space="preserve"> </xsl:text>
                                                     <!-- Hier einen Defaultwert für die Verantwortlichkeit einfügen? -->
                                                 </cei:abstract>
                                                 <cei:issued>
@@ -560,6 +562,10 @@
                                                   </cei:witness>
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
+                                                  <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
+                                                  <xsl:for-each select="t:cell[6]//t:p[not(@rend or t:hi[matches(.,'Archiv')])]">
+                                                      <cei:p><xsl:apply-templates/></cei:p>
+                                                  </xsl:for-each>          
                                                   <xsl:apply-templates select="t:cell[7]"/>
                                                   <cei:listBiblRegest>
                                                     <cei:bibl/>
@@ -583,7 +589,7 @@
                                             <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
                                             </cei:placeName>
-                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt-W']">
+                                            <xsl:for-each select=".//t:*[@rend = 'UrkArt-W' or @rend='Suchbegriff']">
                                                 <cei:index type="Urkundenart">
                                                   <xsl:value-of select="."/>
                                                 </cei:index>
@@ -611,7 +617,7 @@
         <cei:arch><xsl:value-of select="."/></cei:arch>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivfonds']">
-        <cei:archFonds><xsl:value-of select="."/></cei:archFonds>
+        <cei:archFond><xsl:value-of select="."/></cei:archFond>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivsignatur']">
         <cei:idno><xsl:value-of select="."/></cei:idno>
@@ -646,8 +652,6 @@
     </xsl:template>
     <!-- 
         Die fünfte Spalte enthält die kunsthistorische Beschreibung
-        
-        FixMe: @rend="Ekphrasis" und @rend="Stil und Einordnung" verarbeiten
     -->
     <xsl:template match="t:cell[5]" priority="2">
         <xsl:if test="text() and text()/normalize-space(.) != ''">
@@ -657,6 +661,7 @@
         </xsl:if>
         <xsl:for-each select="t:p[not(@rend = 'NIVEAU') and not(@rend = 'Autorensigle')]">
             <cei:p>
+                <xsl:apply-templates select="@*"/>
                 <xsl:apply-templates/>
             </cei:p>
             <!-- Soll man hier schon probieren die Niveau-Schlagwörter im Text zu matchen?
@@ -678,10 +683,11 @@
             </cei:p>
         </xsl:if>
     </xsl:template>
+    <xsl:template match="@rend[.='Ekphrasis' or .='Stil und Einordnung']">
+        <xsl:attribute name="n"><xsl:value-of select="."/></xsl:attribute>
+    </xsl:template>
     <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
         <xsl:variable name="stringlist" select="tokenize(., ':')"/>
-
-
         <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
             <xsl:text> - </xsl:text>
         </xsl:if>
@@ -697,21 +703,26 @@
         </cei:index>
 
     </xsl:template>
+    <!-- FixMe: Die sechste Spalte enthält die Archivanagaben und irgendwelchen Klump, den ich hier ausschließen muß
+        Wie geht MOM prinzipiell mit nicht markiertem Text um?
+    -->
+    <xsl:template match="t:cell[6]//t:p">
+        <xsl:if test="(@rend or t:hi[matches(.,'Archiv')])"><xsl:apply-templates/></xsl:if>
+    </xsl:template>
     <!-- 
         In der letzten Spalte stehen Literaturangaben und Links auf Bilder, die ich übergehe
     -->
     <xsl:template match="t:cell[7]" priority="1">
-        <cei:listBiblEdition>
-            <xsl:apply-templates/>
-        </cei:listBiblEdition>
+        <cei:listBibl>
+            <xsl:for-each select="node()[not(@rend='LINK-ZU-BILD')]|text()">
+                <cei:bibl><xsl:apply-templates select="."/></cei:bibl>
+            </xsl:for-each>
+        </cei:listBibl>
     </xsl:template>
 
-    <xsl:template match="child::t:cell[7]/t:p" priority="-1">
-        <cei:bibl>
-            <xsl:apply-templates/>
-        </cei:bibl>
-    </xsl:template>
-
+    <!-- 
+        Es folgen generische templates
+    -->
     <xsl:template match="t:ref">
         <cei:ref>
             <xsl:attribute name="target">
@@ -723,9 +734,16 @@
             <xsl:apply-templates/>
         </cei:ref>
     </xsl:template>
-
+    <xsl:template match="t:p[@rend = 'Autorensigle']">
+        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
+        <cei:p><xsl:text xml:space="preserve"> (</xsl:text><xsl:value-of select="replace(.,'§','')"/><xsl:text>)</xsl:text></cei:p>
+    </xsl:template>
+    
     <xsl:template match="t:hi[@rend = 'bold']">
-        <cei:index type="bold">
+        <cei:index>
+            <xsl:if test="preceding-sibling::text()[1]/ends-with(.,'*') and following-sibling::text()[1]/starts-with(.,'*')">
+                <xsl:attribute name="type">Glossar</xsl:attribute>
+            </xsl:if>
             <xsl:value-of select="."/>
         </cei:index>
     </xsl:template>
@@ -734,22 +752,19 @@
             <xsl:value-of select="."/>
         </cei:quote>
     </xsl:template>
-
-
+    <xsl:template match="t:hi" priority="-2">
+        <xsl:apply-templates/><xsl:text xml:space="preserve"> </xsl:text>
+    </xsl:template>
+    
+    <xsl:template match="t:p" priority="-2">
+        <xsl:apply-templates/>
+    </xsl:template>
 
 
     <!-- 
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
-    <xsl:template match="t:*[@rend = 'Autorensigle'] | t:*[@rend = 'LINK-ZU-BILD']">
-        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
-        <!--        <cei:p>
-            <xsl:attribute name="resp">
-                <xsl:value-of select="replace(.,'§','')"/>
-            </xsl:attribute>
-            <xsl:value-of select="."/>
-        </cei:p>
--->
-    </xsl:template>
+    <xsl:template match="t:*[@rend = 'LINK-ZU-BILD']"/>
+    
 
 </xsl:stylesheet>
