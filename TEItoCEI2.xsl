@@ -17,7 +17,11 @@
         Wie kann die Datumsangabe besser ausgelesen werden?
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
 
+<<<<<<< HEAD
     Vor dem Import: 
+=======
+        Vor dem Import: 
+>>>>>>> 20e9b1e7e622ab58bb6e05ee95d8e87a348ace2c
         
         atom:id auf den gewünschen Bestandsnamen anpassen
         Vorbereitung der Bildverknüpfung:
