@@ -18,7 +18,6 @@
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
 
     Vor dem Import: 
-        
         atom:id auf den gewünschen Bestandsnamen anpassen
         Vorbereitung der Bildverknüpfung:
             (Zuletzt 7.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
