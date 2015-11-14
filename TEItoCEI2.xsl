@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
 <!-- ToDo:
+        *...* => cei:index@indexName="IllUrkGlossar"
+        Niveaus als @indexName="arthistorian" und Begriff gar nicht in Attribute? Oder ins Sublemma? oder gleich über das SKOS in Identifikatoren auflösen?
+
+    FixMe:
+        Was mache ich aus: *Bischofsammelindulgenz*: Die erste Zeile in Auszeichnungsschrift	Ekphrasis
+        
         MOM-Links konsquent mit http:// davor vereinheitlichen?
 
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
+        
         Validierung:
         invalid tag: `class`. possible tags are: `Abstract (abstract)`, `issued (issued)`, `witnessOrig (witnessOrig)`, `Other textual witnesses (witListPar)`, `Diplomatic Analysis (diplomaticAnalysis)`, `language (lang_MOM)`
         
         Wie kann die Datumsangabe besser ausgelesen werden?
             Es sollte in der Short-List eigentlich keine undatierte Urkunde (mit 99999999) vorkommen
 
-        Vor dem Import: 
+    Vor dem Import: 
         
         atom:id auf den gewünschen Bestandsnamen anpassen
         Vorbereitung der Bildverknüpfung:
@@ -90,6 +97,11 @@
         </xsl:for-each>
     </xsl:variable>
     <xsl:template match="/">
+        <xsl:choose>
+            <xsl:when test="not(//t:row[t:cell[1]/text()/normalize-space()!=''])">
+                <Achtung><xsl:comment>Die Datei enthält eine erste Spalte ohne Inhalte. Bitte erst überprüfen, ob das so gewollt ist!</xsl:comment></Achtung>
+            </xsl:when>
+            <xsl:otherwise>
         <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                 <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
@@ -602,6 +614,8 @@
                 </cei:group>
             </cei:text>
         </cei:cei>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivort']">
         <cei:settlement><xsl:value-of select="."/></cei:settlement>
@@ -654,7 +668,8 @@
         </xsl:if>
         <xsl:for-each select="t:p[not(@rend = 'NIVEAU') and not(@rend = 'Autorensigle')]">
             <cei:p>
-                <xsl:apply-templates select="*|@*"/>
+                <xsl:apply-templates select="@*"/>
+                <xsl:apply-templates/>
             </cei:p>
             <!-- Soll man hier schon probieren die Niveau-Schlagwörter im Text zu matchen?
                 <xsl:variable name='niveau'>
@@ -732,7 +747,10 @@
     </xsl:template>
     
     <xsl:template match="t:hi[@rend = 'bold']">
-        <cei:index type="bold">
+        <cei:index>
+            <xsl:if test="preceding-sibling::text()[1]/ends-with(.,'*') and following-sibling::text()[1]/starts-with(.,'*')">
+                <xsl:attribute name="type">Glossar</xsl:attribute>
+            </xsl:if>
             <xsl:value-of select="."/>
         </cei:index>
     </xsl:template>
