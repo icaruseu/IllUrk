@@ -2,11 +2,10 @@
 <!-- Authors: GVogeler, maburg -->
 <!-- ToDo:
         *...* => cei:index@indexName="IllUrkGlossar"
-        Niveaus als @indexName="arthistorian" und Begriff gar nicht in Attribute? Oder ins Sublemma? oder gleich über das SKOS in Identifikatoren auflösen?
+        Niveaus: sublemma anhand des SKOS normalisieren 
 
-    FixMe:
-        Was mache ich aus: *Bischofsammelindulgenz*: Die erste Zeile in Auszeichnungsschrift	Ekphrasis
-        
+
+   FixMe:
         MOM-Links konsquent mit http:// davor vereinheitlichen?
 
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
@@ -699,12 +698,14 @@
         </xsl:if>
         <cei:index>
             <xsl:variable name="zeilenumbruch" select="."/>
-            <xsl:attribute name="indexName">
+            <xsl:attribute name="indexName">arthistorian</xsl:attribute>
+            <xsl:attribute name="lemma">
                 <xsl:value-of select="$stringlist[1]"/>
             </xsl:attribute>
-            <xsl:attribute name="lemma">
-                <xsl:value-of select="normalize-space($stringlist[2])"/>
-            </xsl:attribute>
+            <!-- ToDo: sublemma anhand des SKOS normalisieren -->
+            <!--<xsl:attribute name="sublemma">
+                <xsl:value-of select="normalize-space($stringlist[2])"/>-->
+            <!--</xsl:attribute>-->
             <xsl:value-of select="normalize-space($stringlist[2])"/>
         </cei:index>
 
@@ -748,7 +749,7 @@
     <xsl:template match="t:hi[@rend = 'bold']">
         <cei:index>
             <xsl:if test="preceding-sibling::text()[1]/ends-with(.,'*') and following-sibling::text()[1]/starts-with(.,'*')">
-                <xsl:attribute name="type">Glossar</xsl:attribute>
+                <xsl:attribute name="indexName">IllUrkGlossar</xsl:attribute>
             </xsl:if>
             <xsl:value-of select="."/>
         </cei:index>
