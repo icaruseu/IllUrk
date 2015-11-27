@@ -640,6 +640,7 @@
         <xsl:choose>
             <xsl:when test="t:p">
                 <xsl:apply-templates select="t:*[@rend = 'Regest']"/>
+                <xsl:apply-templates select="t:*[@rend='Autorensigle']"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
@@ -659,12 +660,15 @@
         Die fünfte Spalte enthält die kunsthistorische Beschreibung
     -->
     <xsl:template match="t:cell[5]" priority="2">
-        <xsl:if test="text() and text()/normalize-space(.) != ''">
+        <xsl:choose>
+        <xsl:when test="text() and text()/normalize-space(.) != ''">
             <cei:p>
                 <xsl:value-of select="text()/normalize-space(.)"/>
             </cei:p>
-        </xsl:if>
-        <xsl:for-each select="t:p[not(@rend = 'NIVEAU') and not(@rend = 'Autorensigle')]">
+        </xsl:when>
+            <xsl:otherwise>
+                <xsl:apply-templates/>
+        <xsl:for-each select="t:p[not(@rend = 'NIVEAU')]">
             <cei:p>
                 <xsl:apply-templates select="@*"/>
                 <xsl:apply-templates/>
@@ -687,10 +691,14 @@
                 <xsl:apply-templates select="t:p[@rend = 'NIVEAU']"/>
             </cei:p>
         </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
-    <xsl:template match="@rend[.='Ekphrasis' or .='Stil und Einordnung']">
+    <xsl:template match="@rend[.='Ekphrasis' or .='Stil und Einordnung' or .='Autorensigle']">
         <xsl:attribute name="n"><xsl:value-of select="."/></xsl:attribute>
     </xsl:template>
+    <xsl:template match="@rend" priority="-2"/>
+    
     <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
         <xsl:variable name="stringlist" select="tokenize(., ':')"/>
         <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
@@ -742,8 +750,7 @@
         </cei:ref>
     </xsl:template>
     <xsl:template match="t:p[@rend = 'Autorensigle']">
-        <!-- Autorensigle ist ein Problem: Auf was bezieht sich die Angabe? Wenn sie als Zeichenformatvorlage in einem Absatz verwendet wird, dann könnte man das handeln, als eigener Absatz könnte man sie immer nur auf den vorherigen Absatz beziehen. -->
-        <cei:p><xsl:text xml:space="preserve"> (</xsl:text><xsl:value-of select="replace(.,'§','')"/><xsl:text>)</xsl:text></cei:p>
+        <cei:p><xsl:text xml:space="preserve"> (</xsl:text><xsl:value-of select="replace(.,'§\(\)','')"/><xsl:text>)</xsl:text></cei:p>
     </xsl:template>
     
     <xsl:template match="t:hi[@rend = 'bold']">
@@ -764,6 +771,7 @@
     </xsl:template>
     
     <xsl:template match="t:p" priority="-2">
+<!--        <xsl:apply-templates select="@*"/>-->
         <xsl:apply-templates/>
     </xsl:template>
 
