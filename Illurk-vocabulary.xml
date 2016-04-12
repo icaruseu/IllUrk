@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:id>tag:www.monasterium.net,2011:/controlledVocabulary/illurk-vocabulary</atom:id>
+    <atom:title/>
+    <atom:published>2016-02-10T11:27:55+02:00</atom:published>
+    <atom:updated>2016-02-11T10:47:52.849+02:00</atom:updated>
+    <atom:author>
+        <atom:email>admin</atom:email>
+    </atom:author>
+    <app:control xmlns:app="http://www.w3.org/2007/app">
+        <app:draft>no</app:draft>
+    </app:control>
+    <atom:content type="application/xml">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+            <rdf:Description rdf:about="#N1">
+                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                <skos:definition/>
+                <skos:narrower>
+                    <rdf:Description rdf:about="#HistoriatedDecoration">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="en">Historiated Decoration</skos:prefLabel>
+                        <skos:prefLabel xml:lang="de">Historisierte Dekoration</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">Décoration historiée</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">Decorazione istoriata</skos:prefLabel>
+                    </rdf:Description>
+                    <rdf:Description rdf:about="#WithAdditionalColours">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="de">Mit zusätzlichen Farben</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">With Additional Colours</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">Avec couleurs additionnelles</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">Con colori addizionali</skos:prefLabel>
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#Miniatures">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Bildfelder</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Panels</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Miniatures</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Miniature</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#Initials">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Initiale</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Initials</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Initiales</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Iniziali</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#Borders">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Randdekor</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Borders</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Illustrations marginales</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Illustrazioni marginali</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#CoatsOfArms">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Wappen</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Coat of arms</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Blasons</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Stemmi</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#ExecutionDraw">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">gezeichnet</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">drawn</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">à la plume</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">a penna</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#ExecutionPainted">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">gemalt</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">painted</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">peinte</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">dipinta</skos:prefLabel>
+                            </rdf:Description>
+                        </skos:narrower>
+                    </rdf:Description>
+                </skos:narrower>
+            </rdf:Description>
+            <rdf:Description rdf:about="#N2">
+                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                <skos:narrower>
+                    <rdf:Description rdf:about="#DrawnDecoration-not-historiated-Fleuronne">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="de">Gezeichnete Ausstattung (nicht historisiert) (Fleuronnée)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">Drawn Decoration (not historiated) Penwork (Fleuronné)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">Décoration à la plume (pas historiée) Décor à filigranes (filigrané, fleuronné)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">Decorazione a inchiostro non istoriata Decoratione filigranata</skos:prefLabel>
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#DD-nh-Panels">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Ornamentfelder</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Panels</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Tableaux</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Panelli</skos:prefLabel>
+                            </rdf:Description>
+                        </skos:narrower>                       
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#DD-nh-Initials">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Initiale</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Initials</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Initiales</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Iniziali</skos:prefLabel>
+                            </rdf:Description>
+                        </skos:narrower>
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#DD-nh-Borders">
+                                <skos:prefLabel xml:lang="fr">Bordures</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Prolungamenti marginali</skos:prefLabel>
+                                <skos:prefLabel xml:lang="de">Randdekor</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Borders</skos:prefLabel>
+                            </rdf:Description>
+                        </skos:narrower>
+                    </rdf:Description>
+                    <rdf:Description rdf:about="#DepictiveMotives-not-historiated">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="de">Gegenständliche Motive (nicht historisiert)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">Depictive motives (not historiated)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">Motifs objectif (pas historié)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">Motivi concreti non istoriati</skos:prefLabel>
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#figural">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">figürlich</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">figural</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">figuratif</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">figurali</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#zoomorphic">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">zoomorph</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">zoomorophic</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">zoomorphe</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">animali</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#otherMotivs">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">andere</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">other</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">autres</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">altri</skos:prefLabel>
+                            </rdf:Description>
+                        </skos:narrower>
+                    </rdf:Description>
+                    <rdf:Description rdf:about="Display-Script-calligraphic-with-decorative-character">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="de">Zierschriften (Auszeichnungsschriften)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">Display script (with decorative character)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">Écriture dʼapparat</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">Scrittura distintiva (calligrafica)</skos:prefLabel>
+                    </rdf:Description>
+                </skos:narrower>
+            </rdf:Description>
+            <rdf:Description rdf:about="#N3">
+                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                <skos:narrower>
+                    <rdf:Description rdf:about="#GraphicMeansOfAuthenticating">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="de">Graphische Beglaubigungsmittel</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">Graphic means of authentication</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">Signes graphiques de validation</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">Segni di autenticazione</skos:prefLabel>
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#Chrismon">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Chrismon</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Chrismon</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Chrismon</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Chrismon</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#Monogram">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Monogramm</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Monogram</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Monogramme</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Monogramma</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#Rota">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Rota</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Rota</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Rota</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Rota</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#SignumRecognitionis">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Rekognitionszeichen (Bienenkorb)</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Signum recognitions</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Signum recognitions (ruche)</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Signum recognitions</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#SignumNotarile">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">Notarssignet</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Signum notarile</skos:prefLabel>
+                                <skos:label xml:lang="en">Notarial mark</skos:label>
+                                <skos:prefLabel xml:lang="fr">Signum notarile</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Signum notarile</skos:prefLabel>
+                            </rdf:Description>
+                            <rdf:Description rdf:about="#OtherSignsOfAuthentication">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">andere Beglaubigungszeichen</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">Other signs of authentication</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">Autres signes de validation</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">Altri segni di autenticazione</skos:prefLabel>
+                            </rdf:Description>
+                        </skos:narrower>
+                    </rdf:Description>
+                </skos:narrower>
+            </rdf:Description>
+        </rdf:RDF>
+    </atom:content>
+</atom:entry>
