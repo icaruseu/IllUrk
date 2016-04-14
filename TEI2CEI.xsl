@@ -656,9 +656,9 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="text()" priority="-2">
+    <!--<xsl:template match="text()" priority="-2">
         <xsl:value-of select="normalize-space(.)"/>
-    </xsl:template>
+    </xsl:template>-->
     <xsl:template match="t:*[@rend = 'Regest']">
         <xsl:if test="preceding-sibling::t:*[@rend = 'Regest']">
             <cei:lb/>
@@ -776,14 +776,11 @@
         </cei:index>
     </xsl:template>    
         
-   <xsl:template match="t:hi[@rend='UrkArt-W']">
-       <xsl:if test="ancestor::t:cell[@rend='Regest']/child::t:p[1]/t:hi[@rend='UrkArt-W'] = current()">    
+    <xsl:template match="t:hi[@rend='UrkArt-W'][ancestor::*/@rend='Regest']">
             <cei:index>
                 <xsl:attribute name="indexName">Illurk-Urkundenart</xsl:attribute>
                 <xsl:value-of select="."/>
-            </cei:index> 
-       </xsl:if>  
-    
+            </cei:index><!--<xsl:text xml:space="preserve"> </xsl:text>-->
     </xsl:template>
     <xsl:template match="t:hi[@rend = 'italic']">
         <cei:quote type="italic">
