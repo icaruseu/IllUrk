@@ -38,7 +38,7 @@
         <xsl:text>Bilder.htm</xsl:text>
         <!--<xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
     </xsl:variable>
-    <xsl:variable name="collectionkürzel">IlluminUrk</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
+    <xsl:variable name="collectionkürzel">Illuminierte Urkunden - Sammelindulgenzen</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="ids">
         <!-- Um auf dublette IDs zu testen, brauche ich eine skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -112,7 +112,7 @@
         <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                 <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
-                <atom:title>IlluminUrk</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
+                <atom:title>Illuminierte Urkunden - Sammelindulgenzen</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
                 <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
                 <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
                 <atom:author>
@@ -364,7 +364,7 @@
                         </xsl:variable>
                         <!-- id anpassen an collection name bei jedem Import aufpassen -->
                         <xsl:variable name="id">                          
-                            <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminUrk/<xsl:value-of
+                            <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminierteUrkunden-Sammelindulgenzen/<xsl:value-of
                                     select="$id-core"/></atom:id>
                             <cei:idno>
                                 <xsl:attribute name="id">
@@ -776,11 +776,12 @@
         </cei:index>
     </xsl:template>    
         
-    <xsl:template match="t:hi[@rend='UrkArt-W'][ancestor::*/@rend='Regest']">
+    <xsl:template match="t:hi[@rend='UrkArt-W'][ancestor::t:cell[@rend='Regest']/child::t:p[1]/t:hi = current()]">       
             <cei:index>
                 <xsl:attribute name="indexName">Illurk-Urkundenart</xsl:attribute>
                 <xsl:value-of select="."/>
             </cei:index><!--<xsl:text xml:space="preserve"> </xsl:text>-->
+     
     </xsl:template>
     <xsl:template match="t:hi[@rend = 'italic']">
         <cei:quote type="italic">
