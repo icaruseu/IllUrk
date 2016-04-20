@@ -492,7 +492,7 @@
                                                     </cei:dateRange>
                                                 </cei:issued>
                                                 <cei:witnessOrig>
-                                                    <cei:traditioForm>orig.</cei:traditioForm>
+                                                    <cei:traditioForm>Original</cei:traditioForm>
                                                     <!-- FixMe: es gibt auch kopiale Überlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                                     <xsl:for-each
                                                         select="t:cell[7]/t:p[@rend = 'LINK-ZU-BILD']">
