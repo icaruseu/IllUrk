@@ -580,7 +580,8 @@
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
                                                     <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
-                                                    <!-- Bum: warum kommt was aus arhiv info in dipomatic analysis? -->
+                                                    <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']/following-sibling::t:*[@rend='Autorensigle'][1]"/>
+                                                    <!-- Bum: warum kommt was aus archiv info in dipomatic analysis? -->
                                                     <!--<xsl:for-each select="t:cell[6]//t:p[not(@rend or t:hi[matches(.,'Archiv')])]">
                                                         <cei:p><xsl:apply-templates/></cei:p>
                                                     </xsl:for-each>-->          
@@ -649,7 +650,7 @@
         <xsl:choose>
             <xsl:when test="t:p">
                 <xsl:apply-templates select="t:*[@rend = 'Regest']"/>
-                <xsl:apply-templates select="t:*[@rend='Autorensigle']"/>
+                <xsl:apply-templates select="t:*[@rend='Autorensigle'][1]"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
