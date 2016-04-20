@@ -607,7 +607,8 @@
                                             <cei:persName/>
                                             <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
-                                            </cei:placeName>                                                                                               
+                                            </cei:placeName>
+                                            <xsl:apply-templates select="t:cell[5]/t:p[@rend = 'NIVEAU']"/>
                                             <cei:divNotes>
                                                 <cei:note/>
                                             </cei:divNotes>
@@ -684,11 +685,6 @@
                 <xsl:apply-templates/>
             </cei:p>          
         </xsl:for-each>
-        <xsl:if test="t:p[@rend = 'NIVEAU']">
-            <cei:p>
-                <xsl:apply-templates select="t:p[@rend = 'NIVEAU']"/>
-            </cei:p>
-        </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -699,9 +695,9 @@
     
     <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
         <xsl:variable name="stringlist" select="tokenize(., ':')"/>
-        <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
+<!--        <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
             <xsl:text> - </xsl:text>
-        </xsl:if>
+        </xsl:if>-->
         <xsl:variable name="skos" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:atom="http://www.w3.org/2005/Atom">
             <xsl:variable name="sublemmawert" select="normalize-space($stringlist[2])"/>
             <xsl:variable name="lemmawert">
