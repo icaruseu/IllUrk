@@ -109,7 +109,7 @@
                 <Achtung><xsl:comment>Die Datei enthält eine erste Spalte ohne Inhalte. Bitte erst überprüfen, ob das so gewollt ist!</xsl:comment></Achtung>
             </xsl:when>
             <xsl:otherwise>
-        <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
+        <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                 <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
                 <atom:title>Illuminierte Urkunden - Sammelindulgenzen</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
@@ -427,7 +427,7 @@
                        
                      
                           
-                      <xsl:result-document href="ill/{$id-core}.charter.xml">
+                      <xsl:result-document href="{$collectionkürzel}/{$id-core}.charter.xml">
                         <!--<xsl:result-document href="illurk/{$id/text()}.charter.xml">-->
                             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                                 <xsl:copy-of select="$id/atom:id"/>
@@ -580,7 +580,7 @@
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
                                                     <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
-                                                    <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']/following-sibling::t:*[@rend='Autorensigle'][1]"/>
+                                                    <cei:p><xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']/following-sibling::t:*[@rend='Autorensigle'][1]"/></cei:p>
                                                     <!-- Bum: warum kommt was aus archiv info in dipomatic analysis? -->
                                                     <!--<xsl:for-each select="t:cell[6]//t:p[not(@rend or t:hi[matches(.,'Archiv')])]">
                                                         <cei:p><xsl:apply-templates/></cei:p>
@@ -650,7 +650,7 @@
         <xsl:choose>
             <xsl:when test="t:p">
                 <xsl:apply-templates select="t:*[@rend = 'Regest']"/>
-                <xsl:apply-templates select="t:*[@rend='Autorensigle'][1]"/>
+                <cei:lb/><xsl:apply-templates select="t:*[@rend='Autorensigle'][1]"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
