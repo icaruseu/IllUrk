@@ -18,6 +18,8 @@
         hi[@rend='UrkArt-W'] => cei:index @indexName="IllUrk-Urkundenarten" (oder doch nach cei:class?)
         
         Das mapping von <hi rend="Archivort"> zu <cei:settlement> ergibt schlechte Ergebnisse, weil oft nur "," oder " " in Element.
+        Alle <hi rend="Archivort" xml:space="preserve">, </hi> im XML entfernt!
+        Alle Klammern aus Autorensigle entfernt und Autorensiglen zusammengefasst im XML.
 
     Vor dem Import: 
         atom:id auf den gewünschen Bestandsnamen anpassen
@@ -26,7 +28,6 @@
             1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
             2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ... 
             3. Ablageort in variable $bildurl eintragn
-            
             4. aktuelles Illurk-Vocabulary local ablegen (für skos Normalisierung)
             5. aktuelles Illurk-Glossar local ablegen (für skos Normalisierung)
     -->
@@ -35,8 +36,8 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="bildurl">
-        <xsl:text>Bilder.htm</xsl:text>
-        <!--<xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
+        <xsl:text>Bilderliste.html</xsl:text>
+<!--        <xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
     </xsl:variable>
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden - Sammelindulgenzen</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="ids">
@@ -97,7 +98,7 @@
                 </url>
                 <datum>
                     <xsl:value-of
-                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/Illurk/')"
+                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/IllUrk/')"
                     />
                 </datum>
             </bild>
@@ -109,7 +110,7 @@
                 <Achtung><xsl:comment>Die Datei enthält eine erste Spalte ohne Inhalte. Bitte erst überprüfen, ob das so gewollt ist!</xsl:comment></Achtung>
             </xsl:when>
             <xsl:otherwise>
-        <xsl:result-document href="illurk/{$collectionkürzel}.mycollection.xml">
+        <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                 <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
                 <atom:title>Illuminierte Urkunden - Sammelindulgenzen</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
@@ -130,7 +131,7 @@
                         <cei:teiHeader>
                             <cei:fileDesc>
                                 <cei:titleStmt>
-                                    <cei:title>Illumin Urk</cei:title>
+                                    <cei:title>Illuminierte Urkunden - Sammelindulgenzen</cei:title>
                                     <!-- beim richtigen import wird hier vermutlich Illuminierte Urkunden stehen  -->
                                 </cei:titleStmt>
                                 <cei:publicationStmt/>
@@ -427,7 +428,7 @@
                        
                      
                           
-                      <xsl:result-document href="ill/{$id-core}.charter.xml">
+                      <xsl:result-document href="{$collectionkürzel}/{$id-core}.charter.xml">
                         <!--<xsl:result-document href="illurk/{$id/text()}.charter.xml">-->
                             <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                                 <xsl:copy-of select="$id/atom:id"/>
@@ -492,7 +493,7 @@
                                                     </cei:dateRange>
                                                 </cei:issued>
                                                 <cei:witnessOrig>
-                                                    <cei:traditioForm>orig.</cei:traditioForm>
+                                                    <cei:traditioForm>Original</cei:traditioForm>
                                                     <!-- FixMe: es gibt auch kopiale Überlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                                     <xsl:for-each
                                                         select="t:cell[7]/t:p[@rend = 'LINK-ZU-BILD']">
@@ -580,7 +581,8 @@
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
                                                     <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
-                                                    <!-- Bum: warum kommt was aus arhiv info in dipomatic analysis? -->
+                                                    <cei:p><xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']/following-sibling::t:*[@rend='Autorensigle'][1]"/></cei:p>
+                                                    <!-- Bum: warum kommt was aus archiv info in dipomatic analysis? -->
                                                     <!--<xsl:for-each select="t:cell[6]//t:p[not(@rend or t:hi[matches(.,'Archiv')])]">
                                                         <cei:p><xsl:apply-templates/></cei:p>
                                                     </xsl:for-each>-->          
@@ -606,7 +608,8 @@
                                             <cei:persName/>
                                             <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
-                                            </cei:placeName>                                                                                               
+                                            </cei:placeName>
+                                            <xsl:apply-templates select="t:cell[5]/t:p[@rend = 'NIVEAU']"/>
                                             <cei:divNotes>
                                                 <cei:note/>
                                             </cei:divNotes>
@@ -649,7 +652,7 @@
         <xsl:choose>
             <xsl:when test="t:p">
                 <xsl:apply-templates select="t:*[@rend = 'Regest']"/>
-                <xsl:apply-templates select="t:*[@rend='Autorensigle']"/>
+                <cei:lb/><xsl:apply-templates select="t:*[@rend='Autorensigle'][1]"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
@@ -683,11 +686,6 @@
                 <xsl:apply-templates/>
             </cei:p>          
         </xsl:for-each>
-        <xsl:if test="t:p[@rend = 'NIVEAU']">
-            <cei:p>
-                <xsl:apply-templates select="t:p[@rend = 'NIVEAU']"/>
-            </cei:p>
-        </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -698,9 +696,9 @@
     
     <xsl:template match="t:*[@rend = 'NIVEAU']" priority="1">
         <xsl:variable name="stringlist" select="tokenize(., ':')"/>
-        <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
+<!--        <xsl:if test="preceding-sibling::t:*[@rend = 'NIVEAU']">
             <xsl:text> - </xsl:text>
-        </xsl:if>
+        </xsl:if>-->
         <xsl:variable name="skos" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:atom="http://www.w3.org/2005/Atom">
             <xsl:variable name="sublemmawert" select="normalize-space($stringlist[2])"/>
             <xsl:variable name="lemmawert">
