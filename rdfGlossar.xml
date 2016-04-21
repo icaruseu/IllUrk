@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<atom:entry xmlns:atom="http://www.w3.org/2005/Atom"><atom:id>tag:www.monasterium.net,2011:/IllUrkGlossar</atom:id><atom:title/><atom:published>2015-11-09T11:27:55+02:00</atom:published><atom:updated>2015-11-11T10:47:52.849+02:00</atom:updated><atom:author><atom:email>admin</atom:email></atom:author><app:control xmlns:app="http://www.w3.org/2007/app"><app:draft>no</app:draft></app:control><atom:content type="application/xml">
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:t="http://www.tei-c.org/ns/1.0">
+            xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:t="http://www.tei-c.org/ns/1.0" xml:base="http://monasterium.net/mom/controlledVocabulary/rdfGlossar">
+    <skos:ConceptScheme rdf:about="#IllUrk-glossar">
+        <skos:prefLabel xml:lang="de">Kunsthistorisches Glossar (Projekt Illuminierte Urkunden)</skos:prefLabel>
+    </skos:ConceptScheme>
     <skos:Concept rdf:about="#Fadenwerk">
         <skos:prefLabel xml:lang="de">Fadenwerk</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Federwerk</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Filigran">
         <skos:prefLabel xml:lang="de">Filigran</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Ranken, gezeichnet: Fadenranken</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Fleuronnee">
         <skos:prefLabel xml:lang="de">Fleuronnée</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Fleuronnée</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Figureninitiale">
         <skos:prefLabel xml:lang="de">Figureninitiale</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Die Figuren selbst bilden den Buchstabenkörper, oder sind ihm aufgelegt.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Herzblaetter">
         <skos:prefLabel xml:lang="de">Herzblätter</skos:prefLabel>
@@ -43,20 +51,22 @@
     </skos:Concept>
     <skos:Concept rdf:about="#DeckfarbeninitialevorGoldgrund">
         <skos:prefLabel xml:lang="de">Deckfarbeninitiale vor Goldgrund</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Kann auch eine Dornblattinitiale sein.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Serife">
         <skos:prefLabel xml:lang="de">Serife</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>„Füsschen“ an den Endstellen von Buchstaben, bei Initialen bisweilen ausladend.
                 (Jakobi-Mirwald)</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#DasLayoutderAvignonerBischofsammelablaesse">
         <skos:prefLabel xml:lang="de">Das Layout der Avignoner Bischofsammelablässe</skos:prefLabel>
-        <skos:definition>
+        <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Bereits bei den *<t:ref target="#AvignonerBischofsammelablaessen">Avignoner
                     Bischofsammelablässen</t:ref>* beobachtet man ein Ausgreifen der U-Initiale in
                 den linken Rand (Bisher frühestes Beispiel: 1324 Dezember 12 für Rupertsberg vom
@@ -145,10 +155,11 @@
                 1345 Juli 31 für Attergau, 1347 Februar 5 für Hirsau, 1363 März 6 für Sarmensdorf
                 und 1363 Dezember 10 für St. Gallen) haben ein etwas schmaleres Textfeld.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Rahmentyp">
         <skos:prefLabel xml:lang="de">Rahmentyp</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Avignoner Bischofssammelindulgenz, bei der der Rand links, oben und rechts von
                 einer Bildleiste umgeben ist. </t:p>
             <t:p>Die U-Initiale wird dabei als linkes Eckmotiv einbezogen. Erstes, bisher bekanntes
@@ -171,10 +182,11 @@
                 standardmässig angebracht wurde, um einen Bildstreifen am Rand problemlos anbringen
                 zu können.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Blattrankentyp">
         <skos:prefLabel xml:lang="de">Blattrankentyp</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Avignoner Bischofsammelindulgenz, bei der anstelle von Bildleisten (vgl. *<t:ref
                     target="#Rahmentyp">Rahmentyp</t:ref>*) die Figuren ohne Rahmung am Rand
                 platziert und mit vegetabilischen Ranken versehen sind, die dem Akanthus
@@ -228,10 +240,11 @@
                     target="#Vorlage">Vorlage</t:ref>*, aber nach einem wiedererkennbaren Schema
                 gestaltet.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Vera-Ikon-Typus">
         <skos:prefLabel xml:lang="de">Vera-Ikon-Typus</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Avignoner Bischofsammelindulgenz, bei der im Binnenfeld der Initiale das Abbild
                 Christi als Federzeichnung abgebildet ist.</t:p>
             <t:p>Die Darstellung einer Vera Ikon, also des wahrhaften Abbilds Christi, das nicht von
@@ -266,10 +279,11 @@
                 Dekoration des Binnenfeldes der U-Initiale wieder auf die Vera Ikon
                 zurückgegriffen.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Christusbueste">
         <skos:prefLabel xml:lang="de">Christusbüste</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Avignoner Bischofsammelindulgenz, bei der im Binnenfeld der U-Initiale das Antlitz
                 Christi als farbig lavierte Federzeichnung ausgeführt ist.</t:p>
             <t:p>Frontale Büste Christi mit segnend erhobenen Händen, die Wundmale vorweisend. Eine
@@ -315,12 +329,13 @@
                     Diversifizierung</t:ref>*) und tritt danach seltener auf. Das bisher letzte
                 bekannte Beispiel ist 1344 April 12 für die Herren von Ehestetten. </t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept
         rdf:about="#IkonographischeDiversifizierungbeiderIlluminierungvonAvignonerBischofsammelindulgenzen">
         <skos:prefLabel xml:lang="de">Ikonographische Diversifizierungbei der Illuminierung von
             Avignoner Bischofsammelindulgenzen</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Lieber Martin, dieser Eintrag ist mir von der Länge her ein bisschen aus dem Ruder
                 gelaufen! Ich wäre dir sehr dankbar, wenn du dir beim Lesen über Kürzungen oder
                 Ausgliederungen Gedanken machen könntest!</t:p>
@@ -339,20 +354,22 @@
                 auch vor dem Hintergrund von Neufunden – als Richtschnur, aber nicht als absolute
                 zeitliche Einordnung gelten. </t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Vorlage">
         <skos:prefLabel xml:lang="de">Vorlage</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Entwurfszeichnungen für Figuren oder ganze Szenen, die in einer
                 Buchmalerei-Werkstatt immer wieder verwendet wurden. Mit unterschiedlichen Techniken
                 wurden sie auf das Pergament gebracht, sodass sie auch horizontal gespiegelt werden
                 konnten. Gewöhnlich kann man davon ausgehen, dass diese Zeichnungen exklusiv nur
                 einem Verbund zur Verfügung standen.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Sammelindulgenz">
         <skos:prefLabel xml:lang="de">Sammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Auch: Sammelablass, Kollektivablass, kumulativer Ablass. </t:p>
             <t:p>Hier die Aufgabe für Markus: Bischof- oder Kardinal-…</t:p>
             <t:p> Bischöfe konnten je 40 Tage der zeitlichen Sündenstrafen vergeben; diese Zahlen
@@ -362,22 +379,25 @@
                 Kurialamt bat, Avignon zu verlassen, wurde die Anzahl der ausgestellten
                 Sammelindulgenzen geringer.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#BischofsammelindulgenzausserhalbderKurie">
         <skos:prefLabel xml:lang="de">Bischofsammelindulgenz ausserhalb der Kurie</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Bischofsammelablass </t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#RoemischeBischofsammelindulgenz">
         <skos:prefLabel xml:lang="de">Römische Bischofsammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Bischofsammelablass aus Italien während der Residenz der Päpste in Avignon.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#VoravignonerBischofsammelindulgenz">
         <skos:prefLabel xml:lang="de">Voravignoner Bischofsammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Bischofsammelablass aus Italien vor dem Niederlassen der Kurie in Avignon.</t:p>
             <t:p>Bischofssammelablässe wurden Ende des 13. Jahrhunderts mit stark vergrösserten,
                 mitunter graphisch bereicherten Initialen in der Schreibertinte ausgestattet, deren
@@ -447,10 +467,11 @@
                     target="#AvignonerBischofsammelindulgenz">Avignoner
                     Bischofsammelindulgenz</t:ref>*.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#AvignonerBischofsammelindulgenz">
         <skos:prefLabel xml:lang="de">Avignoner Bischofsammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>In Avignon ausgestellte Bischofsammelindulgenzen, deren Initialen lediglich in der
                 Farbe der Schreibertinte gehalten sind. </t:p>
             <t:p>Dabei sind zwei zeitlich voneinander entfernte Phasen auszumachen:</t:p>
@@ -498,10 +519,11 @@
                     target="#UnilluminierteAvignonerBischofsammelindulgenz">Unilluminierte Avignoner
                     Bischofsammelindulgenz</t:ref>*).</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#IlluminierteAvignonerBischofsammelindulgenz">
         <skos:prefLabel xml:lang="de">Illuminierte Avignoner Bischofsammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>In Avignon ausgestellte Bischofsammelindulgenzen, deren Initialen hauptsächlich in
                 Schreibertinte mit dekorativem oder figürlichem Schmuck versehen sind. </t:p>
             <t:p>Sammelablässe mit figürlichem Buchschmuck treten ab 1323 auf (erstes, bisher
@@ -532,11 +554,12 @@
                 könnten hier bereits die Auftraggeber die Sujets auswählen, je nach Anspruch und
                 Geldbeutel. </t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#HistorisierteAvignonerBischofsammelindulgenz">
         <skos:prefLabel xml:lang="de">Historisierte Avignoner
             Bischofsammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>In Avignon ausgestellte Bischofsammelindulgenzen, deren Initialen figürlich mit
                 Farben gestaltet sind.</t:p>
             <t:p>Die bisher früheste, im Original überlieferte Sammelindulgenz mit einer farbigen
@@ -647,11 +670,12 @@
             <t:p>Mit 1348 März 3 für St. Peter in Naklo endet im bisher gesichteten Bestand die
                 Produktion historisierter Avignoner Bischofsammelindulgenzen.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#UnilluminierteAvignonerBischofsammelindulgenz">
         <skos:prefLabel xml:lang="de">Unilluminierte Avignoner
             Bischofsammelindulgenz</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Avignoner Bischofsammelindulgenz, bei der die Dekoration nicht vorgesehen oder für
                 eine *<t:ref target="#DekorationbeimEmpfaenger">Dekoration beim Empfänger</t:ref>*
                 vorbereitet war.</t:p>
@@ -672,18 +696,20 @@
                 entgegen zu kommen, hat man ein ganzes Programm an unterschiedlich weit vollendeten
                 Urkunden in Avignon ins Angebot genommen:</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#DekorationbeimEmpfaenger">
         <skos:prefLabel xml:lang="de">Dekoration beim Empfänger</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Urkunde, deren Layout beim Aussteller bereits eine Illuminierung vorsah, die jedoch
                 erst am Empfängerort ausgeführt wurde.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#WerkstattderAvignonerBischofsammelindulgenzen">
         <skos:prefLabel xml:lang="de">Werkstatt der Avignoner
             Bischofsammelindulgenzen</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Die Zeichner- und Malerwerkstatt, die die Dekoration der Ablassurkunden
                 vornahm.</t:p>
             <t:p>Es ist fraglich, ob es bereits an der italienischen Kurie eine Werkstatt für die
@@ -773,57 +799,64 @@
             <t:p>Rest (1925, S. 161) ordnete die Dekoration der Avignoner Bischofsammelindulgenzen
                 in zwei Perioden: 1282-1322, ohne und danach mit figürlichem Schmuck.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Schreiber1">
         <skos:prefLabel xml:lang="de">Schreiber 1</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1284_ für Tongeren</t:p>
             <t:p>1284 März 9 für Altenburg</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Schreiber2">
         <skos:prefLabel xml:lang="de">Schreiber 2</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1284 September 1 für Mariengreden</t:p>
             <t:p>1283 Oktober 1 für Marienstern</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Schreiber3">
         <skos:prefLabel xml:lang="de">Schreiber 3</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1287 Februar 28 für Göttweig</t:p>
             <t:p>1287 März 21 für Regensburg</t:p>
             <t:p>1287 März 14 Gerolding</t:p>
             <t:p>1290 März 11 Schwanenstadt</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Schreiber4">
         <skos:prefLabel xml:lang="de">Schreiber 4</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1289 April 13 für Hersfeld</t:p>
             <t:p>1289 Dezember für Hersfeld</t:p>
             <t:p>1290 August 23 für Heiligenkreuz</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Schreiber5">
         <skos:prefLabel xml:lang="de">Schreiber 5</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1298 März für Eger</t:p>
             <t:p>1299 März für Heiligenkreuz</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Schreiber6">
         <skos:prefLabel xml:lang="de">Schreiber 6</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1300 März für Urfahr</t:p>
             <t:p>1300 März für Göttweig</t:p>
             <t:p>1300 März für Krems</t:p>
             <t:p>1300 März für Klosterneuburg</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#ZeichnerderkreisfoermigenU-Initiale">
         <skos:prefLabel xml:lang="de">Zeichner der kreisförmigen U-Initiale</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Die U-Initialen werden aus Kreisformen gebildet, die sich schneiden können oder
                 auch – im rechten Schaft – tangential berühren. Sie sind das bestimmende
                 Formprinzip, dem die Lesbarkeit untergeordnet ist, und somit in der Entwicklung der
@@ -856,10 +889,11 @@
             <t:p>1323 September für die Marienkapelle in Coburg</t:p>
             <t:p>1323 September 20 für Alöendorf die Frankenstein</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#ZeichnermitdenMasswerkmotiven">
         <skos:prefLabel xml:lang="de">Zeichner mit den Masswerkmotiven</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Bei dem Zeichner mit den Masswerkmotiven handelt es sich um das Werkstattmitglied,
                 das am Längsten nachweisbar ist und der sich jeder ikonographischen Neuerung
                 anzupassen vermag. Charakteristisch für diesen Zeichner, der sowohl unfigürliche
@@ -920,20 +954,22 @@
             <t:p>1342 Juni 19 für St. Salvator in Passau (*<t:ref target="#Christusbueste"
                     >Christusbüste</t:ref>*)</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Zeichner3derChristusbuesten">
         <skos:prefLabel xml:lang="de">Zeichner 3 der Christusbüsten</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>man erkennt ihn an dem schwarzen Strich, der die Lippen trennt und der an den Enden
                 verdickt ist, wie auch an den Brauenbögen, deren rechter höher und etwas stärker
                 betont ist. Francesca Manzari (2006, S. 355) sah den Miniator und/ oder Kopisten
                 Galterius Alamannus am Werk.</t:p>
             <t:p>1329 August für Kirchberg</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Zeichner4derChristusbuesten">
         <skos:prefLabel xml:lang="de">Zeichner 4 der Christusbüsten</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Schattiert die Brauenpartie, zeichnet die Lidränder mit Doppellinien, Pupille vom
                 oberen Lidrand angeschnitten und einer weiteren Linie umrahmt. </t:p>
             <t:p>1330 April 5 für Wittichen</t:p>
@@ -956,10 +992,11 @@
             <t:p>1335 Juli 4 für Zeven</t:p>
             <t:p>1336 Juni 14 für Mondsee</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#IlluminatorfuerGerardusChorus">
         <skos:prefLabel xml:lang="de">Illuminator für Gerardus Chorus</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Benannt ist er nach seiner qualitätvollsten Arbeit; 1335 Jänner 11 für Kloster
                 Burtscheid, Gerardus Chorus und seine Frau Katharina .Der Maler ist – trotz der
                 wenigen markanten Besonderheiten – gut zu erkennen. Seine Köpfe und damit seine
@@ -993,10 +1030,11 @@
             <t:p>1340 August 31 für das Klarissenkloster in Dürnstein</t:p>
             <t:p>1340 Oktober 20 für die Michaelskapelle in Heilbronn</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#MalermitdenLackfarben">
         <skos:prefLabel xml:lang="de">Maler mit den Lackfarben</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Es ist sicher historisch nicht gerechtfertigt, einen Maler innerhalb der *<t:ref
                     target="#WerkstattderAvignonerBischofsammelindulgenzen">Werkstatt der Avignoner
                     Bischofsammelindulgenzen</t:ref>* nach einer besonderen Qualität seiner Farben
@@ -1012,10 +1050,11 @@
             <t:p>1341 Jänner 9 für den Dom von Minden</t:p>
             <t:p>1342 März 28 für Rottweil</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#IlluminatormitdemkleinteiligenMustergrund">
         <skos:prefLabel xml:lang="de">Illuminator mit dem kleinteiligen Mustergrund</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Dieser Maler tritt womöglich erstmals 1335 April 8 für Wimpfen auf. Sein
                 deutlichstes Merkmal sind die kleinteiligen Mustergründe, die er meist aus einer
                 Farbe aufbaut, bei der das Muster durch den dunkleren Farbton erzielt wird. Seine
@@ -1033,10 +1072,11 @@
             <t:p>1340 Juni 16 für Città di Castello</t:p>
             <t:p>1340 Oktober 31 für St. Florian</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#MalerderHirsauerIndulgenzen">
         <skos:prefLabel xml:lang="de">Maler der Hirsauer Indulgenzen</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Charakterisch ist seine Angewohnheit, die Namen der Dargestellten oberhalb der
                 Initiale zu schreiben, dabei werden sie von drei Punkten eingeleitet, von denen der
                 erste auf Höhe der Mitte der anderen, die wie ein Doppelpunkt übereinanderstehen,
@@ -1053,10 +1093,11 @@
             <t:p>1347 Jänner 12 für Hirsau</t:p>
             <t:p>1347 Februar 5 für Hirsau</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#FloratorfuerSt.Stephan">
         <skos:prefLabel xml:lang="de">Florator für St. Stephan</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Auch nachdem die Werkstatt der Avignoner Bischofsammelindulgenzen ihre Tätigkeit
                 eingestellt hat (letztes, bisher bekanntes Beispiel 1348 März 3 für Naklo), ist im
                 Skriptorium Dekoration gemacht worden, jedoch nur noch in der Tintenfarbe.
@@ -1078,6 +1119,7 @@
             <t:p>1362 Dezember 12 für Galgenen</t:p>
             <t:p>1363 Jänner 10 für St. Stephan in Wien (Fragment)</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#Xyx">
         <skos:prefLabel xml:lang="de">Xyx</skos:prefLabel>
@@ -1085,7 +1127,7 @@
     </skos:Concept>
     <skos:Concept rdf:about="#DieU-Initiale">
         <skos:prefLabel xml:lang="de">Die U-Initiale</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Seit 1329 kann man eine ikonographische Diversifizierung bei der Illuminierung von
                 Avignoner Sammelablässen beobachten. Die seit 1328 Juni 7 für Léau erstmals zur
                 Illuminierung genutzte *<t:ref target="#Christusbueste">Christusbüste</t:ref>* mit
@@ -1178,10 +1220,11 @@
                 Bordürenstreifen bei 1345 November 28 für Cividale zu oder zeigt sich als künftiger
                 Weltenherrscher mit Segenshand und Globus 1346 April 27 für Mörsdorf.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#DerPetent">
         <skos:prefLabel xml:lang="de">Der Petent</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>1328 Juni 7 für Léau erscheint im bekannten Material erstmals ein Bittsteller auf
                 einem Avignoner Bischofsammelablass. Er ist namentlich bezeichnet („Magister
                 Johannes de Sceverstene clericus“). Es mag überlieferungsbedingt ein Zufall sein,
@@ -1280,10 +1323,11 @@
                 Schriftrolle des Betenden berührt, ist diese Entwicklung auf die Spitze
                 getrieben.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#DieRandzone">
         <skos:prefLabel xml:lang="de">Die Randzone</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Die Bordürenfelder oben und aussen bei Avignoner Bischofsammelindulgenzen, die
                 frühestens ab Juni 1328 mit Bildfeldern, Figuren oder Schmuckrahmen versehen sein
                 können.</t:p>
@@ -1417,10 +1461,11 @@
                 Bildfelder für Brustbilder für Aurelius, Peter und Paul schaffen, zu einem das
                 Textfeld umgreifenden Bordürenstreifen geeint werden.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
     <skos:Concept rdf:about="#N-Initiale">
         <skos:prefLabel xml:lang="de">N-Initiale</skos:prefLabel>
-        <skos:definition>
+         <skos:definition parseType="rdf:XMLLiteral">
             <t:p>Der zweite Buchstabe im Wort „Universis“ in der ersten Zeile von Avignoner
                 Bischofsammelindulgenzen, der immer vergrössert geschrieben, selten aber
                 historisiert wird.</t:p>
@@ -1449,5 +1494,8 @@
                 Pergkirchen von einem frisch in die Werkstatt eingetretenen illuminiert
                 worden.</t:p>
         </skos:definition>
+		<skos:inScheme rdf:resource="#IllUrk-glossar"/>
     </skos:Concept>
 </rdf:RDF>
+    </atom:content>
+</atom:entry>
