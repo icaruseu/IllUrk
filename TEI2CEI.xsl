@@ -26,7 +26,6 @@
             1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
             2. XMLisierung der Datei (//a/@href sollte den Bildnamen auf dem Server enthalten: http://images.monasterium.net/illum/IllUrk ... 
             3. Ablageort in variable $bildurl eintragn
-            
             4. aktuelles Illurk-Vocabulary local ablegen (für skos Normalisierung)
             5. aktuelles Illurk-Glossar local ablegen (für skos Normalisierung)
     -->
@@ -36,7 +35,7 @@
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="bildurl">
         <xsl:text>Bilder.htm</xsl:text>
-        <!--<xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
+<!--        <xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
     </xsl:variable>
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden - Sammelindulgenzen</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="ids">
@@ -97,7 +96,7 @@
                 </url>
                 <datum>
                     <xsl:value-of
-                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/Illurk/')"
+                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/IllUrk/')"
                     />
                 </datum>
             </bild>
