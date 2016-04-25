@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
-<!-- ToDo:
+<!-- 25.04.2016 hinzugefügt: Für Bildreferenz/-abgleich ".JPG" und <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
+    @rend="interne Notizen" aufgenommen: kommt in bibl und regest vor, 
+    //text() wird mit normalize-space() verarbeitet
+    
+    ToDo:
         *...* => cei:index@indexName="IllUrkGlossar" , wobei die Sternchen diesmal (01.04.2016)im TEI entfernt wurden
        
 
@@ -91,7 +95,7 @@
     </xsl:variable>
     <xsl:variable name="bilder">
         <xsl:for-each
-            select="document($bildurl)//a[(ends-with(@href, '.jpg') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
+            select="document($bildurl)//a[(ends-with(@href, '.jpg') or ends-with(@href, '.JPG') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
             <bild>
                 <url>
                     <xsl:value-of select="@href"/>
@@ -528,7 +532,8 @@
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   -->
                                                     <xsl:variable name="datum" select="t:cell[1]/(text()[1]|*[1]/text())[1]/translate(normalize-space(.),'–,;.?! ()','-')"/>
-                                                    <xsl:variable name="bild" select="$bilder/bild[datum=$datum]/url"/>
+                                                    <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
+                                                  <!--  <xsl:variable name="bild" select="$bilder/bild[datum=$datum]/url"/> hier Variable ersetzt, weil $datum noch text enthält-->
                                                     <xsl:for-each
                                                         select="$bild">
                                                         <cei:figure>
@@ -625,6 +630,16 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+   <!-- In gesamten Dokument normalize-space() -->
+    <xsl:template match="//text()">
+       <xsl:value-of select="normalize-space(.)"/>
+   </xsl:template>
+    <!-- interne Notizen werden als Kommentar bereitgestellt -->
+    <xsl:template match="t:*[@rend = 'Interne Notizen']">
+        <xsl:comment>
+            <xsl:value-of select="."/>
+        </xsl:comment>        
+    </xsl:template>    
     <xsl:template match="t:*[@rend = 'Archivort']">
        <!-- <xsl:if test="./parent::t:p/parent::t:cell[6] | ./parent::t:cell[6]">-->
             <cei:settlement><xsl:value-of select="."/></cei:settlement>
@@ -653,6 +668,9 @@
             <xsl:when test="t:p">
                 <xsl:apply-templates select="t:*[@rend = 'Regest']"/>
                 <cei:lb/><xsl:apply-templates select="t:*[@rend='Autorensigle'][1]"/>
+                <xsl:if test="t:p[@rend='Interne Notizen']">
+                    <xsl:apply-templates select="t:p[@rend='Interne Notizen']" />
+                </xsl:if>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
@@ -737,13 +755,16 @@
         <cei:listBibl>
             
            <!-- <xsl:for-each select="node()[not(@rend='LINK-ZU-BILD')]|text()">-->
-            <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')]">
+            <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
                 <cei:bibl>                    
                     <xsl:apply-templates select="."/>
                 </cei:bibl>
             </xsl:for-each>                
             <!--</xsl:for-each>-->
         </cei:listBibl>
+        <xsl:if test="t:p[@rend='Interne Notizen']">
+            <xsl:apply-templates select="t:p[@rend='Interne Notizen']" />
+        </xsl:if>
     </xsl:template>
 
     <!-- 
