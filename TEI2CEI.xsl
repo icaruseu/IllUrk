@@ -693,7 +693,7 @@
     <xsl:choose>
         <xsl:when test="text() and text()/normalize-space(.) != ''">
             <cei:p>
-                <xsl:value-of select="text()/normalize-space(.)"/>
+                <xsl:apply-templates/>
             </cei:p>
         </xsl:when>
             <xsl:otherwise>
