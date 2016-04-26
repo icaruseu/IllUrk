@@ -631,8 +631,8 @@
         </xsl:choose>
     </xsl:template>
    <!-- In gesamten Dokument normalize-space() -->
-    <xsl:template match="//text()">
-       <xsl:value-of select="normalize-space(.)"/>
+    <xsl:template match="text()">
+       <xsl:value-of select="replace(.,'\s+',' ')"/>
    </xsl:template>
     <!-- interne Notizen werden als Kommentar bereitgestellt -->
     <xsl:template match="t:*[@rend = 'Interne Notizen']">
@@ -756,8 +756,17 @@
             
            <!-- <xsl:for-each select="node()[not(@rend='LINK-ZU-BILD')]|text()">-->
             <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
-                <cei:bibl>                    
+                <cei:bibl>
                     <xsl:apply-templates select="."/>
+                    
+                    <!--  -->
+                    <xsl:if test="matches(text()[1],'[A-z]')">
+                        <xsl:variable name="shortest" select="substring-before(substring-before(.,','),'(')"/>
+                        <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                        <xsl:if test="not($zotjson='' or $zotjson='[]')">
+                            <xsl:text> (</xsl:text><ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</ref><xsl:text>)</xsl:text>
+                        </xsl:if>
+                    </xsl:if>
                 </cei:bibl>
             </xsl:for-each>                
             <!--</xsl:for-each>-->
@@ -766,6 +775,34 @@
             <xsl:apply-templates select="t:p[@rend='Interne Notizen']" />
         </xsl:if>
     </xsl:template>
+
+    <!-- Zotero-Funktion -->
+    <xsl:function name="cei:zotero">
+        <xsl:param name="suche"/>
+        <xsl:param name="position"/>
+        <xsl:param name="zotero"/>
+        <!-- Zotero-Bibliographie:
+                        ./text()[1] nehmen
+                        in Wörter zerlegen
+                        Durchtesten ab mindestens 3 Wörter, bis genau 1 Treffer aus Zotero zurückkommt.
+                    -->
+        <xsl:variable name="short">
+            <xsl:for-each select="tokenize($suche,' ')">
+                <xsl:if test="position() lt ($position + 1)">
+                    <xsl:if test="position() gt 1"><xsl:text> </xsl:text></xsl:if><xsl:value-of select="."/>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="zottreffer" select="$zotero/t:listBibl/t:biblStruct[.//t:title[@type='short'][contains(.,$short)]]"/>
+        <xsl:choose>
+            <xsl:when test="count($zottreffer) gt 1">
+                <xsl:value-of select="cei:zotero($suche,($position + 1), $zotero)"/>
+            </xsl:when>
+            <xsl:when test="count($zottreffer) = 1">
+                <xsl:value-of select="$zottreffer/@corresp"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
 
     <!-- 
         Es folgen generische templates
