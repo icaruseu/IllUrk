@@ -758,13 +758,14 @@
             <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
                 <cei:bibl>
                     <xsl:apply-templates select="."/>
-                    
-                    <!--  -->
+                    <!-- Zotero-Link ermitteln -->
                     <xsl:if test="matches(text()[1],'[A-z]')">
-                        <xsl:variable name="shortest" select="substring-before(substring-before(.,','),'(')"/>
-                        <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                        <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                            <xsl:text> (</xsl:text><ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</ref><xsl:text>)</xsl:text>
+                        <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
+                        <xsl:if test="$shortest!=''">
+                            <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                            <xsl:if test="not($zotjson='' or $zotjson='[]')">
+                                <xsl:text> (</xsl:text><ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</ref><xsl:text>)</xsl:text>
+                            </xsl:if>
                         </xsl:if>
                     </xsl:if>
                 </cei:bibl>
@@ -828,7 +829,7 @@
                 <xsl:attribute name="indexName">IllUrkGlossar</xsl:attribute>
             <xsl:variable name="lemma" select="replace(replace(replace(replace(replace(replace(replace(., 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', '')"/>
                 <xsl:attribute name="lemma"><xsl:value-of select="$lemma"/></xsl:attribute>           
-            <xsl:value-of select="."/>
+            <xsl:apply-templates/>
         </cei:index>
     </xsl:template>    
         
