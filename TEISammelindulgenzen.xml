@@ -8723,12 +8723,10 @@
                     </cell>
                     <cell>
                         <p>Schöffler, UB Bürgerspital Würzburg, 1994, Nr. 24 und 33.</p>
-                        <p rend="LINK-ZU-BILD">
+                        <p rend="Monasterium-link">
                             <ref
                                 target="http://www.mom-ca.uni-koeln.de/mom/DE-StaAWuerzburg/Buergerspital/5/charter"
-                                    >http<anchor xml:id="Hlt413315466"/><anchor
-                                    xml:id="Hlt413315467"
-                                />://www.mom-ca.uni-koeln.de/mom/DE-StaAWuerzburg/Buergerspital/5/charter</ref>
+                                    >http://www.mom-ca.uni-koeln.de/mom/DE-StaAWuerzburg/Buergerspital/5/charter</ref>
                             <seg xml:space="preserve">  </seg>
                         </p>
                     </cell>
@@ -9391,14 +9389,11 @@
                     <cell><hi rend="Archivort">Koblenz</hi>, <hi rend="Archivname"
                             >Landeshauptarchiv</hi>, <hi rend="Archivfonds">Bestand 35
                             (Reichsgrafschaft Wied-Runkel)</hi>, <hi rend="Archivsignatur">Urk.
-                            33</hi></cell>
-                    <cell rend="LINK-ZU-BILD">
-                        <p rend="LINK-ZU-BILD">
-                            <ref
-                                target="http://www.archivdatenbank.lha-rlp.de/koblenz/a/a.1/35/fb/urkunden/01/33/"
-                                >http://www.archivdatenbank.lha-rlp.de/koblenz/a/a.1/35/fb/urkunden/01/33/</ref>
-                        </p>
-                    </cell>
+                                33</hi> <ref
+                                    target="http://www.archivdatenbank.lha-rlp.de/koblenz/a/a.1/35/fb/urkunden/01/33/"
+                                    >http://www.archivdatenbank.lha-rlp.de/koblenz/a/a.1/35/fb/urkunden/01/33/</ref></cell>
+                    <cell rend="LINK-ZU-BILD"/>
+                    
                 </row>
                 <row>
                     <cell cols="2" rend="Datierung">1327-03-10</cell>
@@ -9466,9 +9461,7 @@
                             <hi rend="UrkArt-W">Vermerke: auf der Vorderseite keine sichtbar, kein
                                 Bild der Rückseite vorhanden.</hi>
                         </p>
-                        <p rend="Autorensigle"><hi rend="UrkArt-W">(<seg rend="color(7030A0)"
-                                    >Markus</seg>
-                            </hi>Gneiss<hi rend="UrkArt-W">)</hi></p>
+                        <p rend="Autorensigle">MarkusGneiss</p>
                     </cell>
                     <cell cols="2" rend="Ekphrasis">
                         <p rend="Ekphrasis"><hi rend="bold">Illuminierte Avignoner
@@ -12180,9 +12173,7 @@
                         <p>Oliver, Herkenrode, 1995, S. 199, Appendix, Nr. 4</p>
                         <p>Manzari, Miniatura ad Avignone, 2006, S. 356f.</p>
                         <p>Roland, Zajic, Illuminierte Urkunden, 2013, S. 325 und Abb. 10, online:
-                                <ref target="http://documents.icar-">http://documents.icar-</ref><hi
-                                rend="Hyperlink">.
-                                us.eu/documents/2013/11/archiv-fur-diplomatik-schriftgeshichte-siegel-und-wappenkunde.pdf</hi></p>
+                                <ref target="http://documents.icar-">http://documents.icar-us.eu/documents/2013/11/archiv-fur-diplomatik-schriftgeshichte-siegel-und-wappenkunde.pdf</ref></p>
                     </cell>
                 </row>
                 <row>
@@ -34400,9 +34391,8 @@
                     <cell cols="2">
                         <p>Erben, Bittschriften und Ablaßurkunden, 1923, S. 185, Nr. 54.</p>
                         <p>Delehaye, 45, 1927, S. 340.</p>
-                        <p>Roland, Zajic, Illuminierte Urkunden, 2013, S. 334 Anm. 164<hi
-                                rend="Hyperlink">, online:
-                                http://documents.icar-us.eu/documents/2013/11/archiv-fur-diplomatik-schriftgeshichte-siegel-und-wappenkunde.pdf</hi></p>
+                        <p>Roland, Zajic, Illuminierte Urkunden, 2013, S. 334 Anm. 164, online: <hi
+                                rend="Hyperlink">http://documents.icar-us.eu/documents/2013/11/archiv-fur-diplomatik-schriftgeshichte-siegel-und-wappenkunde.pdf</hi></p>
                         <p rend="Monasterium-link">
                             <ref
                                 target="http://www.mom-ca.uni-koeln.de/mom/CH-StiASG/Urkunden/J2-A1beta/charter"

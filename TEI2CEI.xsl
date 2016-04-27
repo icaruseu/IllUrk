@@ -642,17 +642,17 @@
     </xsl:template>    
     <xsl:template match="t:*[@rend = 'Archivort']">
        <!-- <xsl:if test="./parent::t:p/parent::t:cell[6] | ./parent::t:cell[6]">-->
-            <cei:settlement><xsl:value-of select="."/></cei:settlement>
+            <cei:settlement><xsl:apply-templates/></cei:settlement>
         <!--</xsl:if>-->    
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivname']">       
-        <cei:arch><xsl:value-of select="."/></cei:arch>        
+        <cei:arch><xsl:apply-templates/></cei:arch>        
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivfonds']">
-        <cei:archFond><xsl:value-of select="."/></cei:archFond>
+        <cei:archFond><xsl:apply-templates/></cei:archFond>
     </xsl:template>
     <xsl:template match="t:*[@rend = 'Archivsignatur']">
-        <cei:idno><xsl:value-of select="."/></cei:idno>
+        <cei:idno><xsl:apply-templates/></cei:idno>
     </xsl:template>
     
     <xsl:template match="t:*[@rend = 'Beschreibung']">
@@ -754,11 +754,11 @@
     <xsl:template match="t:cell[7]" priority="1">
         <cei:listBibl>
            <!-- <xsl:for-each select="node()[not(@rend='LINK-ZU-BILD')]|text()">-->
-            <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
+            <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]|self::*[not(t:p)]/(text()|*)">
                 <cei:bibl>
-                    <xsl:apply-templates select="."/>
+                    <xsl:apply-templates/>
                     <!-- Zotero-Link ermitteln -->
-                    <xsl:if test="matches(text()[1],'[A-z]')">
+                    <!--<xsl:if test="matches(text()[1],'[A-z]')">
                         <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
                         <xsl:if test="$shortest!=''">
                             <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
@@ -766,7 +766,7 @@
                                 <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
                             </xsl:if>
                         </xsl:if>
-                    </xsl:if>
+                    </xsl:if>-->
                 </cei:bibl>
             </xsl:for-each>                
             <!--</xsl:for-each>-->
@@ -835,14 +835,16 @@
     <xsl:template match="t:hi[@rend='UrkArt-W'][ancestor::t:cell[@rend='Regest']/child::t:p[1]/t:hi = current()]">       
             <cei:index>
                 <xsl:attribute name="indexName">Illurk-Urkundenart</xsl:attribute>
-                <xsl:value-of select="."/>
+                <xsl:apply-templates/>
             </cei:index><!--<xsl:text xml:space="preserve"> </xsl:text>-->
-     
     </xsl:template>
     <xsl:template match="t:hi[@rend = 'italic']">
         <cei:quote type="italic">
-            <xsl:value-of select="."/>
+            <xsl:apply-templates/>
         </cei:quote>
+    </xsl:template>
+    <xsl:template match="t:hi[@rend='Hyperlink'][normalize-space(.)!='']">
+        <cei:ref target="{normalize-space(.)}"><xsl:apply-templates/></cei:ref>
     </xsl:template>
     <xsl:template match="t:hi" priority="-2">
         <xsl:apply-templates/><xsl:text xml:space="preserve"> </xsl:text>
