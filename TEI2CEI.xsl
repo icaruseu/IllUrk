@@ -754,21 +754,40 @@
     <xsl:template match="t:cell[7]" priority="1">
         <cei:listBibl>
            <!-- <xsl:for-each select="node()[not(@rend='LINK-ZU-BILD')]|text()">-->
-            <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
-                <cei:bibl>
-                    <xsl:apply-templates/>
-                    <!-- Zotero-Link ermitteln -->
-                    <xsl:if test="matches(text()[1],'[A-z]')">
-                        <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
-                        <xsl:if test="$shortest!=''">
-                            <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                            <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                                <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+            <xsl:choose>
+                <xsl:when test="t:p">
+                    <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
+                        <cei:bibl>
+                            <xsl:apply-templates/>
+                            <!-- Zotero-Link ermitteln -->
+                            <xsl:if test="matches(text()[1],'[A-z]')">
+                                <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
+                                <xsl:if test="$shortest!=''">
+                                    <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                                    <xsl:if test="not($zotjson='' or $zotjson='[]')">
+                                        <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:if>
+                        </cei:bibl>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <cei:bibl>
+                        <xsl:apply-templates/>
+                        <!-- Zotero-Link ermitteln -->
+                        <xsl:if test="matches(text()[1],'[A-z]')">
+                            <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
+                            <xsl:if test="$shortest!=''">
+                                <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                                <xsl:if test="not($zotjson='' or $zotjson='[]')">
+                                    <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+                                </xsl:if>
                             </xsl:if>
                         </xsl:if>
-                    </xsl:if>
-                </cei:bibl>
-            </xsl:for-each>                
+                    </cei:bibl>
+                </xsl:otherwise>
+            </xsl:choose>
             <!--</xsl:for-each>-->
         </cei:listBibl>
         <xsl:if test="t:p[@rend='Interne Notizen']">
