@@ -501,6 +501,7 @@
                                                     <!-- FixMe: es gibt auch kopiale Überlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                                     <xsl:for-each
                                                         select="t:cell[7]/t:p[@rend = 'LINK-ZU-BILD']">
+                                                        <xsl:sort select=".//t:ref|."/>
                                                         <xsl:choose>
                                                             <xsl:when
                                                                 test="($id/mom and .//text()[contains(., 'monasterium.net')])">
