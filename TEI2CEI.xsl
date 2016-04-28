@@ -492,7 +492,7 @@
                                                     <cei:dateRange>
                                                         <xsl:attribute name="from" select="$date/from"/>
                                                         <xsl:attribute name="to" select="$date/to"/>
-                                                        <xsl:value-of select="t:cell[1]"/>
+                                                        <xsl:value-of select="t:cell[1]/normalize-space(.)"/>
                                                         <!-- FixMe: Achtung, das muß angepaßt werden für die erweiterten Dateumsangaben ("ca.", "§BG§", "kopial" ...): Versucht wäre, daß im ersten Absatz nur Datumsangaben stehen? Aber "ca" ist ein Problem ... -->
                                                     </cei:dateRange>
                                                 </cei:issued>
