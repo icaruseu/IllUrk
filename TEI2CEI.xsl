@@ -44,6 +44,7 @@
 <!--        <xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
     </xsl:variable>
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
+    <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="ids">
         <!-- Um auf dublette IDs zu testen, brauche ich eine skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -846,11 +847,21 @@
         <cei:index>
             <!--<xsl:if test="preceding-sibling::text()[1]/ends-with(.,'*') and following-sibling::text()[1]/starts-with(.,'*')">-->
                 <xsl:attribute name="indexName">IllUrkGlossar</xsl:attribute>
-            <xsl:variable name="lemma" select="replace(replace(replace(replace(replace(replace(replace(., 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', '')"/>
-                <xsl:attribute name="lemma"><xsl:value-of select="$lemma"/></xsl:attribute>           
-            <xsl:apply-templates/>
+            <!-- ToDo: Hier eine Funktion einbauen, die den aktuellen Glossarbegriff mit der Glossarkonkordanz in ein existierendes Lemma umwandelt -->
+                <xsl:copy-of select="cei:lemmakontrolle(.)"/>
         </cei:index>
-    </xsl:template>    
+    </xsl:template>
+
+    <xsl:function name="cei:lemmakontrolle">
+        <xsl:param name="knoten"/>
+        <!-- Teste, ob normalizedtext in $glossarkonkordanz/orig vorkommt -->
+        <xsl:variable name="glossarentry" select="$glossarkonkordanz//entry[orig=$knoten/text()[1]/normalize-space()]"/>
+        <xsl:attribute name="lemma"><xsl:text>#</xsl:text><xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($glossarentry/normalized, 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', '')"/></xsl:attribute>           
+        <xsl:choose>
+            <xsl:when test="$glossarentry/@action='replace'"><xsl:apply-templates select="$glossarentry/normalized"/></xsl:when>
+            <xsl:otherwise><xsl:apply-templates select="$knoten/(*|text())"/></xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
         
     <xsl:template match="t:hi[@rend='UrkArt-W'][ancestor::t:cell[@rend='Regest']/child::t:p[1]/t:hi = current()]">       
             <cei:index>
