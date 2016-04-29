@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
-<!-- 25.04.2016 hinzugefügt: Für Bildreferenz/-abgleich ".JPG" und <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
+<!-- Stand 28.04.2016
+    Hinzugefügte Funktionen für Zotero-Referenzen
+    Hinzugefügte Funktion für Glossarkonkordanzausgleich
+    Für Bildreferenz/-abgleich ".JPG" und <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
     @rend="interne Notizen" aufgenommen: kommt in bibl und regest vor, 
     //text() wird mit normalize-space() verarbeitet
     
@@ -45,6 +48,15 @@
     </xsl:variable>
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+    <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+    <xsl:variable name="names">
+        <xsl:for-each select="$personen//t:person">
+            <xsl:copy>
+                <xsl:copy-of select="@*|*"/>
+                <name><xsl:value-of select="t:persName/translate(normalize-space(text()[1]),' ,;','')"/><xsl:text> von </xsl:text><xsl:value-of select="t:occupation[1]/t:placeName[1]/normalize-space(translate(text()[1],'()[]^$\|',''))"/></name><!-- Achtung, es gibt Personen mit mehrer Bischofsämtern, die alle abgearbeitet werden sollten -->
+            </xsl:copy>
+        </xsl:for-each>
+    </xsl:variable>
     <xsl:variable name="ids">
         <!-- Um auf dublette IDs zu testen, brauche ich eine skriptinterne Repräsentation der Prä-IDs, die aus Datum und Archivort bestehen: -->
         <xsl:for-each select="//t:row[position() gt 1]">
@@ -502,7 +514,7 @@
                                                     <!-- FixMe: es gibt auch kopiale Überlieferungen, die vermutlich am Einleitungswort "kopial" in der Archiv-Spalte erkennbar sind. -->
                                                     <xsl:for-each
                                                         select="t:cell[7]/t:p[@rend = 'LINK-ZU-BILD']">
-                                                        <xsl:sort select=".//t:ref|."/>
+                                                        <xsl:sort select="concat(.//t:ref[1],.)"/>
                                                         <xsl:choose>
                                                             <xsl:when
                                                                 test="($id/mom and .//text()[contains(., 'monasterium.net')])">
@@ -633,9 +645,39 @@
         </xsl:choose>
     </xsl:template>
    <!-- In gesamten Dokument normalize-space() -->
-    <xsl:template match="text()">
-       <xsl:value-of select="replace(.,'\s+',' ')"/>
-   </xsl:template>
+    <xsl:template match="text()" priority="-2">
+        <xsl:choose><xsl:when test="ancestor-or-self::t:p[@rend='Regest']"><xsl:copy-of select="cei:findperson(replace(.,'\s+',' '))"/></xsl:when><xsl:otherwise><xsl:value-of select="replace(.,'\s+',' ')"/></xsl:otherwise></xsl:choose>
+        <!-- ToDo: Das könnte durch eine Funktion geschickt werden, die aus einer Namen aus einer Personenliste extrahiert, diese im Text findet, und ihnen dann ein cei:persName mit entsprechendem @key zuweist. Relevant ist es nur für die Regesten .. -->
+    </xsl:template>
+    
+    <xsl:function name="cei:findperson">
+        <xsl:param name="text"/>
+        <!-- Teste die Liste der Personennamensformen, die passen könnten -->
+        <xsl:variable name="regex" select="cei:testperson($text)"/>
+        <xsl:choose>
+            <xsl:when test="$regex!=''">
+<!--                <xsl:variable name="test">
+                    <hit><xsl:value-of select="substring-before($text,$regex/treffer/text())"/><cei:persName key="#{$regex//@xml:id}"><xsl:value-of select="$regex/treffer/text()"/></cei:persName><xsl:value-of select="substring-after($text,$regex/treffer/text())"/></hit>
+                </xsl:variable>-->
+                <xsl:value-of select="substring-before($text,$regex/treffer[1]/text())"/><cei:persName key="#{string($regex/*[1]/@xml:id[1])}"><xsl:value-of select="$regex/treffer[1]/text()"/></cei:persName><xsl:value-of select="substring-after($text,$regex/treffer[1]/text())"/>
+</xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$text"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    <xsl:function name="cei:testperson">
+        <xsl:param name="text"/>
+        <xsl:for-each select="$names/t:person">
+            <xsl:choose>
+                <xsl:when test="matches($text,./name/text())">
+                    <treffer><xsl:copy-of select="@xml:id"/>
+                    <xsl:value-of select="./name/text()"/></treffer>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:function>
+    
     <!-- interne Notizen werden als Kommentar bereitgestellt -->
     <xsl:template match="t:*[@rend = 'Interne Notizen']">
         <xsl:comment>
@@ -679,9 +721,6 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!--<xsl:template match="text()" priority="-2">
-        <xsl:value-of select="normalize-space(.)"/>
-    </xsl:template>-->
     <xsl:template match="t:*[@rend = 'Regest']">
         <xsl:if test="preceding-sibling::t:*[@rend = 'Regest']">
             <cei:lb/>
