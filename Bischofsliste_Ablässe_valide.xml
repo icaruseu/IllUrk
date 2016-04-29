@@ -1,0 +1,1267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+      <teiHeader type="text">
+            <fileDesc>
+                  <titleStmt>
+                        <title>Title</title>
+                  </titleStmt>
+                  <publicationStmt>
+                        <p part="N">Publication Information</p>
+                  </publicationStmt>
+                  <sourceDesc default="false">
+                        <p part="N">Information about the source</p>
+                  </sourceDesc>
+            </fileDesc>
+      </teiHeader>
+      <text>
+            <body>
+                  <listPerson default="false">
+                        <person xml:id="P_Angelus_Accia_1332" instant="false">
+                              <persName instant="false" full="yes">Angelus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Accia
+                                                (<region>Korsika</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Acciensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Aciensis</placeName>)</placeName>
+                                    <date from="1332" to="1344" instant="false">1332–1344</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>67</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Jakobus_Acerno_1295" instant="false">
+                              <persName instant="false" full="yes">Jakobus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Acerno
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Acernensis</placeName>)</placeName>
+                                    <date from="1295" to="1296" instant="false">1295/1296</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>68</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Jordanus_Acerno_1319" instant="false">
+                              <persName instant="false" full="yes">Jordanus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Acerno
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Acernensis</placeName>)</placeName>
+                  <date from="1319" to="1331" instant="false">1319–1331</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913,
+                                                  S.<citedRange>68</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Petrus_Acerno_1331" instant="false">
+                              <persName instant="false" full="yes">Petrus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Acerno
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Acernensis</placeName>)</placeName>
+                  <date from="1331" to="1344" instant="false">1331–1344</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>68</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Vitalis_Ajaccio_1322" instant="false">
+                              <persName instant="false" full="yes">Vitalis,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ajaccio
+                                                (<region>Korsika</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Adiacensis</placeName>)</placeName>
+                                    <date from="1322" to="1342" instant="false">1322–1342</date>
+                                    <ref>
+                     <bibl default="false" status="draft"> Eubel, Hierarchia 1, 1913,
+                                                  S.<citedRange>71</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Manfred_Ajaccio_1342" instant="false">
+                              <persName instant="false" full="yes">Manfred</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ajaccio
+                                                (<region>Korsika</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Adiacensis</placeName>)</placeName>
+                  <date from="1342" to="1345" instant="false">1342–1345</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>71</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Paulus_Alatri_1316" instant="false">
+                              <persName instant="false" full="yes">Paulus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Alatri
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Alatrini</placeName>)</placeName>
+                  <date from="1316" to="1363" instant="false">1316–1363</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>80</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Galganus_Aleria_1330" instant="false">
+                              <persName instant="false" full="yes">Galganus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Aleria
+                                                (<region>Korsika</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Aleriensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Laveriensis</placeName>)</placeName>
+                                    <date from="1330" to="1342" instant="false">1330–1342</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>82</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Martinus_Alessio_1336" instant="false">
+                              <persName instant="false" full="yes">Martinus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Alessio
+                                                (<region>Griechenland</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Alexiensis</placeName>)</placeName>
+                                    <date from="1336" to="1337" instant="false">1336/1337<note anchored="true">Auftreten in den
+                                                Ablässen aus Avignon</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>83<note anchored="true">aber ohne Angabe zu
+                                                  Martinus</note>
+                        </citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Maurus_Amelia_1286" instant="false">
+                              <persName instant="false" full="yes">Maurus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Amelia
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Ameliensis</placeName>)</placeName>
+                  <date from="1286" to="1321" instant="false">1286–1321</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>85</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Amelia_1326" instant="false">
+                              <persName instant="false" full="yes">Johannes</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Amelia
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Ameliensis</placeName>)</placeName>
+                  <date from="1326" to="1328" instant="false">1326–1328</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S. <citedRange>
+                                                  85</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Gilbertus_Annaghdown_1306" instant="false">
+                              <persName instant="false" full="yes">Gilbertus </persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Annaghdown
+                                                (<region>Irland</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enardinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enachdinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enacdunensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enachdunensis</placeName>)</placeName>
+                                    <date from="1306" to="1323" instant="false">1306–1323</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>239</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Robertus_Annaghdown_1325" instant="false">
+                              <persName instant="false" full="yes">Robertus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Clonfert (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clonfertensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clonensis</placeName>)</placeName>
+                  <date from="1320" to="1323" instant="false">1320–1323<note anchored="true">Erscheint unter anderem noch
+                                                  <ref>1324 Dezember 5</ref> und <ref>1325 Dezember
+                                                  8</ref> unter diesem Titel.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S. <citedRange>
+                                                  193</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Annaghdown
+                                                (<region>Irland</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enardinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enachdinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enacdunensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enachdunensis</placeName>)</placeName>
+                                    <date from="1325" to="1327" instant="false">1325–1327<note anchored="true">Gestorben 1328,
+                                                erscheint wohl irrig noch <ref>1329 Dezember
+                                                  20</ref> in einem Avignoner
+                                          Sammelablass.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>239</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Thomas_Annaghdown_1327" instant="false">
+                              <persName instant="false" full="yes">Thomas</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Annaghdown
+                                                (<region>Irland</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enardinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enachdinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enacdunensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Enachdunensis</placeName>)</placeName>
+                  <date from="1327" instant="false" to="1330">
+                     <precision match="to" notBefore="1330"/>1327–nach 1330<note anchored="true">Erscheint
+                                                in Sammelablässen aus Avignon unter anderem
+                                                  <ref>1330 Juli 8</ref>und<ref>1330 September
+                                                  1.</ref>
+                     </note>
+                  </date>
+                  <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia
+                                                1, 1913, S.
+                                          <citedRange>239</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Nikolaus_Argos_1324" instant="false">
+                              <persName instant="false" full="yes">Nikolaus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Argos
+                                                (<region>Griechenland</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Argoricensis</placeName>)</placeName>
+                                    <date from="1324" to="1334" instant="false">1324–1334<note anchored="true">War 1323/24 auch
+                                                Bischof von Drivost, siehe dort.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>105</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Laurentius_Ariano_1320" instant="false">
+                              <persName instant="false" full="yes">Laurentius</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ariano (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Areanensis</placeName>)</placeName>
+                                    <date from="1320" to="1349" instant="false">1320–1349</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>106</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Daniel_Arkadi_1327" instant="false">
+                              <persName instant="false" full="yes">Daniel</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Arkadi (<region>Kreta</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Archanensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Archadiensis</placeName>
+                  </placeName>) <date to="1330" instant="false" from="1327">
+                     <precision match="from" notAfter="1327"/>1327(spätestens)–1330</date>
+                  <ref>
+                     <bibl default="false" status="draft">Eubel,
+                                                Hierarchia 1, 1913, S.
+                                                <citedRange>102</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Raphael_Arkadi_1349" instant="false">
+                              <persName instant="false" full="yes">Raphael</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Arkadi (<region>Kreta</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Archanensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Archadiensis</placeName>)</placeName>
+                                    <date from="1349" to="1369" instant="false">1349–1369</date>
+                  <ref>
+                     <bibl default="false" status="draft">Eubel,
+                                                Hierarchia 1, 1913, <citedRange>S.
+                                                102</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Donatus_Ascalon_1325" instant="false">
+                              <persName instant="false" full="yes">Donatus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ascalon
+                                          (<region>Palästina</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Ascalonensis</placeName>)</placeName>
+                  <date from="1325" to="1327" instant="false">1325–1327</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>110</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Petrus_Asolo_1312" instant="false">
+                              <persName instant="false" full="yes">Petrus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Asolo (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis Novae</placeName>)</placeName>
+                  <date from="1312" to="1328" instant="false">1312–1328</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>191</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Natusbene_Avellino_1326" instant="false">
+                              <persName instant="false" full="yes">Natusbene</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Avellino (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Avelanensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Avilanensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Avelinensis</placeName>)</placeName>
+                                    <date from="1326" to="1334" instant="false">1326–1334</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>122</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Matthäus_Avlona_1330" instant="false">
+                              <persName instant="false" full="yes">Matthäus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Avlona
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Valonensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">de
+                                                Vallona</placeName>)</placeName>
+                  <date from="1330" to="1336" instant="false">1330–1336</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>122</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Jakob_Avlona_1336" instant="false">
+                              <persName instant="false" full="yes">Jakob</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Avlona
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Valonensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">de
+                                                Vallona</placeName>)</placeName>
+                                    <date from="1336" to="1338" instant="false">1336–1345</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>122</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Petrus_Avlona_1353" instant="false">
+                              <persName instant="false" full="yes">Petrus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Avlona
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Valonensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">de
+                                                Vallona</placeName>)</placeName>
+                                    <date from="1353" to="1362" instant="false">1353–1362 <note anchored="true">Das Amt war offenbar
+                                                zeitweise doppelt besetzt, siehe
+                                                  <ref>
+                           <persName instant="false" full="yes">Paulus</persName> von
+                                                  <placeName instant="false" full="yes">Avlona</placeName>
+                        </ref>.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>122</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Paulus_Avlona_1357" instant="false">
+                              <persName instant="false" full="yes">Paulus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Avlona
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Valonensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">de
+                                                Vallona</placeName>)</placeName>
+                  <date from="1357" to="1370" instant="false">1357–1370<note anchored="true">Das Amt war offenbar zeitweise
+                                                doppelt besetzt, siehe <persName instant="false" full="yes">Petrus</persName>
+                                                von <placeName instant="false" full="yes">Avlona</placeName>.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>122</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Matthäus_Bagnorea_1328" instant="false">
+                              <persName instant="false" full="yes">Matthäus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bagnorea (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Balneoracensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Balneoregensis</placeName>)</placeName>
+                                    <date from="1328" to="1342" instant="false">1328–1342</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>126</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Matthäus_Beirut_1323" instant="false">
+                              <persName instant="false" full="yes">Matthäus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Beirut (<region>Syrien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Beritensis</placeName>)</placeName>
+                                    <date from="1323" to="1333" instant="false">1323–1333<note anchored="true">Danach zum Bischof
+                                                von Modon ernannt.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>134</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Andreas_Belgrad_1322" instant="false">
+                              <persName instant="false" full="yes">Andreas</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Belgrad (<region>Serbien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Albensis</placeName>)</placeName>
+                                    <date from="1322" to="1330" instant="false">1322–1330</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>355</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Paulus_Belgrad_1330" instant="false">
+                              <persName instant="false" full="yes">Paulus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Belgrad (<region>Serbien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Albensis</placeName>)</placeName>
+                                    <date from="1330" to="1346" instant="false">1330–1346</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>355</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Robertus_Belluno-Feltre_1323" instant="false">
+                              <persName instant="false" full="yes">Robertus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Belluno-Feltre
+                                                (<region>Italien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltrensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltrensis et
+                                                Belonensis</placeName>)</placeName>
+                                    <date notAfter="1323" instant="false">Spätestens Ende 1323 aus dem Amt
+                                          ausgeschieden, in den Sammelablässen unter dem Datum
+                                                <ref>1323-09-20</ref> nachweisbar.</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Fehlt in der Aufzählung bei Eubel, Hierarchia 1,
+                                                1913, S.
+                                    <citedRange>132</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Gregorius_Belluno-Feltre_1323" instant="false">
+                              <persName instant="false" full="yes">Gregorius</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Belluno-Feltre
+                                                (<region>Italien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltrensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltrensis et
+                                                Belonensis</placeName>)</placeName>
+                                    <date from="1323" to="1327" instant="false">1323–1327</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>132</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Gorzias_Belluno-Feltre_1327" instant="false">
+                              <persName instant="false" full="yes">Gorzias</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Belluno-Feltre
+                                                (<region>Italien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltrensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Feltrensis et
+                                                Belonensis</placeName>)</placeName>
+                                    <date from="1327" to="1349" instant="false">1327–1349</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>132</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Guillelmus_Bethlehem_1331" instant="false">
+                              <persName instant="false" full="yes">Guillelmus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bethlehem
+                                                (<region>Palästina</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bethlemitanus</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bethleemitanus</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Betlemitensis</placeName>)</placeName>
+                                    <date from="1331" to="1347" instant="false">1331–1347</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>135</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Bisaccia_1329-05" instant="false">
+                              <persName instant="false" full="yes">Johannes</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bisaccia (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bisaciensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bisaniensis</placeName>)</placeName>
+                                    <date from="1329-05" to="1329-09" instant="false"> Mai–September 1329<note anchored="true">Wird
+                                                aber noch <ref>1329-12-20</ref> in einer Urkunde
+                                                genannt</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>136</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Franziskus_Bisaccia_1329" instant="false">
+                              <persName instant="false" full="yes">Franziskus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bisaccia (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bisaciensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bisaniensis</placeName>)</placeName>
+                                    <date from="1329" to="1351" instant="false">1329–1351</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>136</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Richardus_Bisaccia_1356" instant="false">
+                              <persName instant="false" full="yes">Richardus</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bisaccia (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bisaciensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bisaniensis</placeName>)</placeName>
+                                    <date from="1356" to="1362" instant="false">1356–1362 <note anchored="true">Wohl irrig auch
+                                                  <ref>1342-01-02</ref>.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Fehlt in der Aufzählung bei Eubel, Hierarchia 1,
+                                                1913, S.
+                                    <citedRange>136</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Jordanus_Bobbio_1326" instant="false">
+                              <persName instant="false" full="yes">Jordanus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bobbio (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bobbiensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bobiensis</placeName>)</placeName>
+                                    <date from="1326" to="1339" instant="false">1326–1339</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>139</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Bosa_1327" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bosa (<region>Sardinien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bossanensis</placeName>)</placeName>
+                                    <date from="1327" to="1340" instant="false">1327–1340<note anchored="true">Erscheint im
+                                                bearbeiteten Material nur einmal,
+                                                  <ref>1339-04-04</ref>, und zwar irrig als
+                                                Erzbischof.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>141</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Rogerus_Bovino_1329" instant="false">
+                              <persName instant="false" full="yes">Rogerus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Bovino (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Biviensis</placeName>)</placeName>
+                                    <date from="1329" to="1340" instant="false">1329–1340</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>139</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Ludwig_Brandenburg_1327" instant="false">
+                              <persName instant="false" full="yes">Ludwig,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Brandenburg
+                                                (<region>Deutschland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Brandeburgensis</placeName>)</placeName>
+                                    <date from="1327" to="1347" instant="false">1327–1347<note anchored="true">Erscheint im
+                                                bearbeiteten Material nur einmal, und zwar <ref>1327
+                                                  September 30</ref>.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>144</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Budua_1329" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Budua (<region>Dalmatien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bodanensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Budiensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Buduanensis</placeName>)</placeName>
+                                    <date from="1329" atLeast="1331" instant="false">1329– zumindest 1331</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>150</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Heinricus_Budua_1343" instant="false">
+                              <persName instant="false" full="yes">Heinricus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Budua (<region>Dalmatien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Bodanensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Budiensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Buduanensis</placeName>)</placeName>
+                                    <date from="1343" to="1345" instant="false">1343–1345<note anchored="true">Erscheint im
+                                                bearbeiteten Material noch in einer Urkunde von
+                                                  <ref>1346 Jänner 9</ref>.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>150</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Hieronymus_Caffa_1322" instant="false">
+                              <persName instant="false" full="yes">Hieronymus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Caffa
+                                                (<region>Feodosjia/Krim</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Caffensis</placeName>)</placeName>
+                                    <date from="1322" to="1324" instant="false">1322–1324</date>
+                  <ref>
+                     <bibl default="false" status="draft"> Eubel,
+                                                Hierarchia 1, 1913, S.
+                                                <citedRange>154</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Matthäus_Caffa_1324" instant="false">
+                              <persName instant="false" full="yes">Matthäus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Caffa
+                                                (<region>Feodosjia/Krim</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Caffensis</placeName>)</placeName>
+                  <date from="1324" to="1334" instant="false">1324–1334</date>
+                  <ref>
+                     <bibl default="false" status="draft"> Eubel Hierarchia 1,
+                                                1913, S.
+                                    <citedRange>154</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Thaddäus_Caffa_1334" instant="false">
+                              <persName instant="false" full="yes">Thaddäus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Caffa
+                                                (<region>Feodosjia/Krim</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Caffensis</placeName>)</placeName>
+                  <date atLeast="1334" to="1358" instant="false">1323/1334-1358 <note anchored="true">Kommt nur
+                                                vereinzelt vor, und zwar schon <ref>1323 Mai
+                                                  11</ref> und <ref>1327 März 10</ref>, aber auch
+                                                  <ref>1347 Februar 5</ref>, <ref>1347 April
+                                                  15</ref>. Die ersten Nennungen fallen also in die
+                                                Zeit, in der eigentlich Matthäus als Bischof
+                                                amtierte. Ob Thaddäus damals schon Ansprüche auf das
+                                                Amt stellte und deswegen in den Avignoner Urkunden
+                                                genannt wurde, muss offenbleiben.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>154</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Raimundus_Caffa_1335" instant="false">
+                              <persName instant="false" full="yes">Raimundus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Caffa
+                                                (<region>Feodosjia/Krim</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Caffensis</placeName>)</placeName>
+                                    <date notBefore="1335" instant="false">1335<note anchored="true">Erscheint nur in den Urkunden:
+                                                1335 Jänner 1, 1335 April 4, 1335 Mai
+                                          27.</note>
+                  </date>
+                  <ref>
+                     <bibl default="false" status="draft">Fehlt in der Aufzählung bei
+                                                Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>154</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Petrus_Cagli_1319" instant="false">
+                              <persName instant="false" full="yes">Petrus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cagli (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Calliensis</placeName>)</placeName>
+                                    <date from="1319" to="1328" instant="false">1319–1328<note anchored="true">Dann abgesetzt, aber
+                                                noch bis 1362 in Avignoner Urkunden
+                                                nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S. <citedRange>158 Anm. 5
+                                                  zu Cagli</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Capitolias_1338" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Capitolias
+                                                (<region>Palästina</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Capionensis</placeName>)</placeName>
+                                    <date atLeast="1338" atMost="1350" instant="false">1338–1350<note anchored="true">In den
+                                                Avignoner Urkunden nachweisbar ab 1340/41 bis
+                                                1343.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>163</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Benedikt_Cardica_1330" instant="false">
+                              <persName instant="false" full="yes">Benedikt,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cardica
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cardicensis</placeName>)</placeName>
+                  <date notBefore="1330" notAfter="1337" instant="false"> 1330–1337<note anchored="true">In
+                                                Avignoner Urkunden in dieser Zeit nachweisbar, bei
+                                                Eubel keine genauen Angaben zur
+                                          Amtszeit.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>166</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Julianus_Cardica_1350" instant="false">
+                              <persName instant="false" full="yes">Julianus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cardica
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cardicensis</placeName>)</placeName>
+                                    <date notBefore="1350" notAfter-custom="1357" instant="false">Nach 1350
+                                                <note anchored="true">Erscheint 1356/57 (<ref>1356 August 9</ref>,
+                                                  <ref>1357 Februar 10</ref>) in Avignoner
+                                                Urkunden</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>167</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Cardica_1357" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cardica
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cardicensis</placeName>)</placeName>
+                  <date notBefore="1357" instant="false">1357 <note anchored="true">Erscheint nur einmal in einer
+                                                Urkunde von 1357 Juni 29.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Fehlt in der Aufzählung bei Eubel, Hierarchia 1,
+                                                1913, S.
+                                    <citedRange>167</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Azzo_Caserta_1290" instant="false">
+                              <persName instant="false" full="yes">Azzo,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Caserta (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Casertanus</placeName>)</placeName>
+                                    <date from="1290" to="1310" instant="false">1290–1310</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>169</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Paschalis_Cassano_1282" instant="false">
+                              <persName instant="false" full="yes">Paschalis,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cassano (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cassanensis</placeName>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cassinensis</placeName>)</placeName>
+                                    <date to="1298" instant="false" from="1282">
+                     <precision match="from" notAfter="1282"/>um
+                                                1282–1298</date>
+                  <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1,
+                                                1913, S.
+                                    <citedRange>170</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Cassano_1329" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cassano (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cassanensis</placeName>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cassinensis</placeName>)</placeName>
+                  <date from="1329" to="1334" instant="false">1329–1334</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>170</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Guillelmus_Cassano_1330" instant="false">
+                              <persName instant="false" full="yes">Guillelmus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cassano (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cassanensis</placeName>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cassinensis</placeName>)</placeName>
+                  <date notBefore="1330" notAfter="1330" instant="false">1330 <note anchored="true">Erscheint in
+                                                einer Avignoner Urkunde von <ref>1330 Jänner
+                                                  28</ref>; der von 1301 bis 1316 amtierende
+                                                Guillelmus de Cuna kann wohl nicht mehr gemeint
+                                                sein.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Fehlt in der Aufzählung bei Eubel, Hierarchia 1,
+                                                1913, S.
+                                    <citedRange>170</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Jakobus_Castro_1321" instant="false">
+                              <persName instant="false" full="yes">Jakobus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Castro
+                                                (<region>Norditalien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castrensis</placeName>)</placeName>
+                                    <date from="1321" to="1347" instant="false">1321-1347<note anchored="true">Erscheint nur 1331 im
+                                                untersuchten Korpus Avignoner
+                                          Urkunden.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>173</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Guillelmus_Castro_false" instant="false">
+                              <persName instant="false" full="yes">Guillelmus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Castro
+                                                (<region>Frankreich/Italien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castrensis</placeName>
+                     <note anchored="true">Es ist nicht klar, ob
+                                                das französische, das nord- bzw. mittelitalienische
+                                                oder das sardinische Castro gemeint
+                                          ist.</note>)</placeName>
+                                    <date instant="false">1356<note anchored="true">Nur in eier Urkunde von 1356 August 9 als
+                                                Aussteller auftauchend.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Fehlt in den möglichen relevanten Aufzählungen bei
+                                                Eubel, Hierarchia 1, 1913. S.
+                                                  <citedRange>172-174</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Venutus_Catanzaro_1305" instant="false">
+                              <persName instant="false" full="yes">Venutus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Catanzaro
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Catacensis</placeName>/Cathacensis)</placeName>
+                  <date from="1305" to="1343" instant="false">1305–1343<note anchored="true">Bis 1326 auf
+                                                Grundlage des untersuchten Quellenkorpus in Avignon
+                                                nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>174</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Franziskus_Ceneda_1320" instant="false">
+                              <persName instant="false" full="yes">Franziskus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ceneda (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">de
+                                                Cheneta</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cenetensis</placeName>)</placeName>
+                                    <date from="1320" to="1349" instant="false">1320–1349<note anchored="true">Bis 1327 auf
+                                                Grundlage des untersuchten Quellenkorpus in Avignon
+                                                nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                    180</bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Geraldus_Cervia_1324" instant="false">
+                              <persName instant="false" full="yes">Geraldus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cervia (<region>Italien</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cerviensis</placeName>)</placeName>
+                                    <date from="1324" to="1329" instant="false">1324–1329<note anchored="true">1326/27 in Avignon
+                                                nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>183</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Bonifatius_Chiron_1306" instant="false">
+                              <persName instant="false" full="yes">Bonifatius,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Chiron
+                                                (<region>Kreta</region>/<region>Griechenland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Kyronensis</placeName>)</placeName>
+                                    <date from="1306" to="1328" instant="false">1306–1328<note anchored="true">Im Jahr 1324 in
+                                                Avignon nachweisbar.</note>
+                  </date>
+                  <ref>
+                     <bibl default="false" status="draft"> Eubel,
+                                                Hierarchia 1, 1913, S.
+                                                <citedRange>183</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Ricardus_Scurschi_1333" instant="false">
+                              <persName instant="false" full="yes">Ricardus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Scurschi (<region>Cherson</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cerceonensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cersonensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Serceonensis</placeName>)</placeName>
+                                    <date notBefore="1333" notAfter="1338" instant="false">1333-1338<note anchored="true">1333, 1336
+                                                und 1338 in Avignon nachweisbar. Keine Angabe zur
+                                                Amtszeit bei Eubel.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>184</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Berengarius_Christopolis_1325" instant="false">
+                              <persName instant="false" full="yes">Berengarius,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Christopolis
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Christopoltinensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Christopolovensis</placeName>)</placeName>
+                                    <date from="1325" to="1352" instant="false">1325–1352<note anchored="true">Bei Eubel erst ab
+                                                1327 angeführt, jedoch schon in früheren Ablässen,
+                                                z. B. <ref>1325</ref> [ohne Monat und Tag] zu
+                                                finden.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.<citedRange>
+                                                  186</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Ciudad-Rodrigo_1324" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ciudad-Rodrigo
+                                                (<region>Spanien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                                Roderi</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Roderici</placeName>)</placeName>
+                                    <date from="1324" to="1329" instant="false">1324–1329.<note anchored="true">Ab 1327 bis 1329 in
+                                                Avignon nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>186</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Alfonsus_CiudadRodrigo_1344" instant="false">
+                              <persName instant="false" full="yes">Alfonsus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Ciudad Rodrigo
+                                                (<region>Spanien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                                Roderi</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                          Roderici</placeName>)</placeName>
+                                    <date from="1344" to="1382" instant="false">1344–1382<note anchored="true">Erscheint in den
+                                                Jahren 1363/64 in den Avignoner
+                                          Urkunden.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.<citedRange>
+                                                  189</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Monaldus_CivitatisCastellana_1288" instant="false">
+                              <persName instant="false" full="yes">Monaldus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Civitatis Castellana
+                                                (<region>Italien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                                Castellane</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castellanus</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castelle</placeName>)</placeName>
+                                    <date from="1288" to="1307" instant="false">1288–1307</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>190</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Guillelmus_CivitatisCastellana_1324" instant="false">
+                              <persName instant="false" full="yes">Guillelmus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Civitatis Castellana
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                                Castellane</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castellanus</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castelle</placeName>)</placeName>
+                                    <date from="1324" to="1331" instant="false">1324–1331</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>190</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Franziskus_CivitatisCastellana_1331" instant="false">
+                              <persName instant="false" full="yes">Franziskus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Civitatis Castellana
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                                Castellane</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castellanus</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castelle</placeName>)</placeName>
+                                    <date from="1331" to="1348" instant="false">1331–1348</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>190</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_CivitatisCastellana_1348" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Civitatis Castellana
+                                                (<region>Italien</region>,<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Civitatis
+                                                Castellane</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castellanus</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Castelle</placeName>)</placeName>
+                  <date from="1348" to="1359" instant="false">1348–1359</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>190</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Clonfert_1322" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Clonfert (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clonfertensis</placeName>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clonensis</placeName>)</placeName>
+                                    <date from="1322" to="1336" instant="false">1322–1336 <note anchored="true">Besonders gegen Ende
+                                                seiner Amtszeit um 1335 häufiger in Avignon
+                                                nachweisbar. Stand anfangs im Konflikt mit Robertus
+                                                um den Titel des Bischofs von Clonfert, beide treten
+                                                in Avignoner Urkunden auf.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>193</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Robertus_Clonfert_1324" instant="false">
+                              <persName instant="false" full="yes">Robertus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Clonfert (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clonfertensis</placeName>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clonensis</placeName>)</placeName>
+                                    <date from="1324" to="1327" instant="false">1324–1327 Erscheint 1324 Dezember 5,
+                                          1325 Dezember 8 und 1327 März 10 im untersuchten
+                                          Quellenkorpus, steht mit Johannes von Clonfert im Konflikt
+                                          um den Bischofstitel.</date>
+                  <ref>
+                     <bibl default="false" status="draft"> Eubel, Hierarchia
+                                                1, 1913, <citedRange>S. 193 Anm. 4 zum
+                                                  Bistum</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Cloyne_1322" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes"> Cloyne (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clofensis</placeName>)</placeName>
+                  <date from="1322" to="1347" instant="false"> 1322–1347</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>193</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Bartholomäus_Cloyne_false" instant="false">
+                              <persName instant="false" full="yes">Bartholomäus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cloyne (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Clofensis</placeName>)</placeName>
+                                    <date instant="false">1335<note anchored="true">Im untersuchten Quellenkorpus nur 1335
+                                                nachweisbar, wird bei Eubel nicht
+                                          genannt.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, <citedRange>S.
+                                                  193</citedRange>
+                        <note anchored="true">Nur zum Bistum, Bartholomäus
+                                                  nicht genannt.</note>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Jordanus_Colombo_false" instant="false">
+                              <persName instant="false" full="yes">Jordanus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Colombo (<region>Sri
+                                          Lanka</region>, ehemals <region>Ceylon</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Columbensis</placeName>)</placeName>
+                                    <date instant="false">1330</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>198</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Robertus_Connor_1323" instant="false">
+                              <persName instant="false" full="yes">Robertus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Connor (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Connerensis</placeName>)</placeName>
+                                    <date from="1323" instant="false" to="1326">
+                     <precision match="to" notBefore="1326"/>1323–1326<note anchored="true">Laut Eubel
+                                                bereits 1324 in Avignon gestorben, jedoch erscheint
+                                                er in Avignoner Urkunden noch im Jahr 1326.
+                                                  <ref>
+                           <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>202</citedRange>
+                           </bibl>
+                        </ref>
+                     </note>
+                  </date>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Philipp_Cork_1321" instant="false">
+                              <persName instant="false" full="yes">Philipp,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cork (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Corkagensis</placeName>)</placeName>
+                                    <date from="1321" to="1327" instant="false">1321–1327<note anchored="true">Im untersuchten
+                                                Material ein Mal, nämlich 1324 Dezember 5,
+                                                nachzuweisen.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>211</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Marinus_Coron_1324" instant="false">
+                              <persName instant="false" full="yes">Marinus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Coron
+                                                (<region>Griechenland</region>, <placeName type="alterntive" xml:lang="lat" instant="false" full="yes">Coronensis</placeName>)</placeName>
+                                    <date from="1324" to="1330" instant="false">1324–1330</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>212</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Andreas_Coron_1333" instant="false">
+                              <persName instant="false" full="yes">Andreas,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Coron
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Coronensis</placeName>)</placeName>
+                                    <date from="1333" to="1346" instant="false">1333–1346<note anchored="true">Ist in den ersten
+                                                Jahren seiner Amtszeit bis inklusive 1339 regelmäßig
+                                                in Avignoner Urkunden nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>212</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Rudolfus_Cyzicus_1327" instant="false">
+                              <persName instant="false" full="yes">Rudolfus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Cyzicus
+                                                (<region>Griechenland</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Cyriquensis</placeName>/ <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Siriquensis</placeName>) </placeName>
+                                    <date from="1327" to="1331" instant="false">1327–1331<note anchored="true">In jedem Jahr seiner
+                                                Amtszeit in Avignoner Urkunden als Aussteller
+                                                vorzufinden.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, <citedRange>S. 221 Anm. 1
+                                                  zum Bistum</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Nikolaus_Drivost_1323" instant="false">
+                              <persName instant="false" full="yes">Nikolaus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Drivost (<region>Epirus</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Derivastensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Derrivastensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dirivastensis</placeName>)</placeName>
+                  <date from="1323" to="1324" instant="false">1323/24<note anchored="true">In beiden Jahren in
+                                                Avignon nachweisbar, wird im Jahr <date instant="false">1324</date>
+                                                zum Bischof von <placeName instant="false" full="yes">Argos</placeName>
+                                                ernannt, siehe dort.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>227</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Johannes_Drivost_1328" instant="false">
+                              <persName instant="false" full="yes">Johannes,</persName>
+                              <occupation instant="false">&gt;Bischof von <placeName instant="false" full="yes">Drivost (<region>Epirus</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Derivastensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Derrivastensis</placeName>/<placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dirivastensis</placeName>)</placeName>
+                                    <date notBefore="1328" notAfter="1328" instant="false">1328 <note anchored="true">Erscheint im
+                                                untersuchten Material nur in der Urkunde von
+                                                  <ref>1328 April 10.</ref>
+                     </note>
+                  </date> Fehlt in
+                                    der Auflistung bei <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>227</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Bernardus_Dschordschan_1329" instant="false">
+                              <persName instant="false" full="yes">Bernardus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Dschordschan
+                                                (<region>Persien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Diagorganensis</placeName>)</placeName>
+                                    <date from="1329" to="1349" instant="false">1329–1349<note anchored="true">Kurz nach seinem
+                                                Amtsantritt und dann wieder vor allem zwischen 1334
+                                                und 1336 vermehrt in Avignon
+                                          nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>224</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Radulfus_Down_1328" instant="false">
+                              <persName instant="false" full="yes">Radulfus,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Down (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dunensis</placeName>)</placeName>
+                                    <date from="1328" to="1353" instant="false">1328–1353</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>231</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Gregorius_Down_false" instant="false">
+                              <persName instant="false" full="yes">Gregorius,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Down (<region>Irland</region>,
+                                                <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dunensis</placeName>)</placeName>
+                                    <date instant="false">1353<note anchored="true">Wurde zwar zum Bischof von Down ernannt, jedoch
+                                                war Radulfus noch nicht gestorben, weswegen seine
+                                                Wahl nicht gültig war.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>231</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Thomas_Dulcigno_1331" instant="false">
+                              <persName instant="false" full="yes">Thomas,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Dulcigno
+                                                (<region>Dalmatien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dulcinensis</placeName>)</placeName>
+                                    <date from="1331" to="1334" instant="false">1331–1334</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>229</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Gratias_Dulcigno_1334" instant="false">
+                              <persName instant="false" full="yes">Gratias,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Dulcigno
+                                                (<region>Dalmatien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dulcinensis</placeName>)</placeName>
+                                    <date from="1334" to="1343" instant="false">1334–1343<note anchored="true">Ab ca. 1338 bis zu
+                                                seinem Amtsende sehr häufig und regelmäßig in
+                                                Avignoner Indulgenzen nachweisbar.</note>
+                  </date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>229</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                        <person xml:id="P_Antonius_Dulcigno_1343" instant="false">
+                              <persName instant="false" full="yes">Antonius,</persName>
+                              <occupation instant="false">Bischof von <placeName instant="false" full="yes">Dulcigno
+                                                (<region>Dalmatien</region>, <placeName type="alternative" xml:lang="lat" instant="false" full="yes">Dulcinensis</placeName>)</placeName>
+                                    <date from="1343" to="1349" instant="false">1343–1349</date>
+                                    <ref>
+                     <bibl default="false" status="draft">Eubel, Hierarchia 1, 1913, S.
+                                                  <citedRange>229</citedRange>
+                     </bibl>
+                  </ref>
+               </occupation>
+                        </person>
+                  </listPerson>
+            </body>
+      </text>
+</TEI>
