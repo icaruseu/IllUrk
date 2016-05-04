@@ -11,7 +11,9 @@
         <app:draft>no</app:draft>
     </app:control>
     <atom:content type="application/xml">
-        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xml:base="http://monasterium.net/mom/controlledVocabulary/illurk-vocabulary">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+            xml:base="http://monasterium.net/mom/controlledVocabulary/illurk-vocabulary">
             <skos:ConceptScheme rdf:about="#illurk-vocabulary">
                 <skos:prefLabel xml:lang="de">Niveaus illuminierter Urkunden</skos:prefLabel>
             </skos:ConceptScheme>
@@ -19,224 +21,264 @@
                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
                 <skos:definition/>
                 <skos:narrower>
-                    <rdf:Description rdf:about="#HistoriatedDecoration">
+                    <rdf:Description rdf:about="#Historiated">
                         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                        <skos:prefLabel xml:lang="en">Historiated Decoration</skos:prefLabel>
-                        <skos:prefLabel xml:lang="de">Historisierte Dekoration</skos:prefLabel>
-                        <skos:prefLabel xml:lang="fr">Décoration historiée</skos:prefLabel>
-                        <skos:prefLabel xml:lang="it">Decorazione istoriata</skos:prefLabel>
-                    	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        <skos:prefLabel xml:lang="en">N1: historiated</skos:prefLabel>
+                        <skos:prefLabel xml:lang="de">N1: historisiert</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N1: historiée</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N1: istoriata</skos:prefLabel>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                     </rdf:Description>
                     <rdf:Description rdf:about="#WithAdditionalColours">
                         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                        <skos:prefLabel xml:lang="de">Mit zusätzlichen Farben</skos:prefLabel>
-                        <skos:prefLabel xml:lang="en">With Additional Colours</skos:prefLabel>
-                        <skos:prefLabel xml:lang="fr">Avec couleurs additionnelles</skos:prefLabel>
-                        <skos:prefLabel xml:lang="it">Con colori addizionali</skos:prefLabel>
-                        <skos:narrower>
-                            <rdf:Description rdf:about="#Miniatures">
-                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Bildfelder</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Panels</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Miniatures</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Miniature</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
-                            </rdf:Description>
-                            <rdf:Description rdf:about="#Initials">
-                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Initiale</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Initials</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Initiales</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Iniziali</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
-                            </rdf:Description>
-                            <rdf:Description rdf:about="#Borders">
-                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Randdekor</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Borders</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Illustrations marginales</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Illustrazioni marginali</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
-                            </rdf:Description>
-                            <rdf:Description rdf:about="#CoatsOfArms">
-                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Wappen</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Coat of arms</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Blasons</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Stemmi</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
-                            </rdf:Description>
-                            <rdf:Description rdf:about="#ExecutionDraw">
-                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">gezeichnet</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">drawn</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">à la plume</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">a penna</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
-                            </rdf:Description>
-                            <rdf:Description rdf:about="#ExecutionPainted">
-                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">gemalt</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">painted</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">peinte</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">dipinta</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
-                            </rdf:Description>
-                        </skos:narrower>
-                    	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        <skos:prefLabel xml:lang="de">N1: mit zusätzlichen Farben</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">N1: with Additional Colours</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N1: avec couleurs
+                            additionnelles</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N1: con colori addizionali</skos:prefLabel>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                    </rdf:Description>
+                    <rdf:Description rdf:about="#Miniatures">
+                        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                        <skos:prefLabel xml:lang="de">N1: Bildfeld</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">N1: Panels</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N1: Miniatures</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N1: Miniature</skos:prefLabel>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+
+                        <rdf:Description rdf:about="#Initials">
+                            <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                            <skos:prefLabel xml:lang="de">N1: Initiale</skos:prefLabel>
+                            <skos:prefLabel xml:lang="en">N1: Initials</skos:prefLabel>
+                            <skos:prefLabel xml:lang="fr">N1: Initiales</skos:prefLabel>
+                            <skos:prefLabel xml:lang="it">N1: Iniziali</skos:prefLabel>
+                            <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        </rdf:Description>
+                        <rdf:Description rdf:about="#Borders">
+                            <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                            <skos:prefLabel xml:lang="de">N1: Randdekor</skos:prefLabel>
+                            <skos:prefLabel xml:lang="en">N1: Borders</skos:prefLabel>
+                            <skos:prefLabel xml:lang="fr">N1: Illustrations
+                                marginales</skos:prefLabel>
+                            <skos:prefLabel xml:lang="it">N1: Illustrazioni
+                                marginali</skos:prefLabel>
+                            <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        </rdf:Description>
+                        <rdf:Description rdf:about="#CoatsOfArms">
+                            <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                            <skos:prefLabel xml:lang="de">N1: Wappen</skos:prefLabel>
+                            <skos:prefLabel xml:lang="en">N1: Coat of arms</skos:prefLabel>
+                            <skos:prefLabel xml:lang="fr">N1: Blasons</skos:prefLabel>
+                            <skos:prefLabel xml:lang="it">N1: Stemmi</skos:prefLabel>
+                            <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        </rdf:Description>
+                        <rdf:Description rdf:about="#ExecutionDraw">
+                            <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                            <skos:prefLabel xml:lang="de">N1: gezeichnet</skos:prefLabel>
+                            <skos:prefLabel xml:lang="en">N1: drawn</skos:prefLabel>
+                            <skos:prefLabel xml:lang="fr">N1: à la plume</skos:prefLabel>
+                            <skos:prefLabel xml:lang="it">N1: a penna</skos:prefLabel>
+                            <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        </rdf:Description>
+                        <rdf:Description rdf:about="#ExecutionPainted">
+                            <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                            <skos:prefLabel xml:lang="de">N1: gemalt</skos:prefLabel>
+                            <skos:prefLabel xml:lang="en">N1: painted</skos:prefLabel>
+                            <skos:prefLabel xml:lang="fr">N1: peinte</skos:prefLabel>
+                            <skos:prefLabel xml:lang="it">N1: dipinta</skos:prefLabel>
+                            <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        </rdf:Description>
                     </rdf:Description>
                 </skos:narrower>
-            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
             </rdf:Description>
             <rdf:Description rdf:about="#N2">
                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
                 <skos:narrower>
-                    <rdf:Description rdf:about="#DrawnDecoration-not-historiated-Fleuronne">
+                    <rdf:Description rdf:about="#DrawnDecoration-not-historiated">
                         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                        <skos:prefLabel xml:lang="de">Gezeichnete Ausstattung (nicht historisiert) (Fleuronnée)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="en">Drawn Decoration (not historiated) Penwork (Fleuronné)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="fr">Décoration à la plume (pas historiée) Décor à filigranes (filigrané, fleuronné)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="it">Decorazione a inchiostro non istoriata Decoratione filigranata</skos:prefLabel>
+                        <skos:prefLabel xml:lang="de">N2: Gezeichnete Ausstattung (nicht
+                            historisiert)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">N2: Drawn Decoration (not historiated)
+                            Penwork</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N2: Décoration à la plume (pas
+                            historiée)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N2: Decorazione a inchiostro non
+                            istoriata</skos:prefLabel>
+                        <skos:narrower>
+                            <rdf:Description rdf:about="#Fleuronne">
+                                <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                                <skos:prefLabel xml:lang="de">N2: Fleuronnée</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2:
+                                    Penwork(Fleuronné)</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N2: Décor à filigranes (filigrané,
+                                    fleuronné)</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: Decoratione
+                                    filigranata</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                            </rdf:Description>
+                        </skos:narrower>
                         <skos:narrower>
                             <rdf:Description rdf:about="#DD-nh-Panels">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Ornamentfelder</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Panels</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Tableaux</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Panelli</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N2: Ornamentfelder</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2: Panels</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N2: Tableaux</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: Panelli</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
-                        </skos:narrower>                       
+                        </skos:narrower>
                         <skos:narrower>
                             <rdf:Description rdf:about="#DD-nh-Initials">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Initiale</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Initials</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Initiales</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Iniziali</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N2: Initiale</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2: Initials</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N2: Initiales</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: Iniziali</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                         </skos:narrower>
                         <skos:narrower>
                             <rdf:Description rdf:about="#DD-nh-Borders">
-                                <skos:prefLabel xml:lang="fr">Bordures</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Prolungamenti marginali</skos:prefLabel>
-                                <skos:prefLabel xml:lang="de">Randdekor</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Borders</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="fr">N2: Bordures</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: Prolungamenti
+                                    marginali</skos:prefLabel>
+                                <skos:prefLabel xml:lang="de">N2: Randdekor</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2: Borders</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
+                            <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                         </skos:narrower>
-                    	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
                     </rdf:Description>
                     <rdf:Description rdf:about="#DepictiveMotives-not-historiated">
                         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                        <skos:prefLabel xml:lang="de">Gegenständliche Motive (nicht historisiert)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="en">Depictive motives (not historiated)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="fr">Motifs objectif (pas historié)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="it">Motivi concreti non istoriati</skos:prefLabel>
+                        <skos:prefLabel xml:lang="de">N2: Gegenständliche Motive (nicht
+                            historisiert)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">N2: Depictive motives (not
+                            historiated)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N2: Motifs objectif (pas
+                            historié)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N2: Motivi concreti non
+                            istoriati</skos:prefLabel>
                         <skos:narrower>
                             <rdf:Description rdf:about="#figural">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">figürlich</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">figural</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">figuratif</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">figurali</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N2: figürlich</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2: figural</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N2: figuratif</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: figurali</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#zoomorphic">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">zoomorph</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">zoomorophic</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">zoomorphe</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">animali</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N2: zoomorph</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2: zoomorophic</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N2: zoomorphe</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: animali</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#otherMotivs">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">andere</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">other</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">autres</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">altri</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N2: andere</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N2: other</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N2: autres</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N2: altri</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                         </skos:narrower>
-                    	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                     </rdf:Description>
-                    <rdf:Description rdf:about="Display-Script-calligraphic-with-decorative-character">
+                    <rdf:Description
+                        rdf:about="#Display-Script-calligraphic-with-decorative-character">
                         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                        <skos:prefLabel xml:lang="de">Zierschriften (Auszeichnungsschriften)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="en">Display script (with decorative character)</skos:prefLabel>
-                        <skos:prefLabel xml:lang="fr">Écriture dʼapparat</skos:prefLabel>
-                        <skos:prefLabel xml:lang="it">Scrittura distintiva (calligrafica)</skos:prefLabel>
-                    	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        <skos:prefLabel xml:lang="de">N2: Zierschrift
+                            (Auszeichnungsschrift)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">N2: Display script (with decorative
+                            character)</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N2: Écriture dʼapparat</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N2: Scrittura distintiva
+                            (calligrafica)</skos:prefLabel>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                     </rdf:Description>
+                    <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                 </skos:narrower>
-            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
             </rdf:Description>
             <rdf:Description rdf:about="#N3">
                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
                 <skos:narrower>
+                    <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                     <rdf:Description rdf:about="#GraphicMeansOfAuthenticating">
                         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                        <skos:prefLabel xml:lang="de">Graphische Beglaubigungsmittel</skos:prefLabel>
-                        <skos:prefLabel xml:lang="en">Graphic means of authentication</skos:prefLabel>
-                        <skos:prefLabel xml:lang="fr">Signes graphiques de validation</skos:prefLabel>
-                        <skos:prefLabel xml:lang="it">Segni di autenticazione</skos:prefLabel>
+                        <skos:prefLabel xml:lang="de">N3: Graphische
+                            Beglaubigungsmittel</skos:prefLabel>
+                        <skos:prefLabel xml:lang="en">N3: Graphic means of
+                            authentication</skos:prefLabel>
+                        <skos:prefLabel xml:lang="fr">N3: Signes graphiques de
+                            validation</skos:prefLabel>
+                        <skos:prefLabel xml:lang="it">N3: Segni di autenticazione</skos:prefLabel>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                         <skos:narrower>
                             <rdf:Description rdf:about="#Chrismon">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Chrismon</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Chrismon</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Chrismon</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Chrismon</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N3: Chrismon</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N3: Chrismon</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N3: Chrismon</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N3: Chrismon</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#Monogram">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Monogramm</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Monogram</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Monogramme</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Monogramma</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N3: Monogramm</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N3: Monogram</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N3: Monogramme</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N3: Monogramma</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#Rota">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Rota</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Rota</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Rota</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Rota</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N3: Rota</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N3: Rota</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N3: Rota</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N3: Rota</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#SignumRecognitionis">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Rekognitionszeichen (Bienenkorb)</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Signum recognitions</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Signum recognitions (ruche)</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Signum recognitions</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N3: Rekognitionszeichen
+                                    (Bienenkorb)</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N3: Signum
+                                    recognitions</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N3: Signum recognitions
+                                    (ruche)</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N3: Signum
+                                    recognitions</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#SignumNotarile">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">Notarssignet</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Signum notarile</skos:prefLabel>
-                                <skos:label xml:lang="en">Notarial mark</skos:label>
-                                <skos:prefLabel xml:lang="fr">Signum notarile</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Signum notarile</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N3: Notarssignet</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N3: Signum notarile</skos:prefLabel>
+                                <skos:label xml:lang="en">N3: Notarial mark</skos:label>
+                                <skos:prefLabel xml:lang="fr">N3: Signum notarile</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N3: Signum notarile</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                             <rdf:Description rdf:about="#OtherSignsOfAuthentication">
                                 <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-                                <skos:prefLabel xml:lang="de">andere Beglaubigungszeichen</skos:prefLabel>
-                                <skos:prefLabel xml:lang="en">Other signs of authentication</skos:prefLabel>
-                                <skos:prefLabel xml:lang="fr">Autres signes de validation</skos:prefLabel>
-                                <skos:prefLabel xml:lang="it">Altri segni di autenticazione</skos:prefLabel>
-                            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                                <skos:prefLabel xml:lang="de">N3: andere
+                                    Beglaubigungszeichen</skos:prefLabel>
+                                <skos:prefLabel xml:lang="en">N3: Other signs of
+                                    authentication</skos:prefLabel>
+                                <skos:prefLabel xml:lang="fr">N3: Autres signes de
+                                    validation</skos:prefLabel>
+                                <skos:prefLabel xml:lang="it">N3: Altri segni di
+                                    autenticazione</skos:prefLabel>
+                                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                             </rdf:Description>
                         </skos:narrower>
-                    	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                        <skos:inScheme rdf:resource="#illurk-vocabulary"/>
                     </rdf:Description>
                 </skos:narrower>
-            	<skos:inScheme rdf:resource="#illurk-vocabulary"/>
+                <skos:inScheme rdf:resource="#illurk-vocabulary"/>
             </rdf:Description>
         </rdf:RDF>
     </atom:content>

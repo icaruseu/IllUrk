@@ -1,0 +1,1717 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title/>
+                <author>Bartz, Gabriele</author>
+            </titleStmt>
+            <editionStmt>
+                <edition>
+                    <date>2016-05-04</date>
+                </edition>
+            </editionStmt>
+            <publicationStmt>
+                <p>unknown</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>Converted from a Word document</p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <appInfo>
+                <application xml:id="docxtotei" ident="TEI_fromDOCX" version="2.15.0">
+                    <label>DOCX to TEI</label>
+                </application>
+            </appInfo>
+        </encodingDesc>
+        <revisionDesc>
+            <listChange>
+                <change>
+                    <date>2016-05-04T11:15:02Z</date>
+                    <name>Bartz, Gabriele</name>
+                </change>
+            </listChange>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div>
+                <p rend="Title">Glossar</p>
+                <div>
+                    <head>Fadenwerk</head>
+                    <p>Federwerk</p>
+                </div>
+                <div>
+                    <head>Filigran</head>
+                    <p>Ranken, gezeichnet: Fadenranken</p>
+                </div>
+                <div>
+                    <head>Fleuronnée</head>
+                    <p>Fleuronnée</p>
+                </div>
+                <div>
+                    <head>Figureninitiale</head>
+                    <p>Die Figuren selbst bilden den Buchstabenkörper, oder sind ihm aufgelegt.</p>
+                </div>
+                <div>
+                    <head>Herzblätter</head>
+                </div>
+                <div>
+                    <head>Trifoliette</head>
+                </div>
+                <div>
+                    <head>Scheibe</head>
+                </div>
+                <div>
+                    <head>Wellenband</head>
+                </div>
+                <div>
+                    <head>Deckfarbeninitiale vor Goldgrund</head>
+                    <p>Kann auch eine Dornblattinitiale sein.</p>
+                </div>
+                <div>
+                    <head>Serife</head>
+                    <p>„Füsschen“ an den Endstellen von Buchstaben, bei Initialen bisweilen
+                        ausladend. (Jakobi-Mirwald)</p>
+                </div>
+                <div>
+                    <head>Das Layout <lb/>der Avignoner Bischofsammelablässe</head>
+                    <p>Die erste, bisher bekannte Indulgenz, die in Avignon ausgestellt wurde (*<hi
+                            rend="bold">Avignoner Bischofsammelablässen</hi>*), 1311 Juli 5 für die
+                        Stiftskirche in Essen, geht noch hinter das zurück, was bei den *<hi
+                            rend="bold">Voravignoner Bischofsammelablässen</hi>* praktiziert wurde:
+                        Die U-Initiale ist schmal und lediglich über die Höhe der ersten Zeile
+                        geführt; 1313 für St. Gertrud in Klosterneuburg bringt (U)niversis in
+                        Auszeichnungsschrift und greift damit eine Dekorationsstufe auf, die seit
+                        1289 Dezember 13 für Hersfeld bei der römischen Kanzlei praktiziert wurde.
+                        Doch bereits 1317 für Mondsee ist die Initiale deutlich vergrössert und in
+                        das Textfeld eingelassen. Mit 1323 März 10 für Maiden Priory vom *<hi
+                            rend="bold">Zeichner mit den Masswerkmotiven</hi>* beobachtet man ein
+                        Ausgreifen der U-Initiale in den linken Rand. </p>
+                    <p>Ein erstes Mal erscheint bildlicher Schmuck im Binnenfeld bei 1323 Mai 11 für
+                        Saint-Martin-de-Picquigny mit einer *<hi rend="bold">Vera Ikon</hi>*, dicht
+                        gefolgt von 1323 Juni für den Dom zu Trier mit einem hl. Matthias und einem
+                        Sifter. Die U-Initiale gewinnt mit der bildlichen Gestaltung des
+                        Binnenfeldes (*<hi rend="bold">Illuminierte Avignoner
+                            Bischofsammelindulgenz</hi>*) zunehmend an Höhe und wird in den
+                        Textblock eingelassen. Mit der *<hi rend="bold">Christusbüste</hi>* und
+                        damit dem Beginn der farbigen Gestaltung der Indulgenzen (bisher frühestes
+                        Beispiel 1328 Juni 7 für Léau) ist letztlich festgeschrieben, dass auch die
+                        weiteren vergrösserten Initialen der ersten Zeile (U)n(iversis) S(ancte)
+                        M(atris) mit farbigen Aussparungen versehen werden(*<hi rend="bold"
+                            >Historisierte Avignoner Bischofsammelindulgenz</hi>*). Selten wird das
+                        „n“ zu weiteren Historisierungen genutzt, so z. B. 1330 September 1 für
+                        Dinant (*<hi rend="bold">n-Initiale</hi>*), wo die vorher das Binnenfeld der
+                        U-Initiale beherrschende Sujet der Christusbüste erscheint (vgl. *<hi
+                            rend="bold">Ikonographische Diversifizierung</hi>*). 1328 Juni 7 für
+                        Léau wird ein erstes Mal der Rand für Illuminierung genutzt. Die
+                        Christusbüste erscheint im Binnenfeld der Initiale und der Titularheilige
+                        Leonhard wird in einem Bildfeld links platziert, unter ihm erscheint – ohne
+                        Bildfeld - der Petent. </p>
+                    <p>Weckte der extrem wichtige Ablass für Léau den Eindruck, dass weitere
+                        Gestaltungsmöglichkeiten im Hinblick auf den *<hi rend="bold"
+                        >Rahmentyp</hi>* dort bereits angedacht waren, verstärkt auch der dort noch
+                        nicht in einem Rahmen erscheinende Bittsteller (*<hi rend="bold"
+                        >Petent</hi>*) diese Vermutung. Auch die Urkunde 1330 September 1 für Dinant
+                        belegt, dass man in der *<hi rend="bold">Werkstatt der Avignoner
+                            Bischofsammelindulgenzen</hi>* bereits zu diesem frühen Zeitpunkt mit
+                        einer Rahmung um Initiale und Textblock experimentierte, hier noch in Form
+                        eines Streifens aus ausgesparten Kreuzblumen abwechselnd vor grünem und
+                        rotem Grund. Der Wunsch der Auftraggeber, mehr als eine Figur auf ihrer
+                        Urkunde zu sehen, führt zur Veränderung der U-Initiale und damit letztlich
+                        auch des Layouts.</p>
+                    <p>Die Bittsteller für die 1328 gegründete Kartause Koningsdal bei Gent erbaten
+                        sich ein im erhaltenen Material unikales Layout; 1330 November 12 datiert
+                        ihre Indulgenz, die im Binnenfeld eine Kreuzigung mit Maria und Johannes
+                        enthält, im „n“ eine Christusbüste (*<hi rend="bold">n-Initiale</hi>*) sowie
+                        im Textblock im Q(uoniam) eine stehende Maria mit Kind. Offenbar hat dieses
+                        Verfahren beim Schreiben zu viel Mühe bereitet, weshalb man es nicht mehr
+                        anwandte. Einen weiteren Sonderfall stellt die Urkunde 1331 Februar 26 für
+                        Albi dar; bei dieser Urkunde hat man dem bestätigenden Bischof in einer
+                        Initiale am Ende der Urkunde dargestellt. Freilich ist dort die
+                        Illuminierung ausserhalb der *<hi rend="bold">Werkstatt der Avignoner
+                            Bischofsammelindulgenzen</hi>* erfolgt; der Bischof Béraud de Fargues
+                        war wohl zugleich Bittsteller und Bestätiger.</p>
+                    <p>Bei 1331 Oktober 15 für Cembra endet die U-Initiale erstmals tiefer als die
+                        erste Zeile. Dieses Vorgehen beobachtet man immer wieder, bis zum Ende der
+                        Tätigkeit der *<hi rend="bold">Werkstatt der Avignoner
+                            Bischofsammelindulgenzen</hi>*, 1348 März 3 für St. Peter in Naklo. Doch
+                        wird es sich dabei kaum um eine individuelle Entscheidung des Ausführenden
+                        handeln. Anders verhält es sich mit dem Ausgreifen in den linken und den
+                        oberen Rand der Initiale: Im Ablass 1332 September 1 für Zürich wird die
+                        Initiale mit einem Feld umgeben, das so weit in den linken Rand geführt
+                        wird, dass darunter ein Bildfeld für den bestätigenden Bischof entstehen
+                        kann. Letztlich 1332 Oktober 15 für Lahnstein, die erste erhaltene Indulgenz
+                        des *<hi rend="bold">Rahmentyps</hi>*, setzt oberhalb der U-Initiale einen
+                        Bordürenstreifen an, damit sie in die Bildleiste integriert ist. Erst in den
+                        1340er Jahren, vielleicht mit dem Eintritt eines neuen Mitarbeiters in die
+                        Werkstatt, ist das Layout mit dem Bildstreifen vollendet (z. B. 1342 März
+                        für Maaseik).</p>
+                    <p>Die U-Initiale wie die Auszeichnungsschrift der ersten Zeile nehmen im Lauf
+                        der Zeit immer grösseren Raum ein; dabei können sie sowohl in den Textblock
+                        eingesetzt sein (z. B. 1339 April 4 für Mergentheim), oder die U-Initiale
+                        ragt weit in den oberen Rand (z. B. 1335 Juli 2 für Imola). Es wäre
+                        folgerichtig, wenn man sich auf das Einrichten eines Bildfeldes geeinigt
+                        hätte, denn mit zunehmender Bevölkerung der Initiale in den Schäften und im
+                        Binnenfeld gerät die Lesbarkeit des Buchstabens in den Hintergrund. Doch nur
+                        in seltenen Fällen hat man das probiert (besonders gelungen: 1335 Juli 5 für
+                        Zeven); wie man bei Veränderungen im Layout und Dekoration bei den Avignoner
+                        Sammelablässen häufig ein Beharren auf einmal Entwickeltem beobachten kann. </p>
+                    <p>1331 September 15 für Cembra, der bisher ersten bekannten Indulgenz mit je
+                        einer Figur in den Buchstabenschäften zeigt die Schwierigkeit dieses
+                        Vorgehens, denn es kann keine gemeinsame Standhöhe für die Figuren gefunden
+                        werden. Während sich Johannes Ev. rechts ein wenig windschief in die unten
+                        abgeschrägte Form der Initiale zwängen muss, wird bei Johannes d. T. links
+                        kurzerhand die Buchstabenform ignoriert und die Figur hinter deren Kontur
+                        fortgeführt. Diese Entwicklung, weg vom Buchstaben hin zu einem
+                        triptychonartig aufgeteilten „Bildfeld“, ist bei 1333 Jänner 118 für
+                        Kirchberg zu einem ersten Höhepunkt getrieben (bisher späteste Wiederholung
+                        1342 April 12 für Pusarnitz; dort freilich werden die flankierenden Figuren
+                        in den Schäften untergebracht): Die thronende Maria im Binnenfeld wird von
+                        einer Dreipass-Arkade überfangen, die sie flankierenden Figuren ignorieren
+                        im unteren Bereich den Buchstabenkontur und stehen – ganz im Sinne einer
+                        Nachahmung eines Altarwerks – wie Skulpturen auf Postamenten. Es entsteht
+                        deshalb eine Tendenz, das Binnenfeld deshalb so rechteckig wie möglich zu
+                        formen, bei 1340 Jänner für St. Michael in Wien wird unterschiedlich
+                        gefärbter Mustergrund eingesetzt, um den Buchstaben kenntlich zu machen;
+                        gleichzeitig jedoch werden gerade durch diese Hintergrundgestaltung
+                        Assoziationen mit Buch- und Tafelmalerei geweckt.</p>
+                    <p>Der *<hi rend="bold">Rahmentyp</hi>* erfordert oben einen breiten Rand, um
+                        auch dort einen Bildstreifen unterbringen zu können (extremstes Beispiel ist
+                        1342 März 22 für Maaseik). Dadurch rutscht der Textblock nach unten. Auch
+                        bei Indulgenzen ohne einen Bildstreifen oben findet man diesen auffällig
+                        breiten Streifen, wohl weil man bei der Linierung des Pergaments generell
+                        einen vorsah (z. B. 1332 Oktober 27 für St- Jakob in Hohenberg oder bei
+                        einer einfachen Ausführung 1333 für St. Katharinen in Schönemoor). 1333 Mai
+                        20 für St. Gallen haben die Empfänger diese Freifläche für eine
+                        Illuminierung genutzt.</p>
+                    <p>Neben dem *<hi rend="bold">Rahmentyp</hi>* hat man die Ränder auch ohne
+                        Bildfelder für Darstellungen genutzt und damit den Weg zum *<hi rend="bold"
+                            >Blattrankentyp</hi>* geebnet. 1336 September 15 erscheinen
+                        Petentengruppen auf den Aussenrändern; 1343 Jänner 22 für den Wiener
+                        Stephansfriedhof wird gar die erzählende Szene dorthin ausgeweitet. Nachdem
+                        einmal dekoratives Blattwerk die Ablassurkunden erobert hat, das von der
+                        Initiale ausgehend meist nur wenig ausstrahlt, aber auch den ganzen oberen
+                        Rand einnehmen kann (1344 April 28 für Frauenberg), ist der Katalog für die
+                        Besteller um ein weiteres Baukastenteil ergänzt. Es scheint, als wäre auch
+                        alles Frühere möglich (z. B. *<hi rend="bold">Rahmentyp</hi>* 1347 Juli 5
+                        für Borken). </p>
+                    <p>Bisher ist die letzte bisher bekannte Indulgenz mit Illuminierungen aus der
+                            *<hi rend="bold">Werkstatt der Avignoner Bischofsammelindulgenzen</hi>*
+                        1348 März 3 für St. Peter in Naklo ausgestellt worden. Daraufhin ändert sich
+                        beim Layout der Urkunden nur wenig; die U-Initiale wird noch grösser, ebenso
+                        wie die erste Zeile (z. B. 1357 November 20 für Nidda; vgl. *<hi rend="bold"
+                            >unilluminierte Avignoner Bischofsammelindulgenz</hi>*). Immer ist das
+                        Format querrechteckig; nur seltene Ausnahmen (z. B. 1343 Juli 18 für s.
+                        Maria del Ponte, 1345 Juli 31 für Attergau, 1347 Februar 5 für Hirsau, 1363
+                        März 6 für Sarmensdorf und 1363 Dezember 10 für St. Gallen) haben ein etwas
+                        schmaleres Textfeld.</p>
+                </div>
+                <div>
+                    <head>Rahmentyp</head>
+                    <p>Avignoner Bischofssammelindulgenz, bei der der Rand links, oben und rechts
+                        von einer Bildleiste umgeben ist. </p>
+                    <p>Die U-Initiale wird dabei als linkes Eckmotiv einbezogen. Erstes, bisher
+                        bekanntes Beispiel ist 1332 Oktober 15 für Lahnstein, gleich danach 1333
+                        Dezember 20 für Freiberg (Sachsen). Doch scheint die Indulgenz für Léau, bei
+                        der unterhalb der Initiale mit einer *<hi rend="bold">Christusbüste</hi>*
+                        ein Bildfeld mit dem konfirmierendem Bischof und darunter ein kniender *<hi
+                            rend="bold">Petent</hi>* erscheint, darauf hinzuweisen, dass das
+                        erhaltene Material nicht die eigentliche Entwicklung wiederspiegelt, sondern
+                        schon früher mit diesem *<hi rend="bold">Layout</hi>* experimentiert wurde.
+                        Die Aufteilung der Bildfelder ist von Anfang an nahezu kanonisch: Links
+                        unterhalb der Initiale ein Bildfeld, oberhalb der Initiale oft genug ein
+                        Bordürenstreifen, um die U-Initiale in den Bildstreifen zu integrieren. Der
+                        obere Bildstreifen besteht meist aus drei Feldern, in denen häufig Christus
+                        flankiert von Peter und Paul als Büsten dargestellt werden, rechts am Rand
+                        schliesslich ist Variation möglich: Entweder zwei Felder (z. B. 1332
+                        November 2 für NIederlana) oder nur eines, das dann oft mit einer
+                        Spitzarkade überfangen wird (z. B. 1334 November 10 für Halberstadt).</p>
+                    <p>Eine Sonderform, die von der Textillumination abrückt und nur einen
+                        Bildstreifen, noch immer mit grossem Bildfeld links in der Ecke, verwendet,
+                        begegnet erstmals 1333 Februar 23 für das Johannesstift in Osnabrück. Eine
+                        Sonderlösung stellt 1335 Juli 5 für Kloster Zeven dar, wo eine Miniatur
+                        anstelle der U-Initiale erscheint und am Rand aussen runde Medaillons gemalt
+                        sind (vgl. auch *<hi rend="bold">Blattrankentyp</hi>*).</p>
+                    <p>Offenbar war es möglich aus dem Kanon der den Textspiegel umgreifenden
+                        Bildfelder wie aus einem Baukasten zu wählen, so dass in der Folge auch
+                        einzelne Bildfelder am Rand erscheinen (ein besonders auffälliges Beispiel
+                        ist 133 Mai 31 für Kloster Schildesche). Häufig ist noch die Linierung am
+                        Rand zu erkennen, die wohl standardmässig angebracht wurde, um einen
+                        Bildstreifen am Rand problemlos anbringen zu können. Neben den exquisiteren
+                        Varianten des Rahmentyps existieren aber auch weiterhin die einfachen
+                        Urkunden mit nur einer Illuminierung im Binnenfeld der U-Initiale.</p>
+                    <p>Wie man auch am Beharren bei der Illuminierung der U-Initiale bei zunehmendem
+                        abzubildendem Personal, wo ein Bildfeld unabhängig vom Text mehr
+                        Möglichkeiten geboten hätte (*<hi rend="bold">Layout</hi>*), bleibt die
+                        Integration der U-Initiale in den Bildstreifen lange Zeit ein Problem. Erst
+                        in den 1440er Jahren, vielleicht durch einen neuen Mitarbeiter, der sich
+                        nicht so stark an die dort entwickelten Traditionen gebunden fühlt, gelingt
+                        es mit 1342 Jänner 2 für Fröndenberg und 1342 März 22 für Maaseik den
+                        rahmenden Bildstreifen, der nun wie eine Reihe von Fenstern oder Nischen
+                        gestaltet ist, von der Initiale zu lösen. Die Initiale bleibt sehr gross,
+                        ist aber vollständig, wie bei einer Buchseite, in den Textspiegel
+                        eingelassen.</p>
+                    <p>Auch dieser Dekorationstyp wird noch verwendet, obwohl der neuere *<hi
+                            rend="bold">Blattrankentyp</hi>* schon in Gebrauch ist.</p>
+                </div>
+                <div>
+                    <head>Blattrankentyp</head>
+                    <p>Avignoner Bischofsammelindulgenz, bei der anstelle von Bildleisten (vgl. *<hi
+                            rend="bold">Rahmentyp</hi>*) die Figuren ohne Rahmung am Rand platziert
+                        und/ oder mit vegetabilischen Ranken versehen sind, die dem Akanthus
+                        ähneln.</p>
+                    <p>Schmückendes Beiwerk findet sich erst spät in der Illuminierung der Avignoner
+                        Bischofsammelindulgenzen. Doch ist schon zu Beginn der 1330er Jahre, 1331
+                        Oktober 15 für Cembra, mit stilisierten Blättern experimentiert worden, die
+                        oben von den Initialen der ersten Zeile ausgehen. Dieser Ablass bleibt im
+                        bisher bekannten Material eine Einzelerscheinung, bis 1335 Jänner 11 für
+                        Gerardus Chorus wieder Ranken genutzt werden. 1335 Juli 5 für Zeven
+                        spriessen aus den Initialen der ersten Zeile Blattranken, die aus grossen
+                        dornblattähnlichen Blättern gebildet sind. Hier ist auch das *<hi
+                            rend="bold">Layout</hi>* anders; zumindest der *<hi rend="bold"
+                            >Petent</hi>* erscheint ohne ein Bildfeld am Rand; heilige Figuren sind
+                        dort in Medaillons untergebracht. 1336 September 15 für Ahnaberg finden sich
+                        Petentengruppen ohne Rahmung auf den Rändern, und noch zurückhaltend kommen
+                        aus den vergrösserten Initialen der ersten Zeile zarte Ranken mit Dorn- und
+                        Akanthusblatt hervor. Auch sind Versuche zu beobachten, wie man bei dieser
+                        Layoutform zu mehr Bildgelegenheiten gelangen kann, 1342 Juli 1 für Tournai
+                        präsentiert Heiligenbüsten in den Binnenfeldern der Initialen der ersten
+                        Zeile, die etwas unorganisch ausserdem mit Akanthusranken versehen sind.
+                        Zusätzlich zu den Heiligen im Binnenfeld und den Schäften erscheint ein
+                        weiterer rechts am Rand. Gleichzeitig vollzieht sich eine Veränderung bei
+                        der Form der U-Initiale: Während die Buchstabenschäfte seit der *<hi
+                            rend="bold">ikonographischen Diversifizierung</hi>* oft dazu dienten,
+                        als Bildfeld Heilige oder Petenten aufzunehmen, werden sie zunehmend
+                        schmaler (seit 1344 Juni 27 für Scheibbs); die *<hi rend="bold"
+                            >Petenten</hi>* finden dann ebenfalls im Binnenfeld ihren Raum, rücken
+                        also näher zu den heiligen Gestalten, was auch frömmigkeitsgeschichtlich
+                        bemerkenswert ist. Dabei entstehen, wie eigentlich immer bei Neuerungen im
+                        Layout in der Werkstatt der Avignoner Bischofsammelindulgenzen,
+                        Übergangslösungen. Ein schönes Beispiel dafür ist 1344 November 20 für das
+                        Kloster Schildesche, wo der linke Schaft schmal ist, im rechten aber eine
+                        Figur erscheint und der Petent bei der Madonna im Binnenfeld untergekommen
+                        ist. Auf diese Weise entsteht kompositorisch die Begleitung des Gläubigen
+                        durch seinen Schutzpatron, der ihn bei Maria einführt, wie man es von
+                        späteren Retabeln kennt (so auch 1340 Jänner 3 für St. Michael in Wien). </p>
+                    <p>Im bisher bekannten Material begegnet der Blattrankentyp voll ausgebildet
+                        erstmals 1344 April 28 für die Propstei Frauenberg. Dort rahmen die Ranken
+                        links am Rand und oben textspiegelbreit; der Mönch kniet ohne einen
+                        Schutzpatron im Binnenfeld neben Maria, während drei Nonnen im Raum Platz
+                        finden, den ein aufsteigendes Akanthusblatt bildet. Die Buchstabenschäfte
+                        sind schmal, wodurch das Binnenfeld grösser wird.</p>
+                    <p>Ähnlich wie schon beim *<hi rend="bold">Rahmentyp</hi>* konnte der Besteller
+                        wohl nach dem Baukastenprinzip wählen: von einzelnen Blättern, die links
+                        oben aus der Initiale spriessen, über kleine Ranken an den drei Aussenseiten
+                        des Buchstabens, bis hin zur Ranke, die links und oben den Textspiegel
+                        umgreift. Die einfachste Form findet sich beim Ablass 1345 Oktober18 für
+                        Imola beschrieben, andere haben einige Blätter mehr: z. B. 1344 Juni 27 für
+                        Johannes von Baumgartenberg und Scheibbs, 1344 Juni 5 für Mariengarten, 1345
+                        April 3 für Lüttich und 1345 August 22 für Dachclusterlein. Die Ranken
+                        werden nicht unbedingt mit einer durchgepausten *<hi rend="bold"
+                            >Vorlage</hi>*, aber nach einem wiedererkennbaren Schema gestaltet.
+                        Abweichend von diesen grossformigen Blattranken finden sich auch aus
+                        kleinere, an Eichen- oder Herzblättern orientierte Blattformen, z. B. 1345
+                        April 11 für Flaschberg, 1345 Mai 13 für Schwäbisch Gmünd, 1345 November 24
+                        für Hagenau, 1347 März 6 für Weiczelsriet und 1348 März 3 für St. Peter in
+                        Naklo, der bisher letzten bekannten Indulgenz, die in der *<hi rend="bold"
+                            >Werkstatt der Avignoner Bischofsammelindulgenzen</hi>* illuminiert
+                        wurde.</p>
+                </div>
+                <div>
+                    <head>Vera-Ikon-Typus</head>
+                    <p>Avignoner Bischofsammelindulgenz, bei der im Binnenfeld der Initiale das
+                        Abbild Christi als Federzeichnung abgebildet ist.</p>
+                    <p>Die Darstellung einer Vera Ikon, also des wahrhaften Abbilds Christi, das
+                        nicht von Menschenhand geschaffen wurde, hat im Jubeljahr 1300 in Rom seinen
+                        Siegeszug angetreten ( Zu dem Phänomen s. Martin Roland in Roland, Zajic
+                        2013, S. 308-322, bes. S. 317f). Bei der Dekoration der Avignoner
+                        Bischofsammelablässe tritt das Motiv jedoch erst im bisher bekannten
+                        Material isoliert 1323 Mai 11 für Saint-Martin-de-Picquigny auf. Wie Roland
+                        überzeugend überlegte, möchte der Impuls für die Illuminierung – und im
+                        bisher bekannten Bestand ersten Historisierung – des Sammelablasses für
+                        Picquigny in der Tradition der Bischöfe Heinrich von Virneburg und Adolf
+                        (VIII.) von der Mark zu suchen sein. Die Wahl der Vera Ikon dürfte dabei als
+                        Reminiszenz an Rom zu werten sein; dort hatte das letzte Jubeljahr
+                        stattgefunden, von dort brachten die Pilger Zeichen mit.</p>
+                    <p>Erst 1325 Dezember 8 für Maria Saal in Brünn beginnt die häufigere Verwendung
+                        der Vera Ikon. Allerdings hat dieses Sujet im Binnenfeld der U-Initiale
+                        nicht lange Bestand, bisher können wir ihr letztes Vorkommen 1328 kopial
+                        nachweisen. Doch müssen die Verluste hoch sein. Neben die Schreibertinte
+                        gesellen sich zunächst zarte Farben, wie Gelb und Rosa (1326 April 25 für
+                        Rheydt). Nach dem Befund des momentan gesichteten Bestands hat überhaupt nur
+                        ein Zeichner, der *<hi rend="bold">Zeichner mit den Masswerkmotiven</hi>*,
+                        sich der Vera Ikon im Binnenfeld bedient. Auch im Ablass für Picquigny
+                        findet sich im Textblock eine Initiale mit Aussparungen (freilich ohne das
+                        bärtige En-face-Gesicht), die seinen überraschend ähnlich sieht (vgl. z. B.
+                        1325 Dezember 8 für Brünn). Bei der Vera Ikon ist der bisher einzige Fall
+                        belegt, dass ein Sujet von einem anderen abgelöst wird. Das wird im
+                        Wesentlichen darin begründet sein, dass fortan Deckfarben zur Kolorierung
+                        eingesetzt werden.</p>
+                    <p>Gelegentlich ist eine Zwischenform von Vera Ikon und *<hi rend="bold"
+                            >Christusbüste</hi>*, meist in der *<hi rend="bold">n-Initiale</hi>*,
+                        bei den Urkunden zu finden, die ein anderes Sujet im Binnenfeld der Initiale
+                        präsentieren (vgl. *<hi rend="bold">ikonographische Diversifizierung</hi>*).
+                        Auch beim *<hi rend="bold">Rahmentyp</hi>* findet sich eine – freilich von
+                        der ikonischen Starre des Drei-Zipfel-Typs gelöst – Brustbilder Christi,
+                        dort flankiert von Peter und Paul und damit auf andere römische
+                        Pilgerzeichen rekurrierend. Auch im weiteren Verlauf des 14. Jahrhunderts
+                        erinnern sich Empfänger noch dieses Sujets; 1360 für Immeldorf hat man als
+                            *<hi rend="bold">Ausführung beim Empfänger</hi>* für die Dekoration des
+                        Binnenfeldes der U-Initiale wieder auf die Vera Ikon zurückgegriffen.</p>
+                </div>
+                <div>
+                    <head>Christusbüste</head>
+                    <p>Avignoner Bischofsammelindulgenz, bei der im Binnenfeld der U-Initiale das
+                        Antlitz Christi als farbig lavierte Federzeichnung ausgeführt ist.</p>
+                    <p>Frontale Büste Christi mit segnend erhobenen Händen, die Wundmale vorweisend.
+                        Eine stärker realistische Darstellung löst die ikonische (vgl. *<hi
+                            rend="bold">Vera-Ikon-Typus</hi>*) ab, dabei auf Christus als Richter
+                        und als Erlöser verweisend (Hamburger, The visual and the visionary, 1998,
+                        S. 372 f., sah in der Christusbüste eine ungewöhnliche Ikonographie der Vera
+                        Ikon, was sie unter allgemeinen Betrachtungen auch sein mag. Unter dem
+                        speziellen Blickwinkel der Bischofsammelindulgenzen jedoch würde man sie als
+                        eine ikonographische Entwicklung ansehen, die von dem Schweisstuch der
+                        Veronika und den anderen Legenden zur Vera Ikon weg führt.). Schon Homburger
+                        ermittelte die beiden unterschiedlichen Quellen, aus denen sich die
+                        Darstellung speist: Figuren der byzantinische Sancta Facies und des
+                        richtenden Christus (Lehni, Itterswiller, 1970, S. 4.). Als entwerfenden
+                        Künstler nahm er jemanden aus dem Oberrheingebiet an. <hi
+                            rend="background(yellow)">Gualterius Alamannus?</hi> Für Cheney
+                        transportiert die Christusbüste auch den Analphabeten den Gedanken der
+                        Segnung (Cheney, Collective Indulgences, 1979, S. 135.).</p>
+                    <p>Nachdem der Vera-Ikon-Typus zur Illuminierung von Sammelindulgenzen lediglich
+                        mit der Schreibertinte und später wenigen Farben vom *<hi rend="bold"
+                            >Zeichner mit den Masswerkmotiven</hi>* gestaltet wurde, bringt die
+                        Christusbüste Farben in die Dekoration, die teils lavierend zart, teils aber
+                        auch in der vollen Farbstärke mit grosser Leuchtkraft eingesetzt werden.
+                        Auch die vergrösserten Initialen der ersten Zeile werden farbig ausgeführt,
+                        in seltenen Fällen auch die kleineren Buchstaben im Textblock (vgl. *<hi
+                            rend="bold">Layout</hi>*). </p>
+                    <p>Wahrscheinlich ohne wirklich von einer Zeichnung durchgepaust zu werden,
+                        folgen diese Darstellungen dennoch einer *<hi rend="bold">Vorlage</hi>*: Ein
+                        im Vergleich zu Schultern und Händen sehr grosses bärtiges Haupt mit nach
+                        hinten gekämmten Haaren erscheint vor einem Nimbus. Der Heiligenschein ist
+                        als Kreuznimbus zu verstehen, weil er einem Malteserkreuz ähnliche Flächen
+                        besitzt, die von einem weissen Streifen von der dann meist roten Einfärbung
+                        abgetrennt ist. Das Haupt sitzt auf einem kräftigen Hals; das meist rote
+                        Gewand mit rundem Halsausschnitt kann bei sorgfältigerer Ausführung auch
+                        andersfarbige Ausschnittbesätze haben. Die erhobenen Hände sind sehr klein
+                        und mit den Handflächen zum Betrachter gewendet. Die rechte segnet; beide
+                        präsentieren das Wundmal.</p>
+                    <p>Avignoner Bischofsammelablässe sind seit 1328 im Binnenfeld der Initiale
+                        U(niversis) mit einer Christusbüste versehen (erstmals nachweisbar 1328 Juni
+                        7 für Léau). Einen Höhepunkt der Überlieferung der Urkunden mit segnender
+                        Christusbüste als Dekor bilden die Jahre 1328–1332. 1328 Dezember 24 für
+                        Stift Elten zeigt eine interessante Mischform von *<hi rend="bold">Vera
+                            Ikon</hi>* und Christusbüste: Einen weitgehend bartloser Christus und
+                        ohne segnenden Hände. Diese letztlich ikonographische Verirrung ist dem *<hi
+                            rend="bold">Zeichner mit den Masswerkmotiven</hi>* zu verdanken, der
+                        sich auf diese Weise an das neue Sujet herantastet. </p>
+                    <p>Stets auf ähnliche Weise gestaltet, scheinen die Zeichner doch keine
+                        *Vorlage* benutzt zu haben, denn sie mussten die unterschiedliche Höhe der
+                        Initialen reagieren. Ab 1330 wird die Christusbüste von anderen Sujets
+                        abgelöst (*<hi rend="bold">ikonographische Diversifizierung</hi>*) und tritt
+                        danach seltener auf. Das bisher letzte bekannte Beispiel ist 1344 April 12
+                        für die Herren von Ehestetten. </p>
+                </div>
+                <div>
+                    <head>Ikonographische Diversifizierung<lb/>bei der Illuminierung von Avignoner
+                        Bischofsammelindulgenzen</head>
+                    <p>Avignoner Bischofsammelindulgenzen, bei denen ab 1329 , meist auf das
+                        Patrozinium der Kirche oder des Altars zugeschnittene Sujets zur
+                        Illuminierung der grossen U-Initiale, der Randbilder und –leisten verwendet
+                        werden.</p>
+                    <div>
+                        <head>Die U-Initiale</head>
+                        <p>Seit 1329 kann man eine ikonographische Diversifizierung bei der
+                            Illuminierung von Avignoner Sammelablässen beobachten. Die seit 1328
+                            Juni 7 für Léau erstmals zur Illuminierung genutzte *<hi rend="bold"
+                                >Christusbüste</hi>* mit erhobenen Händen im Binnenfeld tritt
+                            zunehmend in den Hintergrund, stattdessen beherrschen Sujets die
+                            U-Initiale, die meist auf das Patrozinium der Kirche Bezug nehmen, die
+                            den Ablass erbeten hat. Beim ersten Fund einer Christusbüste (1328 Juni
+                            7 für Léau) wird der Titularheilige der Kirche, Leonhard, noch am Rand
+                            dargestellt (*<hi rend="bold">Layout</hi>*). Diese Urkunde ist somit der
+                            erste Beleg für die Christusbüste und gleichzeitig der erste Beleg für
+                            die (im Grunde gegenläufige Tendenz) der ikonographischen
+                            Diversifizierung. 1329 Oktober 24 für Benninghausen taucht erstmals eine
+                            thronende Maria mit Kind auf. Für die Forstwaldkapelle (1330 Oktober 8)
+                            sieht man zum ersten Mal eine stehende Maria mit Kind. Die Kirchen von
+                            Benninghausen und Dinant (1330 September 1) wie die Forstwaldkapelle
+                            sind Maria geweiht; demnach richtete sich die Wahl des Sujets nach dem
+                            Patrozinium. Sicher hat die Urkunde 1331 Mai 12 für St. Laurenz in Wien
+                            auch schon vor ihrer „Restaurierung“ im 15. Jahrhundert einen heiligen
+                            Lorenz – und damit den Kirchenpatron – im Binnenfeld gezeigt. Für die
+                            Marienkirche in Cembra (1331 September 15) kommen neben einer thronenden
+                            Maria mit Kind erstmals zwei stehende Heilige in den Schäften hinzu.
+                            Warum man die beiden Johannes‘ wählte (die auch in weiterer Folge zu den
+                            häufiger, lässt sich nicht ermitteln. </p>
+                        <p>Einen Sonderfall stellt der Ablass für Kloster Zeven (1335 Juli 5) dar,
+                            wo in einem wie ein Sakralbau überdachtem Bildfeld eine
+                            Schutzmantelmadonna steht, 1342 März 27 für Pergkirchen ist es ein
+                            Martin als Mantelteiler zu Pferde. 1335 Oktober 22 für das Berner Spital
+                            kommt als Sujet für das Binnenfeld der Salvator mundi hinzu. </p>
+                        <p>Mit dem *<hi rend="bold">Rahmentyp</hi>* ergab sich eine Möglichkeit, die
+                            Bildgelegenheiten und mit ihnen die Sujets zu erweitern. So findet man
+                            im ersten erhaltenen Beispiel dieses Typs, 1332 Oktober 15 für
+                            Lahnstein, einen Gnadenstuhl in der Initiale sowie eine Marienkrönung
+                            1332 November 2 für Niederlana. Michael bei 1332 November 15 für
+                            Arnsdorf erweitert das ikonographische Programm der *<hi rend="bold"
+                                >Werkstatt der Avignoner Bischofsammelindulgenzen</hi>*.</p>
+                        <p>Zum ersten Mal wird Buchstabenschaft und Binnenfeld für eine Szene, die
+                            Verkündigung, im Ablass 1333 April 6 für das Stift Pfalzel zur
+                            Aktionsfläche. Mit der Darstellung von Heiligenmartyrien kommen weitere
+                            narrative Szenen in das Binnenfeld, erstmals 1333 August 18 für St.
+                            Lorenz in Köln. 1334 Juni 1 für St. Leodegar bei Buchsweiler findet sich
+                            erstmals der hl. Leodegar im Binnenfeld. Einen gewissen erzählenden
+                            Charakter erhält die Darstellung im Binnenfeld 1335 Jänner 15 für die
+                            Ägidiuskapelle in Aachen, wo der Benediktinermönch mit seiner Hirschkuh
+                            erscheint. Mit viel Geschick werden die in der *<hi rend="bold"
+                                >Werkstatt der Avignoner Bischofsammelindulgenzen</hi>* vorhandenen
+                                *<hi rend="bold">Vorlagen</hi>* variiert, um den Bestellerwünschen
+                            nach unterschiedlichen Heiligen gerecht werden zu können.</p>
+                        <p>Bedingt durch die Entwicklung des *<hi rend="bold">Rahmentyps</hi>* mit
+                            seinen den Textspiegel umgreifenden Bildleisten gerät die Lesbarkeit der
+                            U-Initiale stärker in den Hintergrund. Stattdessen gilt es, auch bei
+                            einfachen Ausführungen, die Schäfte als Bildräume zu erobern (vgl. z. B.
+                            1335 April 8 für Wimpfen oder 1337 August 3 für Göttweig). Zwangsläufig
+                            werden die Blattwerkaussparungen dann entweder durch monochrome oder
+                            einfach gemusterte Gründe ersetzt. 1338 September 11 für das Hospital
+                            und die Kirche von S. Luca in Lucca begegnet erstmals der Evangelist
+                            Lukas (?) und ein Gekreuzigter. Die Käuferinteressen bestimmen zunehmend
+                            die Wahl der Sujets, etwa die Abbildung der Heiligen des Kirchen-,
+                            Kapellen- oder Altarpatroziniums, dabei stellt der Ablass für die
+                            Bruderschaft des Volto Santo in Lucca (1339 April 5) bisher ein Unikum
+                            dar, weil hier ein Gnadenbild abgebildet wird.</p>
+                        <p>Diese Vorlagen wurden von verschiedenen Illuminatoren genutzt, weshalb
+                            man davon ausgehen kann, dass sie in einer Werkstatt tätig waren.</p>
+                        <p>Ähnlich wie dekoratives Beiwerk sind auf den letztlich pragmatisch auf
+                            den Zweck hin illuminierten Avignoner Sammelablässen nur selten Engel zu
+                            finden: herausgehobenes Beispiel ist die nicht mehr zu datierende
+                            (1335-1340) Indulgenz für S. Maria in Giummare. Dort flankieren stehende
+                            Engel, die auf Palmwedeln stehen, eine stehende Muttergottes. 1335 April
+                            8 für Wimpfen kniet im linken Schaft, gewissermassen als himmlisches
+                            Pendant zum *<hi rend="bold">Petenten</hi>* rechts, ein Engel. Eine
+                            interessante Vermischung unterschiedlicher Erzählwelten sind die
+                            weihräuchernden Engel zu Seiten des Gerichtschristus bei 1342 Jänner 2
+                            für Fröndenberg: Sie übernehmen Dienste der Ministranten im Gottesdienst
+                            und behandeln so den Gerichtschristus im Binnenfeld letztlich wie ein
+                            Kultbild. Weniger radikal, weil dort die Engel in Halbfigur von oben
+                            hereinschweben, sind die himmlischen Boten 1345 April 3 für Lüttich
+                            aufgefasst.</p>
+                        <p>Anfang der 40er Jahre ist ein Innovationsschub in der *<hi rend="bold"
+                                >Werkstatt der Avignoner Bischofsammelindulgenzen</hi>* zu
+                            verzeichnen. Neue *<hi rend="bold">Vorlagen</hi>* werden verwendet und
+                            auch die Gestaltung der U-Initiale wird überdacht. 1342 Februar 12 für
+                            Nenkersdorf zeigt den Petenten im rechten Schaft über einem
+                            Akanthusblatt schwebend. 1343 Jänner für die Magdalenenkapelle auf dem
+                            Stephansfriedhof in Wien bringt einen stehenden Christus mit
+                            Schriftband, das ihn auf dem Ölberg befindlich charakterisiert, die dazu
+                            gehörigen Apostel werden links am Rand gezeigt (vgl. *<hi rend="bold"
+                                >Layout</hi>*). Fortan folgen die Figuren nicht mehr ausschliesslich
+                            den bis dahin in der *<hi rend="bold">Werkstatt der Avignoner
+                                Bischofsammelindulgenzen</hi>* strikt genutzten *<hi rend="bold"
+                                >Vorlagen</hi>*, sondern wirken wie aus einem Repertoire an Mustern
+                            jeweils neu zusammen gesetzt. Dadurch entsteht – auch durch die grössere
+                            Beweglichkeit der Figuren – eine spürbare Verlebendigung. Besonders
+                            schön ist das an den Darstellungen der thronenden Maria mit Kind zu
+                            beobachten: das Baby wird gesäugt bei 1343 Juli 18 für S Maria del
+                            Ponte, steht als Kleinkind auf Mariens Schoss bei 1344 Jänner 11 für
+                            Linz, wendet sich den Flagellanten im oberen Bordürenstreifen bei 1345
+                            November 28 für Cividale zu oder zeigt sich als künftiger
+                            Weltenherrscher mit Segenshand und Globus 1346 April 27 für
+                            Mörsdorf.</p>
+                    </div>
+                    <div>
+                        <head>Der Petent</head>
+                        <p>1328 Juni 7 für Léau erscheint im bekannten Material erstmals ein
+                            Bittsteller auf einem Avignoner Bischofsammelablass. Er ist namentlich
+                            bezeichnet („Magister Johannes de Sceverstene clericus“). Es mag
+                            überlieferungsbedingt ein Zufall sein, doch wird die *<hi rend="bold"
+                                >Vorlage</hi>* mit den sichtbaren Füssen nicht mehr verwandt werden.
+                            Nach dem angemessenen Ort für den Bittsteller auf der Urkunde wird
+                            jedoch noch gesucht: Erweist es sich bei der Indulgenz für Léau als
+                            angemessen, dass der Petent sich zunächst an den Titularheiligen wendet,
+                            der – zwar nicht gestisch ausgedrückt – dann für ihn bei Christus
+                            bittet. Das nächste Vorkommen eines Petenten, 1330 September 1 für
+                            Dinant, zeigt ihn dann mit einem Schriftband in Händen im rechten
+                            Buchstabenschaft. Das wird fortan sein angestammter Platz bei den
+                            Avignoner Bischofsammelablässen sein. Dabei ist die unmittelbare Nähe
+                            des Bittstellers zur heiligen Gestalt frömmigkeitsgeschichtlich
+                            erstaunlich; Schutzpatrone, die ihn in den heiligen Hofstaat einführen,
+                            sucht man zunächst vergeblich. Gelegentlich wird das Beieinander von
+                            heiliger Gestalt und Mensch freilich reflektiert, wenn bei 1332 Juni 16
+                            für Wels oder 1333 April 6 für Stift Pfalzel eine Arkatur über dem
+                            knienden Petenten erscheint, der ihn der weltlichen Sphäre zuordnet.
+                            Doch meist werden keine hierarchischen Unterscheidungen getroffen. Als
+                            ausserordentlich erstaunliche Manifestation von Selbstdarstellung hat
+                            1335 Jänner 11 für Kloster Burtscheid zu gelten, eine Urkunde, die der
+                            Aachener Gerardus Chorus erbeten hat. Ein nicht zu identifizierender
+                            Heiliger kniet im rechten Buchstabenschaft, ein Geistlicher im linken.
+                            Gerardus Chorus und seine Frau Katharina erscheinen am Aussenrand,
+                            Gerardus unterhalb der Initiale und Katharina rechts unterhalb des Felds
+                            für Johannes den Täufer. Wie der Täufer erscheinen sie unter Arkaturen
+                            und sind nur durch ihre betende kniende Haltung vom Heiligen
+                            unterschieden. Durch ihre namentliche Nennung im Text wie im Bildfeld
+                            werden sie zu den entscheidenden Protagonisten des
+                            Darstellungsprogramms.</p>
+                        <p>Zunächst wird für den Petenten die *<hi rend="bold">Vorlage</hi>*
+                            verwendet, die man für Dinant einsetzte. Es ist ein Kniender in einem
+                            weiten Gewand mit weiten Ärmeln und einer Kapuze, die auch am vorderen
+                            Halsausschnitt wie ein Stehkragen herumgeführt ist. An den Unterarmen
+                            ist ein eng anliegendes Hemd sichtbar, das auch in einer anderen Farbe
+                            gestaltet sein kann. Die Unterscheidung von Laien und Klerikern erfolgt
+                            durch die Frisur; 1330 Oktober 8 für die Forstwaldkapelle sieht man
+                            einen Bärtigen ohne Tonsur (leider ist der Text der Urkunde in der
+                            Partie, in der der Name des Bittstellers genannt werden würde, nicht
+                            mehr lesbar). 1332 September 1 für Zürich kommt ein Gewand mit engeren
+                            Ärmeln hinzu; der Sorgfalt der Ausführung mag es zuzuschreiben sein,
+                            dass hier auch ein farbig anders betonter Schlitz als Tascheneingriff im
+                            Gewand zu sehen ist. 1333 April 6 für das Stift Pfalzel erscheint
+                            erstmals ein betont anders Gekleideter; er trägt weiss und hat ein
+                            anders geschnittenes Kleid; hierbei scheint es sich um einen
+                            Auftraggeber mit besonderen Wünschen gehandelt haben, anhand der weissen
+                            Kutte wahrscheinlich ein Zisterzienser oder Karthäuser. Der Ärmelschnitt
+                            ist fortan beliebig; 1334 Juni 24 für Stein findet sich einer in
+                            Pelerinenform. Dieses Gewand wird auch für den im Text ungenannten
+                            Petenten 1335 Juli 5 für Zeven verwendet, doch sieht man es hier
+                            pelzgefüttert und durch eine pelzgefütterte Haube ergänzt.</p>
+                        <p>1339 April 4 für Mergentheim zeigt erstmals einen unten spitz zulaufenden
+                            Kukullenärmel. Den Petenten in 1340 Jänner 3 für die Michaelskirche in
+                            Wien würde man nicht unbedingt als Geistlichen identifizieren, doch ist
+                            dort angesichts des schlechten Erhaltungszustands auch die Tonsur nicht
+                            mehr auszumachen. Ob er von einem heiligen Bischof beim im Binnenfeld
+                            stehenden Michael eingeführt wird oder ob der Auftraggeber den Bischof
+                            schlicht mit auf der Initiale haben wollte, lässt sich nicht
+                            entscheiden. Tatsächlich handelt es sich beim Ausführenden um einen
+                            Maler, der bis dahin noch nicht in der *<hi rend="bold">Werkstatt der
+                                Avignoner Bischofsammelindulgenzen</hi>* nachgewiesen werden konnte.
+                            1340 Oktober 31 für St. Florian aber zeigt eindeutig einen tonsurierten
+                            bärtigen Bittsteller, der von seinem Schutzheiligen Florian mit einer
+                            Geste begleitet wird. Wie zu erwarten, nehmen die Akteure der
+                            Verkündigung, Maria im Binnenfeld und Gabriel im linken Schaft, freilich
+                            keinerlei Notiz von ihm. </p>
+                        <p>Eine Veränderung in der Mode beim knienden Bittsteller, die mit der
+                            Beobachtung übereinstimmt, dass zu diesem Zeitpunkt ein oder mehrere
+                            neue Mitarbeiter in die Werkstatt eingetreten sind, lässt sich
+                            spätestens 1342 Februar 12 für Nenkersdorf verzeichnen: Man sieht die
+                            Füsse des Beters, und auch die Kapuze hat einen längeren Zipfel bekommen
+                            (anhand besserer Abbildung überprüfen). 1342 April 12 für Pusarnitz
+                            zeigt sich diese Figur deutlicher, auch mit langen Zipfeln am Ärmel. Es
+                            kann gewissermassen als zusätzliches Indiz für einen nicht in der
+                            Werkstatt ausgebildeten Maler gelten, dass er den Bittsteller von der
+                            heiligen Katharina mit einer vorstellenden Geste bei Michael im
+                            Binnenfeld einführen lässt. </p>
+                        <p>Konnte man sich bei der Urkunde für die Wiener Michaelskirche nicht
+                            sicher sein, ob Platzmangel oder hierarchische Adäquanz den Ausschlag
+                            dafür gegeben hat, Bittsteller und Heiligen in einem Bildraum
+                            darzustellen, wird es 1342 Juli 1 für Tournai schlicht Platznot gewesen
+                            sein, die Petentengruppe ins Binnenfeld zur stehenden Maria zu holen.
+                            Doch scheint es, dass fortan die Position des Bittstellers – und sei es
+                            unter dem Einfluss neuer Mitarbeiter – zur Disposition steht. 1343 Juli
+                            18 für S. Maria del Ponte erscheint er im deutlich schmaleren Gewand mit
+                            langer Zipfelkapuze und langen spitzen Ärmeln im linken Schaft. 1344
+                            April 4 für Zwettl hat zwei kniende auf der Urkunde zu verteilen, der
+                            höher stehende Abt erscheint wieder im rechten Schaft, während der
+                            einfache Mönch links unterhalb der Initiale seinen Platz fand. Auf diese
+                            Weise drückt sich die Hierarchie der Dargestellten aus. Schliesslich ist
+                            es auch möglich geworden, dass der Bittsteller im Binnenfeld dargestellt
+                            wird, ohne dass die Schäfte von Heiligen besetzt sind (erstes bekanntes
+                            Beispiel 1344 Juni 27 für Scheibbs). Besonders sinnfällig wird diese
+                            starke Nähe zum Heiligen bei 1345 Oktober 18 für die Bruderschaft in
+                            Imola, wo der namenlos gebliebene Bittsteller mit Schriftband rechts von
+                            einem ebensolchen unter Mariens Schutzmantel gespiegelt wird.</p>
+                        <p>Letztlich impliziert der Inhalt der Indulgenzen, nämlich die Gnade des
+                            Erlasses zeitlicher Sündenstrafen, eine besondere Hinwendung der
+                            Gottheit zum Gläubigen. Wenn der Bittsteller im Text erwähnt wird,
+                            gelten auch ihm besondere Erlasse. Was ist das mehr als die besondere
+                            Hinwendung der heiligen Gestalten zum Bittsteller im Bild? Diese
+                            ausserordentliche Nähe drückt sich 1347 Jänner 12 für Hirsau darin aus,
+                            dass der zwar im rechten Schaft untergebrachte Beter vom Christuskind
+                            auf dem Arm Mariens in einer deutlichen Wendung von der Mutter weg
+                            gesegnet wird. Nicht nur, weil es sich um die bisher letzte erhaltene
+                            Arbeit der *<hi rend="bold">Werkstatt der Avignoner
+                                Bischofsammelindulgenzen</hi>*, 1348 März 3 für St. Peter in Naiklo,
+                            handelt, sondern weil dort wieder das Christuskind auf dem Arm der
+                            Mutter sogar die Schriftrolle des Betenden berührt, ist diese
+                            Entwicklung auf die Spitze getrieben.</p>
+                        <div>
+                            <head>N-Initiale</head>
+                            <p>Der zweite Buchstabe im Wort „Universis“ in der ersten Zeile von
+                                Avignoner Bischofsammelindulgenzen, der immer vergrössert
+                                geschrieben, selten aber historisiert wird.</p>
+                            <p>Es scheint, als hätten die Bittsteller der ersten Indulgenzen mit
+                                abweichenden Themen im Binnenfeld – vielleicht, weil die Besucher
+                                ihrer Kirchen solche Indulgenzen bereits kannten – die *<hi
+                                    rend="bold">Christusbüste</hi>* dort untergebracht (vgl. 1330
+                                Oktober 8 für die Forstwaldkapelle, 1330 November 12 für die
+                                Kartause in Gent, 1331 Mai 12 für St. Laurenz in Wien, 1331
+                                September 15 für Cembra, 1333 Jänner 18 für Kirchberg, 1336
+                                September 15 für Ahnaberg und 1342 April 12 für Pusarnitz). Dabei
+                                erscheint lediglich Christi Haupt, so dass auch eine Erinnerung an
+                                die *<hi rend="bold">Vera Ikon</hi>* gegeben ist. Eine Ausnahme
+                                stellt 1342 Juli 1 für Tournai dar, wo in der n-Initiale Petrus
+                                erscheint. Dort sind die Protagonisten der oberen Randzone beim *<hi
+                                    rend="bold">Rahmentyp</hi>* – Petrus, Christus und Paulus – in
+                                die Binnenfelder der vergrösserten Initialen der ersten Zeile
+                                gewandert.</p>
+                            <p>Bisher sind nur zwei andere Urkunden aufgetaucht, die von der
+                                allgemeinen Praxis abweichen: 1332 Oktober 27 für Hohenberg zeigt in
+                                der n-Initiale einen Bischof als Kniestück; dabei möchte es sich um
+                                den bestätigenden Bischof handeln. Leider ist bisher von 1342 März
+                                27 für Pergkirchen kein vollständiges Foto vorhanden, sodass
+                                zunächst lediglich konstatiert werden kann, dass dort ein nach
+                                rechts schreitender Heiliger erscheint. Während die Ausmalung für
+                                Hohenberg von einem Maler erfolgte, der sonst nicht mehr in der *<hi
+                                    rend="bold">Werkstatt der Avignoner
+                                    Bischofsammelindulgenzen</hi>* anzutreffen ist, ist die
+                                Indulgenz für Pergkirchen von einem frisch in die Werkstatt
+                                eingetretenen illuminiert worden.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <head>Die Randzone</head>
+                        <p>Die Bordürenfelder oben und aussen bei Avignoner
+                            Bischofsammelindulgenzen, die frühestens ab Juni 1328 mit Bildfeldern,
+                            Figuren oder Schmuckrahmen versehen sein können.</p>
+                        <p>Ein stehender Bischof unterhalb der Initiale ist im bekannten Material
+                            ein erstes Mal für Léau (1328 Juni 7) nachweisbar. Hier erscheint der
+                            hl. Leonhard links unterhalb der Initiale und darunter der namentlich
+                            bezeichnete Bittsteller Johannes de Sceverstene ohne ein Bildfeld.
+                            Dieser Ablass lotet experimentell die Möglichkeiten aus, wie man die
+                            Urkundenränder in den Dienst der Historisierung stellen kann. Ein ebenso
+                            wie das *<hi rend="bold">Layout</hi>* von Léau singulär gebliebener
+                            Versuch ist bei 1330 September 1 für Dinant unternommen worden: Dort
+                            wird der Textspiegel von einem Schmuckband aus ausgesparten Kreuzblumen
+                            gerahmt. Die Position des Leonhard beim Ablass für Léau wird 1332
+                            September 1 für Zürich für den bestätigenden Bischof genutzt. Durch sein
+                            Schriftband „Ratificamus et confirmamus“ wird auf einzigartige Weise ein
+                            rechtlicher Akt im Zusammenhang mit der Indulgenz im Bild verdeutlicht. </p>
+                        <p>Es ist wahrscheinlich, dass dieser Ablass für Zürich eine vorher
+                            vollzogene Entwicklung im erhaltenen Material wiederspiegelt, denn
+                            bereits einen Monat später, 1332 Oktober 15 für Lahnstein, findet sich
+                            der voll ausgeprägte *<hi rend="bold">Rahmentyp</hi>*. Dabei wird der
+                            Bischof unterhalb der Initiale beibehalten, er findet sich auch 1333
+                            Februar 23 für das Johannesstift in Osnabrück, 1333 Dezember 19 für
+                            Sterzing, 1333 Dezember 20 für Freiberg, 1334 Juni 24 für Stein, 1334
+                            November 10 für Halberstadt, 1336 April 8 für Het Rondeel, 1336 Mai 6
+                            für Mondsee u.s.f. Diese Figur scheint zunächst den ratifizierenden
+                            Bischof gemeint zu haben, doch erhält er – obwohl mit Schriftband – ab
+                            1332 Oktober 27 für Hohenberg einen Nimbus. Häufig genug ist es nicht
+                            möglich, diese Gestalt mit einem Heiligen zu identifizieren. Darüber
+                            hinaus folgt er weitestgehend der bereits für Zürich verwendeten *<hi
+                                rend="bold">Vorlage</hi>*. Ein letztes Mal ist er im bisher
+                            bekannten Material 1337 Mai 12 für Rottweil nachzuweisen. In den 40er
+                            Jahren verschwindet er aus dem Repertoire der Randleisten, die auch ab
+                            1342 Jänner für Fröndenberg wohl unter dem Einfluss eines neuen
+                            Mitarbeiters in der *<hi rend="bold">Werkstatt der Avignoner
+                                Bischofsammelindulgenzen</hi>* nach einem neuen *<hi rend="bold"
+                                >Layout</hi>* gestaltet sind. </p>
+                        <p>Vergleichsweise seltener erscheinen an dieser Stelle andere Heilige –
+                            oder im Ausnahmefall der Indulgenz 1335 Jänner 11 für Kloster Burtscheid
+                            der Bittsteller Gerardus Chorus. Meist sind es die Indulgenzen, die nur
+                            einzelne Bildfelder am Rand zeigen, also keinen vollständig ausgeprägten
+                                *<hi rend="bold">Rahmentyp</hi>* darstellen; auch da gibt es eine
+                            Ausnahme, 1332 November 2 für Niederlana. Dort erscheint an dieser
+                            Stelle im voll ausgeführten Bildrahmen die hl. Katharina; sie findet man
+                            ebenfalls im Bildfeld unterhalb der Initiale bei 1335 Juni 17 für Wels
+                            und 1340 Oktober 20 für Heilbronn. Ihre Wahl ist nicht durch ein
+                            bestimmtes Patrozinium bedingt; vielmehr ist sie wohl wegen ihrer
+                            allgemeinen Beliebtheit gewählt worden. Für zumindest drei Urkunden mit
+                            nur einzelnen Bildfeldern am Rand befindet sich unterhalb der Initiale
+                            der Patronatsheilige der begünstigten Kirche: 1333 Mai 31 ist der Täufer
+                            für die Johanneskirche des Klosters Schildesche, 1336 März 8 für
+                            Heusenstamm ist es die Patronatsheilige Cäcilie und 1337 Jänner 4 der
+                            hl. Georg für die gleichnamige Kapelle in Münnerstadt. Das Erscheinen
+                            des hl. Stephanus bei 1332 November 15 für die Georgskirche in Arnsdorf
+                            ist zumindest durch sein Vorkommen im Formular gerechtfertigt.</p>
+                        <p>Ebenso wie der Bischof beim *<hi rend="bold">Rahmentyp</hi>* der 30er
+                            Jahre meist links am Rand unterhalb der Initiale in einem Bildfeld
+                            erscheint, sind für den Bildstreifen oberhalb des Textspiegels die Köpfe
+                            oder Büsten von Christus gerahmt von Peter und Paul nahezu kanonisch.
+                            Man findet sie auf den meisten Indulgenzen des Rahmentyps; dabei ist der
+                            Christuskopf aus der *<hi rend="bold">Vorlage</hi>* der *<hi rend="bold"
+                                >Christusbüste</hi>* entwickelt. Zu den Ausnahmen gehören 1333
+                            Jänner 11 für Kloster Burtscheid und 1336 April 8 für Het Rondeel, die
+                            eher an die Darstellungen der *<hi rend="bold">Vera Ikon</hi>* erinnern.
+                            Diese Dreiergruppe kann wie bei 1332 November 2 für Niederlana um
+                            weitere Köpfe ergänzt werden; äusserst selten findet sich eine
+                            ikonographische Abweichung wie 1333 Februar 23 für das Osnabrücker
+                            Johannesstift, wo Christus als Schmerzensmann von den trauernden Maria
+                            und Johannes flankiert wird. Wie auch im Fall der
+                            Binnenfeldilluminierung mit dem <hi rend="italic">Volto Santo</hi> 1333
+                            April 5 für Lucca erweist sich diese Urkunde bei der Bordürengestaltung
+                            als Ausnahme, mit einem Gekreuzigten oben und einem liturgischen Kreuz
+                            links am Rand. </p>
+                        <p>Das schon bei der Illuminierung der *<hi rend="bold">n-Initiale</hi>*
+                            beobachtete Phänomen, dass Althergebrachtes gewissermassen als
+                            typologisches Rudiment bei Innovationen weitergetragen wird, lässt sich
+                            bei 1343 Juli 18 für S. Maria del Ponte beobachten, denn Christus,
+                            flankiert von Peter und Paul erscheinen dort als Büsten im oberen Rand.
+                            1347 Jänner 12 für Hirsau greift die drei Büsten oben inmitten von
+                            Blattranken wieder auf, dort freilich mit dem durch das Patrozinium
+                            bedingten hl. Aurelius und nur Peter und Paul, die sich – in Ermangelung
+                            des gewöhnlich in ihrer Mitte befindlichen Christus – anschauen.</p>
+                        <p>Die rechte Bordürenzone ist von der ikonographischen Belegung her etwas
+                            freier, doch kann man hier eine Häufung der Darstellung von Johannes dem
+                            Täufer feststellen (1333 Februar 23 für das Johannesstift Osnabrück,
+                            1333 Dezember 19 für Sterzing, 1334 November 11 10 für Halberstadt, 1335
+                            Jänner 11 für Kloster Burtscheid, 1335 Juni 17 für Wels, 1336 April 8
+                            für Het Rondeel, 1336 Mai 6 für Mondsee, 1337 Mai 12 für Rottweil u. s.
+                            f.). Je nachdem, ob man den rechten Randstreifen in ein oder zwei
+                            Bildfelder aufteilte, konnte man zusätzlich zu diesem allerorts
+                            verehrten Heiligen noch weitere aufnehmen. </p>
+                        <p>Nur zwei erhaltene Urkunden in den 40er Jahren dokumentieren den
+                            vollendeten *<hi rend="bold">Rahmentyp</hi>* mit reichhaltiger
+                            ikonographischer Vielfalt: 1342 Jänner 2 für Fröndenberg gibt aussen je
+                            ein grösseres Bildfeld für Gabriel und Maria der Verkündigung sowie 12
+                            kleinere für die Apostel. 1342 März 22 für Maaseyck räumt für den das
+                            Textfeld rahmenden Bildstreifen aussen je zwei und oben sieben
+                            Bildfelder ein. Als künstlerisch wohl überlegter Sonderfall hat 1347
+                            Juli 5 für Borken zu gelten; dort ist der Randstreifen zumindest um die
+                            Miniatur herum, die das Initialfeld besetzt, als architektonische
+                            Szenerie gestaltet. Wie schon bei 1333 Februar 23 für das Osnabrücker
+                            Johannesstift erscheint im oberen Bildstreifen dann Christus als
+                            Schmerzensmann, flankiert von Maria und Johannes. Weniger durch
+                            künstlerisches Überlegung als durch hierarchische Platzierung ergibt
+                            sich, dass bei 1344 April 4 für Zwettl ein betender Mönch am linken Rand
+                            erscheint (sein Abt hat den wichtigeren Platz im rechten
+                            Buchstabenschaft erhalten).</p>
+                        <p>Es fallen wenige Urkunden mit kompositorischen Innovationen in der
+                            Gestaltung der Randzone in den 40er Jahren auf, doch können sie als
+                            äusserst bemerkenswert gelten: Allen voran ist es 1343 Jänner 22 für den
+                            Wiener Stephansfriedhof. Dort wird der Bildraum im Binnenfeld der
+                            Initiale zum Rand hin erweitert. Während Christus im Binnenfeld auf dem
+                            Ölberg als eigenartiger Weise stehender Beter seine einsame Hoheit
+                            präsentiert, erscheinen die Jünger links am Rand auf einem Rasenstück
+                            und überschneiden dabei die Initiale deutlich. Das Bittstellerpaar hat
+                            seinen angestammten Platz im rechten Buchstabenschaft (vgl. *<hi
+                                rend="bold">Petent</hi>*), und ist so auf angemessene Weise vom
+                            Heilsgeschehen abgetrennt. Eine eigenartige Vermischung von sakraler und
+                            weltlicher Sphäre wird auf dem Ablass 1345 November 28 für Cividale auf
+                            einem Randstreifen präsentiert. Diese Urkunde erhält an den Aussenseiten
+                            und oben einen farbig markierten Streifen, dessen Linien oben links und
+                            rechts aussen ein quadratisches Abteil bilden. Im Linken befindet sich
+                            dort ein Weihrauch schwenkender Engel; rechts aber ist ein weiterer
+                            Engel auf dem Streifen zu sehen, die auch die Flagellanten beschreiten.
+                            An ihrer Spitze beugt sich einer mit einem Kreuz in der Hand zum
+                            Christuskind in der Initiale, das mit einer grüssenden Geste sich ihm
+                            entgegen reckt. </p>
+                        <p>Solche, auch inhaltlichen Verknüpfungen von Bildstreifen und Initiale
+                            sind bisher seltene Einzelbeispiele. Ähnlich unikal ist der
+                            Architekturaufbau auf der Initiale bei 1346 September 18 für San Zoilo
+                            in Caseda, der an die Westfassade einer Kirche erinnert. Ein Baum am
+                            linken Rand lässt auf eine rudimentäre Landschaftsdarstelle schliessen
+                            (ändern, sobald besseres Foto). Letztlich baut auf der Idee der die
+                            Initiale überfangenden Architektur 1347 April 15 für Kasimirz auf, wo in
+                            einem aus Säulen gebildeten Raum Petrus als Bischof thront und ein
+                            Petent kniet. Doch kann hier erst nach einer Autopsie des Originals
+                            entschieden werden, ob diese Darstellung tatsächlich schon in Avignon
+                            verfertigt wurde. </p>
+                        <p>1340 Oktober 20 für die Michaelskapelle in Heilbronn wird erstmals das
+                                *<hi rend="bold">Layout</hi>* aufgegriffen, was letztlich bereits
+                            1328 für Léau mit dem knienden Bittsteller ohne ein Bildfeld probiert
+                            worden war: Am Rand aussen erscheinen hier wie auch bei 1342 April 12
+                            für Pusarnitz, 1343 April 6 für Creglingen, 1344 Juni 27 für
+                            Baumgartenberg und 1344 November für Kloster Schildesche die Heiligen
+                            vor dem Pergamentgrund ohne Standfläche oder Bildrahmen. Sie möchten als
+                            Weg zum vollendeten *<hi rend="bold">Blattrankentyp</hi>* zu verstehen
+                            sein, denn 1347 Jänner 12 für Hirsau zeigt, wie die vor Pergamentgrund
+                            stehenden Heiligen durch die Ranke, die runde Bildfelder für Brustbilder
+                            für Aurelius, Peter und Paul schaffen, zu einem das Textfeld
+                            umgreifenden Bordürenstreifen geeint werden.</p>
+                    </div>
+                </div>
+                <div>
+                    <head>Vorlage</head>
+                    <p>Entwurfszeichnungen für Figuren oder ganze Szenen, die in einer
+                        Buchmalerei-Werkstatt immer wieder verwendet wurden. Mit unterschiedlichen
+                        Techniken wurden sie auf das Pergament gebracht, sodass sie auch horizontal
+                        gespiegelt werden konnten. Gewöhnlich kann man davon ausgehen, dass diese
+                        Zeichnungen exklusiv nur einem Verbund zur Verfügung standen.</p>
+                </div>
+                <div>
+                    <head>Sammelindulgenz</head>
+                    <p>Auch: Sammelablass, Kollektivablass, kumulativer Ablass. </p>
+                    <p> Bischöfe konnten je 40 Tage der zeitlichen Sündenstrafen vergeben; diese
+                        Zahlen wurden mit der Anzahl der Ausstellenden Würdenträger multipliziert;
+                        der bestätigende Bischof hat gewöhnlich noch einmal 40 Tage hinzugefügt. Sie
+                        wurden ab 1281 in Rom, ab 1309 in Avignon gewährt. Nach 1364, als Papst
+                        Urban V. alle Würdenträger ohne Kurialamt bat, Avignon zu verlassen, wurde
+                        die Anzahl der ausgestellten Sammelindulgenzen geringer.</p>
+                </div>
+                <div>
+                    <head>Bischofsammelindulgenz ausserhalb der Kurie</head>
+                    <p>Bischofsammelablass </p>
+                </div>
+                <div>
+                    <head>Römische Bischofsammelindulgenz</head>
+                    <p>Bischofsammelablass aus Italien während der Residenz der Päpste in
+                        Avignon.</p>
+                </div>
+                <div>
+                    <head>Voravignoner Bischofsammelindulgenz</head>
+                    <p>Bischofsammelablass aus Italien vor dem Niederlassen der Kurie in
+                        Avignon.</p>
+                    <p>Bischofssammelablässe wurden Ende des 13. Jahrhunderts mit stark
+                        vergrösserten, mitunter graphisch bereicherten Initialen in der
+                        Schreibertinte ausgestattet, deren Binnenfeld freilich zumeist leer
+                        verblieb. Eine Bischofsammelindulgenz sticht allein durch ihre Grösse und
+                        die Menge ihrer Siegel hervor, Seibold ermittelte als durchschnittliche
+                        Grösse 580 x 374 mm für die Voravignoner Exemplare (Seibold 2001, S. 55).
+                        Die Grösse hängt mit der Funktion zusammen, denn die Urkunden wurden wohl an
+                        den ausgelobten Tagen in den Kirchen an Stangen aufgehängt, ausgelegt oder
+                        sogar am Portal angeschlagen (teilweise sind die Schlaufen zum Aufhängen
+                        noch erhalten). Ihr Text sollte auch aus grösserer Entfernung lesbar sein;
+                        dem entsprechend sind die Zeilenabstände gross. Die grossen Zeilenabstände
+                        geben den in der Anfangszeit schon unterschiedlichen Schriftarten Raum,
+                        Ober- und Unterlängen zu entfalten. Dabei wird man nicht nur die gute
+                        Lesbarkeit im Auge gehabt haben, die Schrift – wie auch die zahlreich an der
+                        Urkunde hängenden Siegel – werden auch als ikonisches Zeichen zu verstehen
+                        sein; nicht nur für die <hi rend="italic">illiterati</hi>. Schon früh hat
+                        man deshalb in der Forschung von „Plakaten“ im Zusammenhang mit
+                        Sammelindulgenzen gesprochen. </p>
+                    <p>Hippolyte Delehaye, der sich als erster grundlegend mit
+                        Bischofssammelindulgenzen beschäftigt hat – wenn er auch der Dekoration
+                        keine Beachtung schenkte – machte als erstes Exemplar mit 14 Ausstellern am
+                        päpstlichen Hof in Orvieto 1281 August 30 für die Michaelskirche in Lüneburg
+                        aus (Delehaye, 45, 1927, S. 109 – nur kopial überliefert; vgl. UB des
+                        Klosters St. Michaelis zu Lüneburg, S. 85, Nr. 114, online: <ref
+                            target="http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10477853_00093.html"
+                            >http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10477853_00093.html</ref>
+                        ). Unser bisher erstes im Original nachweisbares Exemplar, 1283 Oktober 1
+                        für Marienstern, bietet noch keine Besonderheiten neben dem vergrösserten
+                        U(niversis) in der ersten Zeile. Doch bereits im September desselben Jahres
+                        (1284 September 1) für Mariengreden ist (U)niversis in Elongata geschrieben.
+                        Im Jahr 1287, im Ablass für Altenburg, ist das Binnenfeld mit Ornamenten
+                        gefüllt, ein Jahr später (1288 für Herzog Heinrich, Gründer des Wiener
+                        Schottenstifts) findet man Fleuronnée und einen recht ungewöhnlichen
+                        senkrechten Balken im Binnenfeld. 1288 für Einsiedeln hat man gar eine Ranke
+                        mit floralen und zoomorphen Motiven an den Rand gemalt. </p>
+                    <p>Man probiert demnach in den ersten Jahren unterschiedliche Möglichkeiten aus,
+                        der Urkunde zusätzliche Attraktivität zu verleihen, damit sie den besonderen
+                        performativen Anforderungen dieser Urkundengattung besser genügen kann.
+                        Gelegentlich lässt man, wie z. B. 1289 Dezember 13 für Hersfeld die
+                        U-Initiale über den Textspiegel hinaus in den linken Rand ragen; etwas, was
+                        bei den späteren illuminierten und auch historisierten Avignoner
+                        Bischofsammelindulgenzen nahezu die Regel ist. Dort wird auch erstmals das
+                        ganze Wort „Universis“ in Zierschrift mit Begleitlinien gestaltet. Diesen
+                        Ansatz findet man im bisher bekannten Material auch bei 1296 für das
+                        Marienhospital in Braunschweig und 1297 für das Marienhospital in Marburg.
+                        Aus dieser Grundidee werden auch umfänglicher gestaltete Urkunden
+                        entwickelt, wenn z. B. 1296 für die Wiener Schotten die Spatien zwischen den
+                        Buchstaben mit – ein wenig unprofessionell wirkendem – Fleuronnée gefüllt
+                        werden und lustige Gesichter hinzukommen. Weniger das höhere
+                        Ausstattungsniveau sondern die Eleganz der U-Initiale mit ihren organisch
+                        anmutenden Aussparungen und den federstrichdünnen Serifen, die mit einem
+                        ebenso dünnen Bogen unten korrespondieren, machen den Ablass 1292 für die
+                        Petrikirche in Braunschweig zu einem ästhetischen Vergnügen, selbst wenn der
+                        Versuch, die Initiale in den Text einzurücken, nicht funktioniert hat.</p>
+                    <p>Wie später in der *<hi rend="bold">Werkstatt der Avignoner
+                            Bischofsammelindulgenzen</hi>* zu beobachten, scheint es bereits in der
+                        römischen Kanzlei gestaffelte Dekorationsprogramme gegeben zu haben. Die
+                        unter diesem Aspekt prächtigste Version ist mit 1296 für Simon und Juda in
+                        Goslar erhalten: Dort wird die grosse und breite U-Initiale fünf Zeilen tief
+                        in den Txtblock eingelassen und der Rest des Wortes zweizeilig geschrieben;
+                        auch die grösseren Initialen im Textblock sind mit Begleitlinien versehen.
+                        Die Jahre 1295-1297 erweisen sich somit als fruchtbare Experimentierphase in
+                        der Gestaltung der Sammelablässe in Italien. Farbige Tinten kommen 1297
+                        hinzu (1297 für das Wiener Schottenkloster), zur gleichen Zeit sind auch
+                        erste Experimente zu beobachten, die es ermöglichen, die Initiale noch
+                        grösser zu gestalten, indem man sie in den Textblock einlässt (bereits z. B.
+                        1295 Februar 13 für Allendorf). </p>
+                    <p>Aus dem Jubeljahr 1300 ist eine grosse Menge erhalten, doch kann man in dem
+                        Jahr keine besonderen Entwicklungen bei *<hi rend="bold">Layout</hi>* oder
+                        Dekoration bemerken. </p>
+                    <p>Nach 1300 lässt die Produktion entschieden nach; Delehaye (45, 1927, S. 326
+                        f.) kannte aus den Jahren 1301 bis 1310 nur 19 Erwähnungen. 1309 hatte sich
+                        Clemens V. in Avignon niedergelassen; den ersten Ablassbrief, der in Avignon
+                        ausgestellt wurde, konnte Delehaye 1311 Juli 5 für die Stiftskirche in Essen
+                        nachweisen. Ein Jahr später wurde aber auch noch eine Indulgenz in Rom
+                        ausgestellt (1312 März 22 für die Johanneskirche in Unsar (Delehaye, 45,
+                        1927, S. 327); auch im weiteren Verlauf des 14. Jahrhunderts werden immer
+                        wieder Indulgenzen in Rom ausgestellt (siehe *<hi rend="bold">Römische
+                            Bischofsammelindulgenz</hi>*. Zur weiteren Entwicklung siehe *<hi
+                            rend="bold">Avignoner Bischofsammelindulgenz</hi>*.</p>
+                </div>
+                <div>
+                    <head>Avignoner Bischofsammelindulgenz</head>
+                    <p>In Avignon ausgestellte Bischofsammelindulgenzen, deren Initialen lediglich
+                        in der Farbe der Schreibertinte gehalten sind. </p>
+                    <p>Dabei sind zwei zeitlich voneinander entfernte Phasen auszumachen:</p>
+                    <p>Zunächst handelt es sich um die zeitlich frühesten, in Avignon ausgestellten
+                        Bischofsammelindulgenzen; zur vorherigen Entwicklung s. *<hi rend="bold"
+                            >Voravignoner Bischofsammelindulgenz</hi>*. Wie auch in Italien nach dem
+                        Jubeljahr 1300 sind die ersten Indulgenzen aus Avignon nur spärlich
+                        überliefert und wohl auch nur wenig produziert worden (ev. Zahlen). Der
+                        früheste Ablassbrief aus Avignon ist 1311 Juli 5 für die Stiftskirche in
+                        Essen ausgestellt worden (Delehaye 1927, S. 327). Diese schlecht erhaltene
+                        Urkunde dürfte jedoch noch hinter römische Beispiele das zurückgegangen
+                        sein. Es scheint, als müssten sich die Schreiber der besonderen Aufgaben,
+                        die eine so grosse und wohl auch öffentlich präsentierte Urkunde stellt,
+                        erst wieder nähern. Die Experimente, die man insbesondere in den Jahren
+                        1295-97 unternahm, sind nicht präsent. Hat demnach keiner der mit dem
+                        Schreiben von Sammelindulgenzen Betrauter der päpstlichen Kanzlei den Umzug
+                        nach Avignon mitgemacht? Die nächste, bisher bekannte Urkunde, 1313 für St.
+                        Gertrud in Klosterneuburg, liefert in etwa das, was man in Rom 1300 für
+                        Regensburg ausgeführt hat, freilich mit einer Tendenz zu dekorativen
+                        Kreisen, die im Bogen von Buchstaben untergebracht werden. Eine erste
+                        eigenständige Gestaltungsidee zeigt sich mit dem Zeichner der Initiale von
+                        1314 für Kiechlinsbergen: Die U-Initiale weist eine besondere
+                        Gestaltungsform auf, die man bei einigen weiteren Bischofsammelindulgenzen
+                        bis 1323 September 20 für Allendorf beobachten kann, sie ist aus
+                        Kreissegmenten geformt, während die erste Zeile in gesperrter Elongata
+                        geschrieben wird. Offensichtlich hat man für die Konstruktion einen Zirkel
+                        benutzt, denn Einstichstellen sind noch sichtbar (z. B. 1319 März für die
+                        Braunschweiger Michaelskirche). Diese Buchstaben büssen zugunsten des Spiels
+                        mit Rundungen, Schnittmengen und Tangenten häufig ihre Lesbarkeit ein.
+                        Gleichzeitig entfalten sie eine Ästhetik, die an Jugendstil-Typographie
+                        denken lässt und deren Abstraktionsgrad letztlich radikaler ist s. (*<hi
+                            rend="bold">Zeichner der kreisförmigen U-Initiale</hi>*). Ob es sich
+                        dabei um einen bestimmten Schreiber handelt oder eine in der Werkstatt von
+                        mehreren genutzte Praktik, muss noch entschieden werden. Neben dieser
+                        besonders eleganten Dekoration sind aber auch Kontinuitäten mit Initialen
+                        mit Aussparungen zu beobachten (z. B. 1317 Januar 22 für das Wiener
+                        Schottenkloster). </p>
+                    <p>Spätestens 1323 März 10, mit dem Ablass für Maiden Bradley, kommt ein
+                        deutlich erkennbarer neuer Mitarbeiter in die *<hi rend="bold">Werkstatt der
+                            Avignoner Bischofsammelindulgenzen</hi>*. Seine Initialen haben vor
+                        allem im rechten Schaft Aussparungen, die an Masswerkfenster erinnern (*<hi
+                            rend="bold">Zeichner mit den Masswerkmotiven</hi>*). Der Übergang zu den
+                            *<hi rend="bold">Illuminierten Avignoner Bischofsammelindulgenzen</hi>*
+                        ist fliessend, wie es auch auffallend ist, dass ältere Gestaltungsprinzipien
+                        in neue Dekorationsformen aufgenommen werden, z. B. 1325 Dezember 8 für
+                        Brünn, wo das das kreisrunde „U“, das an den *<hi rend="bold">Zeichner der
+                            kreisförmigen U-Initiale</hi>* erinnert, vom *<hi rend="bold">Zeichner
+                            mit den Masswerkmotiven</hi>* im Binnenfeld mit der modernen *<hi
+                            rend="bold">Vera Ikon</hi>* geschmückt wird.</p>
+                    <p>Nach 1348, mit der letzten bisher bekannten Urkunde mit historisierter
+                        Initiale aus der Werkstatt der Avignoner Bischofsammelindulgenzen,
+                        beobachtet man neuerlich lediglich U-Initialen, die vom Schreiber dekoriert
+                        wurden (z. B. 1359 September 15 für Spachbruchen, vgl. *<hi rend="bold"
+                            >Unilluminierte Avignoner Bischofsammelindulgenz</hi>*).</p>
+                </div>
+                <div>
+                    <head>Illuminierte Avignoner Bischofsammelindulgenz</head>
+                    <p>In Avignon ausgestellte Bischofsammelindulgenzen, deren Initialen
+                        hauptsächlich in Schreibertinte mit dekorativem oder figürlichem Schmuck
+                        versehen sind. </p>
+                    <p>Sammelablässe mit figürlichem Buchschmuck treten ab 1323 auf (erstes, bisher
+                        bekanntes Beispiel 1323 Mai 11 für Saint-Martin-de-Picquigny). Zuerst
+                        einfache historisierte Initialen mit tintenfarbigen, in Folge auch farbige
+                        Vera-Ikon-Darstellungen im Binnenfeld. Die hier getroffene Unterscheidung
+                        von illuminierten und historisierten Ablassurkunden ist nicht vom Sujet
+                        bestimmt, sondern von der Ausführungstechnik. Denn selbstverständlich ist
+                        die *<hi rend="bold">Vera Ikon</hi>*, die seit 1323 (frühester Fund 1323 Mai
+                        11 für Saint-Martin-de-Picquigny) das Binnenfeld der U-Initiale zieren kann,
+                        eine Historisierung. Doch sind die Zeichnungen sicher von den Schreibern der
+                        Urkunden in der Tintenfarbe vorgenommen worden, weshalb auch entsprechend
+                        selten – und wenn wenig – Farben zum Einsatz kommen (erstmals im bekannten
+                        Material die Farbe Gelb 1326 April 25 für Rheydt). Der die Entwicklung
+                        beherrschende Zeichner ist der *<hi rend="bold">Zeichner mit den
+                            Masswerkmotiven</hi>*; ihm allein sind die Initialen mit einer Vera Ikon
+                        zu verdanken. Von besonderem Interesse, weil er letztlich die Vorstellung
+                        einer linearen Entwicklung der Ausstattung von Vera Ikon zu *<hi rend="bold"
+                            >Christusbüste</hi>* hin zu den unterschiedlichen Sujets im Binnenfeld
+                        torpediert, ist der Ablass vom 1323 Juni für den Dom zu Trier. Dort wird der
+                        Titularheilige des mit dem Ablass begünstigten Altars, der hl. Matthias,
+                        zwar noch in Federzeichnung, im Binnenfeld der U-Initiale zusammen mit einem
+                        knienden *<hi rend="bold">Petenten</hi>* dargestellt. Damit weist die
+                        Gestaltung auf Entwicklungen voraus, die erst 1329 mit unterschiedlichen,
+                        auf das Patrozinium bezogenen Darstellungen fortgesetzt werden (*<hi
+                            rend="bold">ikonographische Diversifizierung</hi>*); den Petenten in
+                        Binnenfeld wird man erst wieder 1337 Oktober 26 für die Kreuzkirche in
+                        Hannover, und voll ausgeprägt z. B. 1345 Dezember 28 für Hamm. Wenn die
+                        Initiale mitsamt der Zeichnung tatsächlich zum originalen Bestand gehört,
+                        zeigt es, wie flexibel und kreativ sich die *<hi rend="bold">Werkstatt der
+                            Avignoner Bischofsammelindulgenzen</hi>* mit Auftraggeberwünschen
+                        auseinanderzusetzen in der Lage war.</p>
+                    <p>Der bisher früheste Fund von illuminierten Initialen bei Avignoner
+                        Bischofsammelablässen 1323 Mai 11 für Saint-Martin-de-Picquigny muss
+                        strenggenommen als historisiert gelten, denn der Buchstabenkörper ist aus
+                        einem burgähnlichen Bauwerk geformt, der daran denken lässt, dass sich die
+                        Kirche innerhalb eines Burgbereiches befunden hat. Eine solche
+                        Figuren-Initiale bleibt solitär, das Antlitz Christi jedoch etwa fünf Jahre
+                        das beherrschende Motiv (zuletzt kopial nachweisbar: 1328 für Wormbridge –
+                        London, British Library, ms. Egerton 3712, f. 89v). Der Wechsel von der
+                        einen zur anderen Dekorationsform vollzieht sich dabei in der *<hi
+                            rend="bold">Werkstatt der Avignoner Bischofsammelindulgenzen</hi>*
+                        kontinuierlich, es scheint, als könnten hier bereits die Auftraggeber die
+                        Sujets auswählen, je nach Anspruch und Geldbeutel. </p>
+                </div>
+                <div>
+                    <head>Historisierte Avignoner Bischofsammelindulgenz</head>
+                    <p>In Avignon ausgestellte Bischofsammelindulgenzen, deren Initialen figürlich
+                        mit Farben gestaltet sind.</p>
+                    <p>Die bisher früheste, im Original überlieferte Sammelindulgenz mit einer
+                        farbigen Initiale ist 1328 Mai 12 für das Wiener Schottenstift, dort ist die
+                        Binnenfeldfüllung jedoch aus Ranken und einem Mischwesen gestaltet, während
+                        die *<hi rend="bold">Vera Ikon</hi>* im linken Schaft Platz findet. Die
+                        Buchstabengestaltung ist fortan von floralen (selten zoomorphen)
+                        Aussparungen vor farbigem Grund gekennzeichnet, wobei Rot und Grün
+                        dominieren. Dies stellt ein für die Fleuronnée-Initialen in Handschriften
+                        charakteristisches Motiv dar, dessen Ursprünge sicher nicht in Avignon,
+                        sondern in der Entwicklung Mitteleuropas (Oberrhein bis Österreich,
+                        Rheinlande, Schlesien) zu suchen sind. In den späten 1320er Jahren stellen
+                        Aussparungen floraler und zoomorpher Motive eine moderne Stilinnovation dar. </p>
+                    <p>Das Binnenfeld ist zunächst der Darstellung einer segnenden *<hi rend="bold"
+                            >Christusbüste</hi>* gewidmet. Das erste bisher bekannte Auftreten der
+                        Christusbüste, 1328 Juni 7 für Léau, erweist sich dabei gleich als früher
+                        Beleg auf dem Weg zum *<hi rend="bold">Rahmentyp</hi>*. Die Geschwindigkeit,
+                        mit der man sich wohl den Wünschen der Besteller entsprechend auf andere
+                        Sujets verlegt, zeigt 1329 Oktober 24 für Benninghausen, wo eine thronende
+                        Maria mit Kind das Binnenfeld schmückt. 1330 treten weitere figürliche
+                        Motive (*<hi rend="bold">ikonographische Diversifizierung</hi>*) auf, deren
+                        Thema sich in erster Linie von dem Patrozinium der begünstigten Kirche
+                        herleitet. Gleichzeitig – mit bisher zwei bekannten Beispielen (1328 Mai 12
+                        und 1329 Jänner 17 für die Johanneskapelle in Villich – probiert man auch
+                        farbige Initialen ohne Historisierung aus, wobei 1328 Mai 12 die
+                        Christusbüste im linken Buchstabenschaft unterbringt.</p>
+                    <p>Das *<hi rend="bold">Layout</hi>* bleibt bis 1330 in etwa gleich: Die Höhe
+                        der U-Initiale variiert, greift auf den linken Rand aus, doch ist sie immer
+                        so in den Textblock eingepasst, dass ihre Höhe nicht über die erste Zeile
+                        hinausgeht oder gar tiefer endet. Im bisher bekannten Material ist es die
+                        Initiale 1331 Oktober für Cembra, die tiefer als die erste Zeile endet. Wohl
+                        wegen der Schwierigkeit, den Text einzurichten, blieb der Versuch, auch im
+                        Textblock noch historisierte Initialen vorzusehen, mit 1330 November 12 für
+                        Gent eine isolierte Erscheinung. Nur bei raren Beispielen hat man den sonst
+                        für die grosse U-Initiale vorgesehenen Raum mit einer Miniatur gefüllt: 1333
+                        Februar 23 für Osnabrück als Teil des Bildrahmens oder z. B. 1335 Juli 5 für
+                        Zeven. </p>
+                    <p>Bei allen Avignoner Bischofsammelindulgenzen sind die zeitlichen Einteilungen
+                        von den bisherigen Funden bestimmt, doch können Neufunde diese Ergebnisse
+                        stets relativieren. 1331 Oktober 15 für Cembra beispielsweise steht bis
+                        jetzt in der Überlieferung bisher recht isoliert, zeigt die Urkunde doch
+                        Neuerungen, wie die aus den Initialen der ersten Zeile ausstrahlenden
+                        Blattranken, die vermehrt erst in den 1340er Jahren anzutreffen sind. Auch
+                        die Heiligen, die dort die Buchstabenschäfte bevölkern, tauchen hier zum
+                        ersten Mal auf, doch ist die Ausführung mit der hinter dem Initialkontur
+                        weitergeführten Figur schon so ausgefeilt, dass man sicher von früheren,
+                        verlorenen Beispielen ausgehen kann.</p>
+                    <p>Ähnlich verhält es sich neben Léau mit 1332 September 1 für Zürich, wo am
+                        linken Rand unterhalb der U-Initiale ein Bildfeld für den bestätigenden
+                        Bischof der Heimatdiözese eingerichtet ist: Dazu hat man das Initialfeld der
+                        U-Initiale auf den Rand so ausgedehnt, dass das Bildfeld für den Bischof
+                        darunter nahtlos anschliessen kann. Schon einen Monat später, 1332 Oktober
+                        15 für Lahnstein begegnet zum erstem Mal das *<hi rend="bold">Layout</hi>*
+                        des voll ausgeprägten *<hi rend="bold">Rahmentyps</hi>*, der es ermöglicht,
+                        eine grosse Anzahl von Heiligen, aber auch Bittsteller, auf der Urkunde
+                        bildlich zu verewigen. Die Möglichkeit, den *<hi rend="bold">Petenten</hi>*
+                        mit in die Darstellung einzubeziehen, findet sich auch bei Ablässen mit der
+                            *<hi rend="bold">Christusbüste</hi>*; bisher frühestes Beispiel ist 1331
+                        Jänner 25 für Echternach, bisher frühestes Zeugnis eines Ablasses mit
+                        Bittsteller ist 1323 Juni für den Dom zu Trier, danach 1330 September 1 für
+                        Dinant. </p>
+                    <p>Fortan ist der Auswahl der Illuminierung nur die Grenze der pekuniären
+                        Kapazität der Bittsteller gesetzt. Neben dem vollen Bildstreifen am Rand
+                        können es auch nur einzelne Bildfelder sein. Doch auch dieses Layout wird
+                        durch Experimente aufgebrochen; 1335 Juli 5 für Zeven erscheint erstmals ein
+                        Bittsteller ohne Bildfeld neben der Initiale, das nächste Mal ist es erst
+                        1336 September 9 für Ahnaberg zu beobachten. Ab 1340 Oktober 20 für die
+                        Michaelskapelle in Heilbronn beginnt diese Dekorationsform der Ablässen
+                        neben dem Rahmentyp zu existieren.</p>
+                    <p>Kann man sich bei der Kreuzigung im Binnenfeld 1330 November 12 für die
+                        Kartause von Gent noch fragen, ob sie am Empfängerort verschönert oder sogar
+                        ausgeführt wurde, ist bei anderen historisierten Avignoner
+                        Bischofsammelindulgenzen das Einwirken am Bestellerort leichter zu erkennen
+                        (vgl. *<hi rend="bold">Dekoration beim Empfänger</hi>*): 1331 Mai 12 für St.
+                        Laurenz in Wien ist zu einem späteren Zeitpunkt, im 15. Jahrhundert,
+                        überarbeitet worden. 1333 Mai 20 für St. Gallen zeigt eine Überarbeitung der
+                        Initiale, und man hat vor Ort einen Bildstreifen oben hinzugefügt. 1337
+                        Jänner 4 für Münnerstadt wurde vor Ort mit stärkerer Farbe versehen.</p>
+                    <p>Dekorationen, die ausschliesslich beim Empfänger durchgeführt wurden, sind in
+                        der 30er Jahren selten. Eine Ausnahme ist die Indulgenz 1331 Februar 26 für
+                        Albi, die den besonderen Ansprüchen des dortigen Bischofs (der auch der
+                        Bittsteller gewesen sein mag) genügen musste und wohl ausserhalb der *<hi
+                            rend="bold">Werkstatt der Avignoner Bischofsammelindulgenzen</hi>* in
+                        einer Buchmalerwerkstatt illuminiert wurde. </p>
+                    <p>Offenbar hat es, seit man begann, die Bischofsammelablässe in Avignon mit
+                        farbigen Illuminationen zu versehen, auch „Blanko“-Versionen gegeben,
+                        unilluminierte Stücke (*<hi rend="bold">Unilluminierte Avignoner
+                            Bischofsammelindulgenz</hi>*), bei denen davon ausgegangen wurde, dass
+                        man sie am Empfängerort mit Dekorationen versehen werden würden (bisher
+                        frühestes bekanntes Zeugnis: 1333 August 20 für Kaiserstuhl).</p>
+                    <p>In den 30er Jahren entwickelte sich die U-Initiale wieder von der Lesbarkeit
+                        des Buchstabens weg hin zum reinen Bildrahmen: Die Buchstabenschäfte wurden
+                        breiter, um Figuren aufnehmen zu können, die Rundung unten kaum ausgeführt,
+                        damit im Binnenfeld eine ansprechende Bildfläche entsteht (z. B. 1335
+                        Oktober 22 für Bern). Oft genug begegnet man der erstmals bei Cembra
+                        beobachteten Lösung für den linken Schaft, der nur als Kontur über die Figur
+                        geführt wird (z. B. 1336 Jänner 10 für Asbach). Zwar ist durch diese
+                        Tendenz, der gemalten Dekoration mehr Raum zuzugestehen, der Buchstabe nicht
+                        mehr gut erkennbar, doch ergeben sich bei der Illuminierung Gestaltungen,
+                        die an Triptychen erinnern (z. B. 1337 August 3 für Göttweig). Dass
+                        tatsächlich Assoziationen mit Tafelmalerei angestrebt waren, legt die
+                        Initiale in 1333 Jänner 18 für Kirchberg nahe, denn dort scheint es, als sei
+                        die Bildfläche des Binnenfeldes wie ein Tafelbild mit einem Haken versehen.
+                        Deshalb ist es wohl kein Zufall, dass im Ablass für Kirchberg die Heiligen
+                        in den Buchstabenschäften wie Skulpturen auf Postamenten stehen.</p>
+                    <p>Der nächste Innovationsschub – auch bei den Vorlagen für die Figuren - ist zu
+                        Beginn der 40er Jahre zu verzeichnen, der durchaus in Zusammenhang mit dem
+                        Eintritt eines oder mehrerer neuer Mitarbeiter in die *<hi rend="bold"
+                            >Werkstatt der Avignoner Bischofsammelindulgenzen</hi>* zusammenhängen
+                        mag. Man beginnt den *<hi rend="bold">Blattrankentyp</hi>* zu entwickeln,
+                        bei dem keine Figuren, sondern grossformige Blattranken die Randdekoration
+                        bestimmen. Beim bisher frühesten Beispiel, 1342 Juli 1 für Tournai, sind es
+                        noch einzelne spiralig geführte Ornamente, die etwas ungelenk zwischen
+                        historisierten Initialen hervorkommen. Voll ausgeprägt findet sich diese
+                        Dekoration erstmals 1344 April 20 für Frauenberg. </p>
+                    <p>Mit 1348 März 3 für St. Peter in Naklo endet im bisher gesichteten Bestand
+                        die Produktion historisierter Avignoner Bischofsammelindulgenzen.</p>
+                </div>
+                <div>
+                    <head>Unilluminierte Avignoner Bischofsammelindulgenz</head>
+                    <p>Avignoner Bischofsammelindulgenz, bei der die Dekoration nicht vorgesehen
+                        oder für eine *<hi rend="bold">Dekoration beim Empfänger</hi>* vorbereitet
+                        war.</p>
+                    <p>Offenbar hat es, seit man begann, die Bischofsammelablässe in Avignon mit
+                        farbigen Illuminationen zu versehen (*<hi rend="bold">Historisierte
+                            Avignoner Bischofsammelindulgenz</hi>*), auch „Blanko“-Versionen
+                        gegeben, unilluminierte Stücke, bei denen davon ausgegangen wurde, dass man
+                        sie am Empfängerort mit Dekorationen versehen würde (z. B. 1333 August 20
+                        für Kaiserstuhl). Während der aktiven Zeit der Werkstatt haben sich nur
+                        wenige Exemplare erhalten, bei denen eine am Empfängerort oder vom Empfänger
+                        ausserhalb beauftragte Illumination zu finden ist. Erstes prominentes
+                        Beispiel ist 1331 Februar 26 für Albi. Für diese Urkunde wurde wohl eine
+                        Avignoner Buchmalerwerkstatt betraut, die – zaghaft zwar – sekundären Dekor
+                        einsetzt, mit kleinen Ranken (wie später beim *<hi rend="bold"
+                            >Blattrankentyp</hi>*), die aus den Initialfeldern der vergrösserten
+                        Initialen der ersten Zeile herauskommen. 1341 September für Schmidtstedt
+                        1343 Mai 5 für Verona 1343 Mai 6 für Herlanzhofen 1343 Juni 7 für den Orden
+                        vom Heiligen Grab </p>
+                    <p>Vermehrt haben sich die unilluminierten Ablässe jedoch ab 1350 erhalten. Seit
+                        der letzten, bisher bekannten Indulgenz mit historisierter Initiale der *<hi
+                            rend="bold">Werkstatt der Avignoner Bischofsammelindulgenzen</hi>*, 1348
+                        März 3 für die Peterskirche in Naklo, muss man annehmen, dass die Werkstatt
+                        ihre Tätigkeit – vielleicht wegen der wütenden Pest – eingestellt hat.
+                        Deshalb mussten die Bittsteller ihre Indulgenzen anderswo illuminieren
+                        lassen (vgl. *<hi rend="bold">Dekoration beim Empfänger</hi>*). Um den
+                        Bestellerwünschen dabei weitgehend entgegen zu kommen, hat man ein ganzes
+                        Programm an unterschiedlich weit vollendeten Urkunden in Avignon ins Angebot
+                        genommen:</p>
+                    <list type="unordered">
+                        <item>Der Raum für die U-Initiale und die erste Zeile wird frei gelassen (z.
+                            B. 1360 Mai 3 für St. Sebald in Nürnberg und 1363 April 6 für
+                            Herkenrode).</item>
+                        <item>Der Raum für die U-Initiale und der für die vergrösserten Initialen
+                            der ersten Zeile werden frei gelassen (z. B. 1357 November 20 für Nidda
+                            und 1357 Oktober 10 für Dohna).</item>
+                        <item>Die U-Initiale und alle Wörter der ersten Zeile werden in kräftigen
+                            Federstrichen ausgeschrieben (z. B. 1350 Jänner 25 und 1359 April 17 für
+                            Schlins).</item>
+                        <item>Der Schreiber dekoriert auch die U-Initiale. Dabei erinnert man sich
+                            der alten Motive wie Aussparungen als Halbpalmettenranken oder als
+                            gedrehtes Band (*<hi rend="bold">Avignoner
+                            Bischofsammelindulgenz</hi>*).</item>
+                    </list>
+                </div>
+                <div>
+                    <head>Dekoration beim Empfänger</head>
+                    <p>Urkunde, deren Layout beim Aussteller bereits eine Illuminierung vorsah, die
+                        jedoch erst am Empfängerort ausgeführt wurde.</p>
+                </div>
+                <div>
+                    <head>Werkstatt der Avignoner Bischofsammelindulgenzen</head>
+                    <p>Die Zeichner- und Malerwerkstatt, die die Dekoration der Ablassurkunden
+                        vornahm.</p>
+                    <p>Es ist fraglich, ob es bereits an der italienischen Kurie eine Werkstatt für
+                        die Ausstattung von Bischofsammelindulgenzen gegeben hat. Man kann einige
+                        Schreiber ausmachen, doch kann unter ihnen keine einheitliche Dekoration
+                        oder eine gegenseitige Beeinflussung konstatiert werden. Nachdem sich die
+                        Kurie in Avignon niedergelassen hat, tritt mit dem *<hi rend="bold">Zeichner
+                            der kreisförmigen U-Initiale</hi>* ein deutlich erkennbarer Charakter
+                        auf. Es möchte sein, dass er als das früheste Mitglied einer
+                        Dekorationswerkstatt für Bischofsammelindulgenzen in Avignon anzusehen ist,
+                        weil seine markante Gestaltungsweise von anderen kopiert wird, wie z.B. vom
+                            *<hi rend="bold">Zeichner mit den Masswerkmotiven</hi>* bei 1325
+                        Dezember 8 für Brünn. Dieser ist sicher innerhalb eines Verbundes tätig
+                        gewesen; seine Charakteristika, wie das lustige Profil im Zwickel links
+                        oben, seine Profilgesichter und seine Art der Aussparungen, werden von
+                        anderen übernommen und mit deren Dekorationsideen vermischt.</p>
+                    <p>Zwar kann man anhand der Ikonographie Phasen beobachten (unhistorisiert, Vera
+                        Ikon, Christusbüste, bis hin zur ikonographischen Diversifizierung, wo die
+                        Bestellerwünsche das Sujet bestimmen). Allerdings werden die älteren
+                        Dekorationsmöglichkeiten auch weiterhin genutzt; so gibt es nach dem bisher
+                        frühesten Erscheinen der *<hi rend="bold">Vera Ikon</hi>* 1323 Mai 11 für
+                        St-Martin de Picquigny auch noch kreisförmige U-Initialen (1323 September
+                        für die Marienkirche in Coburg). Die Maler/ Zeichner haben wohl –
+                        voneinander lernend – nebeneinander gearbeitet, so sind der <hi rend="bold"
+                            >Zeichner der kreisförmigen U-Initiale</hi>* und der *<hi rend="bold"
+                            >Zeichner mit den Masswerkmotiven</hi>* auch zeitgleich nachzuweisen.
+                        Zwar ist auch denkbar, dass ein Skriptorium zunächst die kreisrunden
+                        U-Initialen produzierte, danach ein weiteres mit den Masswerkmotiven auf den
+                        Markt kam, doch sind die Zeiträume der Tätigkeit letztlich zu kurz – die
+                        runden U-Initialen sind 1314-1325 nachzuweisen – um eine Werkstatt
+                        anzunehmen. Der Zeichner mit den Masswerkmotiven kann von 1324-1342
+                        nachgewiesen werden und ist letztlich ausschlaggebend für die Annahme der
+                        Existenz einer Werkstatt. Anhand seiner Karriere zeigt sich nämlich, dass
+                        die Aufteilung der Produktion von Avignoner Bischofsammelablässen nach
+                        ikonographischen Kriterien nicht weiterführt, denn er dekoriert die
+                        U-Initiale zunächst unfigurlich, ab 1325 mit der Vera Ikon und schliesslich
+                        ab 1328 mit der *<hi rend="bold">Christusbüste</hi>*. Darüber hinaus sind es
+                        auch die gemeinsam genutzten *<hi rend="bold">Vorlagen</hi>*, die für eine
+                        gemeinsame Werkstatt sprechen. Zwar ändern sich diese Entwürfe etwa 1342,
+                        und auch der Stil einiger Indulgenzen ist deutlich von der vorherigen
+                        Produktion unterschieden. Doch werden gleichzeitig beim *<hi rend="bold"
+                            >Layout</hi>* viele Eigenheiten, wie z. B. die in den linken Rand
+                        ragende U-Initiale, die in etwa mit dem Binnenfeld auf Textspiegelbreite
+                        abschliesst, beibehalten, sodass auch zu diesem späten Zeitpunkt
+                        Kontinuitäten zu beobachten sind. Deshalb ist es unsere Arbeitshypothese,
+                        von einer Werkstatt auszugehen.</p>
+                    <p>Innovationen scheinen von neuen Mitarbeitern auszugehen, wie das Beispiel von
+                        1328 Mai 12 für die Wiener Pankraz-Kapelle belegt: Masswerkmotive und
+                        Profilgesichter sind aus dem Werkstattbestand, Blattwerkaussparungen,
+                        Mischwesen sowie die Farbe sind Neuerungen. Die *<hi rend="bold"
+                            >Christusbüste</hi>* als Sujet taucht dort im bekannten Material zum
+                        ersten Mal auf, jedoch verkleinert im linken Buchstabenschaft. Bereits einen
+                        Monat später ist mit der frühesten bisher bekannten Urkunde 1328 Juni 7 für
+                        Léau der Layout-Typus mit der Christusbüste ausgereift. Die umfangreiche
+                        Linierung am Rand wie der Bischof im Bildfeld unter der Initiale und dem
+                            *<hi rend="bold">Petenten</hi>* darunter, zeigen jedoch, dass die
+                        bildreiche Urkundeneinrichtung mit dem Rahmen aussen und oben, deren erste
+                        Beispiele 1332 nachweisbar sind, bereits zu diesem Zeitpunkt überlegt wurde. </p>
+                    <p>Sind der *<hi rend="bold">Zeichner der kreisförmigen U-Initiale</hi>* und der
+                            *<hi rend="bold">Zeichner mit den Masswerkmotiven</hi>* durch ihre
+                        Eigenarten der Dekoration gut zu unterscheiden (vergleicht man z. B. 1326
+                        April 03 für Reichersberg mit 1326 April 25 für Rheydt oder 1326 Juni für
+                        Brügge, so ist es leicht, festzustellen, welche man einem Zeichner
+                        zuschreiben würde), ändert sich das mit dem Aufkommen der *<hi rend="bold"
+                            >Christusbüste</hi>* radikal. Hier werden individuelle Merkmale wohl
+                        bewusst unterdrückt; die Produktion ist auf Gleichartigkeit ausgerichtet
+                        (Radocsay (1970, S. 11) bereits sah es als schwierig an, „die Werke der
+                        Maler des päpstlichen Skriptoriums voneinander zu unterscheiden“). Für die
+                        Buchstabenschäfte setzt sich eine ausgesparte Blattranke – selten mit
+                        zoomorphen – vor meist abwechselnd grünem und rotem Grund durch. Dies stellt
+                        ein für die Fleuronnée-Initialen von Handschriften charakteristisches Motiv
+                        dar, dessen Ursprünge nicht in Avignon, sondern in der Entwicklung
+                        Süddeutschlands (inkl. Schweiz und Österreich) zu suchen sind. In den späten
+                        1320er Jahren stellen Aussparungen floraler und zoomorpher Motive eine
+                        moderne Stilinnovation dar. </p>
+                    <p>Nach ikonographischen Kriterien kann nur der *<hi rend="bold"
+                            >Vera-Ikon-Typus</hi>* mit erstem bisher bekannten Beispiel 1326 April 3
+                        für Reichersberg bis zum letzten Beispiel (nur als kopiale Überlieferung
+                        1328) nach diesem Sujet benannt werden, bis auf die Urkunde für Reichersberg
+                        sind sie alle vom Zeichner mit den Masswerkmotiven ausgeführt worden. Mit
+                        1328 Mai 12 für die Wiener Pankrazkapelle tritt ein neuer Charakter auf,
+                        1329 August 24 sieht man einen weiteren Zeichner am Werk, sodass in dieser
+                        Phase mindestens drei Leute in der Werkstatt tätig gewesen sein müssen. Doch
+                        ist es bereits in dieser frühen Tätigkeitsphase der Werkstatt möglich, dass
+                        die Fertigungsprozesse arbeitsteilig organisiert waren. </p>
+                    <p>Den landläufigen Anforderungen an eine Werkstatt entsprechend, gleichartig
+                        aussehende Produkte zu schaffen, sind mit der Wählbarkeit von Sujets im
+                        Binnenfeld (*<hi rend="bold">ikonographische Diversifizierung</hi>*) wie bei
+                        der Christusbüste nur schwer einzelne Hände auszumachen. Vielleicht sind
+                        stilistisch aus der Masse herausragende Stücke auch von reisenden Malern
+                        geschaffen worden – man denke an 1332 Oktober für St. Jakob in Hohenberg, wo
+                        zwar die *<hi rend="bold">Vorlagen</hi>* der Werkstatt genutzt wurden, sich
+                        die Malweise aber qualitativ absetzt. Doch ist eine Aussage wegen der wohl
+                        hohen Verluste nur mit Vorsicht zu treffen. Sicher ist jedoch, dass einzelne
+                        Persönlichkeiten nicht durch ikonographische Erneuerungen hervortreten; eher
+                        wird man bei einer vom bisher üblichen abweichenden Gestaltung des *<hi
+                            rend="bold">Layouts</hi>* einen Neuzugang der Werkstatt erkennen (z. B.
+                        1331 September für Cembra). Ob sich der *<hi rend="bold">Rahmentyp</hi>* von
+                        der ersten Urkunde mit Randbild, 1328 Juni 7 für Léau, mit der nächsten
+                        Wiederholung 1332 September 1 für Zürich herleiten lässt oder ob einem neu
+                        in die Werkstatt eingetretenen Maler dieser letztlich logische Schritt zu
+                        einer „Vollbordüre“ zuzuschreiben ist, bleibt vorerst offen.</p>
+                    <p>Das Gros der Werkstattproduktion ist aber auf Einheitlichkeit im
+                        Erscheinungsbild bedacht. Dabei stechen dennoch charakteristische Merkmale
+                        hervor, die auf eine individuelle Zeichner-/ Malerpersönlichkeit hindeuten.
+                        Nach augenfälligen Charakteristika oder besonders gelungenen Werken benannt,
+                        geben diese Werkgruppen Kenntnis von der Verweildauer einzelner Maler in der
+                        Werkstatt. Der am längsten nachweisbare Zeichner/ Maler ist der *<hi
+                            rend="bold">Zeichner mit den Masswerkmotiven</hi>*, der seit 1323 März
+                        10 für Maiden Priory bis 1342 Juni 19 für St. Salvator in Passau zu
+                        verfolgen ist, wobei er den Wechsel zu unterschiedlichen Bildthemen nicht
+                        mitmacht, sondern nur die Vera Ikon und die Christusbüste in den
+                        Binnenfeldern seiner U-Initialen verwirklicht. Alle anderen haben weit
+                        kürzere Aktivitätszeiten. </p>
+                    <p>Sticht der Masswerkmeister durch eine abweichende Farbwahl hervor, zunächst
+                        Gelb und ein verdünntes Weinrot z. B. bei 1326 April 25 für Rheydt oder
+                        Hellorange bei 1331 August 20 für die Gosmarkapelle in Nürnberg, kann man
+                        bei der Mehrzahl der erhaltenen Avignoner Bischofsammelablässe Konstanten
+                        bei der Kolorierung feststellen. Die Buchstabenschäfte sind meist mit
+                        Blattwerkaussparungen vor roten und grünen Gründen gestaltet, wie überhaupt
+                        Rot und Grün lange Zeit die dominierenden Farben sind. Die erste bekannte,
+                        als vollfarbig anzusehende Urkunde, 1328 Mai 12 begründet gewissermassen
+                        diesen farblichen Zweiklang, und er wird letztlich bei den einfachen
+                        Ausführungen mit nur einer Figur im Binnenfeld bis 1337 Mai für Glatt
+                        durchgehalten. Doch wird auch bei der Farbwahl die Vorstellung einer
+                        linearen Entwicklung enttäuscht, denn bereits 1331 September 15 für Cembra
+                        kommt ein Moosgrün hinzu; schon 1330 Oktober 8 für die Forstwaldkapelle
+                        erscheint Blau und leuchtendes Orange. Der Farbe wurde häufig nur in einer
+                        Schicht aufgetragen, die durchscheinende Federzeichnung gestaltet die
+                        Flächen. Aufwendiger gestaltete Exemplare bergen jedoch mehrere
+                        Farbschichten, wie z. B. 1332 November 2 für Niederlana. Dort sind die
+                        Gesichter mit roten „Kussmündern“ versehen, und es findet sich ein
+                        sorgfältig gezeichnetes Filigran. Die zusätzliche Modellierung, die Betonung
+                        der Münder durch rote Farbe wie das Filigran mögen Kennzeichen eines Malers
+                        sein, können aber durchaus auch eine preisgesteuerte Zutat darstellen, die
+                        man in der Werkstatt anbot.</p>
+                    <p>Die Werkstatt kommt mit erstaunlich wenigen Entwürfen für ihre Figuren aus,
+                        die je nach Anforderung abgewandelt werden. Ab 1335 April 8 für Wimpfen,
+                        sicher jedoch ab 1338 September 11 für Lucca bemerkt man eine Modernisierung
+                        der *<hi rend="bold">Vorlagen</hi>*; die Figuren werden bewegter und in der
+                        Gestik lebendiger. Das geht mit dem Auftauchen eines kleinteiligen
+                        Mustergrundes einher, weshalb man hier annehmen kann, dass ein neuer,
+                        bereits ausgebildeter Mitarbeiter in die Werkstatt gekommen ist (*<hi
+                            rend="bold">Illuminator mit dem kleinteiligen Mustergrund</hi>*). Zu den
+                        herausragenden Urkunden, die die Erneuerung der Figurenentwürfe und
+                        Interaktion der dargestellten untereinander mit dem *<hi rend="bold"
+                            >Layout</hi>* des vollendeten *<hi rend="bold">Rahmentyps</hi>*
+                        verbinden, sind 1342 Jänner 2 für Fröndenberg und 1342 März 22 für Maaseik.
+                        Vorerst ist nicht klar, ob diese beiden Stücke ebenfalls diesem Illuminator
+                        zuzuschreiben sind oder ob sie von einem weiteren neuen Mitarbeiter
+                        illuminiert wurden. </p>
+                    <p>Beim Ablass von 1342 April 12 für Pusanitz ist der neue Stil voll ausgeprägt
+                        auch in einer einfacheren Ausführung zu studieren; dabei wird erstmals der
+                        Randbereich für Figuren ohne rahmende Bildfelder genutzt. Wie stets bei der
+                        Werkstatt der Avignoner Bischofsammelindulgenzen zu beobachten, paart sich
+                        Innovation stets mit Tradition: Die „modernen“ schlanken Figuren sind in
+                        einen Initialtyp eingetragen, der bereits 133 Jänner 18 für Kirchberg zu
+                        sehen war. Wie dort blickt aus der n-Initiale eine *<hi rend="bold"
+                            >Christusbüste</hi>*, die ihrerseits an die Frühzeit der historisierten
+                        farbigen Ablässe erinnert.</p>
+                    <p>Eine neue Erscheinungsform der Avignoner Ablässe, die ebenfalls
+                        möglicherweise mit einem neuen Mitarbeiter in Verbindung gebracht werden
+                        können, kündigt sich mit 1342 Juli für die Magdalenenkirche in Tournai an.
+                        Noch recht unbeholfen entspriessen dort den vergrösserten Initialen der
+                        ersten Zeile spiralig gedrehte (Akanthus-)Blätter; in zaghaften Ansätzen war
+                        das bereits 1336 September 15 bei Ahnaberg zu beobachten. Im bisher
+                        bekannten Material findet sich der *<hi rend="bold">Blattrankentyp</hi>* mit
+                        Ranken über die gesamte Breite des Textspiegels erst 1344 April 28 für die
+                        Propstei Frauenberg. Gern würde man mehr über die beiden, uns nur in
+                        Detail-Abbildungen zugänglichen Urkunden 1346 September 18 für San Zoilo in
+                        Caseda und 1347 April 15 für Kasimirz wissen, weil dort die U-Initiale mit
+                        einem architektonisch zu verstehen „Überbau“ versehen ist und im Fall von
+                        Caseda ein Baum links im Randbereich eine neue Gestaltungsform andeutet.
+                        Angesichts der schlechten Abbildung fällt eine Beurteilung der Stillage
+                        freilich ebenso schwer. Eine interessante Mischung aus künstlerisch wohl
+                        überlegter Konstruktion und einem Malstil, der bei allem Versuch, die
+                        Figuren auf moderne Weise schlank zu halten, doch eher an die 1330er Jahre
+                        erinnert, begegnet bei 1347 Juli 5 für St. Remigius, wohl in Borken. Diese
+                        Urkunde zeigt, dass Neuerung nicht unbedingt auch mit neuen Mitarbeitern zu
+                        verbinden sind. </p>
+                    <p>Die bisher letzte bekannte illuminierte Urkunde aus der Werkstatt der
+                        Avignoner Bischofsammelindulgenzen, 1348 März 3 für St. Peter in Naklo, mit
+                        ihren zarten Akanthusblättern und kleinteiligem Dekor mit einem
+                        Phantasiewesen im Initialfeld zeigt, dass sie über Potential verfügte, um
+                        die Auftraggeber mit ansprechenden Illuminationen zu versorgen. Warum die
+                        Werkstatt ihre Tätigkeit aufgegeben hat, ist nicht klar. Vielleicht war es
+                        die wütende Pest. Fortan verlassen Sammelablässe die Papststadt nur noch als
+                            *<hi rend="bold">unilluminierte Avignoner Bischofsammelindulgenzen</hi>*
+                        (bisher erstes bekanntes Beispiel 1349 April 8 für die Kapellen in Egg und
+                        Metten).</p>
+                    <p>Radocsay (1970, S. 8) bezeichnete die Werkstatt als „Diplommalwerkstätte“. </p>
+                    <p>Rest (1925, S. 161) ordnete die Dekoration der Avignoner
+                        Bischofsammelindulgenzen in zwei Perioden: 1282-1322, ohne und danach mit
+                        figürlichem Schmuck.</p>
+                </div>
+                <div>
+                    <head>Schreiber 1</head>
+                    <p>1284_ für Tongeren</p>
+                    <p>1284 März 9 für Altenburg</p>
+                </div>
+                <div>
+                    <head>Schreiber 2</head>
+                    <p>1284 September 1 für Mariengreden</p>
+                    <p>1283 Oktober 1 für Marienstern</p>
+                </div>
+                <div>
+                    <head>Schreiber 3</head>
+                    <p>1287 Februar 28 für Göttweig</p>
+                    <p>1287 März 21 für Regensburg</p>
+                    <p>1287 März 14 Gerolding</p>
+                    <p>1290 März 11 Schwanenstadt</p>
+                </div>
+                <div>
+                    <head>Schreiber 4</head>
+                    <p>1289 April 13 für Hersfeld</p>
+                    <p>1289 Dezember für Hersfeld</p>
+                    <p>1290 August 23 für Heiligenkreuz</p>
+                </div>
+                <div>
+                    <head>Schreiber 5</head>
+                    <p>1298 März für Eger</p>
+                    <p>1299 März für Heiligenkreuz</p>
+                </div>
+                <div>
+                    <head>Schreiber 6</head>
+                    <p>1300 März für Urfahr</p>
+                    <p>1300 März für Göttweig</p>
+                    <p>1300 März für Krems</p>
+                    <p>1300 März für Klosterneuburg</p>
+                </div>
+                <div>
+                    <head>Zeichner der kreisförmigen U-Initiale</head>
+                    <p>Die U-Initialen werden aus Kreisformen gebildet, die sich schneiden können
+                        oder auch – im rechten Schaft – tangential berühren. Sie sind das
+                        bestimmende Formprinzip, dem die Lesbarkeit untergeordnet ist, und somit in
+                        der Entwicklung der Dekoration der Avignoner Bischofsammelablässe die erste
+                        reine „Schmuckform“. Die erste Zeile wird durch Auszeichnungsschrift von den
+                        anderen abgehoben. Bei der Initiale wird – neben reiner Tintenfüllung, auch
+                        mit Aussparungen gearbeitet, gerne findet sich oben eine Halbpalmette. Auch
+                        kann ein perlförmiger Fleuronnée-Besatz erscheinen. Diesen Stil findet man
+                        erstmals 1314 April 1 für Kiechlinsbergen, ausgestellt in Carpentras, die
+                        weiteren sind in Avignon ausgestellt, demnach würden die Schreiber/ Zeichner
+                        mit der Kurie reisen. Ob es sich um mehrere Mitarbeiter handelt, die diese
+                        äusserst ungewöhnliche Art der Dekoration pflegen, ist nicht klar. Denn beim
+                        bisher spätesten bekannten Exemplar, 1322 Mai 20 für St. Paul, erscheint die
+                        Kreisform, doch sind die Aussparungen kleinteilig floral, und der rechte
+                        Schaft ist aussen wieder wie ein Buchstabe gebildet. Diese U-Initiale
+                        erscheint wie eine Synthese aus den derzeit gängigen Motiven und weist auch
+                        auf Anregungen durch den *<hi rend="bold">Zeichner mit den
+                            Masswerkmotiven</hi>*. Dessen früheste, uns bekannte Arbeit ist zwar
+                        erst 1323 März 10 (für Maiden Bradley) nachweisbar. Innerhalb der Werkstatt
+                        wird man immer wieder beobachten, dass neu hinzukommende Mitglieder sich mit
+                        den Gewohnheiten ihrer Vorgänger oder Mitarbeiter auseinandersetzen und sie
+                        in ihre Arbeiten einfügen. Inwieweit auch neue Mitarbeiter den
+                        Dekorationsstil der anderen beeinflusst, muss noch untersucht werden.</p>
+                    <p rend="List Paragraph">1314 April 1 für Kiechlinsbergen</p>
+                    <p rend="List Paragraph">1318 „für die Kirche in Marburg“ (Rest)</p>
+                    <p rend="List Paragraph">1318 April für Kloster Salem</p>
+                    <p rend="List Paragraph">1318 Juli für Enns</p>
+                    <p rend="List Paragraph">1319 für die Kreuzkirche in Dresden</p>
+                    <p rend="List Paragraph">1319 Februar für Vyscherad</p>
+                    <p rend="List Paragraph">1320 April für St. Martin in Pann</p>
+                    <p rend="List Paragraph">1323 September für die Marienkapelle in Coburg</p>
+                    <p rend="List Paragraph">1323 September 20 für Alöendorf die Frankenstein</p>
+                </div>
+                <div>
+                    <head>Zeichner mit den Masswerkmotiven</head>
+                    <p>Bei dem Zeichner mit den Masswerkmotiven handelt es sich um das
+                        Werkstattmitglied, das am Längsten nachweisbar ist und der sich jeder
+                        ikonographischen Neuerung anzupassen vermag. Charakteristisch für diesen
+                        Zeichner, der sowohl unfigürliche Initialen und welche mit der Vera Ikon im
+                        Binnenfeld geschaffen hat, sind die Aussparungen, die an spitzgiebelige
+                        Fenster denken lassen. Weiterhin die variantenreiche Ornamentik der
+                        Buchstabenschäfte, die Kreuze, die die Abdecklinie der Initiale
+                        abschliessen, die Profilmaske, die links zwischen dieser Linie und dem
+                        Buchstabenkörper klemmt, und Details der Vera-Ikon-Darstellung (vor allem
+                        Augen- und Bartgestaltung). Wie ein Markenzeichen finden sich in einzeiligen
+                        Initialen häufig ein bärtiges En-face-Gesicht und das aus einer Scheibe
+                        hochwachsende florale Dreiblattmotiv.</p>
+                    <p>Es scheint, als hätte der Zeichner auch den Sprung zu den Initialen mit den
+                            *<hi rend="bold">Christusbüsten</hi>* geschafft. Doch fehlt ihm ein
+                        wenig das Verständnis für den ikonographischen Typ, mal fehlen die Hände mit
+                        den Wundmalen (1328 Dezember 24 für Stift Elten) oder die Wundmale (z. B.
+                        1330 Mai 30 für Itterswiller). Ob es sich mit dem „Vergessen“ um eine
+                        ikonographische Variante des endzeitlichen Christus handeln möchte, ist
+                        angesichts der Massenproduktion der Sammelablässe wenig wahrscheinlich,
+                        zumal sie auch nur bei diesem Zeichner zu beobachten ist. 1331 April 30 für
+                        Mailand ist das Fehlen der Wundmale nachträglich korrigiert worden. Seine
+                        Masswerkmotive werden bei diesen, jetzt farbigen Initialen weitgehend von
+                        ausgesparten Blattmotiven verdrängt. Sie finden sich in abstrahierter Form
+                        1330 Oktober 1 für Fulda, 1331 April 30 und 1331 Februar 2 für das
+                        Fleimstal.</p>
+                    <p rend="List Paragraph">1323 März 10 für Maiden Bradley (unfigürlich)</p>
+                    <p rend="List Paragraph">1324 Dezember für Rupertsberg (unfigürlich)</p>
+                    <p rend="List Paragraph">1325 Dezember 8 für Brünn (*<hi rend="bold">Vera
+                            Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1326 April 25 für Rheydt (*<hi rend="bold">Vera
+                            Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1326 Juni 26 für O. L. V. de Potterie in Brügge (*<hi
+                            rend="bold">Vera Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1326 April 25 Düsseldorf, Staatsarchiv (Homburger, von
+                        Steiger, Abb. 20)</p>
+                    <p rend="List Paragraph">1326 September 15 für Klosterneuburg (*<hi rend="bold"
+                            >Vera Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1327 Februar 26 für Isenburg (*<hi rend="bold">Vera
+                            Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1327 September 30 für Wien (*<hi rend="bold">Vera
+                            Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1328 Jänner 12 (kopial: London, British Library, ms.
+                        Egerton 3712, f. 89v)?? (*<hi rend="bold">Vera Ikon</hi>*)</p>
+                    <p rend="List Paragraph">1328 April 10 für Heiligenkreuz (unfertig?
+                        Unfigürlich)</p>
+                    <p rend="List Paragraph">1328 Dezember 24 für Stift Elten (*<hi rend="bold"
+                            >Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1329 für Heggen (*<hi rend="bold"
+                        >Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1330 Mai 30 für Itterswiller (*<hi rend="bold"
+                            >Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1330 Oktober 1 für das Spital in Fulda (*<hi
+                            rend="bold">Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1330 November 12 für die Kartause Koningsdal in Gent
+                        (kleinere Initialen, U-Initiale von einem anderen Künstler)</p>
+                    <p rend="List Paragraph">1331 Februar 2 für die Marienkirche im Fleimstal (*<hi
+                            rend="bold">Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1331 April 30 für die Pfarrkirche St. Jakob in Neustadl
+                            (*<hi rend="bold">Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1331 April 30 für die Cappella della Scuola delle
+                        Quattro Marie nella chiesa di Santa Maria maggiore in Mailand (*<hi
+                            rend="bold">Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1332 Juni 12 für die Kapelle im Montafon (*<hi
+                            rend="bold">Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1340 Februar 15 für das Kloster Weingarten (*<hi
+                            rend="bold">Christusbüste</hi>*)</p>
+                    <p rend="List Paragraph">1342 Juni 19 für St. Salvator in Passau (*<hi
+                            rend="bold">Christusbüste</hi>*)</p>
+                </div>
+                <div>
+                    <head>Zeichner 3 der Christusbüsten</head>
+                    <p>man erkennt ihn an dem schwarzen Strich, der die Lippen trennt und der an den
+                        Enden verdickt ist, wie auch an den Brauenbögen, deren rechter höher und
+                        etwas stärker betont ist. Francesca Manzari (2006, S. 355) sah den Miniator
+                        und/ oder Kopisten Galterius Alamannus am Werk.</p>
+                    <p rend="List Paragraph">1329 August für Kirchberg</p>
+                </div>
+                <div>
+                    <head>Zeichner 4 der Christusbüsten</head>
+                    <p>Schattiert die Brauenpartie, zeichnet die Lidränder mit Doppellinien, Pupille
+                        vom oberen Lidrand angeschnitten und einer weiteren Linie umrahmt. </p>
+                    <p rend="List Paragraph">1330 April 5 für Wittichen</p>
+                    <p rend="List Paragraph">1330 April 6 für Schloss Reifenstein</p>
+                    <p rend="List Paragraph">1330 April 10 für Kloster Gladbach</p>
+                    <p rend="List Paragraph">1330 Juli 8 für die Bürgerspitalskapelle in
+                        Salzburg</p>
+                    <p rend="List Paragraph">1330 September 9 für die Kilianskirche in Heilbronn</p>
+                    <p rend="List Paragraph">1331 Jänner 25 für Kloster Echternach</p>
+                    <p rend="List Paragraph">1331 März 28 für die Marienkirche Purgstall bei
+                        Bozen</p>
+                    <p rend="List Paragraph">1331 Mai 25 für das Himmelpfortkloster in Wien </p>
+                    <p rend="List Paragraph">1332 Oktober 15 für Lahnstein</p>
+                    <p rend="List Paragraph">1332 November 2 für die Marienkirche in Niederlana</p>
+                    <p rend="List Paragraph">1333 Februar 23 für Osnabrück</p>
+                    <p rend="List Paragraph">1333 Mai 31 für Kloster Schildesche</p>
+                    <p rend="List Paragraph">1333 Dezember 19 für Santa Maria della Palude in
+                        Sterzing</p>
+                    <p rend="List Paragraph">1333 Dezember 20 für. St. Nikolai in Freiberg
+                        (Sachsen)</p>
+                    <p rend="List Paragraph">1334 Juni 24 für die Schlosskapelle zu Stein</p>
+                    <p rend="List Paragraph">1334 November 10 für die Martinskirche in
+                        Halberstadt</p>
+                    <p rend="List Paragraph">1335 Jänner 16 für Kloster Bödecken bei Paderborn
+                        ????</p>
+                    <p rend="List Paragraph">1335 Juli 4 für Zeven</p>
+                    <p rend="List Paragraph">1336 Juni 14 für Mondsee</p>
+                </div>
+                <div>
+                    <head>Illuminator für Gerardus Chorus</head>
+                    <p>Benannt ist er nach seiner qualitätvollsten Arbeit; 1335 Jänner 11 für
+                        Kloster Burtscheid, Gerardus Chorus und seine Frau Katharina .Der Maler ist
+                        – trotz der wenigen markanten Besonderheiten – gut zu erkennen. Seine Köpfe
+                        und damit seine Gesichter sind recht klein auf stämmigen Hälsen, wobei die
+                        Augen mit dem kräftigen Strich für das Unterlid wie verquollen wirken. Die
+                        Ohren geraten gerne etwas zu gross und sehen wie Henkel aus. Bei niedriger
+                        Wertigkeit des Auftrags können seine Gestalten recht lieblos wirken. Bei
+                        einfachen Arbeiten wählt er gerne Grün als Haarfarbe (z. B. 1337 Mai 20 für
+                        die Wiener Schottenkirche). Auch am Aussparungsdekor kann man ihn erkennen:
+                        Wie bei 1335 Jänner 15 für die Ägidius-Kapelle in Aachen besonders
+                        ausgeprägt sind seine Aussparungen mit grossen Blättern und diese mit
+                        Blattadern versehen, sodass sie plastisch wirken.</p>
+                    <p rend="List Paragraph">1333 Februar 23 für das Johannesstift in Osnabrück</p>
+                    <p rend="List Paragraph">1333 August 4 für das Stift Pfalzel</p>
+                    <p rend="List Paragraph">1335 Jänner 11 für Kloster Burtscheid, Gerhard Chorus
+                        und seine Frau Katharina</p>
+                    <p rend="List Paragraph">1335 Jänner 15 für die Ägidius-Kapelle in Aachen</p>
+                    <p rend="List Paragraph">1335 April 8 für die Marienkirche in Wimpfen (? Abb.
+                        sehr schlecht)</p>
+                    <p rend="List Paragraph">1335 April 8 für den Katharinenaltar und das zugehörige
+                        Bild in der Marienkirche in Wimpfen (? Abb. sehr schlecht)</p>
+                    <p rend="List Paragraph">1335 Juli 5 für Kloster Zeven</p>
+                    <p rend="List Paragraph">1335 Juli 8 für Davos</p>
+                    <p rend="List Paragraph">1336 Jänner 10 für Asbach</p>
+                    <p rend="List Paragraph">1336 April 8 für Schwestern vom Gemeinsamen Leben,
+                        genannt Het Rondeel</p>
+                    <p rend="List Paragraph">1336 Mai 6 für Mondsee</p>
+                    <p rend="List Paragraph">1336 September 15 für Kloster Ahnaberg in Kassel.</p>
+                    <p rend="List Paragraph">1337 Mai 12 für die Michaelskirche in Rottweil</p>
+                    <p rend="List Paragraph">1337 Mai 15 für das Bürgerspital in Wien</p>
+                    <p rend="List Paragraph">1337 Mai 15 für die Pauluskapelle im Schottenkloster
+                        (Elisabeth Meter) in Wien</p>
+                    <p rend="List Paragraph">1337 Mai 20 für die Andreaskapelle im Schottenkloster
+                        in Wien</p>
+                    <p rend="List Paragraph">1340 August 31 für das Klarissenkloster in
+                        Dürnstein</p>
+                    <p rend="List Paragraph">1340 Oktober 20 für die Michaelskapelle in
+                        Heilbronn</p>
+                </div>
+                <div>
+                    <head>Maler mit den Lackfarben</head>
+                    <p>Es ist sicher historisch nicht gerechtfertigt, einen Maler innerhalb der *<hi
+                            rend="bold">Werkstatt der Avignoner Bischofsammelindulgenzen</hi>* nach
+                        einer besonderen Qualität seiner Farben zu benennen, doch gehören der Glanz
+                        der monochrom aufgetragenen Farben zu den Auffälligkeiten dieser Malereien.
+                        Sie bestechen durch gemessen an den sonstigen Leistungen der Zeit durch
+                        extreme Einfachheit der Ausführung, die Gesichter mit weit aufgerissenen
+                        Augen und grossen Pupillen, einfache Modellierung der Gewänder durch wenige
+                        grobe Pinselstriche sowie Blattmuster in den Aussparungen, die unbeholfen
+                        und kleinteilig sind und an die Frühzeit der Werkstatt erinnern. </p>
+                    <p rend="List Paragraph">1338 August 20 für Hersfeld</p>
+                    <p rend="List Paragraph">1339 Mai 4 für die Jodokuskapelle in Rottenburg</p>
+                    <p rend="List Paragraph">1340 November 21 für die Nikolauskirche in
+                        Bedelwitz</p>
+                    <p rend="List Paragraph">1341 Jänner 9 für den Dom von Minden</p>
+                    <p rend="List Paragraph">1342 März 28 für Rottweil</p>
+                </div>
+                <div>
+                    <head>Illuminator mit dem kleinteiligen Mustergrund</head>
+                    <p>Dieser Maler tritt womöglich erstmals 1335 April 8 für Wimpfen auf. Sein
+                        deutlichstes Merkmal sind die kleinteiligen Mustergründe, die er meist aus
+                        einer Farbe aufbaut, bei der das Muster durch den dunkleren Farbton erzielt
+                        wird. Seine Schattierungen sind oft mit breiterem Pinsel gestaltet.
+                        Gleichzeitig sieht man bei ihm eine Vorliebe für rotbraune Haare und Bärte.
+                        Die Blattwerkaussparungen sind grossformig und oft von Halbpalmetten
+                        bestimmt. Er vertritt eine Modernisierungstendenz, bei der die Figuren
+                        zueinander in Interaktion treten.</p>
+                    <p rend="List Paragraph">1335 April 8 für Wimpfen(?)</p>
+                    <p rend="List Paragraph">1338 September 11 für Lucca</p>
+                    <p rend="List Paragraph">1335-1340 für Giummare (Sizilien)</p>
+                    <p rend="List Paragraph">1339 April 4 für Mergentheim</p>
+                    <p rend="List Paragraph">1339 April 5 für Lucca</p>
+                    <p rend="List Paragraph">1340 Jänner 3 für St. Michael in Wien</p>
+                    <p rend="List Paragraph">1340 April 20 für St. Leonhard in Basel</p>
+                    <p rend="List Paragraph">1340 Juni 16 für Città di Castello</p>
+                    <p rend="List Paragraph">1340 Oktober 31 für St. Florian</p>
+                </div>
+                <div>
+                    <head>Maler der Hirsauer Indulgenzen</head>
+                    <p>Charakterisch ist seine Angewohnheit, die Namen der Dargestellten oberhalb
+                        der Initiale zu schreiben, dabei werden sie von drei Punkten eingeleitet,
+                        von denen der erste auf Höhe der Mitte der anderen, die wie ein Doppelpunkt
+                        übereinanderstehen, positioniert ist.</p>
+                    <p rend="List Paragraph">1344 Juni 27 für Scheibbs</p>
+                    <p rend="List Paragraph">1344 November 20 für Kloster Schildesche</p>
+                    <p rend="List Paragraph">1344 Juni 27 für Baumgartenberg</p>
+                    <p rend="List Paragraph">1344 Dezember 5 für Mariengarten</p>
+                    <p rend="List Paragraph">1345 März 6 für Aachen</p>
+                    <p rend="List Paragraph">1345 April 3 für Lüttich</p>
+                    <p rend="List Paragraph">1345 August 22 für Dachclusterlein</p>
+                    <p rend="List Paragraph">1345 Oktober 18 für Imola</p>
+                    <p rend="List Paragraph">1345 Dezember 28 für Hamm</p>
+                    <p rend="List Paragraph">1347 Jänner 12 für Hirsau</p>
+                    <p rend="List Paragraph">1347 Februar 5 für Hirsau</p>
+                </div>
+                <div>
+                    <head>Florator für St. Stephan</head>
+                    <p>Auch nachdem die Werkstatt der Avignoner Bischofsammelindulgenzen ihre
+                        Tätigkeit eingestellt hat (letztes, bisher bekanntes Beispiel 1348 März 3
+                        für Naklo), ist im Skriptorium Dekoration gemacht worden, jedoch nur noch in
+                        der Tintenfarbe. Herausragend – und deshalb für den Florator Namen gebend –
+                        ist die Urkunde 1361 Jänner 25 für St. Stephan in Wien. Tbc Ist er auch der
+                        Schreiber?</p>
+                    <p>Wie schon bei den *<hi rend="bold">historisierten Avignoner
+                            Bischofsammelablässen</hi>* kann man eine – sicher sich auch im Preis
+                        niederschlagende – Abstufung beim Dekor beobachten: Von der „vollständigen“
+                        Dekoration, die auch das Binnenfeld der U-Initiale einschliesst (1361 Jänner
+                        25 für St. Stephan in Wien), ohne Fleuronnée im Binnenfeld (1361 April 4 für
+                        Ganterschwil), der nur in den Konturen gezeichneten U-Initiale, aber mit
+                        Fleuronnée bei den vergrösserten Initialen der ersten Zeile (1363 Jänner 10
+                        für St. Stephan in Wien (Fragment) bis hin zur unilluminierten Ausführung
+                        (z. B. 1362 Dezember 12 für Galgenen).</p>
+                    <p rend="List Paragraph">1361 Jänner 25 für St. Stephan in Wien</p>
+                    <p rend="List Paragraph">1361 April 4 für Ganterschwil</p>
+                    <p rend="List Paragraph">1361 Juni 10 für Baar (mit *<hi rend="bold">Dekoration
+                            beim Empfänger</hi>*)</p>
+                    <p rend="List Paragraph">1362 Dezember 12 für Galgenen</p>
+                    <p rend="List Paragraph">1363 Jänner 10 für St. Stephan in Wien (Fragment)</p>
+                </div>
+                <div>
+                    <head>Xyx</head>
+                </div>
+            </div>
+        </body>
+    </text>
+</TEI>
