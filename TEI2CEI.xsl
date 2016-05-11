@@ -7,6 +7,8 @@
     @rend="interne Notizen" aufgenommen: kommt in bibl und regest vor, 
     //text() wird mit normalize-space() verarbeitet
     Stand 10.05. geändert Variable zur Erstellung der atom:links
+    Kursivsetzung wird übernommen: t:seg[@rend='italic'] hinzugefügt
+    Datum in Atom ID  ohne Unterstriche ($id-core geändert)
     
     ToDo:
         *...* => cei:index@indexName="IllUrkGlossar" , wobei die Sternchen diesmal (01.04.2016)im TEI entfernt wurden
@@ -50,6 +52,7 @@
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+   
     <xsl:variable name="names">
         <xsl:for-each select="$personen//t:person">
             <xsl:copy>
@@ -372,7 +375,7 @@
                 -->
                         <xsl:variable name="pos" select="position()"/>
                         <xsl:variable name="id-core">
-                            <xsl:value-of select="$ids/row[$pos]/id"/>
+                            <xsl:value-of select="replace(replace($ids/row[$pos]/id, '-__-__' , ''), '-___' ,'')"/>
                             <!-- Dublettenkontrolle -->
                             <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1">
                                 <xsl:text>_</xsl:text>
@@ -384,7 +387,7 @@
                         <!-- id anpassen an collection name bei jedem Import aufpassen -->
                         <xsl:variable name="id">                          
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminierteUrkunden/<xsl:value-of
-                                    select="$id-core"/></atom:id>
+                                    select="$id-core"/></atom:id>                           
                             <cei:idno>
                                 <xsl:attribute name="id">
                                     <xsl:value-of select="$id-core"/>
@@ -502,6 +505,7 @@
                                                 Hier käme auf eigentlich die Urkundenart hinein:
                                                 FixMe: Schame anpassen -->
                                                 <cei:abstract>
+                                                 
                                                     <xsl:apply-templates select="t:cell[4]"/><xsl:text xml:space="preserve"> </xsl:text>
                                                     <!-- Hier einen Defaultwert für die Verantwortlichkeit einfügen? -->
                                                 </cei:abstract>
@@ -898,7 +902,7 @@
         <xsl:param name="knoten"/>
         <!-- Teste, ob normalizedtext in $glossarkonkordanz/orig vorkommt -->
         <xsl:variable name="glossarentry" select="$glossarkonkordanz//entry[orig=$knoten/text()[1]/normalize-space()]"/>
-        <xsl:attribute name="lemma"><xsl:text>#</xsl:text><xsl:value-of select="replace(replace(replace(replace(replace(replace(replace($glossarentry/normalized, 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', '')"/></xsl:attribute>           
+        <xsl:attribute name="lemma"><xsl:text>#</xsl:text><xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(replace($glossarentry/normalized, 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', ''), '-', '')"/></xsl:attribute>           
         <xsl:choose>
             <xsl:when test="$glossarentry/@action='replace'"><xsl:apply-templates select="$glossarentry/normalized"/></xsl:when>
             <xsl:otherwise><xsl:apply-templates select="$knoten/(*|text())"/></xsl:otherwise>
@@ -911,7 +915,7 @@
                 <xsl:apply-templates/>
             </cei:index><!--<xsl:text xml:space="preserve"> </xsl:text>-->
     </xsl:template>
-    <xsl:template match="t:hi[@rend = 'italic']">
+    <xsl:template match="t:hi[@rend = 'italic'] | t:seg[@rend = 'italic']">
         <cei:quote type="italic">
             <xsl:apply-templates/>
         </cei:quote>
@@ -933,6 +937,6 @@
         Hier sammeln sich Templates, die bestimmte Elemente aus einer Default-Verarbeitung ausnehmen, weil sie explizit in for-each-Schleifen abgearbeitet werden.
         -->
     <xsl:template match="t:*[@rend = 'LINK-ZU-BILD']"/>
-    
+   
 
 </xsl:stylesheet>
