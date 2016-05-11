@@ -805,7 +805,7 @@
                         <cei:bibl>
                             <xsl:apply-templates/>
                             <!-- Zotero-Link ermitteln -->
-                            <xsl:if test="matches(text()[1],'[A-z]')">
+                            <xsl:if test="matches(text()[1],'[A-z]') and not(.//t:ref[contains(@target,'zotero')])">
                                 <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
                                 <xsl:if test="$shortest!=''">
                                     <xsl:variable name="test" select="$zoteroexport//t:biblStruct[.//t:title[@type='short']/contains(.,$shortest)]"/>
