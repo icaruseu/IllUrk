@@ -808,10 +808,13 @@
                             <xsl:if test="matches(text()[1],'[A-z]') and not(.//t:ref[contains(@target,'zotero')])">
                                 <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
                                 <xsl:if test="$shortest!=''">
+                                    <xsl:variable name="test" select="$zoteroexport//t:biblStruct[.//t:title[@type='short']/starts-with(.,$shortest)]"/>
+                                    <xsl:variable name="me" select="current()"/>
+                                    <xsl:variable name="t2" select="$test[.//t:title[matches($me,.)]]"/>
                                     <xsl:choose>
                                         <!-- FixMe: Ich bräuchte eigentlich mehr als nur $shortest -->
-                                        <xsl:when test="count($zoteroexport//t:biblStruct[.//t:title[@type='short']/starts-with(.,$shortest)]) = 1">
-                                            <xsl:text> (</xsl:text><cei:ref target="{$zoteroexport//t:biblStruct[.//t:title[@type='short']/starts-with(.,$shortest)]/@corresp}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+                                        <xsl:when test="$t2">
+                                            <xsl:text> (</xsl:text><cei:ref target="{$test/@corresp}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
