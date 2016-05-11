@@ -50,6 +50,7 @@
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+    <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="names">
         <xsl:for-each select="$personen//t:person">
             <xsl:copy>
@@ -807,10 +808,19 @@
                             <xsl:if test="matches(text()[1],'[A-z]')">
                                 <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
                                 <xsl:if test="$shortest!=''">
-                                    <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                                    <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                                        <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-                                    </xsl:if>
+                                    <xsl:variable name="test" select="$zoteroexport//t:biblStruct[.//t:title[@type='short']/contains(.,$shortest)]"/>
+                                    <xsl:choose>
+                                        <!-- FixMe: Ich bräuchte eigentlich mehr als nur $shortest -->
+                                        <xsl:when test="$zoteroexport//t:biblStruct[.//t:title[@type='short']/contains(.,$shortest)]">
+                                            <xsl:text> (</xsl:text><cei:ref target="{$zoteroexport//t:biblStruct[.//t:title[@type='short']/contains(.,$shortest)]/@corresp}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                                            <xsl:if test="not($zotjson='' or $zotjson='[]')">
+                                                <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+                                            </xsl:if>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </xsl:if>
                             </xsl:if>
                         </cei:bibl>
