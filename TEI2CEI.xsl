@@ -80,10 +80,11 @@
                         <from><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></from>
                         <to>aousAOUnraaeeooouuasil-</to>
                     </xsl:variable>
+                    <!-- Aufräumen des Datums für die ID -->
                     <xsl:value-of
-                        select="t:cell[1]/(text()|t:*[1]//text())/translate(replace(
+                        select="t:cell[1]/(text()|t:*[1]//text())/replace(translate(replace(
                             replace(.,'^([0123456789\-––_]+)([^0123456789\-––_][\s\S]*?$|$)','$1')
-                        ,'[-––]', '-'),$totransform/from,$totransform/to)"/>
+                        ,'[-––]', '-'),$totransform/from,$totransform/to), '-__', '')"/>
                     <xsl:choose>
                         <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
                             <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
