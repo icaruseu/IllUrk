@@ -803,46 +803,11 @@
             <xsl:choose>
                 <xsl:when test="t:p">
                     <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
-                        <cei:bibl>
-                            <xsl:apply-templates/>
-                            <!-- Zotero-Link ermitteln -->
-                            <xsl:if test="matches(text()[1],'[A-z]') and not(.//t:ref[contains(@target,'zotero')])">
-                                <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
-                                <xsl:if test="$shortest!=''">
-                                    <xsl:variable name="test" select="$zoteroexport//t:biblStruct[.//t:title[@type='short']/starts-with(.,$shortest)]"/>
-                                    <xsl:variable name="me" select="current()"/>
-                                    <xsl:variable name="t2" select="$test[.//t:title[matches($me,.)]]"/>
-                                    <xsl:choose>
-                                        <!-- FixMe: Ich bräuchte eigentlich mehr als nur $shortest -->
-                                        <xsl:when test="$t2">
-                                            <xsl:text> (</xsl:text><cei:ref target="{$test/@corresp}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                                            <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                                                <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-                                            </xsl:if>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:if>
-                            </xsl:if>
-                        </cei:bibl>
+                        <xsl:call-template name="bibl"/>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <cei:bibl>
-                        <xsl:apply-templates/>
-                        <!-- Zotero-Link ermitteln -->
-                        <xsl:if test="matches(text()[1],'[A-z]')">
-                            <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
-                            <xsl:if test="$shortest!=''">
-                                <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                                <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                                    <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                    </cei:bibl>
+                    <xsl:call-template name="bibl"/>
                 </xsl:otherwise>
             </xsl:choose>
             <!--</xsl:for-each>-->
@@ -850,6 +815,45 @@
         <xsl:if test="t:p[@rend='Interne Notizen']">
             <xsl:apply-templates select="t:p[@rend='Interne Notizen']" />
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="bibl">
+        <xsl:variable name="zotero">
+            <!-- Zotero-Link ermitteln -->
+            <xsl:if test="matches(text()[1],'[A-z]') and not(.//t:ref[contains(@target,'zotero')])">
+                <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
+                <xsl:if test="$shortest!=''">
+                    <xsl:variable name="test" select="$zoteroexport//t:biblStruct[.//t:title[@type='short']/starts-with(.,$shortest)]"/>
+                    <xsl:variable name="me" select="current()"/>
+                    <xsl:variable name="t2" select="$test[.//t:title[matches($me,.)]]"/>
+                    <xsl:variable name="zotlink">
+                        <xsl:choose>
+                            <!-- FixMe: Ich bräuchte eigentlich mehr als nur $shortest -->
+                            <xsl:when test="$t2">
+                                <xsl:value-of select="$t2/@corresp"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                                <xsl:if test="not($zotjson='' or $zotjson='[]')">
+                                    <xsl:value-of select="cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))"/>
+                                </xsl:if>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <key><xsl:value-of select="replace($zotlink,'^http://zotero.org/groups/257864/items/([A-Z0-9]+).*?$','zotero:$1')"/></key>
+                    <referenz><xsl:text> (</xsl:text><cei:ref target="{$zotlink}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text></referenz>
+                </xsl:if>
+            </xsl:if>
+        </xsl:variable>
+        <cei:bibl>
+            <xsl:if test="$zotero//text()">
+                <xsl:attribute name="key" select="$zotero/key"/>
+            </xsl:if>
+            <xsl:apply-templates/>
+            <xsl:if test="$zotero//text()">
+                <xsl:value-of select="$zotero/referenz"/>
+            </xsl:if>
+        </cei:bibl>
     </xsl:template>
 
     <!-- Zotero-Funktion -->
