@@ -9,6 +9,7 @@
     Stand 10.05. geändert Variable zur Erstellung der atom:links
     Kursivsetzung wird übernommen: t:seg[@rend='italic'] hinzugefügt
     Datum in Atom ID  ohne Unterstriche ($id-core geändert)
+    19.05. t:ref angepasst für Zotero, $zotlink umgebaut
     
     ToDo:
         *...* => cei:index@indexName="IllUrkGlossar" , wobei die Sternchen diesmal (01.04.2016)im TEI entfernt wurden
@@ -52,7 +53,9 @@
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
-   
+
+    <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+
     <xsl:variable name="names">
         <xsl:for-each select="$personen//t:person">
             <xsl:copy>
@@ -82,10 +85,11 @@
                         <from><xsl:text>äöüßÄÖÜňřáàéèóòôúùâšíł ,.;:()[]+*#{}/–§$%&amp;"!?'’</xsl:text></from>
                         <to>aousAOUnraaeeooouuasil-</to>
                     </xsl:variable>
+                    <!-- Aufräumen des Datums für die ID -->
                     <xsl:value-of
-                        select="t:cell[1]/(text()|t:*[1]//text())/translate(replace(
+                        select="t:cell[1]/(text()|t:*[1]//text())/replace(translate(replace(
                             replace(.,'^([0123456789\-––_]+)([^0123456789\-––_][\s\S]*?$|$)','$1')
-                        ,'[-––]', '-'),$totransform/from,$totransform/to)"/>
+                        ,'[-––]', '-'),$totransform/from,$totransform/to), '-__', '')"/>
                     <xsl:choose>
                         <!--                        <xsl:when test="not(t:cell[6]//@rend = 'Archivort') and t:cell[6]/normalize-space()!=''">
                             <xsl:text>_</xsl:text><xsl:value-of select="t:cell[6]/replace(., '^([^\s].*?),.*?$', '$1')"/>
@@ -805,35 +809,11 @@
             <xsl:choose>
                 <xsl:when test="t:p">
                     <xsl:for-each select="t:p[not(@rend='LINK-ZU-BILD')][not(@rend='Interne Notizen')]">
-                        <cei:bibl>
-                            <xsl:apply-templates/>
-                            <!-- Zotero-Link ermitteln -->
-                            <xsl:if test="matches(text()[1],'[A-z]')">
-                                <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
-                                <xsl:if test="$shortest!=''">
-                                    <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                                    <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                                        <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-                                    </xsl:if>
-                                </xsl:if>
-                            </xsl:if>
-                        </cei:bibl>
+                        <xsl:call-template name="bibl"/>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <cei:bibl>
-                        <xsl:apply-templates/>
-                        <!-- Zotero-Link ermitteln -->
-                        <xsl:if test="matches(text()[1],'[A-z]')">
-                            <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
-                            <xsl:if test="$shortest!=''">
-                                <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
-                                <xsl:if test="not($zotjson='' or $zotjson='[]')">
-                                    <xsl:text> (</xsl:text><cei:ref target="{cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                    </cei:bibl>
+                    <xsl:call-template name="bibl"/>
                 </xsl:otherwise>
             </xsl:choose>
             <!--</xsl:for-each>-->
@@ -841,6 +821,61 @@
         <xsl:if test="t:p[@rend='Interne Notizen']">
             <xsl:apply-templates select="t:p[@rend='Interne Notizen']" />
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="bibl">
+        <xsl:variable name="zotero">
+            <!-- Zotero-Link ermitteln -->            
+            <xsl:choose>     
+                
+            <xsl:when test="matches(text()[1],'[A-z]') and not(.//t:ref[contains(@target,'zotero')])">
+               
+                <xsl:variable name="shortest" select="normalize-space(translate(substring-before(./text()[1],','),'()-&amp;:;-_?![]',''))"/>
+                <short><xsl:value-of select="$shortest"/></short>
+                <xsl:if test="$shortest!=''">
+                    <xsl:variable name="test" select="$zoteroexport//t:biblStruct[.//t:title[@type='short']/starts-with(.,$shortest)]"/>
+                    <xsl:variable name="me" select="current()"/>
+                    <xsl:variable name="t2" select="$test[.//t:title[matches($me,.)]]"/>
+                    <xsl:variable name="zotlink">
+                        <xsl:choose>
+                            <!-- FixMe: Ich bräuchte eigentlich mehr als nur $shortest http://zotero.org/groups/257864/items/7VDGF2FQ-->
+                            <xsl:when test="$t2">
+                                
+                                <xsl:value-of select="$t2/@corresp"/>
+                               
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
+                                <xsl:if test="not($zotjson='' or $zotjson='[]')">                                   
+                                    <xsl:value-of select="cei:zotero(.,1,document(concat('https://api.zotero.org/groups/257864/items?q=',$shortest,'&amp;format=tei')))"/>
+                                </xsl:if>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <zotlink><xsl:value-of select="$zotlink"/></zotlink>
+                    <key><xsl:value-of select="replace($zotlink,'^http://zotero.org/groups/257864/items/([A-Z0-9]+).*?$','zotero:$1')"/></key>
+                    <referenz><xsl:text> (</xsl:text><cei:ref target="{$zotlink}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text></referenz> <!-- kann das cei element nicht in variablen rausspielen -->                   
+                </xsl:if>
+            </xsl:when>           
+            </xsl:choose>
+        </xsl:variable>
+        <cei:bibl>           
+            <xsl:if test="$zotero//text()">
+                <xsl:attribute name="key" select="$zotero/key"/>                
+            </xsl:if>           
+            <xsl:apply-templates/>
+            <xsl:if test="$zotero//text()">
+                <xsl:text>(</xsl:text>
+                <cei:ref>
+                    <xsl:attribute name="target">
+                        <xsl:value-of select="$zotero/zotlink"/>
+                    </xsl:attribute>
+                    Volltitel auf Zotero                   
+                </cei:ref>
+                <xsl:text>)</xsl:text>
+            </xsl:if>
+            
+        </cei:bibl>
     </xsl:template>
 
     <!-- Zotero-Funktion -->
@@ -879,7 +914,7 @@
             <xsl:attribute name="target">
                 <!--  Nachdenken über dauerhafte Lösung, vgl. cei:graphic... -->
                 <xsl:value-of
-                    select="normalize-space(replace(translate(., '[&amp;]', '[,]'), '[,]', '%26'))"
+                    select="normalize-space(replace(translate(./@target, '[&amp;]', '[,]'), '[,]', '%26'))"
                 />
             </xsl:attribute>
             <xsl:apply-templates/>
