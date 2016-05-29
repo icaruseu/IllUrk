@@ -860,19 +860,12 @@
             </xsl:choose>
         </xsl:variable>
         <cei:bibl>           
-            <xsl:if test="$zotero//text()">
+            <xsl:if test="$zotero/key">
                 <xsl:attribute name="key" select="$zotero/key"/>                
             </xsl:if>           
             <xsl:apply-templates/>
             <xsl:if test="$zotero//text()">
-                <xsl:text>(</xsl:text>
-                <cei:ref>
-                    <xsl:attribute name="target">
-                        <xsl:value-of select="$zotero/zotlink"/>
-                    </xsl:attribute>
-                    Volltitel auf Zotero                   
-                </cei:ref>
-                <xsl:text>)</xsl:text>
+                <xsl:text> (</xsl:text><cei:ref><xsl:attribute name="target"><xsl:value-of select="$zotero/zotlink"/></xsl:attribute>Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
             </xsl:if>
             
         </cei:bibl>
