@@ -3,8 +3,10 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:t="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs" version="2.0">
     <!-- 1. Herunterladen von http://images.monasterium.net/illum/IllUrk/ 
-         2. XMLisierung der Datei und ablegen unter http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml
-         3. Dieses Skript ausführen
+         2. XMLisierung der Datei
+         3. Anpassen der Dokument Variablen am Anfang
+         4. Skript ausführen
+         5. HTML-Ergebnis händisch prüfen
     -->
     <xsl:variable name="bilderurl"><xsl:text>file:/C:/Users/GV/Documents/Uni/HistInf/Urkunden/Monasterium/IlluminierteUrkunden/Import/Bilder_illum_IllUrk.xml<!--http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml--></xsl:text></xsl:variable>
     <xsl:variable name="urkundenurl"><xsl:text>file:/Z:/eigene%20Dateien/Uni/HistInf/Urkunden/Monasterium/IlluminierteUrkunden/Import/Illuminierte-Urkunden-Liste-44_2015-01-27_%20Letztfassung-vor-Teilung.xml</xsl:text></xsl:variable>

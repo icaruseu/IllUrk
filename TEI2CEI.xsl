@@ -12,6 +12,7 @@
     19.05. t:ref angepasst für Zotero, $zotlink umgebaut
     
     ToDo:
+        Es gibt leere Zotero-Links, warum auch immer
         *...* => cei:index@indexName="IllUrkGlossar" , wobei die Sternchen diesmal (01.04.2016)im TEI entfernt wurden
        
 
@@ -41,6 +42,7 @@
             3. Ablageort in variable $bildurl eintragn
             4. aktuelles Illurk-Vocabulary local ablegen (für skos Normalisierung)
             5. aktuelles Illurk-Glossar local ablegen (für skos Normalisierung)
+            6. aktuelle Bischofsliste_Ablässe_valide.xml lokal ablegen
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -53,7 +55,6 @@
     <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
-
     <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
 
     <xsl:variable name="names">
@@ -867,7 +868,6 @@
             <xsl:if test="$zotero//text()">
                 <xsl:text> (</xsl:text><cei:ref><xsl:attribute name="target"><xsl:value-of select="$zotero/zotlink"/></xsl:attribute>Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
             </xsl:if>
-            
         </cei:bibl>
     </xsl:template>
 
