@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
-<!-- Stand 28.04.2016
+<!-- 
+    
+    Stand 28.04.2016
     Hinzugefügte Funktionen für Zotero-Referenzen
     Hinzugefügte Funktion für Glossarkonkordanzausgleich
     Für Bildreferenz/-abgleich ".JPG" und <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
@@ -12,9 +14,9 @@
     19.05. t:ref angepasst für Zotero, $zotlink umgebaut
     
     ToDo:
-        Es gibt leere Zotero-Links, warum auch immer
-        *...* => cei:index@indexName="IllUrkGlossar" , wobei die Sternchen diesmal (01.04.2016)im TEI entfernt wurden
-       
+        Untergruppen ausarbeiten:
+            Wenn $untergruppen benannt, dann für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/><atom:content type="application/xml" src="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"> erzeugen
+               
 
    FixMe:
         MOM-Links konsquent mit http:// davor vereinheitlichen?
@@ -43,6 +45,7 @@
             4. aktuelles Illurk-Vocabulary local ablegen (für skos Normalisierung)
             5. aktuelles Illurk-Glossar local ablegen (für skos Normalisierung)
             6. aktuelle Bischofsliste_Ablässe_valide.xml lokal ablegen
+            7. TEI-Version von Zotero erzeugen (z.B. mit zotero-tei-download.xsl) und lokal unter zotero-tei-download.xml ablegen
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -56,6 +59,7 @@
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+    <xsl:variable name="untergruppe"><!-- Enthält einen Namen für Untergruppen, die als MOM-Verknüpfungen erzeugt werden sollen. Solange leer passiert nichts  --></xsl:variable>
 
     <xsl:variable name="names">
         <xsl:for-each select="$personen//t:person">
@@ -136,47 +140,51 @@
                 <Achtung><xsl:comment>Die Datei enthält eine erste Spalte ohne Inhalte. Bitte erst überprüfen, ob das so gewollt ist!</xsl:comment></Achtung>
             </xsl:when>
             <xsl:otherwise>
-        <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
-            <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
-                <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
-                <atom:title>Illuminierte Urkunden</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
-                <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
-                <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
-                <atom:author>
-                    <atom:email>illuminierteurkunden@gmail.com</atom:email>
-                </atom:author>
-                <app:control xmlns:app="http://www.w3.org/2007/app">
-                    <app:draft>no</app:draft>
-                </app:control>
-                <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
-                    <xrx:visibility>private</xrx:visibility>
-                    <xrx:user/>
-                </xrx:sharing>
-                <atom:content type="application/xml">
-                    <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
-                        <cei:teiHeader>
-                            <cei:fileDesc>
-                                <cei:titleStmt>
-                                    <cei:title>Illuminierte Urkunden</cei:title>
-                                    <!-- beim richtigen import wird hier vermutlich Illuminierte Urkunden stehen  -->
-                                </cei:titleStmt>
-                                <cei:publicationStmt/>
-                            </cei:fileDesc>
-                        </cei:teiHeader>
-                        <cei:text type="collection">
-                            <cei:front>
-                                <cei:div type="preface"/>
-                            </cei:front>
-                            <cei:group>
-                                <cei:text type="collection" sameAs=""/>
-                                <cei:text type="charter" sameAs=""/>
-                            </cei:group>
-                            <cei:back/>
-                        </cei:text>
-                    </cei:cei>
-                </atom:content>
-            </atom:entry>
-        </xsl:result-document>
+             <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
+                 <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                     <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
+                     <atom:title>Illuminierte Urkunden</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
+                     <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
+                     <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
+                     <atom:author>
+                         <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                     </atom:author>
+                     <app:control xmlns:app="http://www.w3.org/2007/app">
+                         <app:draft>no</app:draft>
+                     </app:control>
+                     <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
+                         <xrx:visibility>private</xrx:visibility>
+                         <xrx:user/>
+                     </xrx:sharing>
+                     <atom:content type="application/xml">
+                         <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
+                             <cei:teiHeader>
+                                 <cei:fileDesc>
+                                     <cei:titleStmt>
+                                         <cei:title>Illuminierte Urkunden</cei:title>
+                                         <!-- beim richtigen import wird hier vermutlich Illuminierte Urkunden stehen  -->
+                                     </cei:titleStmt>
+                                     <cei:publicationStmt/>
+                                 </cei:fileDesc>
+                             </cei:teiHeader>
+                             <cei:text type="collection">
+                                 <cei:front>
+                                     <cei:div type="preface"/>
+                                 </cei:front>
+                                 <cei:group>
+                                     <cei:text type="collection" sameAs=""/>
+                                     <cei:text type="charter" sameAs=""/>
+                                 </cei:group>
+                                 <cei:back/>
+                             </cei:text>
+                         </cei:cei>
+                     </atom:content>
+                 </atom:entry>
+             </xsl:result-document>
+                <!-- ToDo: Ebenso für Untergruppe -->
+                <xsl:if test="$untergruppe!=''">
+                    
+                </xsl:if>
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
             xmlns:cei="http://www.monasterium.net/NS/cei">-->
@@ -653,6 +661,10 @@
                                 </atom:content>
                             </atom:entry>
                     </xsl:result-document>
+                      <!-- ToDo: Ebenso für Untergruppe -->
+                      <xsl:if test="$untergruppe != ''">
+                          
+                      </xsl:if>
                     </xsl:for-each>
                 </cei:group>
             </cei:text>
