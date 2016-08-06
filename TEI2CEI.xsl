@@ -19,7 +19,7 @@
         Untergruppen ausarbeiten:
             Wenn $untergruppen benannt, dann 
                 1. Sammlungsbeschreibung anlegen (erl.)
-                2. für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/> erzeugen (atom-Wrapper erl., CEI-content nur angefangen: Wie muß die leere Urkunde aussehen?)
+                2. für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/> erzeugen (atom-Wrapper erl., CEI-content erl.) => erl.
                
 
    FixMe:
@@ -208,7 +208,7 @@
                                     <cei:teiHeader>
                                         <cei:fileDesc>
                                             <cei:titleStmt>
-                                                <cei:title>Illuminierte Urkunden</cei:title>
+                                                <cei:title><xsl:value-of select="$untergruppe"/></cei:title>
                                             </cei:titleStmt>
                                             <cei:publicationStmt/>
                                         </cei:fileDesc>
@@ -724,31 +724,21 @@
                                   <app:control xmlns:app="http://www.w3.org/2007/app">
                                       <app:draft>no</app:draft>
                                   </app:control>
-                                      <atom:link rel="versionOf" ref="{$id/atom:id/text()}"/>
-                                  
+                                  <atom:link rel="versionOf" ref="{$id/atom:id/text()}"/>
                                   <atom:content type="application/xml" src="{$id/atom:id/text()}">
-                            <!-- 
-                            Ab hier dann das CEI:
-                            -->
-                            <cei:text xmlns:cei="http://www.monasterium.net/NS/cei"
-                                type="charter">
-                                <xsl:attribute name="id">
-                                    <xsl:value-of select="$id/text()"/>
-                                </xsl:attribute>
-                                <cei:front>
-                                    <cei:sourceDesc>
-                                        <cei:sourceDescVolltext>
-                                            <cei:bibl/>
-                                        </cei:sourceDescVolltext>
-                                        <cei:sourceDescRegest>
-                                            <cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl>
-                                        </cei:sourceDescRegest>
-                                    </cei:sourceDesc>
-                                </cei:front>
-                                <cei:body>
-                                    <xsl:copy-of select="$id/cei:idno"/>
-                                </cei:body>
-                            </cei:text>
+                                    <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
+                                        <xsl:attribute name="id">
+                                            <xsl:value-of select="$id/text()"/>
+                                        </xsl:attribute>
+                                        <cei:front>
+                                            <cei:sourceDesc><cei:sourceDescVolltext><cei:bibl/></cei:sourceDescVolltext><cei:sourceDescRegest><cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl></cei:sourceDescRegest></cei:sourceDesc>
+                                        </cei:front>
+                                        <cei:body>
+                                            <xsl:copy-of select="$id/cei:idno"/>
+                                            <cei:chDesc><cei:class/><cei:abstract/><cei:issued><cei:placeName/><cei:dateRange from="99999999" to="99999999"/></cei:issued><cei:witnessOrig><cei:traditioForm/><cei:figure/><cei:archIdentifier/><cei:physicalDesc><cei:decoDesc><cei:p/></cei:decoDesc><cei:material/><cei:dimensions/><cei:condition/></cei:physicalDesc><cei:auth><cei:notariusDesc/><cei:sealDesc/></cei:auth><cei:nota/></cei:witnessOrig><cei:witListPar><cei:witness><cei:traditioForm/><cei:figure/><cei:archIdentifier/><cei:physicalDesc><cei:material/><cei:dimensions/><cei:condition/></cei:physicalDesc><cei:auth><cei:sealDesc/><cei:notariusDesc/></cei:auth><cei:nota/></cei:witness></cei:witListPar><cei:diplomaticAnalysis><cei:listBibl><cei:bibl/></cei:listBibl><cei:listBiblEdition><cei:bibl/></cei:listBiblEdition><cei:listBiblRegest><cei:bibl/></cei:listBiblRegest><cei:listBiblFaksimile><cei:bibl/></cei:listBiblFaksimile><cei:listBiblErw><cei:bibl/></cei:listBiblErw><cei:p/><cei:quoteOriginaldatierung/><cei:nota/></cei:diplomaticAnalysis><cei:lang_MOM/></cei:chDesc><cei:tenor/>
+                                        </cei:body>
+                                        <cei:back><cei:persName/><cei:placeName/><cei:index/><cei:divNotes><cei:note/></cei:divNotes></cei:back>
+                                    </cei:text>
                             
                                   </atom:content>
                               </atom:entry>
