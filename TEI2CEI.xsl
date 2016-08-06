@@ -59,7 +59,8 @@
         <xsl:text>Bilderliste.html</xsl:text>
 <!--        <xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
     </xsl:variable>
-    <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
+    <xsl:variable name="collection-name">Illuminierte Urkunden</xsl:variable>
+    <xsl:variable name="collectionkürzel" select="translate($collection-name,' -_/|&amp;.:,;#+*?!§$%()[]{}=@','')"/>
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
@@ -166,8 +167,7 @@
                              <cei:teiHeader>
                                  <cei:fileDesc>
                                      <cei:titleStmt>
-                                         <cei:title>Illuminierte Urkunden</cei:title>
-                                         <!-- beim richtigen import wird hier vermutlich Illuminierte Urkunden stehen  -->
+                                         <cei:title><xsl:value-of select="$collection-name"/></cei:title>
                                      </cei:titleStmt>
                                      <cei:publicationStmt/>
                                  </cei:fileDesc>
@@ -186,7 +186,7 @@
                      </atom:content>
                  </atom:entry>
              </xsl:result-document>
-                <!-- ToDo: Ebenso für Untergruppe -->
+                <!-- Ebenso für Untergruppe die Sammlungsbeschreibung: -->
                 <xsl:if test="$untergruppe!=''">
                     <xsl:result-document href="{$subcollectionkürzel}.mycollection.xml">
                         <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
@@ -215,7 +215,7 @@
                                     </cei:teiHeader>
                                     <cei:text type="collection">
                                         <cei:front>
-                                            <cei:div type="preface"/>
+                                            <cei:div type="preface">Diese Sammlung ist eine Teilmenge der Sammlung <xsl:value-of select="$collectionkürzel"/></cei:div>
                                         </cei:front>
                                         <cei:group>
                                             <cei:text type="collection" sameAs=""/>
