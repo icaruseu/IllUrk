@@ -203,6 +203,7 @@
                                 <xrx:visibility>private</xrx:visibility>
                                 <xrx:user/>
                             </xrx:sharing>
+                            <xrx:keywords xmlns:xrx="http://www.monasterium.net/NS/xrx"><xrx:keyword>Illuminierte Urkunden</xrx:keyword></xrx:keywords>
                             <atom:content type="application/xml">
                                 <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
                                     <cei:teiHeader>
@@ -215,7 +216,7 @@
                                     </cei:teiHeader>
                                     <cei:text type="collection">
                                         <cei:front>
-                                            <cei:div type="preface">Diese Sammlung ist eine Teilmenge der Sammlung <xsl:value-of select="$collectionkürzel"/></cei:div>
+                                            <cei:div type="preface">Diese Sammlung ist eine Teilmenge der Sammlung <a href="/mom/{$collectionkürzel}/collection"><xsl:value-of select="$collection-name"/></a></cei:div>
                                         </cei:front>
                                         <cei:group>
                                             <cei:text type="collection" sameAs=""/>
@@ -433,10 +434,14 @@
                         <xsl:variable name="id-core">
                             <xsl:value-of select="replace(replace($ids/row[$pos]/id, '-__-__' , ''), '-___' ,'')"/>
                             <!-- Dublettenkontrolle -->
-                            <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1">
+                            <!-- 1. Testen, ob die ID chon in der Hauptsammlung verwendet wird --><xsl:variable name="online" select="concat('http://www.monasterium.net/mom/',$collectionkürzel,'/',$ids/row[$pos]/id,'/charter')"/>
+                            <xsl:variable name="Onlinevorhanden" select="unparsed-text-available($online)"/>
+                            <xsl:variable name="Onlinevorhanden-Anzahl"><xsl:choose><xsl:when test="$Onlinevorhanden">1</xsl:when><xsl:otherwise>0</xsl:otherwise></xsl:choose></xsl:variable>
+                            <!-- FixMe: Achtung, das testet nur, ob die Basis-URL schon vorhanden ist, nicht auf Dubletten schon im Ausgangsdatensatz -->
+                            <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1 or $Onlinevorhanden">
                                 <xsl:text>_</xsl:text>
                                 <xsl:value-of
-                                    select="(count($ids/row[$pos]/id/preceding::id[. = $ids/row[$pos]/id]) + 1)"
+                                    select="(count($ids/row[$pos]/id/preceding::id[. = $ids/row[$pos]/id]) + 1 + $Onlinevorhanden-Anzahl)"
                                 />
                             </xsl:if>
                         </xsl:variable>
