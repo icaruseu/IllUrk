@@ -5,6 +5,8 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:variable name="zotero-keys"
         select="tokenize(unparsed-text(/zotero-download/url), '\r?\n')"/>
+    <!-- ToDo: Anscheinend kann der Zotero-Download Dubletten von xml:id-Werten erzeugen. Wie das?
+    -->
     <xsl:template match="/">
         <xsl:result-document href="zotero-tei-download.xml">
             <t:TEI>
