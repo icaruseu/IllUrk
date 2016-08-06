@@ -14,12 +14,16 @@
     19.05. t:ref angepasst für Zotero, $zotlink umgebaut
     
     ToDo:
+        IDs gegen Gesamtliste testen!: 
+            IDs von Nachgeschobenen Dateien müssen gegen die schon in der DB vorhandenen IDs getestet werden: <xsl:if test="unparsed-text-available(concat('http://..../my-collection/',$id)"> ...        </xsl:if>
         Untergruppen ausarbeiten:
-            Wenn $untergruppen benannt, dann für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/><atom:content type="application/xml" src="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"> erzeugen
+            Wenn $untergruppen benannt, dann 
+                1. Sammlungsbeschreibung anlegen (erl.)
+                2. für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/> erzeugen (atom-Wrapper erl., CEI content noch nicht.)
                
 
    FixMe:
-        MOM-Links konsquent mit http:// davor vereinheitlichen?
+        MOM-Links konsequent mit http:// davor vereinheitlichen?
 
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
         
@@ -59,7 +63,8 @@
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
-    <xsl:variable name="untergruppe"><!-- Enthält einen Namen für Untergruppen, die als MOM-Verknüpfungen erzeugt werden sollen. Solange leer passiert nichts  --></xsl:variable>
+    <xsl:variable name="untergruppe">Illuminierte Urkunden - Frankreich<!-- Enthält einen Namen für Untergruppen, die als MOM-Verknüpfungen erzeugt werden sollen. Solange leer passiert nichts  --></xsl:variable>
+    <xsl:variable name="subcollectionkürzel" select="translate($untergruppe,' -_/|&amp;.:,;#+*?!§$%()[]{}=@','')"/>
 
     <xsl:variable name="names">
         <xsl:for-each select="$personen//t:person">
@@ -183,7 +188,45 @@
              </xsl:result-document>
                 <!-- ToDo: Ebenso für Untergruppe -->
                 <xsl:if test="$untergruppe!=''">
-                    
+                    <xsl:result-document href="{$subcollectionkürzel}.mycollection.xml">
+                        <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                            <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$subcollectionkürzel"/>/</atom:id>
+                            <atom:title><xsl:value-of select="$untergruppe"/></atom:title>                            <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
+                            <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
+                            <atom:author>
+                                <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                            </atom:author>
+                            <app:control xmlns:app="http://www.w3.org/2007/app">
+                                <app:draft>no</app:draft>
+                            </app:control>
+                            <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
+                                <xrx:visibility>private</xrx:visibility>
+                                <xrx:user/>
+                            </xrx:sharing>
+                            <atom:content type="application/xml">
+                                <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
+                                    <cei:teiHeader>
+                                        <cei:fileDesc>
+                                            <cei:titleStmt>
+                                                <cei:title>Illuminierte Urkunden</cei:title>
+                                            </cei:titleStmt>
+                                            <cei:publicationStmt/>
+                                        </cei:fileDesc>
+                                    </cei:teiHeader>
+                                    <cei:text type="collection">
+                                        <cei:front>
+                                            <cei:div type="preface"/>
+                                        </cei:front>
+                                        <cei:group>
+                                            <cei:text type="collection" sameAs=""/>
+                                            <cei:text type="charter" sameAs=""/>
+                                        </cei:group>
+                                        <cei:back/>
+                                    </cei:text>
+                                </cei:cei>
+                            </atom:content>
+                        </atom:entry>
+                    </xsl:result-document>
                 </xsl:if>
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
@@ -400,7 +443,8 @@
                         <!-- id anpassen an collection name bei jedem Import aufpassen -->
                         <xsl:variable name="id">                          
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminierteUrkunden/<xsl:value-of
-                                    select="$id-core"/></atom:id>                           
+                                    select="$id-core"/></atom:id>                                                    <subcollectionID>
+                               <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/<xsl:value-of select="$subcollectionkürzel"/><xsl:text>/</xsl:text><xsl:value-of select="$id-core"/></atom:id>                                                                 </subcollectionID>
                             <cei:idno>
                                 <xsl:attribute name="id">
                                     <xsl:value-of select="$id-core"/>
@@ -661,9 +705,54 @@
                                 </atom:content>
                             </atom:entry>
                     </xsl:result-document>
-                      <!-- ToDo: Ebenso für Untergruppe -->
+                      <!-- ToDo: Ebenso für Untergruppe:
+                        Wie sieht die "leere" Urkunde aus? -->
                       <xsl:if test="$untergruppe != ''">
-                          
+                          <xsl:result-document href="{$subcollectionkürzel}/{$id-core}.charter.xml">
+                              <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                                  <xsl:copy-of select="$id/subcollectionID/atom:id"/>
+                                  <atom:title/>
+                                  <atom:published>
+                                      <xsl:value-of select="current-dateTime()"/>
+                                  </atom:published>
+                                  <atom:updated>
+                                      <xsl:value-of select="current-dateTime()"/>
+                                  </atom:updated>
+                                  <atom:author>
+                                      <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                                  </atom:author>
+                                  <app:control xmlns:app="http://www.w3.org/2007/app">
+                                      <app:draft>no</app:draft>
+                                  </app:control>
+                                      <atom:link rel="versionOf" ref="{$id/atom:id/text()}"/>
+                                  
+                                  <atom:content type="application/xml">
+                            <!-- 
+                            Ab hier dann das CEI:
+                            -->
+                            <cei:text xmlns:cei="http://www.monasterium.net/NS/cei"
+                                type="charter">
+                                <xsl:attribute name="id">
+                                    <xsl:value-of select="$id/text()"/>
+                                </xsl:attribute>
+                                <cei:front>
+                                    <cei:sourceDesc>
+                                        <cei:sourceDescVolltext>
+                                            <cei:bibl/>
+                                        </cei:sourceDescVolltext>
+                                        <cei:sourceDescRegest>
+                                            <cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl>
+                                        </cei:sourceDescRegest>
+                                    </cei:sourceDesc>
+                                </cei:front>
+                                <cei:body>
+                                    <xsl:copy-of select="$id/cei:idno"/>
+                                </cei:body>
+                            </cei:text>
+                            
+                                  </atom:content>
+                              </atom:entry>
+                          </xsl:result-document>
                       </xsl:if>
                     </xsl:for-each>
                 </cei:group>
