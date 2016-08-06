@@ -19,7 +19,7 @@
         Untergruppen ausarbeiten:
             Wenn $untergruppen benannt, dann 
                 1. Sammlungsbeschreibung anlegen (erl.)
-                2. für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/> erzeugen (atom-Wrapper erl., CEI content noch nicht.)
+                2. für jede Urkunde in der Untergruppe eine Urkunde mit ><atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/> erzeugen (atom-Wrapper erl., CEI-content nur angefangen: Wie muß die leere Urkunde aussehen?)
                
 
    FixMe:
@@ -726,7 +726,7 @@
                                   </app:control>
                                       <atom:link rel="versionOf" ref="{$id/atom:id/text()}"/>
                                   
-                                  <atom:content type="application/xml">
+                                  <atom:content type="application/xml" src="{$id/atom:id/text()}">
                             <!-- 
                             Ab hier dann das CEI:
                             -->
