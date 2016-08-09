@@ -2,7 +2,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:t="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs" version="2.0">
-    <!-- Beispiel für Generierung von eindeutigen IDs aus der Wordliste:
+    <!--
+     
+     ToDo: IDs von Nachgeschobenen Dateien müssen gegen die schon in der DB vorhandenen IDs getestet werden:
+        <xsl:if test="unparsed-text-available(concat('http://..../my-collection/',$id)">
+        </xsl:if>
+        
+        Beispiel für Generierung von eindeutigen IDs aus der Wordliste:
     * $ids: Variable über alle Zeilen mit ID-Wert aus Datumsangabe und Archivort incl. Sonderzeichennormalisierung 
       für's Debugging werden auch die Datumss- und Archivspalte mit in die Variable aufgenommen
     * Dublettenkontrolle: Vor der Ausgabe eine Kontrolle, ob die ID mehrfach vorkommt, ggf. Erweiterung um "-Zahl"
@@ -61,9 +67,11 @@
                     <thead>
                         <tr><th>Zeilenr.</th>
                             <th>ID</th>
-                        <th>Anzahl Vorkommen der Kombination Datum-Ort</th>
-                        <th>Datumsspalte</th>
-                        <th>Archivspalte</th></tr>
+                            <th>Anzahl Vorkommen der Kombination Datum-Ort</th>
+                            <th>In der Hauptsammlung schon vorhanden</th>
+                            <th>Datumsspalte</th>
+                            <th>Archivspalte</th>
+                        </tr>
                     </thead>
                     <tbody><xsl:apply-templates select="$ids/row"/></tbody>
                 </table>
@@ -79,6 +87,14 @@
                 <xsl:if test="count($ids/row/id[.=current()/id]) gt 1">
                     <xsl:text>_</xsl:text><xsl:value-of select="(count(preceding::id[.=current()/id]) + 1)"></xsl:value-of>
                 </xsl:if>
+            </td>
+            <xsl:variable name="online" select="concat('http://www.monasterium.net/mom/IlluminierteUrkunden/',current()/id,'/charter')"/>
+            <xsl:variable name="test" select="unparsed-text-available($online)"/>
+            <td>
+                <a href="{$online}"><xsl:value-of select="$online"/></a>
+                <xsl:text> | </xsl:text>
+                <span>
+                    <xsl:if test="$test"><xsl:attribute name="style">font-weight: bold; font-color:red</xsl:attribute></xsl:if><xsl:value-of select="$test"/></span>
             </td>
             <td>
                 <xsl:value-of select="count($ids/row/id[.=current()/id])"/>
