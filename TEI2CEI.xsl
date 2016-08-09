@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authors: GVogeler, maburg -->
-<!-- Stand 28.04.2016
+<!-- 
+    
+    Stand 9.08.2016
     Hinzugefügte Funktionen für Zotero-Referenzen
     Hinzugefügte Funktion für Glossarkonkordanzausgleich
     Für Bildreferenz/-abgleich ".JPG" und <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
@@ -10,14 +12,20 @@
     Kursivsetzung wird übernommen: t:seg[@rend='italic'] hinzugefügt
     Datum in Atom ID  ohne Unterstriche ($id-core geändert)
     19.05. t:ref angepasst für Zotero, $zotlink umgebaut
-    
+    Untergruppen:
+            Wenn $untergruppen benannt, dann 
+                1. wird dafür eine Sammlungsbeschreibung angelegen
+                2. für jede Urkunde in der Untergruppe eine Urkunde mit <atom:link rel="versionOf" ref="tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"/> und <atom:content src=""tag:www.monasterium.net,2011:/charter/{$collection-id}/{$charter-id}"> erzeugt
+            Achtung, die Verweise werden immer nur auf öffentliche Urkunden aufgelöst, d.h. die Untergruppe zeigt mit .../my-collection erst etwas sinnvolles an, wenn die einschlägigen Urkunden der Hauptsammlung veröffentlicht sind.               
     
     ToDo:
-        *...* => cei:index@indexName="IllUrkGlossar" , wobei die Sternchen diesmal (01.04.2016)im TEI entfernt wurden
-       
+        IDs gegen Gesamtliste testen!: 
+
 
    FixMe:
-        MOM-Links konsquent mit http:// davor vereinheitlichen?
+        IDs von Nachgeschobenen Dateien müssen gegen die schon in der DB vorhandenen IDs getestet werden: <xsl:if test="unparsed-text-available(concat('http://..../my-collection/',$id)"> ...</xsl:if> => Test gegen IDs, die um *_n erweitert sind gibt es noch nicht. Sicherheitshalber mit TEI2ID-test.xsl ausprobieren und bei Überschreibungswarnungen vorsichtig sein!
+            
+        MOM-Links konsequent mit http:// davor vereinheitlichen?
 
         1417-04-21 => wie lautet der Bildname? Mit "April .??" ?
         
@@ -33,7 +41,7 @@
         Alle <hi rend="Archivort" xml:space="preserve">, </hi> im XML entfernt!
         Alle Klammern aus Autorensigle entfernt und Autorensiglen zusammengefasst im XML.
 
-    Vor dem Import: 
+ === Vor dem Import: === 
         atom:id auf den gewünschen Bestandsnamen anpassen
         Vorbereitung der Bildverknüpfung:
             (Zuletzt 7.9., wenn seither kein neuer Bildupload auf http://images.monasterium.net/illum/IllUrk/ stattgefunden hat, dann kann das so bleiben) 
@@ -43,6 +51,10 @@
             4. aktuelles Illurk-Vocabulary local ablegen (für skos Normalisierung)
             5. aktuelles Illurk-Glossar local ablegen (für skos Normalisierung)
             6. aktuelle Bischofsliste_Ablässe_valide.xml lokal ablegen
+            7. TEI-Version von Zotero erzeugen (z.B. mit zotero-tei-download.xsl) und lokal unter zotero-tei-download.xml ablegen
+            
+            Untergruppen:
+               Achtung, die Verweise werden immer nur auf öffentliche Urkunden aufgelöst, d.h. die Untergruppe zeigt mit .../my-collection erst etwas sinnvolles an, wenn die einschlägigen Urkunden der Hauptsammlung veröffentlicht sind.
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -52,10 +64,13 @@
         <xsl:text>Bilderliste.html</xsl:text>
 <!--        <xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
     </xsl:variable>
-    <xsl:variable name="collectionkürzel">Illuminierte Urkunden</xsl:variable><!-- für Testzwecke von Illuminierte Urkunden geändert -->
+    <xsl:variable name="collection-name">Illuminierte Urkunden</xsl:variable>
+    <xsl:variable name="collectionkürzel" select="translate($collection-name,' -_/|&amp;.:,;#+*?!§$%()[]{}=@','')"/>
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+    <xsl:variable name="untergruppe">Illuminierte Urkunden - Frankreich<!-- Enthält einen Namen für Untergruppen, die als MOM-Verknüpfungen erzeugt werden sollen. Solange leer passiert nichts  --></xsl:variable>
+    <xsl:variable name="subcollectionkürzel" select="translate($untergruppe,' -_/|&amp;.:,;#+*?!§$%()[]{}=@','')"/>
 
     <xsl:variable name="names">
         <xsl:for-each select="$personen//t:person">
@@ -136,47 +151,89 @@
                 <Achtung><xsl:comment>Die Datei enthält eine erste Spalte ohne Inhalte. Bitte erst überprüfen, ob das so gewollt ist!</xsl:comment></Achtung>
             </xsl:when>
             <xsl:otherwise>
-        <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
-            <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
-                <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
-                <atom:title>Illuminierte Urkunden</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
-                <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
-                <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
-                <atom:author>
-                    <atom:email>illuminierteurkunden@gmail.com</atom:email>
-                </atom:author>
-                <app:control xmlns:app="http://www.w3.org/2007/app">
-                    <app:draft>no</app:draft>
-                </app:control>
-                <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
-                    <xrx:visibility>private</xrx:visibility>
-                    <xrx:user/>
-                </xrx:sharing>
-                <atom:content type="application/xml">
-                    <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
-                        <cei:teiHeader>
-                            <cei:fileDesc>
-                                <cei:titleStmt>
-                                    <cei:title>Illuminierte Urkunden</cei:title>
-                                    <!-- beim richtigen import wird hier vermutlich Illuminierte Urkunden stehen  -->
-                                </cei:titleStmt>
-                                <cei:publicationStmt/>
-                            </cei:fileDesc>
-                        </cei:teiHeader>
-                        <cei:text type="collection">
-                            <cei:front>
-                                <cei:div type="preface"/>
-                            </cei:front>
-                            <cei:group>
-                                <cei:text type="collection" sameAs=""/>
-                                <cei:text type="charter" sameAs=""/>
-                            </cei:group>
-                            <cei:back/>
-                        </cei:text>
-                    </cei:cei>
-                </atom:content>
-            </atom:entry>
-        </xsl:result-document>
+             <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
+                 <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                     <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
+                     <atom:title>Illuminierte Urkunden</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
+                     <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
+                     <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
+                     <atom:author>
+                         <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                     </atom:author>
+                     <app:control xmlns:app="http://www.w3.org/2007/app">
+                         <app:draft>no</app:draft>
+                     </app:control>
+                     <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
+                         <xrx:visibility>private</xrx:visibility>
+                         <xrx:user/>
+                     </xrx:sharing>
+                     <atom:content type="application/xml">
+                         <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
+                             <cei:teiHeader>
+                                 <cei:fileDesc>
+                                     <cei:titleStmt>
+                                         <cei:title><xsl:value-of select="$collection-name"/></cei:title>
+                                     </cei:titleStmt>
+                                     <cei:publicationStmt/>
+                                 </cei:fileDesc>
+                             </cei:teiHeader>
+                             <cei:text type="collection">
+                                 <cei:front>
+                                     <cei:div type="preface"/>
+                                 </cei:front>
+                                 <cei:group>
+                                     <cei:text type="collection" sameAs=""/>
+                                     <cei:text type="charter" sameAs=""/>
+                                 </cei:group>
+                                 <cei:back/>
+                             </cei:text>
+                         </cei:cei>
+                     </atom:content>
+                 </atom:entry>
+             </xsl:result-document>
+                <!-- Ebenso für Untergruppe die Sammlungsbeschreibung: -->
+                <xsl:if test="$untergruppe!=''">
+                    <xsl:result-document href="{$subcollectionkürzel}.mycollection.xml">
+                        <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                            <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$subcollectionkürzel"/>/</atom:id>
+                            <atom:title><xsl:value-of select="$untergruppe"/></atom:title>                            <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
+                            <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
+                            <atom:author>
+                                <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                            </atom:author>
+                            <app:control xmlns:app="http://www.w3.org/2007/app">
+                                <app:draft>no</app:draft>
+                            </app:control>
+                            <xrx:sharing xmlns:xrx="http://www.monasterium.net/NS/xrx">
+                                <xrx:visibility>private</xrx:visibility>
+                                <xrx:user/>
+                            </xrx:sharing>
+                            <xrx:keywords xmlns:xrx="http://www.monasterium.net/NS/xrx"><xrx:keyword>Illuminierte Urkunden</xrx:keyword></xrx:keywords>
+                            <atom:content type="application/xml">
+                                <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
+                                    <cei:teiHeader>
+                                        <cei:fileDesc>
+                                            <cei:titleStmt>
+                                                <cei:title><xsl:value-of select="$untergruppe"/></cei:title>
+                                            </cei:titleStmt>
+                                            <cei:publicationStmt/>
+                                        </cei:fileDesc>
+                                    </cei:teiHeader>
+                                    <cei:text type="collection">
+                                        <cei:front>
+                                            <cei:div type="preface">Diese Sammlung ist eine Teilmenge der Sammlung <xsl:value-of select="$collection-name"/></cei:div>
+                                        </cei:front>
+                                        <cei:group>
+                                            <cei:text type="collection" sameAs=""/>
+                                            <cei:text type="charter" sameAs=""/>
+                                        </cei:group>
+                                        <cei:back/>
+                                    </cei:text>
+                                </cei:cei>
+                            </atom:content>
+                        </atom:entry>
+                    </xsl:result-document>
+                </xsl:if>
         <!--        <cei:cei xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://www.monasterium.net/NS/cei cei.xsd"
             xmlns:cei="http://www.monasterium.net/NS/cei">-->
@@ -382,17 +439,22 @@
                         <xsl:variable name="id-core">
                             <xsl:value-of select="replace(replace($ids/row[$pos]/id, '-__-__' , ''), '-___' ,'')"/>
                             <!-- Dublettenkontrolle -->
-                            <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1">
+                            <!-- 1. Testen, ob die ID chon in der Hauptsammlung verwendet wird --><xsl:variable name="online" select="concat('http://www.monasterium.net/mom/',$collectionkürzel,'/',$ids/row[$pos]/id,'/charter')"/>
+                            <xsl:variable name="Onlinevorhanden" select="unparsed-text-available($online)"/>
+                            <xsl:variable name="Onlinevorhanden-Anzahl"><xsl:choose><xsl:when test="$Onlinevorhanden">1</xsl:when><xsl:otherwise>0</xsl:otherwise></xsl:choose></xsl:variable>
+                            <!-- FixMe: Achtung, das testet nur, ob die Basis-URL schon vorhanden ist, nicht auf Dubletten schon im Ausgangsdatensatz -->
+                            <xsl:if test="count($ids/row/id[. = $ids/row[$pos]/id]) gt 1 or $Onlinevorhanden">
                                 <xsl:text>_</xsl:text>
                                 <xsl:value-of
-                                    select="(count($ids/row[$pos]/id/preceding::id[. = $ids/row[$pos]/id]) + 1)"
+                                    select="(count($ids/row[$pos]/id/preceding::id[. = $ids/row[$pos]/id]) + 1 + $Onlinevorhanden-Anzahl)"
                                 />
                             </xsl:if>
                         </xsl:variable>
                         <!-- id anpassen an collection name bei jedem Import aufpassen -->
                         <xsl:variable name="id">                          
                             <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminierteUrkunden/<xsl:value-of
-                                    select="$id-core"/></atom:id>                           
+                                    select="$id-core"/></atom:id>                                                    <subcollectionID>
+                               <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/<xsl:value-of select="$subcollectionkürzel"/><xsl:text>/</xsl:text><xsl:value-of select="$id-core"/></atom:id>                                                                 </subcollectionID>
                             <cei:idno>
                                 <xsl:attribute name="id">
                                     <xsl:value-of select="$id-core"/>
@@ -653,6 +715,48 @@
                                 </atom:content>
                             </atom:entry>
                     </xsl:result-document>
+                      <!-- ToDo: Ebenso für Untergruppe:
+                        Wie sieht die "leere" Urkunde aus? -->
+                      <xsl:if test="$untergruppe != ''">
+                          <xsl:result-document href="{$subcollectionkürzel}/{$id-core}.charter.xml">
+                              <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
+                                  <xsl:copy-of select="$id/subcollectionID/atom:id"/>
+                                  <atom:title/>
+                                  <atom:published>
+                                      <xsl:value-of select="current-dateTime()"/>
+                                  </atom:published>
+                                  <atom:updated>
+                                      <xsl:value-of select="current-dateTime()"/>
+                                  </atom:updated>
+                                  <atom:author>
+                                      <atom:email>illuminierteurkunden@gmail.com</atom:email>
+                                  </atom:author>
+                                  <app:control xmlns:app="http://www.w3.org/2007/app">
+                                      <app:draft>no</app:draft>
+                                  </app:control>
+                                  <atom:link rel="versionOf" ref="{$id/atom:id/text()}"/>
+                                  <atom:content type="application/xml" src="{$id/atom:id/text()}">
+                                    <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
+                                        <xsl:attribute name="id">
+                                            <xsl:value-of select="$id/text()"/>
+                                        </xsl:attribute>
+                                        <cei:front>
+                                            <cei:sourceDesc><cei:sourceDescVolltext><cei:bibl/></cei:sourceDescVolltext><cei:sourceDescRegest><cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl></cei:sourceDescRegest></cei:sourceDesc>
+                                        </cei:front>
+                                        <cei:body>
+                                            <xsl:copy-of select="$id/cei:idno"/>
+                                            <cei:chDesc><cei:class/><cei:abstract/><cei:issued><cei:placeName/><cei:dateRange>
+                                                <xsl:attribute name="from" select="$date/from"/>
+                                                <xsl:attribute name="to" select="$date/to"/>
+                                                <xsl:value-of select="t:cell[1]/normalize-space(.)"/></cei:dateRange></cei:issued><cei:witnessOrig><cei:traditioForm/><cei:figure/><cei:archIdentifier/><cei:physicalDesc><cei:decoDesc><cei:p/></cei:decoDesc><cei:material/><cei:dimensions/><cei:condition/></cei:physicalDesc><cei:auth><cei:notariusDesc/><cei:sealDesc/></cei:auth><cei:nota/></cei:witnessOrig><cei:witListPar><cei:witness><cei:traditioForm/><cei:figure/><cei:archIdentifier/><cei:physicalDesc><cei:material/><cei:dimensions/><cei:condition/></cei:physicalDesc><cei:auth><cei:sealDesc/><cei:notariusDesc/></cei:auth><cei:nota/></cei:witness></cei:witListPar><cei:diplomaticAnalysis><cei:listBibl><cei:bibl/></cei:listBibl><cei:listBiblEdition><cei:bibl/></cei:listBiblEdition><cei:listBiblRegest><cei:bibl/></cei:listBiblRegest><cei:listBiblFaksimile><cei:bibl/></cei:listBiblFaksimile><cei:listBiblErw><cei:bibl/></cei:listBiblErw><cei:p/><cei:quoteOriginaldatierung/><cei:nota/></cei:diplomaticAnalysis><cei:lang_MOM/></cei:chDesc><cei:tenor/>
+                                        </cei:body>
+                                        <cei:back><cei:persName/><cei:placeName/><cei:index/><cei:divNotes><cei:note/></cei:divNotes></cei:back>
+                                    </cei:text>
+                            
+                                  </atom:content>
+                              </atom:entry>
+                          </xsl:result-document>
+                      </xsl:if>
                     </xsl:for-each>
                 </cei:group>
             </cei:text>
@@ -662,9 +766,8 @@
     </xsl:template>
    <!-- In gesamten Dokument normalize-space() -->
     <xsl:template match="text()" priority="-2">
-<!--        <xsl:value-of select="replace(.,'\s+',' ')"/>-->
-        <!-- ToDo: Das könnte durch eine Funktion geschickt werden, die aus einer Namen aus einer Personenliste extrahiert, diese im Text findet, und ihnen dann ein cei:persName mit entsprechendem @key zuweist. Relevant ist es nur für die Regesten:  -->
         <xsl:choose><xsl:when test="ancestor-or-self::t:p[@rend='Regest']"><xsl:copy-of select="cei:findperson(replace(.,'\s+',' '))"/></xsl:when><xsl:otherwise><xsl:value-of select="replace(.,'\s+',' ')"/></xsl:otherwise></xsl:choose>
+        <!-- ToDo: Das könnte durch eine Funktion geschickt werden, die aus einer Namen aus einer Personenliste extrahiert, diese im Text findet, und ihnen dann ein cei:persName mit entsprechendem @key zuweist. Relevant ist es nur für die Regesten .. -->
     </xsl:template>
     
     <xsl:function name="cei:findperson">
@@ -673,11 +776,10 @@
         <xsl:variable name="regex" select="cei:testperson($text)"/>
         <xsl:choose>
             <xsl:when test="$regex!=''">
-                <xsl:variable name="test">
-                    <name><xsl:copy-of select="$regex//treffer"/></name>
-                    <hit><xsl:value-of select="substring-before($text,$regex//treffer[1]/text())"/><cei:persName key="{string($regex//treffer[1]/@xml:id[1])}"><xsl:value-of select="$regex//treffer[1]/text()"/></cei:persName><xsl:value-of select="substring-after($text,$regex//treffer[1]/text())"/></hit>
-                </xsl:variable>
-                <xsl:value-of select="substring-before($text,$regex//treffer[1]/text())"/><cei:persName key="{string($regex//treffer[1]/@xml:id[1])}"><xsl:value-of select="$regex//treffer[1]/text()"/></cei:persName><xsl:value-of select="substring-after($text,$regex//treffer[1]/text())"/>
+<!--                <xsl:variable name="test">
+                    <hit><xsl:value-of select="substring-before($text,$regex/treffer/text())"/><cei:persName key="#{$regex//@xml:id}"><xsl:value-of select="$regex/treffer/text()"/></cei:persName><xsl:value-of select="substring-after($text,$regex/treffer/text())"/></hit>
+                </xsl:variable>-->
+                <xsl:value-of select="substring-before($text,$regex/treffer[1]/text())"/><cei:persName key="#{string($regex/*[1]/@xml:id[1])}"><xsl:value-of select="$regex/treffer[1]/text()"/></cei:persName><xsl:value-of select="substring-after($text,$regex/treffer[1]/text())"/>
 </xsl:when>
             <xsl:otherwise>
                 <xsl:copy-of select="$text"/>
@@ -686,16 +788,14 @@
     </xsl:function>
     <xsl:function name="cei:testperson">
         <xsl:param name="text"/>
-        <liste>
-            <xsl:for-each select="$names/t:person">
-                <xsl:choose>
-                    <xsl:when test="matches($text,name/text())">
-                        <treffer><xsl:copy-of select="@xml:id"/>
-                        <xsl:value-of select="name/text()"/></treffer>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:for-each>
-        </liste>
+        <xsl:for-each select="$names/t:person">
+            <xsl:choose>
+                <xsl:when test="matches($text,./name/text())">
+                    <treffer><xsl:copy-of select="@xml:id"/>
+                    <xsl:value-of select="./name/text()"/></treffer>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
     </xsl:function>
     
     <!-- interne Notizen werden als Kommentar bereitgestellt -->
@@ -779,14 +879,15 @@
             <xsl:text> - </xsl:text>
         </xsl:if>-->
         <xsl:variable name="skos" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:atom="http://www.w3.org/2005/Atom">           
-            <xsl:variable name="lemmawert">                
+            <xsl:variable name="lemmawert">
+                <xsl:text>#</xsl:text>
                 <xsl:value-of select="$stringlist"/>
             </xsl:variable>          
             <xsl:value-of select="document('illurk-vocabulary.xml')//skos:prefLabel[text()= $lemmawert]/parent::rdf:Description/@rdf:about"/>          
         </xsl:variable>
         <cei:index>
             <xsl:variable name="zeilenumbruch" select="."/>
-            <xsl:attribute name="indexName">illurk-vocabulary</xsl:attribute>        
+            <xsl:attribute name="indexName">arthistorian</xsl:attribute>        
             <!-- lemma wird mit SKOS normalisiert und die '#' entfernt -->
             <xsl:attribute name="lemma">
                 <xsl:value-of select="replace($skos, '#', '')"/>             
@@ -857,10 +958,8 @@
                         </xsl:choose>
                     </xsl:variable>
                     <zotlink><xsl:value-of select="$zotlink"/></zotlink>
-                    <key><xsl:value-of select="replace($zotlink,'^http://zotero.org/groups/257864/items/([A-Z0-9]+).*?$','zotero:$1')"/></key>                            
-
+                    <key><xsl:value-of select="replace($zotlink,'^http://zotero.org/groups/257864/items/([A-Z0-9]+).*?$','zotero:$1')"/></key>
                     <referenz><xsl:text> (</xsl:text><cei:ref target="{$zotlink}">Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text></referenz> <!-- kann das cei element nicht in variablen rausspielen -->                   
-
                 </xsl:if>
             </xsl:when>           
             </xsl:choose>
@@ -871,10 +970,8 @@
             </xsl:if>           
             <xsl:apply-templates/>
             <xsl:if test="$zotero//text()">
-
-                <xsl:text>(</xsl:text><cei:ref><xsl:attribute name="target"><xsl:value-of select="$zotero/zotlink"/></xsl:attribute>Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
-
-            </xsl:if>            
+                <xsl:text> (</xsl:text><cei:ref><xsl:attribute name="target"><xsl:value-of select="$zotero/zotlink"/></xsl:attribute>Volltitel auf Zotero</cei:ref><xsl:text>)</xsl:text>
+            </xsl:if>
         </cei:bibl>
     </xsl:template>
 
@@ -937,7 +1034,7 @@
         <xsl:param name="knoten"/>
         <!-- Teste, ob normalizedtext in $glossarkonkordanz/orig vorkommt -->
         <xsl:variable name="glossarentry" select="$glossarkonkordanz//entry[orig=$knoten/text()[1]/normalize-space()]"/>
-        <xsl:attribute name="lemma"><xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(replace($glossarentry/normalized, 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', ''), '-', '')"/></xsl:attribute>           
+        <xsl:attribute name="lemma"><xsl:text>#</xsl:text><xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(replace($glossarentry/normalized, 'ä', 'ae'), 'ß', 'ss'), 'ö', 'oe'), 'ü', 'ue'), 'é', 'e'), ' ', ''), '&#xA;', ''), '-', '')"/></xsl:attribute>           
         <xsl:choose>
             <xsl:when test="$glossarentry/@action='replace'"><xsl:apply-templates select="$glossarentry/normalized"/></xsl:when>
             <xsl:otherwise><xsl:apply-templates select="$knoten/(*|text())"/></xsl:otherwise>
