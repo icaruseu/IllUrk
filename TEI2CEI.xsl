@@ -883,14 +883,13 @@
         </xsl:if>-->
         <xsl:variable name="skos" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:atom="http://www.w3.org/2005/Atom">           
             <xsl:variable name="lemmawert">
-                <xsl:text>#</xsl:text>
                 <xsl:value-of select="$stringlist"/>
             </xsl:variable>          
             <xsl:value-of select="document('illurk-vocabulary.xml')//skos:prefLabel[text()= $lemmawert]/parent::rdf:Description/@rdf:about"/>          
         </xsl:variable>
         <cei:index>
             <xsl:variable name="zeilenumbruch" select="."/>
-            <xsl:attribute name="indexName">arthistorian</xsl:attribute>        
+            <xsl:attribute name="indexName">illurk-vocabulary</xsl:attribute>        
             <!-- lemma wird mit SKOS normalisiert und die '#' entfernt -->
             <xsl:attribute name="lemma">
                 <xsl:value-of select="replace($skos, '#', '')"/>             
