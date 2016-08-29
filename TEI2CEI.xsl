@@ -948,9 +948,7 @@
                         <xsl:choose>
                             <!-- FixMe: Ich bräuchte eigentlich mehr als nur $shortest http://zotero.org/groups/257864/items/7VDGF2FQ-->
                             <xsl:when test="$t2">
-                                
                                 <xsl:value-of select="$t2/@corresp"/>
-                               
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:variable name="zotjson" select="unparsed-text(concat('https://api.zotero.org/groups/257864/items?q=',$shortest))"/>
@@ -1003,7 +1001,6 @@
             <xsl:when test="count($zottreffer) = 1">
                 <xsl:value-of select="$zottreffer/@corresp"/>
             </xsl:when>
-            <xsl:otherwise><xsl:text>0</xsl:text></xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
