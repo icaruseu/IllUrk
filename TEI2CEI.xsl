@@ -772,7 +772,9 @@
                     <body>
                         <ul>
                             <xsl:for-each select="collection(concat($collectionkürzel,'/?select=*.charter.xml'))" >
+
                                 <xsl:variable name="link">http://www.monasterium.net/mom/<xsl:value-of select="$collectionkürzel"/>/<xsl:value-of select="substring-before(tokenize(document-uri(.), '/')[last()], '.charter.xml')"/>/edit</xsl:variable>
+
                                 <li>
                                     <a href="{$link}"><xsl:value-of select="$link"/></a>
                                 </li>
