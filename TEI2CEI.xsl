@@ -693,7 +693,6 @@
                                                     <cei:listBiblErw>
                                                         <cei:bibl/>
                                                     </cei:listBiblErw>
-                                                    <cei:p/>
                                                     <cei:quoteOriginaldatierung/>
                                                     <cei:nota/>
                                                 </cei:diplomaticAnalysis>
