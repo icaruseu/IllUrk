@@ -766,6 +766,22 @@
         </cei:cei>
             </xsl:otherwise>
         </xsl:choose>
+        <!-- Schreibe eine Liste der exportierten Dateien -->
+            <xsl:result-document href="{$collectionkürzel}/index.html">
+                <html><head><title><xsl:value-of select="$collectionkürzel"/></title></head>
+                    <body>
+                        <ul>
+                            <xsl:for-each select="collection(concat($collectionkürzel,'/?select=*.charter.xml'))" >
+                                <xsl:variable name="link">http://www.monasterium.net/mom/<xsl:value-of select="$collectionkürzel"/>/<xsl:value-of select="substring-before(tokenize(document-uri(.), '/')[last()], '.charter.xml')"/>/edit</xsl:variable>
+                                <li>
+                                    <a href="{$link}"><xsl:value-of select="$link"/></a>
+                                </li>
+                            </xsl:for-each>
+                        </ul>
+                    </body>
+                </html>
+            </xsl:result-document>
+        
     </xsl:template>
    <!-- In gesamten Dokument normalize-space() -->
     <xsl:template match="text()" priority="-2">
