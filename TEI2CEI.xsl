@@ -677,8 +677,6 @@
                                                     </cei:witness>
                                                 </cei:witListPar>
                                                 <cei:diplomaticAnalysis>
-                                                    <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
-                                                    <cei:p><xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']/following-sibling::t:*[@rend='Autorensigle'][1]"/></cei:p>
                                                     <!-- Bum: warum kommt was aus archiv info in dipomatic analysis? -->
                                                     <!--<xsl:for-each select="t:cell[6]//t:p[not(@rend or t:hi[matches(.,'Archiv')])]">
                                                         <cei:p><xsl:apply-templates/></cei:p>
@@ -693,6 +691,8 @@
                                                     <cei:listBiblErw>
                                                         <cei:bibl/>
                                                     </cei:listBiblErw>
+                                                    <xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']"/>
+                                                    <cei:p><xsl:apply-templates select="t:cell[4]//t:p[@rend='Beschreibung']/following-sibling::t:*[@rend='Autorensigle'][1]"/></cei:p>
                                                     <cei:quoteOriginaldatierung/>
                                                     <cei:nota/>
                                                 </cei:diplomaticAnalysis>
