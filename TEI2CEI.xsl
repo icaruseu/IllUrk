@@ -52,12 +52,9 @@
             5. aktuelles Illurk-Glossar local ablegen (für skos Normalisierung)
             6. aktuelle Bischofsliste_Ablässe_valide.xml lokal ablegen
             7. TEI-Version von Zotero erzeugen (z.B. mit zotero-tei-download.xsl) und lokal unter zotero-tei-download.xml ablegen
-<<<<<<< HEAD
             
             Untergruppen:
                Achtung, die Verweise werden immer nur auf öffentliche Urkunden aufgelöst, d.h. die Untergruppe zeigt mit .../my-collection erst etwas sinnvolles an, wenn die einschlägigen Urkunden der Hauptsammlung veröffentlicht sind.
-=======
->>>>>>> 10ed5226d9ef7d701a96cb1161f93840144a1bcc
     -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:cei="http://www.monasterium.net/NS/cei"
@@ -718,8 +715,7 @@
                                 </atom:content>
                             </atom:entry>
                     </xsl:result-document>
-                      <!-- ToDo: Ebenso für Untergruppe:
-                        Wie sieht die "leere" Urkunde aus? -->
+                      <!-- Ebenso für Untergruppe -->
                       <xsl:if test="$untergruppe != ''">
                           <xsl:result-document href="{$subcollectionkürzel}/{$id-core}.charter.xml">
                               <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
