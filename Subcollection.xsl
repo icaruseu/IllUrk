@@ -6,7 +6,7 @@
     exclude-result-prefixes="xs"
     version="2.0">
     <!-- Diese Skript erzeugt aus einer Liste von atom:id Kopien der Urkunden, die Nebensammlungen mit Verweisen auf in MOM schon publizierte illuminierte Urkunden eingefügt werden-->
-    <xsl:param name="subcollectionkürzel"/>
+    <xsl:param name="subcollectionkürzel"/><!-- insert subcollection name -->
     <xsl:param name="untergruppe"/>
     <xsl:variable name="collection-name">Illuminierte Urkunden</xsl:variable>
     <xsl:template match="/">
@@ -75,11 +75,11 @@
                 <app:control xmlns:app="http://www.w3.org/2007/app">
                     <app:draft>no</app:draft>
                 </app:control>
-                <atom:link rel="versionOf" ref="{./text()}"/>
-                <atom:content type="application/xml" src="{./text()}">
+                <atom:link rel="versionOf" ref="{atom:id/text()}"/>
+                <atom:content type="application/xml" src="{atom:id/text()}">
                     <cei:text xmlns:cei="http://www.monasterium.net/NS/cei" type="charter">
                         <xsl:attribute name="id">
-<!--                            <xsl:value-of select="$id/text()"/>-->
+                            <!--                            <xsl:value-of select="$id/text()"/>-->
                         </xsl:attribute>
                         <cei:front>
                             <cei:sourceDesc><cei:sourceDescVolltext><cei:bibl/></cei:sourceDescVolltext><cei:sourceDescRegest><cei:bibl>FWF Projekt P 26706-G21 "Illuminierte Urkunden"</cei:bibl></cei:sourceDescRegest></cei:sourceDesc>
