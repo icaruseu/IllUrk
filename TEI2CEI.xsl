@@ -61,15 +61,16 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs cei t" version="2.0">
     <xsl:output method="xml" indent="no" encoding="UTF-8" omit-xml-declaration="yes"/>
     <xsl:variable name="bildurl">
-        <xsl:text>Bilderliste.html</xsl:text>
-<!--        <xsl:text>http://images.monasterium.net/illum/Bilder_illum_IllUrk.xml</xsl:text>-->
+        <!--<xsl:text>Bilderliste.hml</xsl:text>-->
+       <xsl:text>Bilderliste_Lombardei.html</xsl:text>
     </xsl:variable>
-    <xsl:variable name="collection-name">Illuminierte Urkunden</xsl:variable>
+   <!-- <xsl:variable name="collection-name">Illuminierte Urkunden</xsl:variable>-->
+    <xsl:variable name="collection-name">Lombardei</xsl:variable>
     <xsl:variable name="collectionkürzel" select="translate($collection-name,' -_/|&amp;.:,;#+*?!§$%()[]{}=@','')"/>
     <xsl:variable name="glossarkonkordanz" select="document('GlossarKonkordanz.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
-    <xsl:variable name="personen" select="document('Bischofsliste_Ablässe_valide.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
+    <xsl:variable name="personen" select="document('Bischofsliste.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
     <xsl:variable name="zoteroexport" select="document('zotero-tei-download.xml')"/><!-- Achtung, ggf. Speicherort anpassen! -->
-    <xsl:variable name="untergruppe">Illuminierte Urkunden - Frankreich<!-- Enthält einen Namen für Untergruppen, die als MOM-Verknüpfungen erzeugt werden sollen. Solange leer passiert nichts  --></xsl:variable>
+    <xsl:variable name="untergruppe">Illuminierte Urkunden - Lombardei<!-- Enthält einen Namen für Untergruppen, die als MOM-Verknüpfungen erzeugt werden sollen. Solange leer passiert nichts  --></xsl:variable>
     <xsl:variable name="subcollectionkürzel" select="translate($untergruppe,' -_/|&amp;.:,;#+*?!§$%()[]{}=@','')"/>
 
     <xsl:variable name="names">
@@ -130,17 +131,17 @@
             </row>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:variable name="bilder">
+    <xsl:variable name="bilder"><!-- Anpassen von Datums Pfad: Lombardei-transfer/ -->
         <xsl:for-each
             select="document($bildurl)//a[(ends-with(@href, '.jpg') or ends-with(@href, '.JPG') or ends-with(@href, '.jpeg') or ends-with(@href,'.gif') or ends-with(@href, '.png'))]">
             <bild>
                 <url>
                     <xsl:value-of select="@href"/>
                 </url>
-                <datum>
-                    <xsl:value-of
-                        select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/IllUrk/')"
-                    />
+                <datum>                
+                      <xsl:value-of
+                          select="substring-after(substring-before(@href,'_'),'http://images.monasterium.net/illum/IllUrk/Lombardei-transfer/')"
+                    />                  
                 </datum>
             </bild>
         </xsl:for-each>
@@ -154,7 +155,7 @@
              <xsl:result-document href="{$collectionkürzel}.mycollection.xml">
                  <atom:entry xmlns:atom="http://www.w3.org/2005/Atom">
                      <atom:id>tag:www.monasterium.net,2011:/mycollection/<xsl:value-of select="$collectionkürzel"/>/</atom:id>
-                     <atom:title>Illuminierte Urkunden</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
+                     <atom:title>Lombardei</atom:title><!-- zum Testen von Illuminierte Urkunden geändert -->
                      <atom:published>2016-01-16T10:09:17.748+02:00</atom:published>
                      <atom:updated>2016-01-16T16:09:17.748+02:00</atom:updated>
                      <atom:author>
@@ -167,6 +168,7 @@
                          <xrx:visibility>private</xrx:visibility>
                          <xrx:user/>
                      </xrx:sharing>
+                     
                      <atom:content type="application/xml">
                          <cei:cei xmlns:cei="http://www.monasterium.net/NS/cei">
                              <cei:teiHeader>
@@ -452,7 +454,7 @@
                         </xsl:variable>
                         <!-- id anpassen an collection name bei jedem Import aufpassen -->
                         <xsl:variable name="id">                          
-                            <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/IlluminierteUrkunden/<xsl:value-of
+                            <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/Lombardei/<xsl:value-of
                                     select="$id-core"/></atom:id>                                                    <subcollectionID>
                                <atom:id xmlns:atom="http://www.w3.org/2005/Atom">tag:www.monasterium.net,2011:/charter/<xsl:value-of select="$subcollectionkürzel"/><xsl:text>/</xsl:text><xsl:value-of select="$id-core"/></atom:id>                                                                 </subcollectionID>
                             <cei:idno>
@@ -540,12 +542,14 @@
                                     <app:draft>no</app:draft>
                                 </app:control>
                                 
-                                <!-- prüfen, ob atom:link monasterium-link ist -->
+                                <!-- prüfen, ob atom:link monasterium-link ist-->
                                 <xsl:if
                                     test="$id/mom[1]/contains(., 'monasterium.net') or $id/mom[1]/contains(., 'mom-ca')">
                                     <atom:link rel="versionOf" ref="{$id/mom[1]/text()}"/>
-                                </xsl:if>
-                                
+                                </xsl:if> 
+                                <!-- Für italienische Lombardei Urkunden ein version-of auf dt. Fassung                                   
+                                <xsl:variable name="version"><xsl:value-of select="concat('tag:www.monasterium.net,2011:/charter/IlluminierteUrkunden/', $id-core )"/></xsl:variable>
+                                <atom:link rel="versionOf" ref="{$version}"/>--> 
                                 <atom:content type="application/xml">
                                     <!-- 
                             Ab hier dann das CEI:
@@ -624,7 +628,8 @@
                                                   Nimm Dir das Verzeichnis der Illuminierten Urkunden auf dem monasterium-Server, vergleiche a@href mit dem Datum (=t:cell[1]) und schreiber die @href in ein graphic@url-Element 
                                                   -->
                                                     <xsl:variable name="datum" select="t:cell[1]/(text()[1]|*[1]/text())[1]/translate(normalize-space(.),'–,;.?! ()','-')"/>
-                                                    <xsl:variable name="bild" select="$bilder/bild[datum=$cell1InterestingPart]/url"/>
+                                                    <!-- $cell1InterestingPart -->
+                                                    <xsl:variable name="bild" select="$bilder/bild[datum= $cell1InterestingPart]/url"/>
                                                   <!--  <xsl:variable name="bild" select="$bilder/bild[datum=$datum]/url"/> hier Variable ersetzt, weil $datum noch text enthält-->
                                                     <xsl:for-each
                                                         select="$bild">
@@ -647,7 +652,9 @@
                                                     </cei:archIdentifier>
                                                     <cei:physicalDesc>
                                                         <cei:decoDesc>
-                                                            <xsl:apply-templates select="t:cell[5]"/>
+                                                            <xsl:apply-templates select="t:cell[5]">
+                                                                <xsl:with-param name="verweis" select="$id-core"></xsl:with-param>
+                                                            </xsl:apply-templates>
                                                         </cei:decoDesc>
                                                         <cei:material/>
                                                         <cei:dimensions/>
@@ -702,9 +709,10 @@
                                         </cei:body>
                                         <cei:back>
                                             <cei:persName/>
-                                            <cei:placeName type="Region">
+                                            <xsl:apply-templates select="t:cell[2]"/>
+                                           <!-- <cei:placeName type="Region">
                                                 <xsl:value-of select="t:cell[2]"/>
-                                            </cei:placeName>
+                                            </cei:placeName>-->
                                             <xsl:apply-templates select="t:cell[5]/t:p[@rend = 'NIVEAU']"/>
                                             <cei:divNotes>
                                                 <cei:note/>
@@ -762,7 +770,7 @@
             </xsl:otherwise>
         </xsl:choose>
         <!-- Schreibe eine Liste der exportierten Dateien -->
-            <xsl:result-document href="{$collectionkürzel}/index.html">
+         <!--   <xsl:result-document href="{$collectionkürzel}/index.html">
                 <html><head><title><xsl:value-of select="$collectionkürzel"/></title></head>
                     <body>
                         <ul>
@@ -777,10 +785,10 @@
                         </ul>
                     </body>
                 </html>
-            </xsl:result-document>
+            </xsl:result-document>-->
         
     </xsl:template>
-   <!-- In gesamten Dokument normalize-space() -->
+   <!-- In gesamten Dokument normalize-space -->
     <xsl:template match="text()" priority="-2">
         <xsl:choose><xsl:when test="ancestor-or-self::t:p[@rend='Regest']"><xsl:copy-of select="cei:findperson(replace(.,'\s+',' '))"/></xsl:when><xsl:otherwise><xsl:value-of select="replace(.,'\s+',' ')"/></xsl:otherwise></xsl:choose>
         <!-- ToDo: Das könnte durch eine Funktion geschickt werden, die aus einer Namen aus einer Personenliste extrahiert, diese im Text findet, und ihnen dann ein cei:persName mit entsprechendem @key zuweist. Relevant ist es nur für die Regesten .. -->
@@ -840,6 +848,27 @@
             <xsl:apply-templates/>
         </cei:p>
     </xsl:template>
+    
+    <!-- NEU für Lombardei 2017 : mehrere Regionen  und Querverweis-->
+    <xsl:template match="t:cell[2]">
+        <xsl:for-each select="t:p">
+            <xsl:choose>
+                <xsl:when test="t:p = ''"></xsl:when>
+                <xsl:otherwise>
+                    <cei:placeName type="Region">
+                        <xsl:apply-templates select="@*"/>
+                        <xsl:apply-templates/>
+                    </cei:placeName>  
+                </xsl:otherwise>
+            </xsl:choose>               
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!-- <cei:p><cei:ref target=""> -->
+    
+    
+    
+    
     <!--
         In der vierten Spalte steht das Regest
     -->
@@ -867,6 +896,7 @@
         Die fünfte Spalte enthält die kunsthistorische Beschreibung
     -->
     <xsl:template match="t:cell[5]" priority="2">
+        <xsl:param name="verweis"/>
     <xsl:choose>
         <xsl:when test="text() and text()/normalize-space(.) != ''">
             <cei:p>
@@ -876,10 +906,26 @@
             <xsl:otherwise>
                <!-- <xsl:apply-templates/>-->
         <xsl:for-each select="t:p[not(@rend = 'NIVEAU')]">
-            <cei:p>
-                <xsl:apply-templates select="@*"/>
-                <xsl:apply-templates/>
-            </cei:p>          
+            <xsl:choose>
+                <xsl:when test="@rend='Querverweis'">
+                    <xsl:comment>Querverweis</xsl:comment>
+                    <xsl:variable name="querverweis">
+                        <xsl:value-of select="concat('http://monasterium.net/mom/Lombardeiit/', $verweis, '/my-charter')"/><!-- Achtung ist auf my-chater gestellt ändern??? -->
+                    </xsl:variable>
+                    <cei:p><cei:ref target="{$querverweis}">
+                        <xsl:apply-templates select="@*"/>
+                        <xsl:apply-templates/>
+                    </cei:ref>                   
+                    </cei:p>
+                </xsl:when>
+                <xsl:otherwise>
+                    <cei:p>
+                        <xsl:apply-templates select="@*"/>
+                        <xsl:apply-templates/>
+                    </cei:p>  
+                </xsl:otherwise>
+            </xsl:choose>
+           
         </xsl:for-each>
           </xsl:otherwise>
         </xsl:choose>
